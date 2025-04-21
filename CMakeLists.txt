@@ -21,16 +21,16 @@ set ( EXTERNAL
 
 set ( SOURCE_ONE_WEEKEND
   src/InOneWeekend/main.cc
-  src/InOneWeekend/camera.h
-  src/InOneWeekend/color.h
-  src/InOneWeekend/hittable.h
-  src/InOneWeekend/hittable_list.h
-  src/InOneWeekend/interval.h
-  src/InOneWeekend/material.h
-  src/InOneWeekend/ray.h
-  src/InOneWeekend/rtweekend.h
-  src/InOneWeekend/sphere.h
-  src/InOneWeekend/vec3.h
+  # src/InOneWeekend/camera.h
+  # src/InOneWeekend/color.h
+  # src/InOneWeekend/hittable.h
+  # src/InOneWeekend/hittable_list.h
+  # src/InOneWeekend/interval.h
+  # src/InOneWeekend/material.h
+  # src/InOneWeekend/ray.h
+  # src/InOneWeekend/rtweekend.h
+  # src/InOneWeekend/sphere.h
+  # src/InOneWeekend/vec3.h
 )
 
 set ( SOURCE_NEXT_WEEK
@@ -107,12 +107,12 @@ endif()
 
 # Executables
 add_executable(inOneWeekend      ${EXTERNAL} ${SOURCE_ONE_WEEKEND})
-add_executable(theNextWeek       ${EXTERNAL} ${SOURCE_NEXT_WEEK})
-add_executable(theRestOfYourLife ${EXTERNAL} ${SOURCE_REST_OF_YOUR_LIFE})
-add_executable(cos_cubed         src/TheRestOfYourLife/cos_cubed.cc         )
-add_executable(cos_density       src/TheRestOfYourLife/cos_density.cc       )
-add_executable(integrate_x_sq    src/TheRestOfYourLife/integrate_x_sq.cc    )
-add_executable(pi                src/TheRestOfYourLife/pi.cc                )
-add_executable(estimate_halfway  src/TheRestOfYourLife/estimate_halfway.cc  )
-add_executable(sphere_importance src/TheRestOfYourLife/sphere_importance.cc )
-add_executable(sphere_plot       src/TheRestOfYourLife/sphere_plot.cc       )
+# add_executable(theNextWeek       ${EXTERNAL} ${SOURCE_NEXT_WEEK})
+# add_executable(theRestOfYourLife ${EXTERNAL} ${SOURCE_REST_OF_YOUR_LIFE})
+# add_executable(cos_cubed         src/TheRestOfYourLife/cos_cubed.cc         )
+# add_executable(cos_density       src/TheRestOfYourLife/cos_density.cc       )
+# add_executable(integrate_x_sq    src/TheRestOfYourLife/integrate_x_sq.cc    )
+# add_executable(pi                src/TheRestOfYourLife/pi.cc                )
+# add_executable(estimate_halfway  src/TheRestOfYourLife/estimate_halfway.cc  )
+# add_executable(sphere_importance src/TheRestOfYourLife/sphere_importance.cc )
+# add_executable(sphere_plot       src/TheRestOfYourLife/sphere_plot.cc       )

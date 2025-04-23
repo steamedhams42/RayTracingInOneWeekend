@@ -25,8 +25,9 @@ set ( SOURCE_ONE_WEEKEND
   src/InOneWeekend/vec3.cc
   src/InOneWeekend/point3.h
   src/InOneWeekend/point3.cc
+  src/InOneWeekend/color.h
+  src/InOneWeekend/color.cc
   # src/InOneWeekend/camera.h
-  # src/InOneWeekend/color.h
   # src/InOneWeekend/hittable.h
   # src/InOneWeekend/hittable_list.h
   # src/InOneWeekend/interval.h

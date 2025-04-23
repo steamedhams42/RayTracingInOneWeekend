@@ -16,10 +16,16 @@ public:
     Vec3 operator*(const Vec3& rhs);
     Vec3 operator*(double t);
     Vec3 operator/(double t);
+
     double dot(const Vec3& rhs);
     Vec3 cross(const Vec3& rhs);
+
+    // Returns |this| vector normalized
     Vec3 unit();
 
 };
+
+inline Vec3 operator*(double t, Vec3 v);
+inline Vec3 operator/(double t, Vec3 v);
 
 #endif

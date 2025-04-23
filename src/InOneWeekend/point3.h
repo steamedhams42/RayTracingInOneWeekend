@@ -21,9 +21,10 @@ public:
     Point3 operator+(const Point3& rhs);
 
     // Scaling
+    Point3 operator*(double t);
     Point3& operator*=(double t);
-    // 1 / Scaling
     Point3& operator/=(double t);
+
     // Negation
     Point3 operator-() const;
 

@@ -7,5 +7,5 @@ const Point3& Ray::origin() const  { return origin_; }
 const Vec3& Ray::direction() const { return dir_; }
 
 Point3 Ray::at(double t) const {
-    return static_cast<Point3>(t * dir_) + origin_;
+    return static_cast<Point3>(dir_) * t + origin_;
 }

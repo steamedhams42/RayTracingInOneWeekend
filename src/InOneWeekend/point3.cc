@@ -24,7 +24,11 @@ Point3& Point3::operator*=(double t) {
     this->points_[2] *= t;
     return *this;
 }
-// 1 / Scaling
+
+Point3 Point3::operator*(double t) {
+    return Point3(t * x(), t * y(), t * z());
+}
+
 Point3& Point3::operator/=(double t) {
     return *this *= (1 / t);
 }

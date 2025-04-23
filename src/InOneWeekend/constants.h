@@ -1,8 +1,9 @@
-#ifndef VEC3_H
-#define VEC3_H
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
 
 namespace constants {
-
+    // 1 Byte = 8 bits represented in decimal.
+    const int BYTE = 1 << 8;
 }
 
-#endif VEC3_H
+#endif

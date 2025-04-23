@@ -4,7 +4,7 @@
 #include <iostream>
 
 class Point3 {
-private:
+protected:
     double points_[3];
 
 public:

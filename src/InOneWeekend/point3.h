@@ -4,9 +4,6 @@
 #include <iostream>
 
 class Point3 {
-protected:
-    double points_[3];
-
 public:
     Point3() : points_{0, 0, 0} {}
     Point3(double x, double y, double z) : points_{x, y, z} {}
@@ -21,6 +18,7 @@ public:
     double operator[](int i) const;
 
     Point3& operator+=(const Point3& rhs);
+    Point3 operator+(const Point3& rhs);
 
     // Scaling
     Point3& operator*=(double t);
@@ -35,6 +33,9 @@ public:
     friend std::ostream& operator<<(std::ostream& out, const Point3& p) {
         return out << p.x() << ' ' << p.y() << ' ' << p.z();
     }
+
+protected:
+    double points_[3];
 
 };
 

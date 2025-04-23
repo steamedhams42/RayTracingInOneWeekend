@@ -4,7 +4,6 @@
 #include "point3.h"
 
 class Color : public Point3 {
-private:
 public:
     Color();
     Color(double r, double g, double b);

@@ -4,8 +4,6 @@
 #include "point3.h"
 
 class Vec3 : public Point3 {
-private:
-
 public:
     Vec3() : Point3{0, 0, 0} {}
     Vec3(double x, double y, double z) : Point3{x, y, z} {} 
@@ -25,7 +23,12 @@ public:
 
 };
 
-inline Vec3 operator*(double t, Vec3 v);
-inline Vec3 operator/(double t, Vec3 v);
+inline Vec3 operator*(double t, Vec3 v) {
+    return v * t;
+}
+
+inline Vec3 operator/(double t, Vec3 v) {
+    return (1 /t) * v;
+}
 
 #endif

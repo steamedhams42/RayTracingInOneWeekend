@@ -12,6 +12,11 @@ Point3& Point3::operator+=(const Point3& rhs) {
     this->points_[2] += rhs.points_[2];
     return *this;
 }
+
+Point3 Point3::operator+(const Point3& rhs) {
+    return Point3(x() + rhs.x(), y() + rhs.y(), z() + rhs.z());
+}
+
 // Scaling
 Point3& Point3::operator*=(double t) {
     this->points_[0] *= t;

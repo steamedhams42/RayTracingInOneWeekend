@@ -39,11 +39,3 @@ Vec3 Vec3::cross(const Vec3& rhs) {
 Vec3 Vec3::unit() {
     return *this / this->norm();
 }
-
-inline Vec3 operator*(double t, Vec3 v) {
-    return v * t;
-}
-
-inline Vec3 operator/(double t, Vec3 v) {
-    return (1 /t) * v;
-}

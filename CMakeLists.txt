@@ -26,7 +26,6 @@ set ( SOURCE_ONE_WEEKEND
   src/InOneWeekend/point3.h
   src/InOneWeekend/point3.cc
   src/InOneWeekend/color.h
-  src/InOneWeekend/color.cc
   src/InOneWeekend/constants.h
   src/InOneWeekend/ray.h
   src/InOneWeekend/ray.cc

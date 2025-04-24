@@ -1,14 +1,27 @@
 #ifndef COLOR_H
 #define COLOR_H
 
+#include <iostream>
+#include "constants.h"
 #include "point3.h"
 
-class Color : public Point3 {
- public:
-  Color();
-  Color(double r, double g, double b);
+namespace color {
 
-  friend std::ostream& operator<<(std::ostream& out, const Color& c);
-};
+using Color = Point3;
+
+void write_color(std::ostream& out, const Color& c) {
+  double R = c.x();
+  double G = c.y();
+  double B = c.z();
+
+  // Rescale from [0, 255]
+  int iR = int(R * (constants::BYTE - 1));
+  int iG = int(G * (constants::BYTE - 1));
+  int iB = int(B * (constants::BYTE - 1));
+
+  out << iR << ' ' << iG << ' ' << iB << '\n';
+}
+
+}  // namespace color
 
 #endif

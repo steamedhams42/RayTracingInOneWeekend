@@ -7,6 +7,7 @@ class Vec3 : public Point3 {
  public:
   Vec3() : Point3{0, 0, 0} {}
   Vec3(double x, double y, double z) : Point3{x, y, z} {}
+  Vec3(const Point3& p) : Point3(p) {}
   ~Vec3() = default;
 
   Vec3 operator+(const Vec3& rhs);

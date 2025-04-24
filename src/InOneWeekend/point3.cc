@@ -6,6 +6,10 @@ double Point3::operator[](int i) const {
     return points_[i];
 }
 
+Point3 Point3::operator+(const Point3& rhs) const {
+    return Point3(x() + rhs.x(), y() + rhs.y(), z() + rhs.z());
+}
+
 Point3& Point3::operator+=(const Point3& rhs) {
     this->points_[0] += rhs.points_[0];
     this->points_[1] += rhs.points_[1];
@@ -13,8 +17,13 @@ Point3& Point3::operator+=(const Point3& rhs) {
     return *this;
 }
 
-Point3 Point3::operator+(const Point3& rhs) const {
-    return Point3(x() + rhs.x(), y() + rhs.y(), z() + rhs.z());
+
+Point3 Point3::operator-(const Point3& rhs) const {
+    return *this + -rhs;
+}
+
+Point3& Point3::operator-=(const Point3& rhs) {
+    return *this += -rhs;
 }
 
 Point3& Point3::operator*=(double t) {

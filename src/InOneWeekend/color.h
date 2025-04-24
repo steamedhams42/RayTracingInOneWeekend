@@ -4,12 +4,11 @@
 #include "point3.h"
 
 class Color : public Point3 {
-public:
-    Color();
-    Color(double r, double g, double b);
+ public:
+  Color();
+  Color(double r, double g, double b);
 
-    friend std::ostream& operator<<(std::ostream& out, const Color& c);
-
+  friend std::ostream& operator<<(std::ostream& out, const Color& c);
 };
 
 #endif

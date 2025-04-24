@@ -11,15 +11,16 @@ public:
 
     Vec3 operator+(const Vec3& rhs);
     Vec3 operator-(const Vec3& rhs);
-    Vec3 operator*(const Vec3& rhs);
-    Vec3 operator*(double t);
-    Vec3 operator/(double t);
 
-    double dot(const Vec3& rhs);
-    Vec3 cross(const Vec3& rhs);
+    Vec3 operator*(const Vec3& rhs) const;
+    Vec3 operator*(double t) const;
+    Vec3 operator/(double t) const;
+
+    double dot(const Vec3& rhs) const;
+    Vec3 cross(const Vec3& rhs) const;
 
     // Returns |this| vector normalized
-    Vec3 unit();
+    Vec3 unit() const;
 
 };
 
@@ -28,7 +29,7 @@ inline Vec3 operator*(double t, Vec3 v) {
 }
 
 inline Vec3 operator/(double t, Vec3 v) {
-    return (1 /t) * v;
+    return (1 / t) * v;
 }
 
 #endif

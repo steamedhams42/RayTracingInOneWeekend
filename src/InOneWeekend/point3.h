@@ -18,18 +18,17 @@ public:
     double operator[](int i) const;
 
     Point3& operator+=(const Point3& rhs);
-    Point3 operator+(const Point3& rhs);
+    Point3 operator+(const Point3& rhs) const;
 
-    // Scaling
-    Point3 operator*(double t);
+    Point3 operator*(double t) const;
     Point3& operator*=(double t);
     Point3& operator/=(double t);
 
     // Negation
     Point3 operator-() const;
 
-    double norm();
-    double norm_squared();
+    double norm() const;
+    double norm_squared() const;
 
     friend std::ostream& operator<<(std::ostream& out, const Point3& p) {
         return out << p.x() << ' ' << p.y() << ' ' << p.z();

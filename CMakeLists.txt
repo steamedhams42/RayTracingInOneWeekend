@@ -29,6 +29,7 @@ set ( SOURCE_ONE_WEEKEND
   src/InOneWeekend/constants.h
   src/InOneWeekend/ray.h
   src/InOneWeekend/ray.cc
+  src/InOneWeekend/main2.h
   # src/InOneWeekend/camera.h
   # src/InOneWeekend/hittable.h
   # src/InOneWeekend/hittable_list.h

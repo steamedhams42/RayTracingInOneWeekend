@@ -35,15 +35,13 @@ const Vec3 PIXEL_DELTA_HEIGHT = VIEWPORT_VECTOR_HEIGHT / IMAGE_HEIGHT;
 // Calculate location of upper-left pixel's center.
 // Start from the camera's location, move forward toward viewport by distance
 // of focal length.
-const Point3 upper_left_pixel_location = constants::CAMERA_CENTER -
-                                         Point3(0, 0, constants::FOCAL_LENGTH) -
-                                         constants::VIEWPORT_VECTOR_WIDTH / 2 -
-                                         constants::VIEWPORT_VECTOR_HEIGHT / 2;
+const Point3 upper_left_pixel_location =
+    constants::CAMERA_CENTER - Point3(0, 0, FOCAL_LENGTH) -
+    VIEWPORT_VECTOR_WIDTH / 2 - VIEWPORT_VECTOR_HEIGHT / 2;
 
 // Point of the top-left pixel's center in the viewport.
-const Point3 VIEWPORT_TOP_LEFT_PIXEL_CENTER = upper_left_pixel_location +
-                                              constants::PIXEL_DELTA_WIDTH / 2 +
-                                              constants::PIXEL_DELTA_HEIGHT / 2;
+const Point3 VIEWPORT_TOP_LEFT_PIXEL_CENTER =
+    upper_left_pixel_location + PIXEL_DELTA_WIDTH / 2 + PIXEL_DELTA_HEIGHT / 2;
 
 const Point3 SPHERE_CENTER = Point3(0, 0, -FOCAL_LENGTH);
 

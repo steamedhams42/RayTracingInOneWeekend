@@ -3,6 +3,7 @@
 
 #include "color.h"
 #include "constants.h"
+#include "main2.h"
 #include "point3.h"
 #include "ray.h"
 #include "vec3.h"
@@ -18,7 +19,7 @@ bool doesRayHitSphere(const Ray& ray) {
 
 color::Color computeRayColor(const Ray& ray) {
   if (doesRayHitSphere(ray)) {
-    // return color::RED;
+    return color::RED;
   }
   Vec3 unit_direction = ray.direction().unit();
   double scale = (unit_direction.y() + 1.0) / 2.0;
@@ -28,6 +29,7 @@ color::Color computeRayColor(const Ray& ray) {
 }
 
 int main() {
+  // main2();
   std::cout << "P3" << constants::nl;
   std::cout << constants::IMAGE_WIDTH << ' ' << constants::IMAGE_HEIGHT
             << constants::nl;

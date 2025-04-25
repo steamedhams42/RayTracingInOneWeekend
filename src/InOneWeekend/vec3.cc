@@ -21,7 +21,7 @@ Vec3 Vec3::operator/(double t) const {
 }
 
 double Vec3::dot(const Vec3& rhs) const {
-  return x() * rhs.x() + y() * rhs.y() + z() + rhs.z();
+  return x() * rhs.x() + y() * rhs.y() + z() * rhs.z();
 }
 
 Vec3 Vec3::cross(const Vec3& rhs) const {

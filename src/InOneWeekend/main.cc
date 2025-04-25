@@ -3,7 +3,6 @@
 
 #include "color.h"
 #include "constants.h"
-#include "main2.h"
 #include "point3.h"
 #include "ray.h"
 #include "vec3.h"

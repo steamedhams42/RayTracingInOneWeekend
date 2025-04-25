@@ -15,11 +15,12 @@ set ( CMAKE_CXX_EXTENSIONS        OFF )
 
 # Source
 
+
 set ( EXTERNAL
   src/external/stb_image.h
 )
 
-set ( SOURCE_ONE_WEEKEND
+set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekend/main.cc
   src/InOneWeekend/vec3.h
   src/InOneWeekend/vec3.cc
@@ -39,8 +40,12 @@ set ( SOURCE_ONE_WEEKEND
 )
 
 set ( SOURCE_ONE_WEEKEND_TEST
-  src/InOneWeekend/main2.h
-  src/InOneWeekend/test.cc
+  src/InOneWeekend/test/point3_test.cc
+  src/InOneWeekend/test/main.cc
+)
+
+set ( SOURCE_ONE_WEEKEND
+  src/InOneWeekend/main_release.cc
 )
 
 set ( SOURCE_NEXT_WEEK
@@ -116,8 +121,9 @@ elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 # Executables
-add_executable(inOneWeekendJeff    ${EXTERNAL} ${SOURCE_ONE_WEEKEND})
+add_executable(inOneWeekendJeff    ${EXTERNAL} ${SOURCE_ONE_WEEKEND_JEFF})
 add_executable(inOneWeekendTest    ${EXTERNAL} ${SOURCE_ONE_WEEKEND_TEST})
+add_executable(inOneWeekend        ${EXTERNAL} ${SOURCE_ONE_WEEKEND})
 # add_executable(theNextWeek       ${EXTERNAL} ${SOURCE_NEXT_WEEK})
 # add_executable(theRestOfYourLife ${EXTERNAL} ${SOURCE_REST_OF_YOUR_LIFE})
 # add_executable(cos_cubed         src/TheRestOfYourLife/cos_cubed.cc         )

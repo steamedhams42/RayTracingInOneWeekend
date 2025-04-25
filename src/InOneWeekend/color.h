@@ -9,6 +9,8 @@ namespace color {
 
 using Color = Point3;
 
+const Color RED(1.0, 0, 0);
+
 void write_color(std::ostream& out, const Color& c) {
   double R = c.x();
   double G = c.y();

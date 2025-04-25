@@ -7,7 +7,19 @@
 #include "ray.h"
 #include "vec3.h"
 
+bool doesRayHitSphere(const Ray& ray) {
+  Vec3 CQ = constants::SPHERE_CENTER - ray.origin();
+  double a = ray.direction().dot(ray.direction());
+  double b = -2 * ray.direction().dot(CQ);
+  double c = CQ.dot(CQ) - constants::SPHERE_RADIUS * constants::SPHERE_RADIUS;
+  double discriminant = b * b - 4 * a * c;
+  return discriminant >= 0;
+}
+
 color::Color computeRayColor(const Ray& ray) {
+  if (doesRayHitSphere(ray)) {
+    // return color::RED;
+  }
   Vec3 unit_direction = ray.direction().unit();
   double scale = (unit_direction.y() + 1.0) / 2.0;
   assert(scale < 256);

@@ -16,7 +16,7 @@ const double ASPECT_WIDTH = 16.0;
 const double ASPECT_HEIGHT = 9.0;
 const double ASPECT_RATIO = ASPECT_WIDTH / ASPECT_HEIGHT;
 
-const int IMAGE_WIDTH = 2000;
+const int IMAGE_WIDTH = 1000;
 // image height cannot subceed 1
 const int IMAGE_HEIGHT = std::max(1, (int)(1.0 * IMAGE_WIDTH / ASPECT_RATIO));
 
@@ -44,6 +44,11 @@ const Point3 upper_left_pixel_location = constants::CAMERA_CENTER -
 const Point3 VIEWPORT_TOP_LEFT_PIXEL_CENTER = upper_left_pixel_location +
                                               constants::PIXEL_DELTA_WIDTH / 2 +
                                               constants::PIXEL_DELTA_HEIGHT / 2;
+
+const Point3 SPHERE_CENTER = Point3(0, 0, -FOCAL_LENGTH);
+
+double SPHERE_RADIUS = 0.5;
+
 }  // namespace constants
 
 #endif

@@ -29,7 +29,6 @@ set ( SOURCE_ONE_WEEKEND
   src/InOneWeekend/constants.h
   src/InOneWeekend/ray.h
   src/InOneWeekend/ray.cc
-  src/InOneWeekend/main2.h
   # src/InOneWeekend/camera.h
   # src/InOneWeekend/hittable.h
   # src/InOneWeekend/hittable_list.h
@@ -37,6 +36,11 @@ set ( SOURCE_ONE_WEEKEND
   # src/InOneWeekend/material.h
   # src/InOneWeekend/rtweekend.h
   # src/InOneWeekend/sphere.h
+)
+
+set ( SOURCE_ONE_WEEKEND_TEST
+  src/InOneWeekend/main2.h
+  src/InOneWeekend/test.cc
 )
 
 set ( SOURCE_NEXT_WEEK
@@ -112,7 +116,8 @@ elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 # Executables
-add_executable(inOneWeekend      ${EXTERNAL} ${SOURCE_ONE_WEEKEND})
+add_executable(inOneWeekendJeff    ${EXTERNAL} ${SOURCE_ONE_WEEKEND})
+add_executable(inOneWeekendTest    ${EXTERNAL} ${SOURCE_ONE_WEEKEND_TEST})
 # add_executable(theNextWeek       ${EXTERNAL} ${SOURCE_NEXT_WEEK})
 # add_executable(theRestOfYourLife ${EXTERNAL} ${SOURCE_REST_OF_YOUR_LIFE})
 # add_executable(cos_cubed         src/TheRestOfYourLife/cos_cubed.cc         )

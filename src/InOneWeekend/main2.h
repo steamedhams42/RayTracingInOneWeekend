@@ -138,7 +138,7 @@ color_ ray_color(const ray& r) {
   return (1.0 - a) * color_(1.0, 1.0, 1.0) + a * color_(0.5, 0.7, 1.0);
 }
 
-void main2() {
+int main() {
   // Image
 
   auto aspect_ratio = 16.0 / 9.0;

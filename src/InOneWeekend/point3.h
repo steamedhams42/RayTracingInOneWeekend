@@ -89,6 +89,7 @@ inline Point3& operator*=(Point3& lhs, double t) {
 inline Point3 operator/(const Point3& lhs, double t) {
   return lhs * (1 / t);
 }
+
 inline Point3& operator/=(Point3& lhs, double t) {
   return lhs *= (1 / t);
 }

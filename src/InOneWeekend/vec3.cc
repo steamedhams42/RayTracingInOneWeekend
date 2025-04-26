@@ -50,11 +50,11 @@ double Vec3::dot(const Vec3& rhs) const {
 }
 
 Vec3 Vec3::cross(const Vec3& rhs) const {
-  // x,   y,  z
-  // x2, y2, z2
+  //     x,     y,     z
+  // rhs.x, rhs.y, rhs.z
 
   double i = y() * rhs.z() - z() * rhs.y();
-  double j = x() * rhs.z() - z() * rhs.z();
+  double j = x() * rhs.z() - z() * rhs.x();
   double k = x() * rhs.y() - y() * rhs.x();
 
   return Vec3(i, -j, k);

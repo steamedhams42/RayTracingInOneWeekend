@@ -1,6 +1,7 @@
 #include "InOneWeekend/vec3.h"
 
 #include <cassert>
+#include <vector>
 
 #include "InOneWeekend/test/test_base.h"
 
@@ -53,8 +54,43 @@ class Vec3Test : public TestBase {
     assert(v.y() <= before.y() * (1 / x));
     assert(v.z() <= before.z() * (1 / x));
 
-    assert(v.norm_squared() == (v.x() * v.x() + v.y() * v.y() + v.z() * v.z()));
+    // dot product
+    v = createVec();
+    assert(v.dot(v) == v.norm_squared());
 
-    assert(v.norm() == sqrt(v.norm_squared()));
+    // cross product
+    std::vector<Vec3> xs = {Vec3(1, 0, 0), Vec3(-1, 0, 0)};
+    std::vector<Vec3> ys = {Vec3(0, 1, 0), Vec3(0, -1, 0)};
+    std::vector<Vec3> zs = {Vec3(0, 0, 1), Vec3(0, 0, -1)};
+
+    for (int i = 0; i < 2; i++) {
+      for (int j = 0; j < 2; j++) {
+        assert(xs[i].cross(ys[j]) == zs[(i + j) % 2]);
+        assert(ys[i].cross(xs[j]) == zs[(i + j + 1) % 2]);
+      }
+    }
+
+    for (int i = 0; i < 2; i++) {
+      for (int j = 0; j < 2; j++) {
+        assert(ys[i].cross(zs[j]) == xs[(i + j) % 2]);
+        assert(zs[i].cross(ys[j]) == xs[(i + j + 1) % 2]);
+      }
+    }
+
+    for (int i = 0; i < 2; i++) {
+      for (int j = 0; j < 2; j++) {
+        assert(zs[i].cross(xs[j]) == ys[(i + j) % 2]);
+        assert(xs[i].cross(zs[j]) == ys[(i + j + 1) % 2]);
+      }
+    }
+
+    // unit vector
+    v = createVec();
+    Vec3 unit = v.unit();
+    double norm = v.norm();
+    assert(unit.x() == (v / norm).x());
+    assert(unit.y() == (v / norm).y());
+    assert(unit.z() == (v / norm).z());
+    assert(unit.norm() == 1);
   }
 };

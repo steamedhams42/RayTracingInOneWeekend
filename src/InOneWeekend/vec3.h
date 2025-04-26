@@ -25,7 +25,6 @@ class Vec3 : public Point3 {
 
   Vec3 operator/(double t) const;
   Vec3& operator/=(double t);
-  friend Vec3& operator/=(double t, Vec3& rhs);
 
   double dot(const Vec3& rhs) const;
   Vec3 cross(const Vec3& rhs) const;
@@ -47,10 +46,6 @@ inline Vec3& operator*=(double t, Vec3& rhs) {
 
 inline Vec3 operator/(double t, const Vec3 v) {
   return (1 / t) * v;
-}
-
-inline Vec3& operator/=(double t, Vec3& rhs) {
-  return rhs *= (1 / t);
 }
 
 #endif

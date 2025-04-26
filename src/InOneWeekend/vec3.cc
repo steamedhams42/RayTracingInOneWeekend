@@ -4,20 +4,45 @@ Vec3 Vec3::operator+(const Vec3& rhs) {
   return Vec3(x() + rhs.x(), y() + rhs.y(), z() + rhs.z());
 }
 
+Vec3& Vec3::operator+=(const Vec3& rhs) {
+  this->points_[0] += rhs.points_[0];
+  this->points_[1] += rhs.points_[1];
+  this->points_[2] += rhs.points_[2];
+  return *this;
+}
+
+Vec3& Vec3::operator-() {
+  return *this *= -1;
+}
+
 Vec3 Vec3::operator-(const Vec3& rhs) {
   return Vec3(x() - rhs.x(), y() - rhs.y(), z() - rhs.z());
 }
 
-Vec3 Vec3::operator*(const Vec3& rhs) const {
-  return Vec3(x() * rhs.x(), y() * rhs.y(), z() * rhs.z());
+Vec3& Vec3::operator-=(const Vec3& rhs) {
+  this->points_[0] -= rhs.points_[0];
+  this->points_[1] -= rhs.points_[1];
+  this->points_[2] -= rhs.points_[2];
+  return *this;
 }
 
 Vec3 Vec3::operator*(double t) const {
   return Vec3(t * x(), t * y(), t * z());
 }
 
+Vec3& Vec3::operator*=(double t) {
+  points_[0] *= t;
+  points_[1] *= t;
+  points_[2] *= t;
+  return *this;
+}
+
 Vec3 Vec3::operator/(double t) const {
   return *this * (1 / t);
+}
+
+Vec3& Vec3::operator/=(double t) {
+  return *this *= (1 / t);
 }
 
 double Vec3::dot(const Vec3& rhs) const {

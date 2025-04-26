@@ -3,6 +3,8 @@
 
 #include "point3.h"
 
+class Vec3Test;
+
 class Vec3 : public Point3 {
  public:
   Vec3() : Point3{0, 0, 0} {}
@@ -11,25 +13,44 @@ class Vec3 : public Point3 {
   ~Vec3() = default;
 
   Vec3 operator+(const Vec3& rhs);
-  Vec3 operator-(const Vec3& rhs);
+  Vec3& operator+=(const Vec3& rhs);
 
-  Vec3 operator*(const Vec3& rhs) const;
+  Vec3& operator-();
+  Vec3 operator-(const Vec3& rhs);
+  Vec3& operator-=(const Vec3& rhs);
+
   Vec3 operator*(double t) const;
+  Vec3& operator*=(double t);
+  friend Vec3& operator*=(double t, Vec3& rhs);
+
   Vec3 operator/(double t) const;
+  Vec3& operator/=(double t);
+  friend Vec3& operator/=(double t, Vec3& rhs);
 
   double dot(const Vec3& rhs) const;
   Vec3 cross(const Vec3& rhs) const;
 
   // Returns |this| vector normalized
   Vec3 unit() const;
+
+ private:
+  friend Vec3Test;
 };
 
 inline Vec3 operator*(double t, Vec3 v) {
   return v * t;
 }
 
-inline Vec3 operator/(double t, Vec3 v) {
+inline Vec3& operator*=(double t, Vec3& rhs) {
+  return rhs *= t;
+}
+
+inline Vec3 operator/(double t, const Vec3 v) {
   return (1 / t) * v;
+}
+
+inline Vec3& operator/=(double t, Vec3& rhs) {
+  return rhs *= (1 / t);
 }
 
 #endif

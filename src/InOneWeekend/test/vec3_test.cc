@@ -1,33 +1,31 @@
-#include "InOneWeekend/point3.h"
-#include "InOneWeekend/test/test_base.h"
+#include "InOneWeekend/vec3.h"
 
 #include <cassert>
-#include <iostream>
 
-class Point3Test : public TestBase {
+#include "InOneWeekend/test/test_base.h"
+
+class Vec3Test : public TestBase {
  private:
-  Point3 createPoint3() {
+  Vec3 createVec() {
     double a = 0, b = 0, c = 0;
     a = random_real();
     b = random_real();
     c = random_real();
-    return Point3(a, b, c);
+    return Vec3(a, b, c);
   }
 
  public:
   void run_test() override {
-    Point3 zed;
-    Point3 v(0, 0, 0);
+    Vec3 zed;
+    Vec3 v(0, 0, 0);
     assert(zed == v);
 
-    v = createPoint3();
+    v = createVec();
     assert(v.points_[0] == v.x());
     assert(v.points_[1] == v.y());
     assert(v.points_[2] == v.z());
 
     // addition
-    assert(v == zed + v);
-    v += zed;
     assert(v == zed + v);
 
     // subtraction
@@ -38,7 +36,7 @@ class Point3Test : public TestBase {
     assert(v * 1 == v);
     assert(v * 0 == zed);
     double x = random_real();
-    Point3 before = v;
+    Vec3 before = v;
     v *= x;
     assert(v.x() == before.x() * x);
     assert(v.y() == x * before.y());
@@ -47,7 +45,7 @@ class Point3Test : public TestBase {
     assert(v == zed);
 
     // division
-    v = createPoint3();
+    v = createVec();
     x = random_real();
     before = v;
     v /= x;

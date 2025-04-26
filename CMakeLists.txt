@@ -45,6 +45,7 @@ set ( SOURCE_ONE_WEEKEND_TEST
   src/InOneWeekend/point3.h
   src/InOneWeekend/point3.cc
   src/InOneWeekend/test/point3_test.cc
+  src/InOneWeekend/test/vec3_test.cc
   src/InOneWeekend/test/main.cc
 )
 

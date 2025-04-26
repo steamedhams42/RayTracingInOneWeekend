@@ -40,6 +40,10 @@ set ( SOURCE_ONE_WEEKEND_JEFF
 )
 
 set ( SOURCE_ONE_WEEKEND_TEST
+  src/InOneWeekend/vec3.h
+  src/InOneWeekend/vec3.cc
+  src/InOneWeekend/point3.h
+  src/InOneWeekend/point3.cc
   src/InOneWeekend/test/point3_test.cc
   src/InOneWeekend/test/main.cc
 )

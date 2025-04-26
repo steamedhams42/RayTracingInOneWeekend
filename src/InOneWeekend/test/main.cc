@@ -3,6 +3,8 @@
 #include "InOneWeekend/test/point3_test.cc"
 
 int main() {
-  std::cout << "hello test!" << std::endl;
+  Point3Test test;
+
+  test.run_test();
   return 0;
 }

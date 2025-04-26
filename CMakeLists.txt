@@ -101,6 +101,7 @@ message (STATUS "Compiler ID: " ${CMAKE_CXX_COMPILER_ID})
 message (STATUS "Release flags: " ${CMAKE_CXX_FLAGS_RELEASE})
 message (STATUS "Debug flags: " ${CMAKE_CXX_FLAGS_DEBUG})
 
+
 if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     # /wd #### - Disable warning
     # /we #### - treat warning as error
@@ -133,3 +134,7 @@ add_executable(inOneWeekend        ${EXTERNAL} ${SOURCE_ONE_WEEKEND})
 # add_executable(estimate_halfway  src/TheRestOfYourLife/estimate_halfway.cc  )
 # add_executable(sphere_importance src/TheRestOfYourLife/sphere_importance.cc )
 # add_executable(sphere_plot       src/TheRestOfYourLife/sphere_plot.cc       )
+
+
+# Tests
+add_test(NAME test_run COMMAND inOneWeekendTest)

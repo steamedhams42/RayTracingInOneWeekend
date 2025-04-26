@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+class Point3Test;
+
 class Point3 {
  public:
   Point3() : points_{0, 0, 0} {}
@@ -41,6 +43,9 @@ class Point3 {
 
  protected:
   double points_[3];
+
+ private:
+  friend Point3Test;
 };
 
 #endif

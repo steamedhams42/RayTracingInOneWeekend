@@ -1,4 +1,5 @@
 #include <cassert>
+#include <cmath>
 #include <iostream>
 
 #include "color.h"
@@ -7,24 +8,30 @@
 #include "ray.h"
 #include "vec3.h"
 
-bool doesRayHitSphere(const Ray& ray) {
+double getRayScaleFactorToSphere(const Ray& ray) {
   Vec3 CQ = constants::SPHERE_CENTER - ray.origin();
   double a = ray.direction().dot(ray.direction());
   double b = -2 * ray.direction().dot(CQ);
   double c = CQ.dot(CQ) - constants::SPHERE_RADIUS * constants::SPHERE_RADIUS;
   double discriminant = b * b - 4 * a * c;
-  return discriminant >= 0;
+  if (discriminant < 0) {
+    return -1;
+  } else {
+    return (-b + std::sqrt(discriminant)) / (2 * a);
+  }
 }
 
-color::Color computeRayColor(const Ray& ray) {
-  if (doesRayHitSphere(ray)) {
-    return color::RED;
+Color computeRayColor(const Ray& ray) {
+  double t = getRayScaleFactorToSphere(ray);
+  if (t > 0.0) {
+    Point3 hit = ray.at(t) - constants::SPHERE_CENTER;
+    Vec3 unit = Vec3(hit).unit();
+    return 0.5 * Color(unit.x() + 1, unit.y() + 1, unit.z() + 1);
   }
   Vec3 unit_direction = ray.direction().unit();
   double scale = (unit_direction.y() + 1.0) / 2.0;
   assert(scale < 256);
-  return (1.0 - scale) * color::Color(1, 1, 1) +
-         scale * (color::Color(0.5, 0.7, 1.0));
+  return (1.0 - scale) * Color(1, 1, 1) + scale * (Color(0.5, 0.7, 1.0));
 }
 
 int main() {
@@ -45,9 +52,9 @@ int main() {
       Vec3 ray_direction(pixel_center);
       Ray ray(constants::CAMERA_CENTER, ray_direction);
 
-      color::Color ray_color = computeRayColor(ray);
+      Color ray_color = computeRayColor(ray);
 
-      color::write_color(std::cout, ray_color);
+      ray_color.write_color(std::cout);
     }
   }
   std::clog << "\rDone                " << constants::nl;

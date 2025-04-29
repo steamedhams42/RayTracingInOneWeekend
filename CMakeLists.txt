@@ -26,8 +26,9 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekend/vec3.cc
   src/InOneWeekend/point3.h
   src/InOneWeekend/point3.cc
-  src/InOneWeekend/color.h
   src/InOneWeekend/constants.h
+  src/InOneWeekend/color.h
+  src/InOneWeekend/color.cc
   src/InOneWeekend/ray.h
   src/InOneWeekend/ray.cc
   # src/InOneWeekend/camera.h

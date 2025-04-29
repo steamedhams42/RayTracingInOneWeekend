@@ -2,28 +2,37 @@
 #define COLOR_H
 
 #include <iostream>
-#include "constants.h"
 #include "point3.h"
 
-namespace color {
+class Color : public Point3 {
+ public:
+  Color(Point3 p);
+  Color(double r, double g, double b);
+  Color(const Color& p);
 
-using Color = Point3;
+  double r() const { return x(); }
+  double g() const { return y(); }
+  double b() const { return z(); }
 
-const Color RED(1.0, 0, 0);
+  void write_color(std::ostream& out);
 
-void write_color(std::ostream& out, const Color& c) {
-  double R = c.x();
-  double G = c.y();
-  double B = c.z();
+  Color operator+(const Color& rhs);
+  Color& operator+=(const Color& rhs);
 
-  // Rescale from [0, 255]
-  int iR = int(R * (constants::BYTE - 1));
-  int iG = int(G * (constants::BYTE - 1));
-  int iB = int(B * (constants::BYTE - 1));
+  Color operator*(double t);
+  Color& operator*=(double t);
+  friend Color operator*(double t, const Color& lhs);
 
-  out << iR << ' ' << iG << ' ' << iB << '\n';
+  Color operator/(double t);
+  Color& operator/=(double t);
+
+  bool operator==(const Color& lhs) const;
+
+ private:
+};
+
+inline Color operator*(double t, const Color& lhs) {
+  return lhs * t;
 }
-
-}  // namespace color
 
 #endif

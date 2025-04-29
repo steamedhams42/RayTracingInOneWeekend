@@ -45,7 +45,7 @@ const Point3 VIEWPORT_TOP_LEFT_PIXEL_CENTER =
 
 const Point3 SPHERE_CENTER = Point3(0, 0, -FOCAL_LENGTH);
 
-double SPHERE_RADIUS = 0.5;
+const double SPHERE_RADIUS = 0.5;
 
 }  // namespace constants
 

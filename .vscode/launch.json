@@ -5,10 +5,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "inOneWeekend",
+      "name": "inOneWeekendJeff",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/build/inOneWeekend",
+      "program": "${workspaceFolder}/build/inOneWeekendJeff",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${fileDirname}",

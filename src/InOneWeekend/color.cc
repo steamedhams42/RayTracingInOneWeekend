@@ -6,15 +6,15 @@
 #include "point3.h"
 
 Color::Color(Point3 p) : Point3(p) {
-  assert(0.0 <= p.x() and p.x() <= 1.0);
-  assert(0.0 <= p.y() and p.y() <= 1.0);
-  assert(0.0 <= p.z() and p.z() <= 1.0);
+  assert(0.0 <= r() and r() <= 1.0);
+  assert(0.0 <= g() and g() <= 1.0);
+  assert(0.0 <= b() and b() <= 1.0);
 }
 
-Color::Color(double r, double g, double b) : Point3(r, g, b) {
-  assert(0.0 <= x() and x() <= 1.0);
-  assert(0.0 <= y() and y() <= 1.0);
-  assert(0.0 <= z() and z() <= 1.0);
+Color::Color(double x, double y, double z) : Point3(x, y, z) {
+  assert(0.0 <= r() and r() <= 1.0);
+  assert(0.0 <= g() and g() <= 1.0);
+  assert(0.0 <= b() and b() <= 1.0);
 }
 
 void Color::write_color(std::ostream& out) {

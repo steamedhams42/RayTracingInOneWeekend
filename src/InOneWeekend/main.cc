@@ -17,7 +17,9 @@ double getRayScaleFactorToSphere(const Ray& ray) {
   if (discriminant < 0) {
     return -1;
   } else {
-    return (-b + std::sqrt(discriminant)) / (2 * a);
+    // Why (-b - sqrt(...))) instead of (-b + sqrt(...)), we want the closer
+    // hitpoint of the sphere instead of the second exiting hitpoint.
+    return (-b - std::sqrt(discriminant)) / (2 * a);
   }
 }
 
@@ -26,7 +28,12 @@ Color computeRayColor(const Ray& ray) {
   if (t > 0.0) {
     Point3 hit = ray.at(t) - constants::SPHERE_CENTER;
     Vec3 unit = Vec3(hit).unit();
-    return 0.5 * Color(unit.x() + 1, unit.y() + 1, unit.z() + 1);
+    // Why divide 0.5 and add +1?
+    // unit vector components will be between [-1, +0.5], we want to map it to
+    // [0, 1] so we do the appropriate affine transformation.
+    unit += Vec3(1, 1, 1);
+    unit /= 2.0;
+    return Color(unit);
   }
   Vec3 unit_direction = ray.direction().unit();
   double scale = (unit_direction.y() + 1.0) / 2.0;

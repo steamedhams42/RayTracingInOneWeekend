@@ -1,7 +1,7 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-#include <algorithm>
+#include <cmath>
 
 #include "point3.h"
 #include "vec3.h"
@@ -18,7 +18,7 @@ const double ASPECT_RATIO = ASPECT_WIDTH / ASPECT_HEIGHT;
 
 const int IMAGE_WIDTH = 1000;
 // image height cannot subceed 1
-const int IMAGE_HEIGHT = std::max(1, (int)(1.0 * IMAGE_WIDTH / ASPECT_RATIO));
+const int IMAGE_HEIGHT = std::fmax(1, (int)(1.0 * IMAGE_WIDTH / ASPECT_RATIO));
 
 // Camera
 const double FOCAL_LENGTH = 1.0;

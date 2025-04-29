@@ -9,18 +9,7 @@
 #include "vec3.h"
 
 double getRayScaleFactorToSphere(const Ray& ray) {
-  Vec3 QC = constants::SPHERE_CENTER - ray.origin();
-  double a = ray.direction().dot(ray.direction());
-  double b = -2 * ray.direction().dot(QC);
-  double c = QC.dot(QC) - constants::SPHERE_RADIUS * constants::SPHERE_RADIUS;
-  double discriminant = b * b - 4 * a * c;
-  if (discriminant < 0) {
-    return -1;
-  } else {
-    // Why (-b - sqrt(...))) instead of (-b + sqrt(...)), we want the closer
-    // hitpoint of the sphere instead of the second exiting hitpoint.
-    return (-b - std::sqrt(discriminant)) / (2 * a);
-  }
+  return -1;
 }
 
 Color computeRayColor(const Ray& ray) {

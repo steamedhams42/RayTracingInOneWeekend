@@ -8,13 +8,13 @@ class Ray;
 
 class Sphere : public Hittable {
  public:
-  Sphere();
+  Sphere(Point3, double);
   ~Sphere() override;
 
   bool hit(const Ray& r,
            double ray_tmin,
            double ray_tmax,
-           HitRecord& rec) const override;
+           HitResult& rec) const override;
 
  private:
   Point3 center_;

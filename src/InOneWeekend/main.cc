@@ -9,10 +9,10 @@
 #include "vec3.h"
 
 double getRayScaleFactorToSphere(const Ray& ray) {
-  Vec3 CQ = constants::SPHERE_CENTER - ray.origin();
+  Vec3 QC = constants::SPHERE_CENTER - ray.origin();
   double a = ray.direction().dot(ray.direction());
-  double b = -2 * ray.direction().dot(CQ);
-  double c = CQ.dot(CQ) - constants::SPHERE_RADIUS * constants::SPHERE_RADIUS;
+  double b = -2 * ray.direction().dot(QC);
+  double c = QC.dot(QC) - constants::SPHERE_RADIUS * constants::SPHERE_RADIUS;
   double discriminant = b * b - 4 * a * c;
   if (discriminant < 0) {
     return -1;
@@ -28,8 +28,8 @@ Color computeRayColor(const Ray& ray) {
   if (t > 0.0) {
     Point3 hit = ray.at(t) - constants::SPHERE_CENTER;
     Vec3 unit = Vec3(hit).unit();
-    // Why divide 0.5 and add +1?
-    // unit vector components will be between [-1, +0.5], we want to map it to
+    // Why add +1 and divide 2?
+    // Unit vector components will be between [-1, +0.5], we want to map it to
     // [0, 1] so we do the appropriate affine transformation.
     unit += Vec3(1, 1, 1);
     unit /= 2.0;

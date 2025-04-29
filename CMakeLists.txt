@@ -31,13 +31,14 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekend/color.cc
   src/InOneWeekend/ray.h
   src/InOneWeekend/ray.cc
+  src/InOneWeekend/hittable.h
+  src/InOneWeekend/sphere.h
+  src/InOneWeekend/sphere.cc
   # src/InOneWeekend/camera.h
-  # src/InOneWeekend/hittable.h
   # src/InOneWeekend/hittable_list.h
   # src/InOneWeekend/interval.h
   # src/InOneWeekend/material.h
   # src/InOneWeekend/rtweekend.h
-  # src/InOneWeekend/sphere.h
 )
 
 set ( SOURCE_ONE_WEEKEND_TEST
@@ -45,10 +46,12 @@ set ( SOURCE_ONE_WEEKEND_TEST
   src/InOneWeekend/vec3.cc
   src/InOneWeekend/point3.h
   src/InOneWeekend/point3.cc
+  src/InOneWeekend/sphere.cc
   src/InOneWeekend/ray.h
   src/InOneWeekend/ray.cc
   src/InOneWeekend/test/point3_test.cc
   src/InOneWeekend/test/ray_test.cc
+  src/InOneWeekend/test/sphere_test.cc
   src/InOneWeekend/test/vec3_test.cc
   src/InOneWeekend/test/main.cc
 )

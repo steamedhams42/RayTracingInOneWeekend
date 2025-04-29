@@ -1,10 +1,21 @@
 #ifndef SPHERE_H
 #define SPHERE_H
 
+#include "hittable.h"
 #include "point3.h"
 
-class Sphere {
+class Ray;
+
+class Sphere : public Hittable {
  public:
+  Sphere();
+  ~Sphere() override;
+
+  bool hit(const Ray& r,
+           double ray_tmin,
+           double ray_tmax,
+           HitRecord& rec) const override;
+
  private:
   Point3 center_;
   double radius_;

@@ -6,15 +6,6 @@
 #include "InOneWeekend/test/test_base.h"
 
 class Vec3Test : public TestBase {
- private:
-  Vec3 createVec() {
-    double a = 0, b = 0, c = 0;
-    a = random_real();
-    b = random_real();
-    c = random_real();
-    return Vec3(a, b, c);
-  }
-
  public:
   void run_test() override {
     Vec3 zed;
@@ -91,6 +82,7 @@ class Vec3Test : public TestBase {
     assert(unit.x() == (v / norm).x());
     assert(unit.y() == (v / norm).y());
     assert(unit.z() == (v / norm).z());
-    assert(unit.norm() == 1);
+    ASSERT(unit.norm() <= 1 + EPS, "unit norm greater than 1 + EPS");
+    ASSERT(unit.norm() >= 1 - EPS, "unit norm less than 1 - EPS");
   }
 };

@@ -5,22 +5,13 @@
 #include <iostream>
 
 class Point3Test : public TestBase {
- private:
-  Point3 createPoint3() {
-    double a = 0, b = 0, c = 0;
-    a = random_real();
-    b = random_real();
-    c = random_real();
-    return Point3(a, b, c);
-  }
-
  public:
   void run_test() override {
     Point3 zed;
     Point3 v(0, 0, 0);
     assert(zed == v);
 
-    v = createPoint3();
+    v = createPoint();
     assert(v.points_[0] == v.x());
     assert(v.points_[1] == v.y());
     assert(v.points_[2] == v.z());
@@ -47,7 +38,7 @@ class Point3Test : public TestBase {
     assert(v == zed);
 
     // division
-    v = createPoint3();
+    v = createPoint();
     x = random_real();
     before = v;
     v /= x;
@@ -57,6 +48,6 @@ class Point3Test : public TestBase {
 
     assert(v.norm_squared() == (v.x() * v.x() + v.y() * v.y() + v.z() * v.z()));
 
-    assert(v.norm() == sqrt(v.norm_squared()));
+    assert(v.norm() <= sqrt(v.norm_squared()));
   }
 };

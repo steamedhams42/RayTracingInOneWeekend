@@ -33,6 +33,9 @@ bool Sphere::hit(const Ray& ray,
   t_minus = is_within_bounds(t_minus) ? t_minus : inf;
   t_plus = is_within_bounds(t_plus) ? t_plus : inf;
   double t = std::fmin(t_plus, t_minus);
+  if (t == inf) {
+    return false;
+  }
 
   result.t = t;
   result.p = ray.at(t);

@@ -1,7 +1,7 @@
 #include "InOneWeekend/test/point3_test.cc"
-#include "InOneWeekend/test/vec3_test.cc"
-
 #include "InOneWeekend/test/ray_test.cc"
+#include "InOneWeekend/test/sphere_test.cc"
+#include "InOneWeekend/test/vec3_test.cc"
 
 int main() {
   Point3Test point_test;
@@ -12,6 +12,9 @@ int main() {
 
   RayTest ray_test;
   ray_test.run_test();
+
+  SphereTest sphere_test;
+  sphere_test.run_test();
 
   return 0;
 }

@@ -22,11 +22,13 @@ bool Sphere::hit(const Ray& ray,
   if (discriminant < 0) {
     return false;
   }
-  // Why (-b - sqrt(...))) instead of (-b + sqrt(...)), we want the closer
-  // hitpoint of the sphere instead of the second exiting hitpoint.
+
+  // do something with ray_tmin here
+
   double t = (-b - std::sqrt(discriminant)) / (2 * a);
   result.t = t;
   result.p = ray.at(t);
   result.normal = (result.p - this->center_) / this->radius_;
+
   return true;
 }

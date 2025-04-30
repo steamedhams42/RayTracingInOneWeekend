@@ -6,6 +6,7 @@
 #include "constants.h"
 #include "point3.h"
 #include "ray.h"
+#include "sphere.h"
 #include "vec3.h"
 
 double getRayScaleFactorToSphere(const Ray& ray) {
@@ -13,16 +14,16 @@ double getRayScaleFactorToSphere(const Ray& ray) {
 }
 
 Color computeRayColor(const Ray& ray) {
-  double t = getRayScaleFactorToSphere(ray);
-  if (t > 0.0) {
-    Point3 hit = ray.at(t) - constants::SPHERE_CENTER;
-    Vec3 unit = Vec3(hit).unit();
+  Sphere sphere(constants::SPHERE_CENTER, constants::SPHERE_RADIUS);
+  Sphere::HitResult hit_result;
+  if (sphere.hit(ray, -1, 1, hit_result)) {
+    Point3 hit = ray.at(hit_result.t) - constants::SPHERE_CENTER;
     // Why add +1 and divide 2?
-    // Unit vector components will be between [-1, +0.5], we want to map it to
-    // [0, 1] so we do the appropriate affine transformation.
-    unit += Vec3(1, 1, 1);
-    unit /= 2.0;
-    return Color(unit);
+    // Unit vector components will always be between [-1, +1], we want to map it
+    // to [0, 1] so we do the appropriate affine transformation.
+    hit_result.normal += Vec3(1, 1, 1);
+    hit_result.normal /= 2.0;
+    return Color(hit_result.normal);
   }
   Vec3 unit_direction = ray.direction().unit();
   double scale = (unit_direction.y() + 1.0) / 2.0;

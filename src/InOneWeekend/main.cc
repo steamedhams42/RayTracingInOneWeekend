@@ -9,10 +9,6 @@
 #include "sphere.h"
 #include "vec3.h"
 
-double getRayScaleFactorToSphere(const Ray& ray) {
-  return -1;
-}
-
 Color computeRayColor(const Ray& ray) {
   Sphere sphere(constants::SPHERE_CENTER, constants::SPHERE_RADIUS);
   Sphere::HitResult hit_result;
@@ -54,5 +50,5 @@ int main() {
       ray_color.write_color(std::cout);
     }
   }
-  std::clog << "\rDone                " << constants::nl;
+  std::clog << "\rDone                " << std::endl;
 }

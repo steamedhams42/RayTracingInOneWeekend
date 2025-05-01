@@ -30,15 +30,14 @@ Color computeRayColor(const Ray& ray) {
   return (1.0 - scale) * Color(1, 1, 1) + scale * (Color(0.5, 0.7, 1.0));
 }
 
-void createAndAddHittables() {
+void createAndAddHittables() {}
+
+int main() {
   auto sphere = std::make_shared<Sphere>(constants::sphere::SPHERE_CENTER,
                                          constants::sphere::SPHERE_RADIUS);
   auto earth = std::make_shared<Sphere>(Point3(0, -100.5, -1), 100);
-  allHittables.add(sphere);
-  allHittables.add(earth);
-}
-
-int main() {
+  allHittables.add(std::move(sphere));
+  allHittables.add(std::move(earth));
   createAndAddHittables();
   std::cout << "P3" << constants::nl;
   std::cout << constants::IMAGE_WIDTH << ' ' << constants::IMAGE_HEIGHT

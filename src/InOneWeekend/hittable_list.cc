@@ -19,7 +19,6 @@ bool HittableList::hit(const Ray& ray,
                        Interval intvl,
                        Hittable::HitResult& result) const {
   bool hit_anything = false;
-  double closest_so_far = intvl.max();
 
   for (const auto& hittable : hittables_) {
     if (hittable.expired()) {
@@ -28,8 +27,8 @@ bool HittableList::hit(const Ray& ray,
     HitResult temp_result;
     if (hittable.lock()->hit(ray, intvl, temp_result)) {
       hit_anything = true;
-      closest_so_far = std::fmin(closest_so_far, temp_result.t);
-      intvl = std::move(Interval(closest_so_far, intvl.max()));
+      // Reset max t value so only the foreground-most hittable is rendered.
+      intvl = std::move(Interval(intvl.min(), temp_result.t));
       result = temp_result;
     }
   }

@@ -7,7 +7,7 @@ double Point3::operator[](int i) const {
 }
 
 double Point3::norm() const {
-  return sqrt(norm_squared());
+  return std::sqrt(norm_squared());
 }
 
 double Point3::norm_squared() const {

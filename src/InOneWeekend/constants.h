@@ -32,6 +32,7 @@ const double VIEWPORT_HEIGHT = 2.0;
 const double VIEWPORT_WIDTH = VIEWPORT_HEIGHT * IMAGE_WIDTH / IMAGE_HEIGHT;
 const Point3 CAMERA_CENTER = Point3(0, 0, 0);
 
+// Viewport
 const Vec3 VIEWPORT_VECTOR_WIDTH = Vec3(VIEWPORT_WIDTH, 0, 0);
 const Vec3 VIEWPORT_VECTOR_HEIGHT = Vec3(0, -VIEWPORT_HEIGHT, 0);
 
@@ -49,8 +50,8 @@ const Point3 upper_left_pixel_location =
 const Point3 VIEWPORT_TOP_LEFT_PIXEL_CENTER =
     upper_left_pixel_location + PIXEL_DELTA_WIDTH / 2 + PIXEL_DELTA_HEIGHT / 2;
 
+// Sphere
 const Point3 SPHERE_CENTER = Point3(0, 0, -FOCAL_LENGTH);
-
 const double SPHERE_RADIUS = 0.5;
 
 }  // namespace constants

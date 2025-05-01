@@ -30,8 +30,8 @@ Color computeRayColor(const Ray& ray) {
 }
 
 void createAndAddHittables() {
-  auto sphere = std::make_shared<Sphere>(constants::SPHERE_CENTER,
-                                         constants::SPHERE_RADIUS);
+  auto sphere = std::make_shared<Sphere>(constants::sphere::SPHERE_CENTER,
+                                         constants::sphere::SPHERE_RADIUS);
   auto earth = std::make_shared<Sphere>(Point3(0, -100.5, -1), 100);
   allHittables.add(sphere);
   allHittables.add(earth);

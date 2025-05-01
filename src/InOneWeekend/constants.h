@@ -4,6 +4,7 @@
 #include <cmath>
 #include <limits>
 
+#include "interval.h"
 #include "point3.h"
 #include "vec3.h"
 
@@ -51,8 +52,12 @@ const Point3 VIEWPORT_TOP_LEFT_PIXEL_CENTER =
     upper_left_pixel_location + PIXEL_DELTA_WIDTH / 2 + PIXEL_DELTA_HEIGHT / 2;
 
 // Sphere
+namespace sphere {
+
 const Point3 SPHERE_CENTER = Point3(0, 0, -FOCAL_LENGTH);
 const double SPHERE_RADIUS = 0.5;
+
+}  // namespace sphere
 
 }  // namespace constants
 

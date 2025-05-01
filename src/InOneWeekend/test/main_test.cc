@@ -1,3 +1,4 @@
+#include "InOneWeekend/test/interval_test.cc"
 #include "InOneWeekend/test/point3_test.cc"
 #include "InOneWeekend/test/ray_test.cc"
 #include "InOneWeekend/test/sphere_test.cc"
@@ -15,6 +16,9 @@ int main() {
 
   SphereTest sphere_test;
   sphere_test.run_test();
+
+  IntervalTest interval_test;
+  interval_test.run_test();
 
   return 0;
 }

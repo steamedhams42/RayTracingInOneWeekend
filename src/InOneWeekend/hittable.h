@@ -1,6 +1,7 @@
 #ifndef HITTABLE_H
 #define HITTABLE_H
 
+#include "interval.h"
 #include "point3.h"
 #include "vec3.h"
 
@@ -40,8 +41,7 @@ class Hittable {
 
   // TODO: Refactor into a template method.
   virtual bool hit(const Ray& ray,
-                   double ray_tmin,
-                   double ray_tmax,
+                   Interval intval,
                    Hittable::HitResult& result) const = 0;
 };
 

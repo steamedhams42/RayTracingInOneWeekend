@@ -6,6 +6,7 @@
 #include "color.h"
 #include "constants.h"
 #include "hittable_list.h"
+#include "interval.h"
 #include "point3.h"
 #include "ray.h"
 #include "sphere.h"
@@ -15,7 +16,7 @@ HittableList allHittables;
 
 Color computeRayColor(const Ray& ray) {
   Sphere::HitResult hit_result;
-  if (allHittables.hit(ray, 0, constants::INF_DOUBLE, hit_result)) {
+  if (allHittables.hit(ray, Interval(0, constants::INF_DOUBLE), hit_result)) {
     // Why add +1 and divide 2?
     // Unit vector components will always be between [-1, +1], we want to map
     // to [0, 1] so we do the appropriate affine transformation.

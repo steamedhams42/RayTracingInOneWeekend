@@ -11,8 +11,7 @@ Sphere::Sphere(Point3 center, double r) : center_(center), radius_(r) {
 Sphere::~Sphere() {}
 
 bool Sphere::hit(const Ray& ray,
-                 double ray_tmin,
-                 double ray_tmax,
+                 Interval intval,
                  Hittable::HitResult& result) const {
   // TODO: Put into a "find discriminant" method.
   Vec3 QC = center_ - ray.origin();
@@ -29,11 +28,9 @@ bool Sphere::hit(const Ray& ray,
   const double sqrtd = std::sqrt(discriminant);
   double t_minus = (-b - sqrtd) / (2 * a);
   double t_plus = (-b + sqrtd) / (2 * a);
-  auto is_within_bounds = [&](double value) -> bool {
-    return ray_tmin <= value and value <= ray_tmax;
-  };
-  t_minus = is_within_bounds(t_minus) ? t_minus : constants::INF_DOUBLE;
-  t_plus = is_within_bounds(t_plus) ? t_plus : constants::INF_DOUBLE;
+
+  t_minus = intval.contains(t_minus) ? t_minus : constants::INF_DOUBLE;
+  t_plus = intval.contains(t_plus) ? t_plus : constants::INF_DOUBLE;
   double t = std::fmin(t_plus, t_minus);
   if (t == constants::INF_DOUBLE) {
     return false;

@@ -16,20 +16,20 @@ void HittableList::add(std::weak_ptr<Hittable> h) {
 }
 
 bool HittableList::hit(const Ray& ray,
-                       double ray_tmin,
-                       double ray_tmax,
+                       Interval intvl,
                        Hittable::HitResult& result) const {
   bool hit_anything = false;
-  double closest_so_far = ray_tmax;
+  double closest_so_far = intvl.max();
 
   for (const auto& hittable : hittables_) {
     if (hittable.expired()) {
       continue;
     }
     HitResult temp_result;
-    if (hittable.lock()->hit(ray, ray_tmin, closest_so_far, temp_result)) {
+    if (hittable.lock()->hit(ray, intvl, temp_result)) {
       hit_anything = true;
       closest_so_far = std::fmin(closest_so_far, temp_result.t);
+      intvl = std::move(Interval(closest_so_far, intvl.max()));
       result = temp_result;
     }
   }

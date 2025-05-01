@@ -2,6 +2,7 @@
 #define SPHERE_H
 
 #include "hittable.h"
+#include "interval.h"
 #include "point3.h"
 
 class Ray;
@@ -11,10 +12,7 @@ class Sphere : public Hittable {
   Sphere(Point3, double);
   ~Sphere() override;
 
-  bool hit(const Ray& ray,
-           double ray_tmin,
-           double ray_tmax,
-           HitResult& result) const override;
+  bool hit(const Ray& ray, Interval intval, HitResult& result) const override;
 
  private:
   Point3 center_;

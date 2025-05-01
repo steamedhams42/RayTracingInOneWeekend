@@ -6,6 +6,9 @@ class Interval {
   Interval();
   Interval(double, double);
 
+  double min() const { return min_; }
+  double max() const { return max_; }
+
   double width() const;
   // Inclusive
   bool contains(double) const;

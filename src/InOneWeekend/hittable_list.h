@@ -4,6 +4,7 @@
 #include <memory>
 #include <vector>
 #include "hittable.h"
+#include "interval.h"
 #include "ray.h"
 
 class HittableList : public Hittable {
@@ -15,8 +16,7 @@ class HittableList : public Hittable {
   void add(std::weak_ptr<Hittable>);
 
   bool hit(const Ray& ray,
-           double ray_tmin,
-           double ray_tmax,
+           Interval i,
            Hittable::HitResult& result) const override;
 
  private:

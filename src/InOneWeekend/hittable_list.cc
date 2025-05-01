@@ -11,8 +11,8 @@ void HittableList::clearAll() {
   hittables_.clear();
 }
 
-void HittableList::add(std::weak_ptr<Hittable> h) {
-  hittables_.push_back(h);
+void HittableList::add(std::unique_ptr<Hittable>&& h) {
+  hittables_.push_back(std::move(h));
 }
 
 bool HittableList::hit(const Ray& ray,
@@ -21,11 +21,8 @@ bool HittableList::hit(const Ray& ray,
   bool hit_anything = false;
 
   for (const auto& hittable : hittables_) {
-    if (hittable.expired()) {
-      continue;
-    }
     HitResult temp_result;
-    if (hittable.lock()->hit(ray, intvl, temp_result)) {
+    if (hittable->hit(ray, intvl, temp_result)) {
       hit_anything = true;
       // Reset max t value so only the foreground-most hittable is rendered.
       intvl = std::move(Interval(intvl.min(), temp_result.t));

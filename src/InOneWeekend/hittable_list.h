@@ -13,14 +13,14 @@ class HittableList : public Hittable {
   ~HittableList();
 
   void clearAll();
-  void add(std::weak_ptr<Hittable>);
+  void add(std::unique_ptr<Hittable>&&);
 
   bool hit(const Ray& ray,
            Interval i,
            Hittable::HitResult& result) const override;
 
  private:
-  std::vector<std::weak_ptr<Hittable>> hittables_;
+  std::vector<std::unique_ptr<Hittable>> hittables_;
 };
 
 #endif

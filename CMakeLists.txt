@@ -35,8 +35,9 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekend/hittable.cc
   src/InOneWeekend/sphere.h
   src/InOneWeekend/sphere.cc
+  src/InOneWeekend/hittable_list.h
+  src/InOneWeekend/hittable_list.cc
   # src/InOneWeekend/camera.h
-  # src/InOneWeekend/hittable_list.h
   # src/InOneWeekend/interval.h
   # src/InOneWeekend/material.h
   # src/InOneWeekend/rtweekend.h

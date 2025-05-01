@@ -1,0 +1,26 @@
+#ifndef HITTABLE_LIST_H
+#define HITTABLE_LIST_H
+
+#include <memory>
+#include <vector>
+#include "hittable.h"
+#include "ray.h"
+
+class HittableList : public Hittable {
+ public:
+  HittableList();
+  ~HittableList();
+
+  void clearAll();
+  void add(std::weak_ptr<Hittable>);
+
+  bool hit(const Ray& ray,
+           double ray_tmin,
+           double ray_tmax,
+           Hittable::HitResult& result) const override;
+
+ private:
+  std::vector<std::weak_ptr<Hittable>> hittables_;
+};
+
+#endif

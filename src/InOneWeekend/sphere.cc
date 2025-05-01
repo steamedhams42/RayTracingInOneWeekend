@@ -26,17 +26,16 @@ bool Sphere::hit(const Ray& ray,
 
   // Try both discriminants, pick the one that is within bounds and minimal.
   // TODO: Put into a "find closest discriminant" method.
-  const double inf = 1e9;
   const double sqrtd = std::sqrt(discriminant);
   double t_minus = (-b - sqrtd) / (2 * a);
   double t_plus = (-b + sqrtd) / (2 * a);
   auto is_within_bounds = [&](double value) -> bool {
     return ray_tmin <= value and value <= ray_tmax;
   };
-  t_minus = is_within_bounds(t_minus) ? t_minus : inf;
-  t_plus = is_within_bounds(t_plus) ? t_plus : inf;
+  t_minus = is_within_bounds(t_minus) ? t_minus : constants::INF_DOUBLE;
+  t_plus = is_within_bounds(t_plus) ? t_plus : constants::INF_DOUBLE;
   double t = std::fmin(t_plus, t_minus);
-  if (t == inf) {
+  if (t == constants::INF_DOUBLE) {
     return false;
   }
 

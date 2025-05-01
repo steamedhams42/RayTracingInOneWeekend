@@ -2,11 +2,16 @@
 #define CONSTANTS_H
 
 #include <cmath>
+#include <limits>
 
 #include "point3.h"
 #include "vec3.h"
 
 namespace constants {
+const double INF_DOUBLE = std::numeric_limits<double>::infinity();
+const double INF_INT = std::numeric_limits<int>::infinity();
+const double PI = acos(-1);
+
 const char nl = '\n';
 
 // 1 Byte = 8 bits represented in decimal.

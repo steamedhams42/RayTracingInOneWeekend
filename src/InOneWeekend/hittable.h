@@ -42,7 +42,7 @@ class Hittable {
   virtual bool hit(const Ray& ray,
                    double ray_tmin,
                    double ray_tmax,
-                   HitResult& result) const = 0;
+                   Hittable::HitResult& result) const = 0;
 };
 
 #endif

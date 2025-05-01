@@ -14,6 +14,7 @@ bool Sphere::hit(const Ray& ray,
                  double ray_tmin,
                  double ray_tmax,
                  Hittable::HitResult& result) const {
+  // TODO: Put into a "find discriminant" method.
   Vec3 QC = center_ - ray.origin();
   double a = ray.direction().dot(ray.direction());
   double b = -2 * ray.direction().dot(QC);
@@ -24,9 +25,11 @@ bool Sphere::hit(const Ray& ray,
   }
 
   // Try both discriminants, pick the one that is within bounds and minimal.
+  // TODO: Put into a "find closest discriminant" method.
   const double inf = 1e9;
-  double t_minus = (-b - std::sqrt(discriminant)) / (2 * a);
-  double t_plus = (-b + std::sqrt(discriminant)) / (2 * a);
+  const double sqrtd = std::sqrt(discriminant);
+  double t_minus = (-b - sqrtd) / (2 * a);
+  double t_plus = (-b + sqrtd) / (2 * a);
   auto is_within_bounds = [&](double value) -> bool {
     return ray_tmin <= value and value <= ray_tmax;
   };
@@ -37,9 +40,11 @@ bool Sphere::hit(const Ray& ray,
     return false;
   }
 
+  // TODO: Refactor the HitResult class and the setNormal method. Footgun.
   result.t = t;
   result.p = ray.at(t);
-  result.normal = (result.p - this->center_) / this->radius_;
+  Vec3 normal = (result.p - this->center_) / this->radius_;
+  result.setFaceNormal(ray, normal);
 
   return true;
 }

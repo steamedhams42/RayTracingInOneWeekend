@@ -17,23 +17,38 @@ class SphereTest : public TestBase {
     // Emit ray that misses sphere.
     Vec3 direction(0, 2, 3);
     Ray ray(origin, direction);
-    Sphere::HitResult result;
+    Hittable::HitResult result;
     Sphere sphere(sphere_center, radius);
 
     assert(!sphere.hit(ray, -1, 1, result));
 
-    // Emit ray directly towards sphere.
+    // Emit ray externally, towards sphere.
+    Hittable::HitResult result2;
     Vec3 direction2(0, 0, 3);
     Ray ray2(origin, direction2);
-    assert(sphere.hit(ray2, -1, 1, result));
-    assert(result.p == Point3(0, 0, 0.5));
-    assert(result.t > 0);
+    assert(sphere.hit(ray2, -1, 1, result2));
+    assert(result2.p == Point3(0, 0, 0.5));
+    assert(result2.t > 0);
+    assert(result2.front_face == true);
 
-    // Emit ray from origin of sphere, towards camera
-    Vec3 direction3(0, 0, 1);
+    // Emit ray from origin of sphere, internally away from the camera
+    Hittable::HitResult result3;
+    Vec3 direction3(0, 0, 5);
     Ray ray3(sphere_center, direction3);
-    assert(sphere.hit(ray3, -1, 1, result));
-    assert(result.p == Point3(0, 0, 0.5));
-    assert(result.t < 0);
+    // The ray's acceptable range must be positive otherwise the negative
+    // t-value (behind the origin of the sphere) will be chosen.
+    assert(sphere.hit(ray3, 0, 1, result3));
+    assert(result3.p == Point3(0, 0, 1.5));
+    assert(result3.t > 0);
+    assert(result3.front_face == false);
+
+    // Emit ray from origin of sphere, internally towards the camera
+    Hittable::HitResult result4;
+    Vec3 direction4(0, 0, -4);
+    Ray ray4(sphere_center, direction4);
+    assert(sphere.hit(ray4, 0, 1, result4));
+    assert(result4.p == Point3(0, 0, 0.5));
+    assert(result4.t > 0);
+    assert(result4.front_face == false);
   }
 };

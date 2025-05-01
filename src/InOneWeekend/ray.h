@@ -6,7 +6,7 @@
 
 class Ray {
  public:
-  Ray(Point3, Vec3);
+  Ray(Point3 origin, Vec3 direction);
   Ray() = default;
   Ray(const Ray&) = default;
   Ray& operator=(Ray&) = default;

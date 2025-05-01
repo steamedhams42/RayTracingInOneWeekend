@@ -1,6 +1,8 @@
 #include "hittable_list.h"
 #include "hittable.h"
 
+#include <cmath>
+
 HittableList::HittableList() {}
 
 HittableList::~HittableList() = default;
@@ -25,9 +27,9 @@ bool HittableList::hit(const Ray& ray,
       continue;
     }
     HitResult temp_result;
-    if (hittable.lock()->hit(ray, ray_tmin, ray_tmax, temp_result)) {
+    if (hittable.lock()->hit(ray, ray_tmin, closest_so_far, temp_result)) {
       hit_anything = true;
-      // closest_so_far = temp_result.t;
+      closest_so_far = std::fmin(closest_so_far, temp_result.t);
       result = temp_result;
     }
   }

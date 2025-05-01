@@ -8,6 +8,7 @@
 #include "vec3.h"
 
 namespace constants {
+
 const double INF_DOUBLE = std::numeric_limits<double>::infinity();
 const double INF_INT = std::numeric_limits<int>::infinity();
 const double PI = acos(-1);

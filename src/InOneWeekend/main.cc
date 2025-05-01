@@ -1,21 +1,23 @@
 #include <cassert>
 #include <cmath>
 #include <iostream>
+#include <memory>
 
 #include "color.h"
 #include "constants.h"
+#include "hittable_list.h"
 #include "point3.h"
 #include "ray.h"
 #include "sphere.h"
 #include "vec3.h"
 
+HittableList allHittables;
+
 Color computeRayColor(const Ray& ray) {
-  Sphere sphere(constants::SPHERE_CENTER, constants::SPHERE_RADIUS);
   Sphere::HitResult hit_result;
-  if (sphere.hit(ray, -1, 1, hit_result)) {
-    Point3 hit = ray.at(hit_result.t) - constants::SPHERE_CENTER;
+  if (allHittables.hit(ray, 0, constants::INF_DOUBLE, hit_result)) {
     // Why add +1 and divide 2?
-    // Unit vector components will always be between [-1, +1], we want to map it
+    // Unit vector components will always be between [-1, +1], we want to map
     // to [0, 1] so we do the appropriate affine transformation.
     hit_result.normal += Vec3(1, 1, 1);
     hit_result.normal /= 2.0;
@@ -27,8 +29,16 @@ Color computeRayColor(const Ray& ray) {
   return (1.0 - scale) * Color(1, 1, 1) + scale * (Color(0.5, 0.7, 1.0));
 }
 
+void createAndAddHittables() {
+  auto sphere = std::make_shared<Sphere>(constants::SPHERE_CENTER,
+                                         constants::SPHERE_RADIUS);
+  auto world = std::make_shared<Sphere>(Point3(0, -100.5, -1), 100);
+  allHittables.add(sphere);
+  allHittables.add(world);
+}
+
 int main() {
-  // main2();
+  createAndAddHittables();
   std::cout << "P3" << constants::nl;
   std::cout << constants::IMAGE_WIDTH << ' ' << constants::IMAGE_HEIGHT
             << constants::nl;

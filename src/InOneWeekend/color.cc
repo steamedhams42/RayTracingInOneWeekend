@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "constants.h"
+#include "interval.h"
 #include "point3.h"
 
 Color::Color(Point3 p) : Point3(p) {
@@ -16,6 +17,12 @@ Color::Color(double x, double y, double z) : Point3(x, y, z) {
   assert(0.0 <= r() and r() <= 1.0);
   assert(0.0 <= g() and g() <= 1.0);
   assert(0.0 <= b() and b() <= 1.0);
+}
+
+// static
+Color createClampedColor(const Point3& p) {
+  Interval ival(0, 1.0);
+  return Color(ival.clamp(p.x()), ival.clamp(p.y()), ival.clamp(p.z()));
 }
 
 void Color::write_color(std::ostream& out) {

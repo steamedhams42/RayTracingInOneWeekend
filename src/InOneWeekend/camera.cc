@@ -15,7 +15,7 @@ Camera::Camera(Point3 center,
                const double image_width,
                const double focal_length,
                const double viewport_height)
-    : center_(center),
+    : camera_center_(center),
       aspect_width_(aspect_width),
       aspect_height_(aspect_height),
       image_width_(image_width),
@@ -37,9 +37,9 @@ void Camera::initialize() {
   // Calculate location of upper-left pixel's center.
   // Start from the camera's location, move forward toward viewport by distance
   // of focal length.
-  Point3 upper_left_pixel_location = center_ - Point3(0, 0, focal_length_) -
-                                     viewport_vector_width / 2 -
-                                     viewport_vector_height / 2;
+  Point3 upper_left_pixel_location =
+      camera_center_ - Point3(0, 0, focal_length_) - viewport_vector_width / 2 -
+      viewport_vector_height / 2;
 
   // Point of the top-left pixel's center in the viewport.
   viewport_top_left_pixel_center_ = upper_left_pixel_location +
@@ -61,7 +61,7 @@ void Camera::render(const HittableList& hittables) {
                             row * pixel_delta_height_;
 
       Vec3 ray_direction(pixel_center);
-      Ray ray(center_, ray_direction);
+      Ray ray(camera_center_, ray_direction);
       Color ray_color = computeRayColor(ray, hittables);
 
       ray_color.write_color(std::cout);

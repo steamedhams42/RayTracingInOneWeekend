@@ -10,6 +10,8 @@ class Color : public Point3 {
   Color(double r, double g, double b);
   Color(const Color& p);
 
+  static Color createClampedColor(const Point3&);
+
   double r() const { return x(); }
   double g() const { return y(); }
   double b() const { return z(); }

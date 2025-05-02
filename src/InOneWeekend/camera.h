@@ -24,17 +24,25 @@ class Camera {
 
   Color computeRayColor(const Ray& ray, const HittableList&) const;
 
-  Point3 center_;
+  Point3 camera_center_;
+  double focal_length_;
+
   double aspect_width_;
   double aspect_height_;
   double aspect_ratio_;
+
+  // image dimensions in pixels
   double image_width_;
   double image_height_;
-  double focal_length_;
+
   double viewport_height_;
   double viewport_width_;
+
+  // The space between two pixels in the viewport
   Vec3 pixel_delta_width_;
   Vec3 pixel_delta_height_;
+
+  // Location of the top left pixel's center in the viewport
   Point3 viewport_top_left_pixel_center_;
 };
 #endif

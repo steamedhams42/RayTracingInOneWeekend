@@ -14,7 +14,7 @@ class RayTest : public TestBase {
     double t = 0.0;
     assert(ray.at(t) == ray.origin());
 
-    t = RandomNumber::random_real();
+    t = Random::random_real();
     assert(ray.at(t) == Point3(direction * t) + origin);
   }
 };

@@ -10,8 +10,8 @@ class IntervalTest : public TestBase {
   void run_test() override {
     auto null = Interval::empty;
 
-    double mini = -RandomNumber::random_real();
-    double maxi = RandomNumber::random_real();
+    double mini = -Random::random_real();
+    double maxi = Random::random_real();
 
     Interval intvl(mini, maxi);
 

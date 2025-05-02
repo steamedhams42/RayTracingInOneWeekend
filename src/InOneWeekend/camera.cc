@@ -101,6 +101,6 @@ Ray Camera::get_sampled_ray(int x, int y) {
 }
 
 Point3 Camera::sample_square() const {
-  return Vec3(RandomNumber::random_real(-0.5, +0.5),
-              RandomNumber::random_real(-0.5, +0.5), 0);
+  return Vec3(Random::random_real(-0.5, +0.5), Random::random_real(-0.5, +0.5),
+              0);
 }

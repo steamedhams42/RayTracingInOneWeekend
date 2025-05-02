@@ -29,7 +29,7 @@ class Point3Test : public TestBase {
     // multiplication
     assert(v * 1 == v);
     assert(v * 0 == zed);
-    double x = RandomNumber::random_real();
+    double x = Random::random_real();
     Point3 before = v;
     v *= x;
     assert(v.x() == before.x() * x);
@@ -40,7 +40,7 @@ class Point3Test : public TestBase {
 
     // division
     v = createPoint();
-    x = RandomNumber::random_real();
+    x = Random::random_real();
     before = v;
     v /= x;
     assert(v.x() <= before.x() * (1 / x));

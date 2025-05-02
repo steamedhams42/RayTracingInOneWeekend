@@ -24,17 +24,17 @@ class TestBase {
 
   Point3 createPoint() {
     double a = 0, b = 0, c = 0;
-    a = RandomNumber::random_real();
-    b = RandomNumber::random_real();
-    c = RandomNumber::random_real();
+    a = Random::random_real();
+    b = Random::random_real();
+    c = Random::random_real();
     return Point3(a, b, c);
   }
 
   Vec3 createVec() {
     double a = 0, b = 0, c = 0;
-    a = RandomNumber::random_real();
-    b = RandomNumber::random_real();
-    c = RandomNumber::random_real();
+    a = Random::random_real();
+    b = Random::random_real();
+    c = Random::random_real();
     return Vec3(a, b, c);
   }
 };

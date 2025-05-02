@@ -2,10 +2,11 @@
 #define RANDOM_H_
 
 #include <random>
+#include "vec3.h"
 
-class RandomNumber {
+class Random {
  public:
-  RandomNumber() = delete;
+  Random() = delete;
 
   // Returns a real number between [0, 1.0)
   static double random_real() {
@@ -14,8 +15,18 @@ class RandomNumber {
     return distribution(generator);
   }
 
-  static double random_real(double l, double r) {
-    return ((r - l) * random_real()) + l;
+  static double random_real(double min, double max) {
+    return ((max - min) * random_real()) + min;
+  }
+
+  static Vec3 random_vec3() {
+    return Vec3(Random::random_real(), Random::random_real(),
+                Random::random_real());
+  }
+
+  static Vec3 random_vec3(double min, double max) {
+    return Vec3(Random::random_real(min, max), Random::random_real(min, max),
+                Random::random_real(min, max));
   }
 };
 

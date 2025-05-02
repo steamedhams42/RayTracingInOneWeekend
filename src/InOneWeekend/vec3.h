@@ -32,11 +32,11 @@ class Vec3 : public Point3 {
   // Returns |this| vector normalized
   Vec3 unit() const;
 
-  // Returns a random vector
-  static Vec3 random_vec3();
-
   // Returns a random vector bounded by min max
   static Vec3 random_vec3(double min, double max);
+
+  // Returns a random unit vector
+  static Vec3 random_unit_vec3();
 
  private:
   friend Vec3Test;

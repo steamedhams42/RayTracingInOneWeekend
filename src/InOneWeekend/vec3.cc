@@ -1,4 +1,5 @@
 #include "vec3.h"
+#include "constants.h"
 #include "random.h"
 
 Vec3 Vec3::operator+(const Vec3& rhs) {
@@ -66,13 +67,20 @@ Vec3 Vec3::unit() const {
 }
 
 // static
-Vec3 Vec3::random_vec3() {
-  return Vec3(Random::random_real(), Random::random_real(),
-              Random::random_real());
-}
-
-// static
 Vec3 Vec3::random_vec3(double min, double max) {
   return Vec3(Random::random_real(min, max), Random::random_real(min, max),
               Random::random_real(min, max));
+}
+
+// static
+Vec3 Vec3::random_unit_vec3() {
+  while (true) {
+    Vec3 v = random_vec3(-1, 1);
+    double f = v.norm_squared();
+    if (constants::EPS_ZERO <= f) {
+      // Due to floating point errors, the length^2 of the vector must be
+      // greater than an EPS otherwise sqrt(f) == 0 and cause division by zero.
+      return v / sqrt(f);
+    }
+  }
 }

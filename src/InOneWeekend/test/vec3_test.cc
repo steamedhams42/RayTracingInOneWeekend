@@ -84,10 +84,10 @@ class Vec3Test : public TestBase {
     assert(unit.x() == (v / norm).x());
     assert(unit.y() == (v / norm).y());
     assert(unit.z() == (v / norm).z());
-    ASSERT(unit.norm() <= 1 + constants::EPS,
-           "unit norm greater than 1 + constants::EPS");
-    ASSERT(unit.norm() >= 1 - constants::EPS,
-           "unit norm less than 1 - constants::EPS");
+    ASSERT(unit.norm() <= 1 + constants::EPS_ERROR,
+           "unit norm greater than 1 + constants::EPS_ERROR");
+    ASSERT(unit.norm() >= 1 - constants::EPS_ERROR,
+           "unit norm less than 1 - constants::EPS_ERROR");
 
     for (int i = 0; i < 100; i++) {
       double bound = 100;
@@ -99,12 +99,18 @@ class Vec3Test : public TestBase {
     }
 
     for (int i = 0; i < 100; i++) {
-      double bound = 1;
-      Vec3 v = Vec3::random_vec3();
-      Interval intv(-bound, bound);
+      Vec3 v = Vec3::random_unit_vec3();
+      Interval intv(-1, 1);
       assert(intv.contains(v.x()));
       assert(intv.contains(v.y()));
       assert(intv.contains(v.z()));
+
+      double norm = v.norm();
+
+      ASSERT(norm <= 1 + constants::EPS_ERROR,
+             "unit norm greater than 1 + constants::EPS_ERROR");
+      ASSERT(norm >= 1 - constants::EPS_ERROR,
+             "unit norm less than 1 - constants::EPS_ERROR");
     }
   }
 };

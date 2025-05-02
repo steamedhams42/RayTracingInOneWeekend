@@ -24,8 +24,13 @@ class Camera {
   friend class CameraTest;
 
   Color computeRayColor(const Ray& ray, const HittableList&) const;
-  Ray get_ray(int, int);
-  Vec3 sample_square() const;
+
+  // Returns a random sampled ray cenetered at [x, y]
+  Ray get_ray(int x, int y);
+
+  // Returns a point to a random point in the [-.5,-.5]-[+.5,+.5] unit
+  // square.
+  Point3 sample_square() const;
 
   Point3 camera_center_;
   double focal_length_;

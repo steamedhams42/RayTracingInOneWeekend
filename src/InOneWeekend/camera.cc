@@ -62,7 +62,7 @@ void Camera::render(const HittableList& hittables) {
     for (int col = 0; col < image_width_; col++) {
       Color pixel_color(0, 0, 0);
       for (int i = 0; i < constants::camera::SAMPLES_PER_PIXEL; i++) {
-        Ray sample_ray = get_ray(row, col);
+        Ray sample_ray = get_ray(col, row);
         pixel_color += computeRayColor(sample_ray, hittables);
       }
       pixel_color.write_color(std::cout);
@@ -90,14 +90,16 @@ Color Camera::computeRayColor(const Ray& ray,
   return (1.0 - scale) * Color(1, 1, 1) + scale * (Color(0.5, 0.7, 1.0));
 }
 
-Ray Camera::get_ray(int row, int col) {
+Ray Camera::get_ray(int x, int y) {
+  Point3 offset = sample_square();
   Point3 pixel_center = viewport_top_left_pixel_center_ +
-                        col * pixel_delta_width_ + row * pixel_delta_height_;
-  Vec3 ray_direction(pixel_center);
-  Ray ray(camera_center_, ray_direction);
+                        (x + offset.x()) * pixel_delta_width_ +
+                        (y + offset.y()) * pixel_delta_height_;
+  Vec3 ray_direction(pixel_center - camera_center_);
+  return Ray(camera_center_, ray_direction);
 }
 
-Vec3 Camera::sample_square() const {
+Point3 Camera::sample_square() const {
   return Vec3(RandomNumber::random_real(-0.5, +0.5),
-              RandomNumber::random_real(-0.5, 0.5), 0);
+              RandomNumber::random_real(-0.5, +0.5), 0);
 }

@@ -19,17 +19,12 @@ Color::Color(double x, double y, double z) : Point3(x, y, z) {
   assert(0.0 <= b() and b() <= 1.0);
 }
 
-// static
-Color createClampedColor(const Point3& p) {
-  Interval ival(0, 1.0);
-  return Color(ival.clamp(p.x()), ival.clamp(p.y()), ival.clamp(p.z()));
-}
-
 void Color::write_color(std::ostream& out) {
   // Rescale from [0, 255]
-  int iR = int(r() * (constants::BYTE - 1));
-  int iG = int(g() * (constants::BYTE - 1));
-  int iB = int(b() * (constants::BYTE - 1));
+  Interval intv(0, 1);
+  int iR = int(intv.clamp(r()) * (constants::BYTE - 1));
+  int iG = int(intv.clamp(g()) * (constants::BYTE - 1));
+  int iB = int(intv.clamp(b()) * (constants::BYTE - 1));
 
   out << iR << ' ' << iG << ' ' << iB << '\n';
 }

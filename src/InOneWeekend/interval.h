@@ -10,10 +10,15 @@ class Interval {
   double max() const { return max_; }
 
   double width() const;
-  // Inclusive
+
+  // Inclusive [min, max]
   bool contains(double) const;
-  // Exclusive
+
+  // Exclusive (min, max)
   bool surrounds(double) const;
+
+  // Returns x bounded by [min, max]
+  double clamp(double x) const;
 
   static const Interval empty;
   static const Interval universal;

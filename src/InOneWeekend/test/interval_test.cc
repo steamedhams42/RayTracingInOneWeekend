@@ -15,7 +15,6 @@ class IntervalTest : public TestBase {
     Interval intvl(mini, maxi);
 
     for (double i = mini; i <= maxi; i += ((maxi - mini) / 100.0)) {
-      std::cout << i << std::endl;
       assert(intvl.contains(i));
     }
 
@@ -24,5 +23,8 @@ class IntervalTest : public TestBase {
 
     assert(!intvl.surrounds(mini));
     assert(!intvl.surrounds(maxi));
+
+    assert(intvl.clamp(mini - 10) == intvl.min());
+    assert(intvl.clamp(maxi + maxi) == intvl.max());
   }
 };

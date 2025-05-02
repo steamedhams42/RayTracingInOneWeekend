@@ -23,3 +23,13 @@ bool Interval::contains(double x) const {
 bool Interval::surrounds(double x) const {
   return (min_ < x) and (x < max_);
 }
+
+double Interval::clamp(double x) const {
+  if (x < min_) {
+    return min_;
+  }
+  if (x > max_) {
+    return max_;
+  }
+  return x;
+}

@@ -20,8 +20,6 @@ class TestBase {
   virtual void run_test() = 0;
 
  protected:
-  static constexpr double EPS = 1e-5;
-
   Point3 createPoint() {
     double a = 0, b = 0, c = 0;
     a = Random::random_real();

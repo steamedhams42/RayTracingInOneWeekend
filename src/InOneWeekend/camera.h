@@ -28,8 +28,7 @@ class Camera {
   // Returns a random sampled ray cenetered at [x, y]
   Ray get_sampled_ray(int x, int y);
 
-  // Returns a point to a random point in the [-.5,-.5]-[+.5,+.5] unit
-  // square.
+  // Returns a random point in the [-.5,-.5]-[+.5,+.5] unit square.
   Point3 sample_square() const;
 
   Point3 camera_center_;

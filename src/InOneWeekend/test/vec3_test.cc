@@ -1,4 +1,5 @@
 #include "InOneWeekend/vec3.h"
+#include "InOneWeekend/constants.h"
 #include "InOneWeekend/interval.h"
 #include "InOneWeekend/random.h"
 #include "InOneWeekend/test/test_base.h"
@@ -83,8 +84,10 @@ class Vec3Test : public TestBase {
     assert(unit.x() == (v / norm).x());
     assert(unit.y() == (v / norm).y());
     assert(unit.z() == (v / norm).z());
-    ASSERT(unit.norm() <= 1 + EPS, "unit norm greater than 1 + EPS");
-    ASSERT(unit.norm() >= 1 - EPS, "unit norm less than 1 - EPS");
+    ASSERT(unit.norm() <= 1 + constants::EPS,
+           "unit norm greater than 1 + constants::EPS");
+    ASSERT(unit.norm() >= 1 - constants::EPS,
+           "unit norm less than 1 - constants::EPS");
 
     for (int i = 0; i < 100; i++) {
       double bound = 100;

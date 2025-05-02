@@ -11,6 +11,7 @@ namespace constants {
 const double INF_DOUBLE = std::numeric_limits<double>::infinity();
 const double INF_INT = std::numeric_limits<int>::infinity();
 const double PI = acos(-1);
+const double EPS = 1e-160;
 
 const char nl = '\n';
 

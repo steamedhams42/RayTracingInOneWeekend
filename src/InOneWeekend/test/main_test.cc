@@ -1,3 +1,4 @@
+#include "InOneWeekend/test/camera_test.cc"
 #include "InOneWeekend/test/interval_test.cc"
 #include "InOneWeekend/test/point3_test.cc"
 #include "InOneWeekend/test/ray_test.cc"
@@ -19,6 +20,9 @@ int main() {
 
   IntervalTest interval_test;
   interval_test.run_test();
+
+  CameraTest camera_test;
+  camera_test.run_test();
 
   return 0;
 }

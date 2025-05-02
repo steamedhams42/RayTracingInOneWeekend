@@ -54,6 +54,8 @@ set ( SOURCE_ONE_WEEKEND_TEST
   src/InOneWeekend/point3.cc
   src/InOneWeekend/hittable.h
   src/InOneWeekend/hittable.cc
+  src/InOneWeekend/hittable_list.h
+  src/InOneWeekend/hittable_list.cc
   src/InOneWeekend/sphere.h
   src/InOneWeekend/sphere.cc
   src/InOneWeekend/ray.h

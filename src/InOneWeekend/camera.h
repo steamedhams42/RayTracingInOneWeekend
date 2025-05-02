@@ -6,6 +6,8 @@
 #include "point3.h"
 #include "ray.h"
 
+class CameraTest;
+
 class Camera {
  public:
   Camera(Point3 center,
@@ -18,6 +20,8 @@ class Camera {
   void render(const HittableList&);
 
  private:
+  friend class CameraTest;
+
   Color computeRayColor(const Ray& ray, const HittableList&) const;
 
   Point3 center_;
@@ -31,7 +35,6 @@ class Camera {
   double viewport_width_;
   Vec3 pixel_delta_width_;
   Vec3 pixel_delta_height_;
-
   Point3 viewport_top_left_pixel_center_;
 };
 #endif

@@ -1,10 +1,10 @@
 #include "InOneWeekend/vec3.h"
+#include "InOneWeekend/interval.h"
 #include "InOneWeekend/random.h"
+#include "InOneWeekend/test/test_base.h"
 
 #include <cassert>
 #include <vector>
-
-#include "InOneWeekend/test/test_base.h"
 
 class Vec3Test : public TestBase {
  public:
@@ -85,5 +85,23 @@ class Vec3Test : public TestBase {
     assert(unit.z() == (v / norm).z());
     ASSERT(unit.norm() <= 1 + EPS, "unit norm greater than 1 + EPS");
     ASSERT(unit.norm() >= 1 - EPS, "unit norm less than 1 - EPS");
+
+    for (int i = 0; i < 100; i++) {
+      double bound = 100;
+      Vec3 v = Vec3::random_vec3(-bound, bound);
+      Interval intv(-bound, bound);
+      assert(intv.contains(v.x()));
+      assert(intv.contains(v.y()));
+      assert(intv.contains(v.z()));
+    }
+
+    for (int i = 0; i < 100; i++) {
+      double bound = 1;
+      Vec3 v = Vec3::random_vec3();
+      Interval intv(-bound, bound);
+      assert(intv.contains(v.x()));
+      assert(intv.contains(v.y()));
+      assert(intv.contains(v.z()));
+    }
   }
 };

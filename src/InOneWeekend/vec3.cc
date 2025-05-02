@@ -1,4 +1,5 @@
 #include "vec3.h"
+#include "random.h"
 
 Vec3 Vec3::operator+(const Vec3& rhs) {
   return Vec3(x() + rhs.x(), y() + rhs.y(), z() + rhs.z());
@@ -62,4 +63,16 @@ Vec3 Vec3::cross(const Vec3& rhs) const {
 
 Vec3 Vec3::unit() const {
   return *this / this->norm();
+}
+
+// static
+Vec3 Vec3::random_vec3() {
+  return Vec3(Random::random_real(), Random::random_real(),
+              Random::random_real());
+}
+
+// static
+Vec3 Vec3::random_vec3(double min, double max) {
+  return Vec3(Random::random_real(min, max), Random::random_real(min, max),
+              Random::random_real(min, max));
 }

@@ -32,6 +32,9 @@ const double FOCAL_LENGTH = 1.0;
 // Viewport
 const double VIEWPORT_HEIGHT = 2.0;
 
+// Anti-aliasing
+const int SAMPLES_PER_PIXEL = 10;
+
 }  // namespace camera
 
 // Sphere

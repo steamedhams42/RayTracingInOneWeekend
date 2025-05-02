@@ -1,5 +1,6 @@
 #include "InOneWeekend/interval.h"
 #include "InOneWeekend/constants.h"
+#include "InOneWeekend/random.h"
 #include "test_base.h"
 
 #include <cassert>
@@ -8,9 +9,10 @@ class IntervalTest : public TestBase {
  public:
   void run_test() override {
     auto null = Interval::empty;
+    RandomNumber rand;
 
-    double mini = -random_real();
-    double maxi = random_real();
+    double mini = -rand.random_real();
+    double maxi = rand.random_real();
 
     Interval intvl(mini, maxi);
 

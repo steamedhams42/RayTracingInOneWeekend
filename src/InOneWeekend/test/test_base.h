@@ -1,11 +1,9 @@
 #ifndef TEST_BASE_H
 #define TEST_BASE_H
 
-#include <random>
 #include "InOneWeekend/point3.h"
+#include "InOneWeekend/random.h"
 #include "InOneWeekend/vec3.h"
-
-const int md = 1e9 + 7;
 
 #define ASSERT(condition, message)                               \
   do {                                                           \
@@ -17,10 +15,7 @@ const int md = 1e9 + 7;
 
 class TestBase {
  public:
-  TestBase() { std::srand(time(0)); }
   virtual ~TestBase() = default;
-  // Returns a real number between [0, 1.0)
-  double random_real() { return 1.0 * (random() % md) / md; }
 
   virtual void run_test() = 0;
 
@@ -28,18 +23,20 @@ class TestBase {
   static constexpr double EPS = 1e-5;
 
   Point3 createPoint() {
+    RandomNumber rand;
     double a = 0, b = 0, c = 0;
-    a = random_real();
-    b = random_real();
-    c = random_real();
+    a = rand.random_real();
+    b = rand.random_real();
+    c = rand.random_real();
     return Point3(a, b, c);
   }
 
   Vec3 createVec() {
+    RandomNumber rand;
     double a = 0, b = 0, c = 0;
-    a = random_real();
-    b = random_real();
-    c = random_real();
+    a = rand.random_real();
+    b = rand.random_real();
+    c = rand.random_real();
     return Vec3(a, b, c);
   }
 };

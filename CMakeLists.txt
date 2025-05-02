@@ -41,6 +41,7 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekend/interval.cc
   src/InOneWeekend/camera.h
   src/InOneWeekend/camera.cc
+  src/InOneWeekend/random.h
   # src/InOneWeekend/material.h
   # src/InOneWeekend/rtweekend.h
 )
@@ -64,6 +65,7 @@ set ( SOURCE_ONE_WEEKEND_TEST
   src/InOneWeekend/interval.cc
   src/InOneWeekend/camera.h
   src/InOneWeekend/camera.cc
+  src/InOneWeekend/test/random_test.cc
   src/InOneWeekend/test/camera_test.cc
   src/InOneWeekend/test/interval_test.cc
   src/InOneWeekend/test/point3_test.cc

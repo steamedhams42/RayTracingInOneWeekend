@@ -1,4 +1,5 @@
 #include "InOneWeekend/vec3.h"
+#include "InOneWeekend/random.h"
 
 #include <cassert>
 #include <vector>
@@ -25,9 +26,10 @@ class Vec3Test : public TestBase {
     assert(v - v == zed);
 
     // multiplication
+    RandomNumber rand;
     assert(v * 1 == v);
     assert(v * 0 == zed);
-    double x = random_real();
+    double x = rand.random_real();
     Vec3 before = v;
     v *= x;
     assert(v.x() == before.x() * x);
@@ -38,7 +40,7 @@ class Vec3Test : public TestBase {
 
     // division
     v = createVec();
-    x = random_real();
+    x = rand.random_real();
     before = v;
     v /= x;
     assert(v.x() <= before.x() * (1 / x));

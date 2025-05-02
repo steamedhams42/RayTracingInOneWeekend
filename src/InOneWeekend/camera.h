@@ -2,6 +2,7 @@
 #define CAMERA_H
 
 #include "color.h"
+#include "constants.h"
 #include "hittable_list.h"
 #include "point3.h"
 #include "ray.h"
@@ -16,6 +17,7 @@ class Camera {
          const double image_width,
          const double focal_length,
          const double viewport_height);
+
   void initialize();
   void render(const HittableList&);
 
@@ -31,7 +33,7 @@ class Camera {
   double aspect_height_;
   double aspect_ratio_;
 
-  // image dimensions in pixels
+  // Image dimensions in pixels
   double image_width_;
   double image_height_;
 
@@ -44,5 +46,8 @@ class Camera {
 
   // Location of the top left pixel's center in the viewport
   Point3 viewport_top_left_pixel_center_;
+
+  // Anti-aliasing
+  double pixel_samples_scale_ = 1.0 / constants::camera::SAMPLES_PER_PIXEL;
 };
 #endif

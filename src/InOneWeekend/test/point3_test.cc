@@ -1,4 +1,5 @@
 #include "InOneWeekend/point3.h"
+#include "InOneWeekend/random.h"
 #include "InOneWeekend/test/test_base.h"
 
 #include <cassert>
@@ -26,9 +27,10 @@ class Point3Test : public TestBase {
     assert(v - v == zed);
 
     // multiplication
+    RandomNumber rand;
     assert(v * 1 == v);
     assert(v * 0 == zed);
-    double x = random_real();
+    double x = rand.random_real();
     Point3 before = v;
     v *= x;
     assert(v.x() == before.x() * x);
@@ -39,7 +41,7 @@ class Point3Test : public TestBase {
 
     // division
     v = createPoint();
-    x = random_real();
+    x = rand.random_real();
     before = v;
     v /= x;
     assert(v.x() <= before.x() * (1 / x));

@@ -26,10 +26,9 @@ class Vec3Test : public TestBase {
     assert(v - v == zed);
 
     // multiplication
-    RandomNumber rand;
     assert(v * 1 == v);
     assert(v * 0 == zed);
-    double x = rand.random_real();
+    double x = RandomNumber::random_real();
     Vec3 before = v;
     v *= x;
     assert(v.x() == before.x() * x);
@@ -40,7 +39,7 @@ class Vec3Test : public TestBase {
 
     // division
     v = createVec();
-    x = rand.random_real();
+    x = RandomNumber::random_real();
     before = v;
     v /= x;
     assert(v.x() <= before.x() * (1 / x));

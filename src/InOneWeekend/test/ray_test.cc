@@ -10,12 +10,11 @@ class RayTest : public TestBase {
     Point3 origin = createPoint();
     Vec3 direction = createVec();
     Ray ray(origin, direction);
-    RandomNumber rand;
 
     double t = 0.0;
     assert(ray.at(t) == ray.origin());
 
-    t = rand.random_real();
+    t = RandomNumber::random_real();
     assert(ray.at(t) == Point3(direction * t) + origin);
   }
 };

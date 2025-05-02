@@ -7,19 +7,20 @@
 #include "hittable.h"
 #include "hittable_list.h"
 #include "interval.h"
+#include "random.h"
 #include "vec3.h"
 
 Camera::Camera(Point3 center,
+               const double focal_length,
+               const double image_width,
                const double aspect_width,
                const double aspect_height,
-               const double image_width,
-               const double focal_length,
                const double viewport_height)
     : camera_center_(center),
+      focal_length_(focal_length),
+      image_width_(image_width),
       aspect_width_(aspect_width),
       aspect_height_(aspect_height),
-      image_width_(image_width),
-      focal_length_(focal_length),
       viewport_height_(viewport_height) {}
 
 void Camera::initialize() {
@@ -45,6 +46,9 @@ void Camera::initialize() {
   viewport_top_left_pixel_center_ = upper_left_pixel_location +
                                     pixel_delta_width_ / 2 +
                                     pixel_delta_height_ / 2;
+
+  // Anti-aliasing
+  pixel_samples_scale_ = 1.0 / constants::camera::SAMPLES_PER_PIXEL;
 };
 
 void Camera::render(const HittableList& hittables) {
@@ -56,15 +60,12 @@ void Camera::render(const HittableList& hittables) {
     std::clog << "\rScanlines remaining: " << image_height_ - row << " "
               << std::flush;
     for (int col = 0; col < image_width_; col++) {
-      Point3 pixel_center = viewport_top_left_pixel_center_ +
-                            col * pixel_delta_width_ +
-                            row * pixel_delta_height_;
-
-      Vec3 ray_direction(pixel_center);
-      Ray ray(camera_center_, ray_direction);
-      Color ray_color = computeRayColor(ray, hittables);
-
-      ray_color.write_color(std::cout);
+      Color pixel_color(0, 0, 0);
+      for (int i = 0; i < constants::camera::SAMPLES_PER_PIXEL; i++) {
+        Ray sample_ray = get_ray(row, col);
+        pixel_color += computeRayColor(sample_ray, hittables);
+      }
+      pixel_color.write_color(std::cout);
     };
   }
   std::clog << "\rDone                " << std::endl;
@@ -87,4 +88,16 @@ Color Camera::computeRayColor(const Ray& ray,
   double scale = (unit_direction.y() + 1.0) / 2.0;
   assert(scale < 256);
   return (1.0 - scale) * Color(1, 1, 1) + scale * (Color(0.5, 0.7, 1.0));
+}
+
+Ray Camera::get_ray(int row, int col) {
+  Point3 pixel_center = viewport_top_left_pixel_center_ +
+                        col * pixel_delta_width_ + row * pixel_delta_height_;
+  Vec3 ray_direction(pixel_center);
+  Ray ray(camera_center_, ray_direction);
+}
+
+Vec3 Camera::sample_square() const {
+  return Vec3(RandomNumber::random_real(-0.5, +0.5),
+              RandomNumber::random_real(-0.5, 0.5), 0);
 }

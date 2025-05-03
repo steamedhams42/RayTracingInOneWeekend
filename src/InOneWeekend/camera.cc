@@ -81,7 +81,7 @@ Color Camera::computeRayColor(const Ray& ray,
   Hittable::HitResult hit_result;
   // Check if ray hits a hittable
   if (hittables.hit(ray, Interval(0.001, constants::INF_DOUBLE), hit_result)) {
-    auto v = Vec3::random_vec3_on_surface(hit_result.normal);
+    auto v = Vec3::random_unit_vec3() + hit_result.normal;
     return 0.5 * computeRayColor(Ray(hit_result.p, v), hittables,
                                  light_bounces_remaining - 1);
   }

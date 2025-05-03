@@ -35,7 +35,7 @@ const double FOCAL_LENGTH = 1.0;
 const double VIEWPORT_HEIGHT = 2.0;
 
 // Anti-aliasing. Set to 1 to turn off AA.
-const int SAMPLES_PER_PIXEL = 2;
+const int SAMPLES_PER_PIXEL = 10;
 
 // Speeds up rendering by limiting the number of light ray bounces and
 // recursive calls

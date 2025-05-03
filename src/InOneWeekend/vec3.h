@@ -38,6 +38,9 @@ class Vec3 : public Point3 {
   // Returns a random unit vector
   static Vec3 random_unit_vec3();
 
+  // Returns a random unit vector in the same direction as |surface_norm|
+  static Vec3 random_vec3_on_surface(const Vec3& surface_norm);
+
  private:
   friend Vec3Test;
 };

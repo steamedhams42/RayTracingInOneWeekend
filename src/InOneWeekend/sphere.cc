@@ -44,3 +44,13 @@ bool Sphere::hit(const Ray& ray,
 
   return true;
 }
+
+// static
+Vec3 Sphere::random_vec3_on_surface(const Vec3& surface_norm) {
+  Vec3 random_unit_vec = Vec3::random_unit_vec3();
+  if (random_unit_vec.dot(surface_norm) > 0) {
+    return random_unit_vec;
+  } else {
+    return -random_unit_vec;
+  }
+}

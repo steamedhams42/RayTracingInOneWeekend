@@ -51,5 +51,12 @@ class SphereTest : public TestBase {
     assert(result4.p == Point3(0, 0, 0.5));
     assert(result4.t > 0);
     assert(result4.front_face == false);
+
+    // Emit a ray from surface of the sphere outwards.
+    Hittable::HitResult result5;
+    Point3 surface_point = Point3(0, 0, radius);
+    Vec3 v5 = Vec3::random_vec3_on_surface(Vec3(surface_point - sphere_center));
+    Ray ray5(surface_point, v5);
+    assert(!sphere.hit(ray5, Interval(0, 1), result5));
   }
 };

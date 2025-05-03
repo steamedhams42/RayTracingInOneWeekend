@@ -73,12 +73,17 @@ void Camera::render(const HittableList& hittables) {
 }
 
 Color Camera::computeRayColor(const Ray& ray,
-                              const HittableList& hittables) const {
+                              const HittableList& hittables,
+                              int light_bounces_remaining) const {
+  if (light_bounces_remaining == 0) {
+    return Color(0, 0, 0);
+  }
   Hittable::HitResult hit_result;
   // Check if ray hits a hittable
   if (hittables.hit(ray, Interval(0, constants::INF_DOUBLE), hit_result)) {
     auto v = Vec3::random_vec3_on_surface(hit_result.normal);
-    return computeRayColor(Ray(hit_result.p, v), hittables) / 2.0;
+    return 0.5 * computeRayColor(Ray(hit_result.p, v), hittables,
+                                 light_bounces_remaining - 1);
   }
   // Background color if ray does not hit a hittable.
   Vec3 unit_direction = ray.direction().unit();

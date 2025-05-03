@@ -37,6 +37,10 @@ const double VIEWPORT_HEIGHT = 2.0;
 // Anti-aliasing. Set to 1 to turn off AA.
 const int SAMPLES_PER_PIXEL = 2;
 
+// Speeds up rendering by limiting the number of light ray bounces and
+// recursive calls
+const int MAX_LIGHT_BOUNCES = 5;
+
 }  // namespace camera
 
 // Sphere

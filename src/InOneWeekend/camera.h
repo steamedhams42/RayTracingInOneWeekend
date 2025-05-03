@@ -2,6 +2,7 @@
 #define CAMERA_H
 
 #include "color.h"
+#include "constants.h"
 #include "hittable_list.h"
 #include "point3.h"
 #include "ray.h"
@@ -23,7 +24,11 @@ class Camera {
  private:
   friend class CameraTest;
 
-  Color computeRayColor(const Ray& ray, const HittableList&) const;
+  // Uses recursion to bounce light off hittable surfaces (diffuse reflection)
+  Color computeRayColor(
+      const Ray& ray,
+      const HittableList&,
+      int light_bounces_remaining = constants::camera::MAX_LIGHT_BOUNCES) const;
 
   // Returns a random sampled ray cenetered at [x, y]
   Ray get_sampled_ray(int x, int y);

@@ -29,6 +29,7 @@ class Color : public Point3 {
   bool operator==(const Color& lhs) const;
 
  private:
+  double linear_to_gamma(double linear_component);
 };
 
 inline Color operator*(double t, const Color& lhs) {

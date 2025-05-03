@@ -19,12 +19,19 @@ Color::Color(double x, double y, double z) : Point3(x, y, z) {
   assert(0.0 <= b() and b() <= 1.0);
 }
 
+double Color::linear_to_gamma(double linear_component) {
+  if (linear_component > 0) {
+    return std::sqrt(linear_component);
+  }
+  return 0;
+}
+
 void Color::write_color(std::ostream& out) {
   // Rescale from [0, 255]
   Interval intv(0, 1);
-  int iR = int(intv.clamp(r()) * (constants::BYTE - 1));
-  int iG = int(intv.clamp(g()) * (constants::BYTE - 1));
-  int iB = int(intv.clamp(b()) * (constants::BYTE - 1));
+  int iR = int(intv.clamp(linear_to_gamma(r())) * (constants::BYTE - 1));
+  int iG = int(intv.clamp(linear_to_gamma(g())) * (constants::BYTE - 1));
+  int iB = int(intv.clamp(linear_to_gamma(b())) * (constants::BYTE - 1));
 
   out << iR << ' ' << iG << ' ' << iB << '\n';
 }

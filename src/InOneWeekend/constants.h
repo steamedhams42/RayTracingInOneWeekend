@@ -27,15 +27,15 @@ const Point3 CAMERA_CENTER = Point3(0, 0, 0);
 const double ASPECT_WIDTH = 16.0;
 const double ASPECT_HEIGHT = 9.0;
 
-const int IMAGE_WIDTH = 400;
+const int IMAGE_WIDTH = 1000;
 
 const double FOCAL_LENGTH = 1.0;
 
 // Viewport
 const double VIEWPORT_HEIGHT = 2.0;
 
-// Anti-aliasing
-const int SAMPLES_PER_PIXEL = 10;
+// Anti-aliasing. Set to 1 to turn off AA.
+const int SAMPLES_PER_PIXEL = 2;
 
 }  // namespace camera
 

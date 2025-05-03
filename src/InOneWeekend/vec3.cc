@@ -77,7 +77,7 @@ Vec3 Vec3::random_unit_vec3() {
   while (true) {
     Vec3 v = random_vec3(-1, 1);
     double f = v.norm_squared();
-    if (constants::EPS_ZERO <= f) {
+    if (constants::EPS_ZERO <= f and f <= 1) {
       // Due to floating point errors, the length^2 of the vector must be
       // greater than an EPS otherwise sqrt(f) == 0 and cause division by zero.
       return v / sqrt(f);

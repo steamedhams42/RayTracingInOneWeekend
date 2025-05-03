@@ -77,12 +77,8 @@ Color Camera::computeRayColor(const Ray& ray,
   Hittable::HitResult hit_result;
   // Check if ray hits a hittable
   if (hittables.hit(ray, Interval(0, constants::INF_DOUBLE), hit_result)) {
-    // Why add +1 and divide 2?
-    // Unit vector components will always be between [-1, +1], we want to map
-    // to [0, 1] so we do the appropriate affine transformation.
-    hit_result.normal += Vec3(1, 1, 1);
-    hit_result.normal /= 2.0;
-    return Color(hit_result.normal);
+    auto v = Vec3::random_vec3_on_surface(hit_result.normal);
+    return computeRayColor(Ray(hit_result.p, v), hittables) / 2.0;
   }
   // Background color if ray does not hit a hittable.
   Vec3 unit_direction = ray.direction().unit();

@@ -29,8 +29,10 @@ bool Sphere::hit(const Ray& ray,
   double t_minus = (-b - sqrtd) / (2 * a);
   double t_plus = (-b + sqrtd) / (2 * a);
 
-  t_minus = intval.contains(t_minus) ? t_minus : constants::INF_DOUBLE;
-  t_plus = intval.contains(t_plus) ? t_plus : constants::INF_DOUBLE;
+  // Must use surrounds (exclusve) rather than contains (inclusive) to reject
+  // ray's that are originate exactly on the surface of the hittable.
+  t_minus = intval.surrounds(t_minus) ? t_minus : constants::INF_DOUBLE;
+  t_plus = intval.surrounds(t_plus) ? t_plus : constants::INF_DOUBLE;
   double t = std::fmin(t_plus, t_minus);
   if (t == constants::INF_DOUBLE) {
     return false;

@@ -39,7 +39,7 @@ const int SAMPLES_PER_PIXEL = 2;
 
 // Speeds up rendering by limiting the number of light ray bounces and
 // recursive calls
-const int MAX_LIGHT_BOUNCES = 5;
+const int MAX_LIGHT_BOUNCES = 50;
 
 }  // namespace camera
 

@@ -94,3 +94,9 @@ Vec3 Vec3::random_vec3_on_surface(const Vec3& surface_norm) {
     return -random_unit_vec;
   }
 }
+
+bool Vec3::is_near_zero() const {
+  double s = 1e-8;
+  return std::fabs(points_[0] < s) and std::fabs(points_[1] < s) and
+         std::fabs(points_[2] < s);
+}

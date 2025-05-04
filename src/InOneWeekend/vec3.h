@@ -12,20 +12,6 @@ class Vec3 : public Point3 {
   Vec3(const Point3& p) : Point3(p) {}
   ~Vec3() = default;
 
-  Vec3 operator+(const Vec3& rhs);
-  Vec3& operator+=(const Vec3& rhs);
-
-  Vec3& operator-();
-  Vec3 operator-(const Vec3& rhs);
-  Vec3& operator-=(const Vec3& rhs);
-
-  Vec3 operator*(double t) const;
-  Vec3& operator*=(double t);
-  friend Vec3& operator*=(double t, Vec3& rhs);
-
-  Vec3 operator/(double t) const;
-  Vec3& operator/=(double t);
-
   double dot(const Vec3& rhs) const;
   Vec3 cross(const Vec3& rhs) const;
 
@@ -40,6 +26,24 @@ class Vec3 : public Point3 {
 
   // Returns a random unit vector in the same direction as |surface_norm|
   static Vec3 random_vec3_on_surface(const Vec3& surface_norm);
+
+  // Returns true if all of this vector's dimensions are near zero.
+  bool is_near_zero() const;
+
+  // Overloaded operators
+  Vec3 operator+(const Vec3& rhs);
+  Vec3& operator+=(const Vec3& rhs);
+
+  Vec3& operator-();
+  Vec3 operator-(const Vec3& rhs);
+  Vec3& operator-=(const Vec3& rhs);
+
+  Vec3 operator*(double t) const;
+  Vec3& operator*=(double t);
+  friend Vec3& operator*=(double t, Vec3& rhs);
+
+  Vec3 operator/(double t) const;
+  Vec3& operator/=(double t);
 
  private:
   friend Vec3Test;

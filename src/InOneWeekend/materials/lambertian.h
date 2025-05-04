@@ -17,6 +17,9 @@ class Lambertian : public Material {
                Color& attenuation,
                Ray& scattered) const override {
     auto v = Vec3::random_unit_vec3() + hit_result.normal;
+    if (v.is_near_zero()) {
+      v = hit_result.normal;
+    }
     scattered = Ray(hit_result.p, v);
     attenuation = albedo_;
     return true;

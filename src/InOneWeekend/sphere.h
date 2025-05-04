@@ -3,6 +3,7 @@
 
 #include "hittable.h"
 #include "interval.h"
+#include "material.h"
 #include "point3.h"
 
 class Ray;
@@ -17,6 +18,7 @@ class Sphere : public Hittable {
  private:
   Point3 center_;
   double radius_;
+  const Material* material_;
 };
 
 #endif

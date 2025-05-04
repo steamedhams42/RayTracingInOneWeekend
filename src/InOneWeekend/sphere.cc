@@ -6,6 +6,7 @@
 
 Sphere::Sphere(Point3 center, double r) : center_(center), radius_(r) {
   assert(radius_ >= 0);
+  // TODO: init *material_
 }
 
 Sphere::~Sphere() {}
@@ -38,11 +39,11 @@ bool Sphere::hit(const Ray& ray,
     return false;
   }
 
-  // TODO: Refactor the HitResult class and the setNormal method. Footgun.
   result.t = t;
   result.p = ray.at(t);
   Vec3 normal = (result.p - this->center_) / this->radius_;
   result.setFaceNormal(ray, normal);
+  result.material = material_;
 
   return true;
 }

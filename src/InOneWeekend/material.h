@@ -7,9 +7,9 @@
 
 class Material {
  public:
-  ~Material() = default;
+  virtual ~Material() = default;
   virtual bool scatter(const Ray& r_in,
-                       const Hittable::HitResult& rec,
+                       const Hittable::HitResult& result,
                        Color& attenuation,
                        Ray& scattered) const {
     return false;

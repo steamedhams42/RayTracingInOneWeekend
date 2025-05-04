@@ -6,6 +6,7 @@
 #include "vec3.h"
 
 class Ray;
+class Material;
 
 class Hittable {
  public:
@@ -35,6 +36,8 @@ class Hittable {
     // chosen to make the hittable's normal vectors always oppose the incident
     // light ray.
     void setFaceNormal(const Ray& ray, const Vec3& outward_normal);
+
+    const Material* material = nullptr;
   };
 
   virtual ~Hittable() = default;

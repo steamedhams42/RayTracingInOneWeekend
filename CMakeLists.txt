@@ -22,28 +22,27 @@ set ( EXTERNAL
 
 set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekend/main.cc
-  src/InOneWeekend/vec3.h
   src/InOneWeekend/vec3.cc
-  src/InOneWeekend/point3.h
+  src/InOneWeekend/vec3.h
   src/InOneWeekend/point3.cc
+  src/InOneWeekend/point3.h
   src/InOneWeekend/constants.h
-  src/InOneWeekend/color.h
   src/InOneWeekend/color.cc
-  src/InOneWeekend/ray.h
+  src/InOneWeekend/color.h
   src/InOneWeekend/ray.cc
-  src/InOneWeekend/hittable.h
+  src/InOneWeekend/ray.h
   src/InOneWeekend/hittable.cc
-  src/InOneWeekend/sphere.h
+  src/InOneWeekend/hittable.h
   src/InOneWeekend/sphere.cc
-  src/InOneWeekend/hittable_list.h
+  src/InOneWeekend/sphere.h
   src/InOneWeekend/hittable_list.cc
-  src/InOneWeekend/interval.h
+  src/InOneWeekend/hittable_list.h
   src/InOneWeekend/interval.cc
-  src/InOneWeekend/camera.h
+  src/InOneWeekend/interval.h
   src/InOneWeekend/camera.cc
+  src/InOneWeekend/camera.h
   src/InOneWeekend/random.h
-  # src/InOneWeekend/material.h
-  # src/InOneWeekend/rtweekend.h
+  src/InOneWeekend/material.h
 )
 
 set ( SOURCE_ONE_WEEKEND_TEST

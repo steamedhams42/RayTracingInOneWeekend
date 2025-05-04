@@ -42,7 +42,8 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekend/camera.cc
   src/InOneWeekend/camera.h
   src/InOneWeekend/random.h
-  src/InOneWeekend/material.h
+  src/InOneWeekend/materials/material.h
+  src/InOneWeekend/materials/lambertian.h
 )
 
 set ( SOURCE_ONE_WEEKEND_TEST

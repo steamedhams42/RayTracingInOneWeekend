@@ -3,7 +3,7 @@
 
 #include "hittable.h"
 #include "interval.h"
-#include "material.h"
+#include "materials/material.h"
 #include "point3.h"
 
 class Ray;

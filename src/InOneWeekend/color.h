@@ -6,6 +6,7 @@
 
 class Color : public Point3 {
  public:
+  Color() : Point3() {}
   Color(Point3 p);
   Color(double r, double g, double b);
   Color(const Color& p) = default;

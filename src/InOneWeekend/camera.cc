@@ -7,6 +7,7 @@
 #include "hittable.h"
 #include "hittable_list.h"
 #include "interval.h"
+#include "materials/material.h"
 #include "random.h"
 #include "vec3.h"
 
@@ -72,7 +73,7 @@ void Camera::render(const HittableList& hittables) {
   std::clog << "\rDone                " << std::endl;
 }
 
-Color Camera::computeRayColor(const Ray& ray,
+Color Camera::computeRayColor(const Ray& incident_ray,
                               const HittableList& hittables,
                               int light_bounces_remaining) const {
   if (light_bounces_remaining == 0) {
@@ -80,10 +81,16 @@ Color Camera::computeRayColor(const Ray& ray,
   }
   Hittable::HitResult hit_result;
   // Check if ray hits a hittable
-  if (hittables.hit(ray, Interval(0.001, constants::INF_DOUBLE), hit_result)) {
-    auto v = Vec3::random_unit_vec3() + hit_result.normal;
-    return 0.5 * computeRayColor(Ray(hit_result.p, v), hittables,
-                                 light_bounces_remaining - 1);
+  if (hittables.hit(incident_ray, Interval(0.001, constants::INF_DOUBLE),
+                    hit_result)) {
+    Ray scattered_ray;
+    Color attenuation;
+    if (hit_result.material->scatter(incident_ray, hit_result, attenuation,
+                                     scattered_ray)) {
+      return attenuation * computeRayColor(scattered_ray, hittables,
+                                           light_bounces_remaining - 1);
+    }
+    return Color(0, 0, 0);
   }
   // Background color if ray does not hit a hittable.
   Vec3 unit_direction = ray.direction().unit();

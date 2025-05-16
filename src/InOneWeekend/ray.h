@@ -6,6 +6,7 @@
 
 class Ray {
  public:
+  Ray() = default;
   Ray(Point3 origin, Vec3 direction);
 
   const Point3& origin() const;

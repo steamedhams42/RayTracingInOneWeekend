@@ -8,7 +8,7 @@ class Color : public Point3 {
  public:
   Color(Point3 p);
   Color(double r, double g, double b);
-  Color(const Color& p);
+  Color(const Color& p) = default;
 
   double r() const { return x(); }
   double g() const { return y(); }

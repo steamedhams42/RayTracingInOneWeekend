@@ -43,6 +43,7 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekend/camera.h
   src/InOneWeekend/random.h
   src/InOneWeekend/materials/material.h
+  src/InOneWeekend/materials/metal.h
   src/InOneWeekend/materials/lambertian.h
 )
 
@@ -65,6 +66,11 @@ set ( SOURCE_ONE_WEEKEND_TEST
   src/InOneWeekend/interval.cc
   src/InOneWeekend/camera.h
   src/InOneWeekend/camera.cc
+  src/InOneWeekend/materials/metal.h
+  src/InOneWeekend/materials/material.h
+  src/InOneWeekend/materials/lambertian.h
+  src/InOneWeekend/test/metal_test.cc
+  src/InOneWeekend/test/lambertian_test.cc
   src/InOneWeekend/test/random_test.cc
   src/InOneWeekend/test/camera_test.cc
   src/InOneWeekend/test/interval_test.cc

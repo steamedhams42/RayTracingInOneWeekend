@@ -1,5 +1,7 @@
 #include "InOneWeekend/test/camera_test.cc"
 #include "InOneWeekend/test/interval_test.cc"
+#include "InOneWeekend/test/lambertian_test.cc"
+#include "InOneWeekend/test/metal_test.cc"
 #include "InOneWeekend/test/point3_test.cc"
 #include "InOneWeekend/test/random_test.cc"
 #include "InOneWeekend/test/ray_test.cc"
@@ -27,6 +29,12 @@ int main() {
 
   RandomTest random_test;
   random_test.run_test();
+
+  LambertianTest lambertian_test;
+  lambertian_test.run_test();
+
+  MetalTest metal_test;
+  metal_test.run_test();
 
   return 0;
 }

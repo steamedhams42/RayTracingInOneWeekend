@@ -14,6 +14,7 @@ class Material {
 
   // Subclasses overriding this method will take the reflected normal vector
   // from HitResult and decide how to reflect it based on the material.
+  // Retuns true if incident ray was scattered, false if absorbed.
   virtual bool scatter(const Ray& incident_ray,
                        const Hittable::HitResult& result,
                        Color& attenuation,

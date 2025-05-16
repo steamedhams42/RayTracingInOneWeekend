@@ -2,6 +2,10 @@
 
 Ray::Ray(Point3 point, Vec3 dir) : origin_(point), dir_(dir) {}
 
+bool Ray::operator==(const Ray& rhs) {
+  return this->origin_ == rhs.origin_ and this->dir_ == rhs.dir_;
+}
+
 const Point3& Ray::origin() const {
   return origin_;
 }

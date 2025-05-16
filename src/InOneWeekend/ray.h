@@ -8,6 +8,7 @@ class Ray {
  public:
   Ray() = default;
   Ray(Point3 origin, Vec3 direction);
+  bool operator==(const Ray& rhs);
 
   const Point3& origin() const;
   const Vec3& direction() const;

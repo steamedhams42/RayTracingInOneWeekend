@@ -95,6 +95,11 @@ Vec3 Vec3::random_vec3_on_surface(const Vec3& surface_norm) {
   }
 }
 
+// static
+Vec3 Vec3::reflect(const Vec3& incident, const Vec3& surface_norm) {
+  return incident - 2 * (incident.dot(surface_norm)) * surface_norm;
+}
+
 bool Vec3::is_near_zero() const {
   double s = 1e-8;
   return std::fabs(points_[0] < s) and std::fabs(points_[1] < s) and

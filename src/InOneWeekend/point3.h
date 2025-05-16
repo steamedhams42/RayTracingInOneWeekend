@@ -32,6 +32,7 @@ class Point3 {
 
   friend Point3 operator*(const Point3& lhs, double t);
   friend Point3 operator*(double t, const Point3& lhs);
+  friend Point3 operator*(const Point3& lhs, const Point3& rhs);
   friend Point3& operator*=(Point3& lhs, double t);
 
   friend Point3 operator/(const Point3& lhs, double t);
@@ -77,6 +78,10 @@ inline Point3 operator*(const Point3& lhs, double t) {
 
 inline Point3 operator*(double t, const Point3& lhs) {
   return lhs * t;
+}
+
+inline Point3 operator*(const Point3& lhs, const Point3& rhs) {
+  return Point3(lhs.x() * rhs.x(), lhs.y() * rhs.y(), lhs.z() * rhs.z());
 }
 
 inline Point3& operator*=(Point3& lhs, double t) {

@@ -10,7 +10,9 @@
 // https://en.wikipedia.org/wiki/Lambertian_reflectance
 class Lambertian : public Material {
  public:
+  Lambertian() : albedo_(Color(0.5, 0.5, 0.5)) {}
   Lambertian(const Color& albedo) : albedo_(albedo) {}
+  ~Lambertian() = default;
 
   bool scatter(const Ray& incident_ray,
                const Hittable::HitResult& hit_result,

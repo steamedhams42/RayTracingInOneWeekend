@@ -93,7 +93,7 @@ Color Camera::computeRayColor(const Ray& incident_ray,
     return Color(0, 0, 0);
   }
   // Background color if ray does not hit a hittable.
-  Vec3 unit_direction = ray.direction().unit();
+  Vec3 unit_direction = incident_ray.direction().unit();
   double scale = (unit_direction.y() + 1.0) / 2.0;
   assert(scale < 256);
   return (1.0 - scale) * Color(1, 1, 1) + scale * (Color(0.5, 0.7, 1.0));

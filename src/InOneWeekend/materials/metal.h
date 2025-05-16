@@ -8,7 +8,10 @@
 // https://en.wikipedia.org/wiki/Specular_reflection#Vector_formulation
 class Metal : public Material {
  public:
+  // Default c'tor is chrome color.
+  Metal() : albedo_(Color(0.8, 0.8, 0.8)) {}
   Metal(const Color& albedo) : albedo_(albedo) {}
+  ~Metal() = default;
 
   bool scatter(const Ray& incident_ray,
                const Hittable::HitResult& result,

@@ -35,18 +35,19 @@ const double FOCAL_LENGTH = 1.0;
 const double VIEWPORT_HEIGHT = 2.0;
 
 // Anti-aliasing. Set to 1 to turn off AA.
-const int SAMPLES_PER_PIXEL = 4;
+// setting lower than 100 will leave 'noise' in the form of black dots
+const int SAMPLES_PER_PIXEL = 75;
 
 // Speeds up rendering by limiting the number of light ray bounces and
 // recursive calls
-const int MAX_LIGHT_BOUNCES = 50;
+const int MAX_LIGHT_BOUNCES = 10;
 
 }  // namespace camera
 
 // Sphere
 namespace sphere {
 
-const Point3 SPHERE_CENTER = Point3(0, 0, -constants::camera::FOCAL_LENGTH);
+const Point3 SPHERE_CENTER = Point3(0, 0, -1.2);
 const double SPHERE_RADIUS = 0.5;
 
 }  // namespace sphere

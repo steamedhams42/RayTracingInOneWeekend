@@ -1,12 +1,18 @@
 #include "sphere.h"
 
 #include <cassert>
+
 #include "constants.h"
+#include "materials/lambertian.h"
 #include "ray.h"
 
-Sphere::Sphere(Point3 center, double r) : center_(center), radius_(r) {
+Sphere::Sphere(Point3 center, double r)
+    : center_(center), radius_(r), material_(std::make_unique<Lambertian>()) {}
+
+Sphere::Sphere(Point3 center, double r, std::unique_ptr<Material>&& material)
+    : Sphere(center, r) {
   assert(radius_ >= 0);
-  // TODO: init *material_
+  material_ = std::move(material);
 }
 
 Sphere::~Sphere() {}
@@ -43,7 +49,7 @@ bool Sphere::hit(const Ray& ray,
   result.p = ray.at(t);
   Vec3 normal = (result.p - this->center_) / this->radius_;
   result.setFaceNormal(ray, normal);
-  result.material = material_;
+  result.material = material_.get();
 
   return true;
 }

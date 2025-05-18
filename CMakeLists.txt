@@ -42,6 +42,7 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekend/camera.cc
   src/InOneWeekend/camera.h
   src/InOneWeekend/random.h
+  src/InOneWeekend/materials/dielectric.h
   src/InOneWeekend/materials/material.h
   src/InOneWeekend/materials/metal.h
   src/InOneWeekend/materials/lambertian.h

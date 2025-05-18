@@ -27,10 +27,6 @@ class Vec3 : public Point3 {
   // Returns a random unit vector in the same direction as |surface_norm|
   static Vec3 random_vec3_on_surface(const Vec3& surface_norm);
 
-  // Returns a specular/regular reflected vector off a surface.
-  // https://en.wikipedia.org/wiki/Specular_reflection#Vector_formulation
-  static Vec3 reflect(const Vec3& incident, const Vec3& surface_norm);
-
   // Returns true if all of this vector's dimensions are near zero.
   bool is_near_zero() const;
 

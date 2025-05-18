@@ -27,7 +27,7 @@ const Point3 CAMERA_CENTER = Point3(0, 0, 0);
 const double ASPECT_WIDTH = 16.0;
 const double ASPECT_HEIGHT = 9.0;
 
-const int IMAGE_WIDTH = 1000;
+const int IMAGE_WIDTH = 400;
 
 const double FOCAL_LENGTH = 1.0;
 

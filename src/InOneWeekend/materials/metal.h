@@ -17,13 +17,19 @@ class Metal : public Material {
                const Hittable::HitResult& result,
                Color& attenuation,
                Ray& scattered) const override {
-    Vec3 reflected_vec = Vec3::reflect(incident_ray.direction(), result.normal);
+    Vec3 reflected_vec = reflect(incident_ray.direction(), result.normal);
     attenuation = albedo_;
     scattered = Ray(result.p, reflected_vec);
     return true;
   }
 
  private:
+  // Returns a specular/regular reflected vector off a surface.
+  // https://en.wikipedia.org/wiki/Specular_reflection#Vector_formulation
+  Vec3 reflect(const Vec3& incident, const Vec3& surface_norm) const {
+    return incident - 2 * (incident.dot(surface_norm)) * surface_norm;
+  }
+
   Color albedo_;
 };
 

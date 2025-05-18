@@ -43,9 +43,12 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekend/camera.h
   src/InOneWeekend/random.h
   src/InOneWeekend/materials/dielectric.h
+  src/InOneWeekend/materials/dielectric.cc
   src/InOneWeekend/materials/material.h
   src/InOneWeekend/materials/metal.h
+  src/InOneWeekend/materials/metal.cc
   src/InOneWeekend/materials/lambertian.h
+  src/InOneWeekend/materials/lambertian.cc
 )
 
 set ( SOURCE_ONE_WEEKEND_TEST
@@ -67,9 +70,11 @@ set ( SOURCE_ONE_WEEKEND_TEST
   src/InOneWeekend/interval.cc
   src/InOneWeekend/camera.h
   src/InOneWeekend/camera.cc
-  src/InOneWeekend/materials/metal.h
   src/InOneWeekend/materials/material.h
+  src/InOneWeekend/materials/metal.h
+  src/InOneWeekend/materials/metal.cc
   src/InOneWeekend/materials/lambertian.h
+  src/InOneWeekend/materials/lambertian.cc
   src/InOneWeekend/test/metal_test.cc
   src/InOneWeekend/test/lambertian_test.cc
   src/InOneWeekend/test/random_test.cc

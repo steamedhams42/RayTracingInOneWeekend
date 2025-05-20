@@ -22,7 +22,9 @@ class Dielectric : public Material {
                Ray& scattered) const;
 
  private:
-  Vec3 refract(const Vec3& uv, const Vec3& n, double etai_over_etat) const;
+  Vec3 refract(const Vec3& uv,
+               const Vec3& n,
+               double ingress_over_egress_refractive_index_ratio) const;
 
   double refraction_index_ = 1.0;
 };

@@ -23,16 +23,11 @@ bool Dielectric::scatter(const Ray& incident_ray,
   return true;
 }
 
-Vec3 Dielectric::refract(const Vec3& uv,
-                         const Vec3& n,
-                         double etai_over_etat) const {
-  // auto cos_theta = std::fmin(-uv.dot(n), 1.0);
-  // Vec3 r_out_perp = etai_over_etat * (uv + cos_theta * n);
-  // Vec3 r_out_parallel =
-  //     -std::sqrt(std::fabs(1.0 - r_out_perp.norm_squared())) * n;
-  // return r_out_perp + r_out_parallel;
-
-  double r = etai_over_etat;
+Vec3 Dielectric::refract(
+    const Vec3& uv,
+    const Vec3& n,
+    double ingress_over_egress_refractive_index_ratio) const {
+  double r = ingress_over_egress_refractive_index_ratio;
   double c = -n.dot(uv);
   return r * uv + (r * c - std::sqrt(1 - r * r * (1 - c * c))) * n;
 }

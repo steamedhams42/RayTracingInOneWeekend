@@ -5,6 +5,7 @@
 #include <limits>
 
 #include "point3.h"
+#include "vec3.h"
 
 namespace constants {
 
@@ -19,21 +20,23 @@ const char nl = '\n';
 // 1 Byte = 8 bits represented in decimal.
 const int BYTE = 1 << 8;
 
+const Vec3 X_AXIS_BASIS(1, 0, 0);
+const Vec3 Y_AXIS_BASIS(0, 1, 0);
+const Vec3 Z_AXIS_BASIS(0, 0, 1);
+
 // Camera
 namespace camera {
 
-const Point3 CAMERA_CENTER = Point3(0, 0, 0);
+const Point3 CAMERA_CENTER(-2, 2, 1);
+const Point3 FOCAL_POINT(0, 0, -1);
 
 const double ASPECT_WIDTH = 16.0;
 const double ASPECT_HEIGHT = 9.0;
 
 const int IMAGE_WIDTH = 400;
 
-// Distance from camera to viewport.
-const double FOCAL_LENGTH = 1.0;
-
-// Camera
-const double VERTICAL_FIELD_OF_VIEW = 90;
+// The vertical angle (degrees) of the camera's fov.
+const double VERTICAL_FIELD_OF_VIEW = 20;
 
 // Anti-aliasing. Set to 1 to turn off AA.
 // setting lower than 100 will leave 'noise' in the form of black dots

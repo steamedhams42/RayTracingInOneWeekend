@@ -11,14 +11,14 @@
 #include "random.h"
 #include "vec3.h"
 
-Camera::Camera(Point3 center,
-               const double focal_length,
+Camera::Camera(const Point3 center,
+               const Point3 focal_point,
                const double vertical_field_of_view,
                const double image_width,
                const double aspect_width,
                const double aspect_height)
     : camera_center_(center),
-      focal_length_(focal_length),
+      focal_point_(focal_point),
       vertical_field_of_view_(vertical_field_of_view),
       image_width_(image_width),
       aspect_width_(aspect_width),
@@ -27,8 +27,16 @@ Camera::Camera(Point3 center,
 void Camera::initialize() {
   aspect_ratio_ = aspect_width_ / aspect_height_;
 
-  // image height cannot subceed 1
+  // Image height cannot subceed 1
   image_height_ = std::max(1, (int)(1.0 * image_width_ / aspect_ratio_));
+
+  // Focus
+  camera_direction_ = Vec3(focal_point_ - camera_center_).unit();
+  focal_length_ = Vec3(focal_point_ - camera_center_).norm();
+
+  // Camera basis vectors
+  u_ = camera_direction_.cross(constants::Y_AXIS_BASIS).unit();
+  v_ = u_.cross(camera_direction_);
 
   // Viewport
   // Draw a right triangle from camera to viewport.
@@ -36,8 +44,8 @@ void Camera::initialize() {
                      std::tan(degrees_to_radians(vertical_field_of_view_ / 2));
   viewport_width_ = viewport_height_ * image_width_ / image_height_;
 
-  Vec3 viewport_vector_width = Vec3(viewport_width_, 0, 0);
-  Vec3 viewport_vector_height = Vec3(0, -viewport_height_, 0);
+  Vec3 viewport_vector_width = viewport_width_ * u_;
+  Vec3 viewport_vector_height = viewport_height_ * -v_;
 
   pixel_delta_width_ = viewport_vector_width / image_width_;
   pixel_delta_height_ = viewport_vector_height / image_height_;
@@ -46,8 +54,8 @@ void Camera::initialize() {
   // Start from the camera's location, move forward toward viewport by distance
   // of focal length.
   Point3 upper_left_pixel_location =
-      camera_center_ - Point3(0, 0, focal_length_) - viewport_vector_width / 2 -
-      viewport_vector_height / 2;
+      Ray(camera_center_, camera_direction_).at(focal_length_) -
+      viewport_vector_width / 2 - viewport_vector_height / 2;
 
   // Point of the top-left pixel's center in the viewport.
   viewport_top_left_pixel_center_ = upper_left_pixel_location +

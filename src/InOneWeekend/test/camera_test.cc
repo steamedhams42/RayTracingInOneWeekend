@@ -19,7 +19,7 @@ class CameraTest : public TestBase {
     Point3 camera_center(0, 0, 0);
 
     Camera camera(
-        constants::camera::CAMERA_CENTER, constants::camera::FOCAL_LENGTH,
+        constants::camera::CAMERA_CENTER, constants::camera::FOCAL_POINT,
         constants::camera::ASPECT_WIDTH, constants::camera::IMAGE_WIDTH,
         constants::camera::ASPECT_HEIGHT,
         constants::camera::VERTICAL_FIELD_OF_VIEW);

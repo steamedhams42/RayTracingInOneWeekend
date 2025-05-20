@@ -27,9 +27,8 @@ void createAndAddHittables() {
   auto left_sphere = std::make_unique<Sphere>(
       Point3(-1.0, 0.0, -1.0), 0.5, std::make_unique<Dielectric>(2.0));
   // yellow metallic
-  auto right_sphere =
-      std::make_unique<Sphere>(Point3(1.0, 0.0, -1.0), 0.5,
-                               std::make_unique<Metal>(Color(0.8, 0.6, 0.2)));
+  auto right_sphere = std::make_unique<Sphere>(Point3(1.0, 0.0, -1.0), 0.5,
+                                               std::make_unique<Metal>());
 
   hittables.add(std::move(sphere));
   hittables.add(std::move(earth));
@@ -41,7 +40,7 @@ int main() {
   createAndAddHittables();
 
   Camera camera(
-      constants::camera::CAMERA_CENTER, constants::camera::FOCAL_LENGTH,
+      constants::camera::CAMERA_CENTER, constants::camera::FOCAL_POINT,
       constants::camera::VERTICAL_FIELD_OF_VIEW, constants::camera::IMAGE_WIDTH,
       constants::camera::ASPECT_WIDTH, constants::camera::ASPECT_HEIGHT);
   camera.initialize();

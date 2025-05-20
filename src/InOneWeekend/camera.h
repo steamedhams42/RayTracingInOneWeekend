@@ -11,8 +11,8 @@ class CameraTest;
 
 class Camera {
  public:
-  Camera(Point3 center,
-         const double focal_length,
+  Camera(const Point3 center,
+         const Point3 focal_point,
          const double image_width,
          const double aspect_width,
          const double aspect_height,
@@ -39,7 +39,13 @@ class Camera {
   double degrees_to_radians(double deg) const;
 
   Point3 camera_center_;
+  // The point at which the camera's focus is optimal.
+  Point3 focal_point_;
+  // Normal vector of the camera's plane.
+  Vec3 camera_direction_;
+  // Distance between camera and focus point
   double focal_length_;
+  // Camera's vertical angle of view. Name is confusing.
   double vertical_field_of_view_;
 
   // Image dimensions in pixels
@@ -59,6 +65,11 @@ class Camera {
 
   // Location of the top left pixel's center in the viewport
   Point3 viewport_top_left_pixel_center_;
+
+  // Basis vector of the camera plane's width
+  Vec3 u_;
+  // Basis vector of the camera plane's height
+  Vec3 v_;
 
   // Anti-aliasing
   double pixel_samples_scale_;

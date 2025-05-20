@@ -16,7 +16,7 @@ class Camera {
          const double image_width,
          const double aspect_width,
          const double aspect_height,
-         const double viewport_height);
+         const double vertical_field_of_view);
 
   void initialize();
   void render(const HittableList&);
@@ -36,8 +36,11 @@ class Camera {
   // Returns a random point in the [-.5,-.5]-[+.5,+.5] unit square.
   Point3 sample_square() const;
 
+  double degrees_to_radians(double deg) const;
+
   Point3 camera_center_;
   double focal_length_;
+  double vertical_field_of_view_;
 
   // Image dimensions in pixels
   double image_width_;

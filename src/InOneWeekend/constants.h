@@ -29,10 +29,11 @@ const double ASPECT_HEIGHT = 9.0;
 
 const int IMAGE_WIDTH = 400;
 
+// Distance from camera to viewport.
 const double FOCAL_LENGTH = 1.0;
 
-// Viewport
-const double VIEWPORT_HEIGHT = 2.0;
+// Camera
+const double VERTICAL_FIELD_OF_VIEW = 90;
 
 // Anti-aliasing. Set to 1 to turn off AA.
 // setting lower than 100 will leave 'noise' in the form of black dots

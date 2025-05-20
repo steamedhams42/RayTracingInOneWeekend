@@ -13,21 +13,27 @@
 
 Camera::Camera(Point3 center,
                const double focal_length,
+               const double vertical_field_of_view,
                const double image_width,
                const double aspect_width,
-               const double aspect_height,
-               const double viewport_height)
+               const double aspect_height)
     : camera_center_(center),
       focal_length_(focal_length),
+      vertical_field_of_view_(vertical_field_of_view),
       image_width_(image_width),
       aspect_width_(aspect_width),
-      aspect_height_(aspect_height),
-      viewport_height_(viewport_height) {}
+      aspect_height_(aspect_height) {}
 
 void Camera::initialize() {
   aspect_ratio_ = aspect_width_ / aspect_height_;
+
   // image height cannot subceed 1
   image_height_ = std::max(1, (int)(1.0 * image_width_ / aspect_ratio_));
+
+  // Viewport
+  // Draw a right triangle from camera to viewport.
+  viewport_height_ = 2 * focal_length_ *
+                     std::tan(degrees_to_radians(vertical_field_of_view_ / 2));
   viewport_width_ = viewport_height_ * image_width_ / image_height_;
 
   Vec3 viewport_vector_width = Vec3(viewport_width_, 0, 0);
@@ -111,4 +117,8 @@ Ray Camera::get_sampled_ray(int x, int y) {
 Point3 Camera::sample_square() const {
   return Vec3(Random::random_real(-0.5, +0.5), Random::random_real(-0.5, +0.5),
               0);
+}
+
+double Camera::degrees_to_radians(double deg) const {
+  return deg * constants::PI / 180.0;
 }

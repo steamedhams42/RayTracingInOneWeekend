@@ -42,8 +42,8 @@ int main() {
 
   Camera camera(
       constants::camera::CAMERA_CENTER, constants::camera::FOCAL_LENGTH,
-      constants::camera::IMAGE_WIDTH, constants::camera::ASPECT_WIDTH,
-      constants::camera::ASPECT_HEIGHT, constants::camera::VIEWPORT_HEIGHT);
+      constants::camera::VERTICAL_FIELD_OF_VIEW, constants::camera::IMAGE_WIDTH,
+      constants::camera::ASPECT_WIDTH, constants::camera::ASPECT_HEIGHT);
   camera.initialize();
   camera.render(hittables);
 }

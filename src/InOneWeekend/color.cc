@@ -6,6 +6,7 @@
 #include "constants.h"
 #include "interval.h"
 #include "point3.h"
+#include "random.h"
 
 Color::Color(Point3 p) : Point3(p) {
   assert(0.0 <= r() and r() <= 1.0);
@@ -36,6 +37,12 @@ void Color::write_color(std::ostream& out) {
   out << iR << ' ' << iG << ' ' << iB << '\n';
 }
 
+// static
+Color Color::random_color() {
+  return Color(Random::random_real(), Random::random_real(),
+               Random::random_real());
+}
+
 Color Color::operator+(const Color& rhs) {
   return Color(r() + rhs.r(), g() + rhs.g(), b() + rhs.b());
 }
@@ -49,6 +56,10 @@ Color& Color::operator+=(const Color& rhs) {
 
 Color Color::operator*(double t) {
   return Color(r() * t, g() * t, b() * t);
+}
+
+Color Color::operator*(const Color& rhs) {
+  return Color(x() * rhs.x(), y() * rhs.y(), z() * rhs.z());
 }
 
 Color& Color::operator*=(double t) {

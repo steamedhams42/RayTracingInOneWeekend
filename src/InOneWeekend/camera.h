@@ -78,7 +78,7 @@ class Camera {
   // Basis vector of the disk's height
   Vec3 defocus_disk_v_;
   // Variation angle of rays through each pixel (degrees)
-  double defocus_angle_ = 0;
+  double defocus_angle_ = 0.6;
 
   // Anti-aliasing
   double pixel_samples_scale_;

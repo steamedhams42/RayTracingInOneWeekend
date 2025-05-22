@@ -29,5 +29,6 @@ Vec3 Dielectric::refract(
     double ingress_over_egress_refractive_index_ratio) const {
   double r = ingress_over_egress_refractive_index_ratio;
   double c = -n.dot(uv);
-  return r * uv + (r * c - std::sqrt(1 - r * r * (1 - c * c))) * n;
+  auto y = std::max(0.0, 1 - r * r * (1 - c * c));
+  return r * uv + (r * c - std::sqrt(y)) * n;
 }

@@ -17,10 +17,13 @@ class Color : public Point3 {
 
   void write_color(std::ostream& out);
 
+  static Color random_color();
+
   Color operator+(const Color& rhs);
   Color& operator+=(const Color& rhs);
 
   Color operator*(double t);
+  Color operator*(const Color&);
   Color& operator*=(double t);
   friend Color operator*(double t, const Color& lhs);
 

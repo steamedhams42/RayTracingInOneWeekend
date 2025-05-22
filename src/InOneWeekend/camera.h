@@ -38,13 +38,15 @@ class Camera {
 
   double degrees_to_radians(double deg) const;
 
+  Vec3 defocus_disk_sample() const;
+
   Point3 camera_center_;
   // The point at which the camera's focus is optimal.
   Point3 focal_point_;
   // Normal vector of the camera's plane.
   Vec3 camera_direction_;
   // Distance between camera and focus point
-  double focal_length_;
+  double focal_distance_;
   // Camera's vertical angle of view. Name is confusing.
   double vertical_field_of_view_;
 
@@ -70,6 +72,13 @@ class Camera {
   Vec3 u_;
   // Basis vector of the camera plane's height
   Vec3 v_;
+
+  // Basis vector of the disk's width
+  Vec3 defocus_disk_u_;
+  // Basis vector of the disk's height
+  Vec3 defocus_disk_v_;
+  // Variation angle of rays through each pixel (degrees)
+  double defocus_angle_ = 0;
 
   // Anti-aliasing
   double pixel_samples_scale_;

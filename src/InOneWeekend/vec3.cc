@@ -95,6 +95,16 @@ Vec3 Vec3::random_vec3_on_surface(const Vec3& surface_norm) {
   }
 }
 
+// static
+Vec3 Vec3::random_vec3_on_disk() {
+  while (true) {
+    Vec3 random_vec(Random::random_real(-1, 1), Random::random_real(-1, 1), 0);
+    if (random_vec.norm() < 1) {
+      return random_vec;
+    }
+  }
+}
+
 bool Vec3::is_near_zero() const {
   double s = 1e-8;
   return std::fabs(points_[0] < s) and std::fabs(points_[1] < s) and

@@ -27,6 +27,9 @@ class Vec3 : public Point3 {
   // Returns a random unit vector in the same direction as |surface_norm|
   static Vec3 random_vec3_on_surface(const Vec3& surface_norm);
 
+  // Returns a random unit vector in the unit disk
+  static Vec3 random_vec3_on_disk();
+
   // Returns true if all of this vector's dimensions are near zero.
   bool is_near_zero() const;
 

@@ -32,7 +32,7 @@ void Camera::initialize() {
 
   // Focus
   camera_direction_ = Vec3(focal_point_ - camera_center_).unit();
-  focal_length_ = Vec3(focal_point_ - camera_center_).norm();
+  focal_distance_ = Vec3(focal_point_ - camera_center_).norm();
 
   // Camera basis vectors
   u_ = camera_direction_.cross(constants::Y_AXIS_BASIS).unit();
@@ -40,7 +40,7 @@ void Camera::initialize() {
 
   // Viewport
   // Draw a right triangle from camera to viewport.
-  viewport_height_ = 2 * focal_length_ *
+  viewport_height_ = 2 * focal_distance_ *
                      std::tan(degrees_to_radians(vertical_field_of_view_ / 2));
   viewport_width_ = viewport_height_ * image_width_ / image_height_;
 
@@ -54,13 +54,19 @@ void Camera::initialize() {
   // Start from the camera's location, move forward toward viewport by distance
   // of focal length.
   Point3 upper_left_pixel_location =
-      Ray(camera_center_, camera_direction_).at(focal_length_) -
+      Ray(camera_center_, camera_direction_).at(focal_distance_) -
       viewport_vector_width / 2 - viewport_vector_height / 2;
 
   // Point of the top-left pixel's center in the viewport.
   viewport_top_left_pixel_center_ = upper_left_pixel_location +
                                     pixel_delta_width_ / 2 +
                                     pixel_delta_height_ / 2;
+
+  // Calculate the camera defocus disk basis vectors.
+  auto defocus_radius =
+      focal_distance_ * std::tan(degrees_to_radians(defocus_angle_ / 2));
+  defocus_disk_u_ = u_ * defocus_radius;
+  defocus_disk_v_ = v_ * defocus_radius;
 
   // Anti-aliasing
   pixel_samples_scale_ = 1.0 / constants::camera::SAMPLES_PER_PIXEL;
@@ -118,8 +124,10 @@ Ray Camera::get_sampled_ray(int x, int y) {
   Point3 pixel_center = viewport_top_left_pixel_center_ +
                         (x + offset.x()) * pixel_delta_width_ +
                         (y + offset.y()) * pixel_delta_height_;
+  Point3 ray_origin =
+      (defocus_angle_ <= 0) ? camera_center_ : defocus_disk_sample();
   Vec3 ray_direction(pixel_center - camera_center_);
-  return Ray(camera_center_, ray_direction);
+  return Ray(ray_origin, ray_direction);
 }
 
 Point3 Camera::sample_square() const {
@@ -129,4 +137,11 @@ Point3 Camera::sample_square() const {
 
 double Camera::degrees_to_radians(double deg) const {
   return deg * constants::PI / 180.0;
+}
+
+Vec3 Camera::defocus_disk_sample() const {
+  // Returns a random point in the camera defocus disk.
+  auto p = Vec3::random_vec3_on_disk();
+  return Vec3(camera_center_) + (p[0] * defocus_disk_u_) +
+         (p[1] * defocus_disk_v_);
 }

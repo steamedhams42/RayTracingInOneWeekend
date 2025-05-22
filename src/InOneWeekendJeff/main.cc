@@ -51,22 +51,22 @@ void createAndAddHittables() {
     }
   }
 
-  // glass metallic
-  auto left_sphere = std::make_unique<Sphere>(
+  // glass sphere
+  auto glass_sphere = std::make_unique<Sphere>(
       Point3(0, 1, 0), 1, std::make_unique<Dielectric>(1.5));
 
-  // Main sphere in the center
-  auto center_sphere = std::make_unique<Sphere>(
+  // brown sphere in the back
+  auto brown_sphere = std::make_unique<Sphere>(
       Point3(-4, 1, 0), 1.0,
       std::make_unique<Lambertian>(Color(0.4, 0.2, 0.1)));
 
-  // yellow metallic
-  auto right_sphere = std::make_unique<Sphere>(Point3(4, 1.0, 0.0), 1.0,
+  // metallic sphere
+  auto metal_sphere = std::make_unique<Sphere>(Point3(4, 1.0, 0.0), 1.0,
                                                std::make_unique<Metal>());
 
-  hittables.add(std::move(center_sphere));
-  hittables.add(std::move(left_sphere));
-  hittables.add(std::move(right_sphere));
+  hittables.add(std::move(brown_sphere));
+  hittables.add(std::move(glass_sphere));
+  hittables.add(std::move(metal_sphere));
 }
 
 int main() {

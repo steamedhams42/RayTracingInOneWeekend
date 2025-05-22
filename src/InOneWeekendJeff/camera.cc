@@ -78,13 +78,13 @@ void Camera::render(const HittableList& hittables) {
   std::cout << image_width_ << ' ' << image_height_ << constants::nl;
   std::cout << constants::BYTE - 1 << constants::nl;
 
-  for (int row = 0; row < image_height_; row++) {
-    std::clog << "\rScanlines remaining: " << image_height_ - row << " "
+  for (int y = 0; y < image_height_; y++) {
+    std::clog << "\rScanlines remaining: " << image_height_ - y << " "
               << std::flush;
-    for (int col = 0; col < image_width_; col++) {
+    for (int x = 0; x < image_width_; x++) {
       Color pixel_color(0, 0, 0);
       for (int i = 0; i < constants::camera::SAMPLES_PER_PIXEL; i++) {
-        Ray sample_ray = get_sampled_ray(col, row);
+        Ray sample_ray = get_random_ray_within_unit_square(x, y);
         pixel_color += computeRayColor(sample_ray, hittables);
       }
       pixel_color *= pixel_samples_scale_;
@@ -120,8 +120,8 @@ Color Camera::computeRayColor(const Ray& incident_ray,
   return (1.0 - scale) * Color(1, 1, 1) + scale * (Color(0.5, 0.7, 1.0));
 }
 
-Ray Camera::get_sampled_ray(int x, int y) {
-  Point3 offset = sample_square();
+Ray Camera::get_random_ray_within_unit_square(int x, int y) {
+  Point3 offset = get_random_point_from_unit_square();
   Point3 pixel_center = viewport_top_left_pixel_center_ +
                         (x + offset.x()) * pixel_delta_width_ +
                         (y + offset.y()) * pixel_delta_height_;
@@ -131,7 +131,7 @@ Ray Camera::get_sampled_ray(int x, int y) {
   return Ray(ray_origin, ray_direction);
 }
 
-Point3 Camera::sample_square() const {
+Point3 Camera::get_random_point_from_unit_square() const {
   return Vec3(Random::random_real(-0.5, +0.5), Random::random_real(-0.5, +0.5),
               0);
 }

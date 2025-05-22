@@ -31,11 +31,12 @@ class Camera {
       const HittableList&,
       int light_bounces_remaining = constants::camera::MAX_LIGHT_BOUNCES) const;
 
-  // Returns a random sampled ray cenetered at [x, y]
-  Ray get_sampled_ray(int x, int y);
+  // Returns a random ray originating from camera center pointed at
+  // [x, y] + [+/-0.5, +/-0.5] unit square.
+  Ray get_random_ray_within_unit_square(int x, int y);
 
-  // Returns a random point in the [-.5,-.5]-[+.5,+.5] unit square.
-  Point3 sample_square() const;
+  // Returns a random point in the [+/-0.5, +/-0.5] unit square.
+  Point3 get_random_point_from_unit_square() const;
 
   double degrees_to_radians(double deg) const;
 

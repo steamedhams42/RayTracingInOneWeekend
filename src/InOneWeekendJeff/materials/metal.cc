@@ -1,6 +1,6 @@
-#include "InOneWeekend/materials/metal.h"
+#include "InOneWeekendJeff/materials/metal.h"
 
-#include "InOneWeekend/color.h"
+#include "InOneWeekendJeff/color.h"
 
 Metal::Metal() : albedo_(Color(0.8, 0.8, 0.8)) {}
 

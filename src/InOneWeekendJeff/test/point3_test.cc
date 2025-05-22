@@ -1,6 +1,6 @@
-#include "InOneWeekend/point3.h"
-#include "InOneWeekend/random.h"
-#include "InOneWeekend/test/test_base.h"
+#include "InOneWeekendJeff/point3.h"
+#include "InOneWeekendJeff/random.h"
+#include "InOneWeekendJeff/test/test_base.h"
 
 #include <cassert>
 #include <iostream>

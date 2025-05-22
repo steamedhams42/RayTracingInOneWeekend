@@ -1,6 +1,6 @@
-#include "InOneWeekend/interval.h"
-#include "InOneWeekend/constants.h"
-#include "InOneWeekend/random.h"
+#include "InOneWeekendJeff/interval.h"
+#include "InOneWeekendJeff/constants.h"
+#include "InOneWeekendJeff/random.h"
 #include "test_base.h"
 
 #include <cassert>

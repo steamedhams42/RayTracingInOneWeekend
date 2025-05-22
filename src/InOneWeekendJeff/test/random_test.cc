@@ -1,8 +1,8 @@
-#include "InOneWeekend/random.h"
+#include "InOneWeekendJeff/random.h"
 #include "test_base.h"
 
 #include <cassert>
-#include "InOneWeekend/interval.h"
+#include "InOneWeekendJeff/interval.h"
 
 class RandomTest : public TestBase {
  public:

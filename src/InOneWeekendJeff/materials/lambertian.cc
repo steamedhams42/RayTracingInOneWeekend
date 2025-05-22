@@ -1,9 +1,9 @@
-#include "InOneWeekend/materials/lambertian.h"
+#include "InOneWeekendJeff/materials/lambertian.h"
 
-#include "InOneWeekend/color.h"
-#include "InOneWeekend/hittable.h"
-#include "InOneWeekend/materials/material.h"
-#include "InOneWeekend/vec3.h"
+#include "InOneWeekendJeff/color.h"
+#include "InOneWeekendJeff/hittable.h"
+#include "InOneWeekendJeff/materials/material.h"
+#include "InOneWeekendJeff/vec3.h"
 
 Lambertian::Lambertian() : albedo_(Color(0.5, 0.5, 0.5)) {}
 

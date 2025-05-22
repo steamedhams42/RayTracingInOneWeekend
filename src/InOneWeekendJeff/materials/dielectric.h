@@ -1,7 +1,7 @@
 #ifndef DIELECTRIC_H
 #define DIELECTRIC_H
 
-#include "InOneWeekend/materials/material.h"
+#include "InOneWeekendJeff/materials/material.h"
 
 class Ray;
 class Color;

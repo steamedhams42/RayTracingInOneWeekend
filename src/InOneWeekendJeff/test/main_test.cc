@@ -1,12 +1,12 @@
-#include "InOneWeekend/test/camera_test.cc"
-#include "InOneWeekend/test/interval_test.cc"
-#include "InOneWeekend/test/lambertian_test.cc"
-#include "InOneWeekend/test/metal_test.cc"
-#include "InOneWeekend/test/point3_test.cc"
-#include "InOneWeekend/test/random_test.cc"
-#include "InOneWeekend/test/ray_test.cc"
-#include "InOneWeekend/test/sphere_test.cc"
-#include "InOneWeekend/test/vec3_test.cc"
+#include "InOneWeekendJeff/test/camera_test.cc"
+#include "InOneWeekendJeff/test/interval_test.cc"
+#include "InOneWeekendJeff/test/lambertian_test.cc"
+#include "InOneWeekendJeff/test/metal_test.cc"
+#include "InOneWeekendJeff/test/point3_test.cc"
+#include "InOneWeekendJeff/test/random_test.cc"
+#include "InOneWeekendJeff/test/ray_test.cc"
+#include "InOneWeekendJeff/test/sphere_test.cc"
+#include "InOneWeekendJeff/test/vec3_test.cc"
 
 int main() {
   Point3Test point_test;

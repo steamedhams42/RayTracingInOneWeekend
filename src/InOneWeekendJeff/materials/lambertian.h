@@ -1,7 +1,7 @@
 #ifndef LAMBERTIAN_H
 #define LAMBERTIAN_H
 
-#include "InOneWeekend/materials/material.h"
+#include "InOneWeekendJeff/materials/material.h"
 
 // Reflects light slightly randomly giving objects a matte look.
 // https://en.wikipedia.org/wiki/Lambertian_reflectance

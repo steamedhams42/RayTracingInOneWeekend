@@ -1,10 +1,10 @@
-#include "InOneWeekend/materials/dielectric.h"
+#include "InOneWeekendJeff/materials/dielectric.h"
 
 #include <cmath>
 
-#include "InOneWeekend/color.h"
-#include "InOneWeekend/hittable.h"
-#include "InOneWeekend/ray.h"
+#include "InOneWeekendJeff/color.h"
+#include "InOneWeekendJeff/hittable.h"
+#include "InOneWeekendJeff/ray.h"
 
 Dielectric::Dielectric(const double refraction_index)
     : refraction_index_(refraction_index) {}

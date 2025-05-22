@@ -1,9 +1,9 @@
 #ifndef MATERIAL_H
 #define MATERIAL_H
 
-#include "InOneWeekend/color.h"
-#include "InOneWeekend/hittable.h"
-#include "InOneWeekend/ray.h"
+#include "InOneWeekendJeff/color.h"
+#include "InOneWeekendJeff/hittable.h"
+#include "InOneWeekendJeff/ray.h"
 
 // Material class determines how a light reflects an incident ray.
 // Subclasses of Material will implement different scattering methods e.g.

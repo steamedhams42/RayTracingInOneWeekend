@@ -1,7 +1,7 @@
 #ifndef METAL_H
 #define METAL_H
 
-#include "InOneWeekend/materials/material.h"
+#include "InOneWeekendJeff/materials/material.h"
 
 // Uses ocular reflectance
 // https://en.wikipedia.org/wiki/Specular_reflection#Vector_formulation

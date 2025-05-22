@@ -1,17 +1,16 @@
-#include "InOneWeekend/test/test_base.h"
+#include "InOneWeekendJeff/materials/metal.h"
 
 #include <cassert>
 
-#include "InOneWeekend/constants.h"
-#include "InOneWeekend/materials/lambertian.h"
-#include "InOneWeekend/sphere.h"
-#include "InOneWeekend/test/test_base.h"
+#include "InOneWeekendJeff/constants.h"
+#include "InOneWeekendJeff/sphere.h"
+#include "InOneWeekendJeff/test/test_base.h"
 
-class LambertianTest : public TestBase {
+class MetalTest : public TestBase {
  public:
   void run_test() override {
     Point3 sphere_center(0, 0, -1);
-    Sphere sphere(sphere_center, 0.5, std::make_unique<Lambertian>());
+    Sphere sphere(sphere_center, 0.5, std::make_unique<Metal>());
 
     Point3 light_origin(0, 0, 0);
     Vec3 light_direction(sphere_center);
@@ -32,10 +31,7 @@ class LambertianTest : public TestBase {
     hit_result.material->scatter(incident_ray, hit_result, attenuation,
                                  scattered_ray);
 
-    assert(attenuation == Color(0.5, 0.5, 0.5));
-    // since lambertian material scatter semi randomly, best I can do is check
-    // the direction is correct (reflected away from surface).
-    assert(scattered_ray.direction().dot(Vec3(hit_result.p - sphere_center)) >
-           0);
+    assert(attenuation == Color(0.8, 0.8, 0.8));
+    assert(scattered_ray == Ray(hit_result.p, Vec3(0, 0, 1)));
   }
 };

@@ -1,5 +1,5 @@
-#include "InOneWeekend/ray.h"
-#include "InOneWeekend/random.h"
+#include "InOneWeekendJeff/ray.h"
+#include "InOneWeekendJeff/random.h"
 #include "test_base.h"
 
 #include <cassert>

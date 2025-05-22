@@ -1,8 +1,8 @@
-#include "InOneWeekend/vec3.h"
-#include "InOneWeekend/constants.h"
-#include "InOneWeekend/interval.h"
-#include "InOneWeekend/random.h"
-#include "InOneWeekend/test/test_base.h"
+#include "InOneWeekendJeff/vec3.h"
+#include "InOneWeekendJeff/constants.h"
+#include "InOneWeekendJeff/interval.h"
+#include "InOneWeekendJeff/random.h"
+#include "InOneWeekendJeff/test/test_base.h"
 
 #include <cassert>
 #include <vector>

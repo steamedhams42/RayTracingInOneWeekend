@@ -1,12 +1,12 @@
 #include "test_base.h"
 
 #include <memory>
-#include "InOneWeekend/camera.h"
-#include "InOneWeekend/constants.h"
-#include "InOneWeekend/hittable.h"
-#include "InOneWeekend/hittable_list.h"
-#include "InOneWeekend/point3.h"
-#include "InOneWeekend/sphere.h"
+#include "InOneWeekendJeff/camera.h"
+#include "InOneWeekendJeff/constants.h"
+#include "InOneWeekendJeff/hittable.h"
+#include "InOneWeekendJeff/hittable_list.h"
+#include "InOneWeekendJeff/point3.h"
+#include "InOneWeekendJeff/sphere.h"
 
 class CameraTest : public TestBase {
  public:

@@ -21,74 +21,70 @@ set ( EXTERNAL
 )
 
 set ( SOURCE_ONE_WEEKEND_JEFF
-  src/InOneWeekend/main.cc
-  src/InOneWeekend/vec3.cc
-  src/InOneWeekend/vec3.h
-  src/InOneWeekend/point3.cc
-  src/InOneWeekend/point3.h
-  src/InOneWeekend/constants.h
-  src/InOneWeekend/color.cc
-  src/InOneWeekend/color.h
-  src/InOneWeekend/ray.cc
-  src/InOneWeekend/ray.h
-  src/InOneWeekend/hittable.cc
-  src/InOneWeekend/hittable.h
-  src/InOneWeekend/sphere.cc
-  src/InOneWeekend/sphere.h
-  src/InOneWeekend/hittable_list.cc
-  src/InOneWeekend/hittable_list.h
-  src/InOneWeekend/interval.cc
-  src/InOneWeekend/interval.h
-  src/InOneWeekend/camera.cc
-  src/InOneWeekend/camera.h
-  src/InOneWeekend/random.h
-  src/InOneWeekend/materials/dielectric.h
-  src/InOneWeekend/materials/dielectric.cc
-  src/InOneWeekend/materials/material.h
-  src/InOneWeekend/materials/metal.h
-  src/InOneWeekend/materials/metal.cc
-  src/InOneWeekend/materials/lambertian.h
-  src/InOneWeekend/materials/lambertian.cc
+  src/InOneWeekendJeff/main.cc
+  src/InOneWeekendJeff/vec3.cc
+  src/InOneWeekendJeff/vec3.h
+  src/InOneWeekendJeff/point3.cc
+  src/InOneWeekendJeff/point3.h
+  src/InOneWeekendJeff/constants.h
+  src/InOneWeekendJeff/color.cc
+  src/InOneWeekendJeff/color.h
+  src/InOneWeekendJeff/ray.cc
+  src/InOneWeekendJeff/ray.h
+  src/InOneWeekendJeff/hittable.cc
+  src/InOneWeekendJeff/hittable.h
+  src/InOneWeekendJeff/sphere.cc
+  src/InOneWeekendJeff/sphere.h
+  src/InOneWeekendJeff/hittable_list.cc
+  src/InOneWeekendJeff/hittable_list.h
+  src/InOneWeekendJeff/interval.cc
+  src/InOneWeekendJeff/interval.h
+  src/InOneWeekendJeff/camera.cc
+  src/InOneWeekendJeff/camera.h
+  src/InOneWeekendJeff/random.h
+  src/InOneWeekendJeff/materials/dielectric.h
+  src/InOneWeekendJeff/materials/dielectric.cc
+  src/InOneWeekendJeff/materials/material.h
+  src/InOneWeekendJeff/materials/metal.h
+  src/InOneWeekendJeff/materials/metal.cc
+  src/InOneWeekendJeff/materials/lambertian.h
+  src/InOneWeekendJeff/materials/lambertian.cc
 )
 
 set ( SOURCE_ONE_WEEKEND_TEST
-  src/InOneWeekend/color.h
-  src/InOneWeekend/color.cc
-  src/InOneWeekend/vec3.h
-  src/InOneWeekend/vec3.cc
-  src/InOneWeekend/point3.h
-  src/InOneWeekend/point3.cc
-  src/InOneWeekend/hittable.h
-  src/InOneWeekend/hittable.cc
-  src/InOneWeekend/hittable_list.h
-  src/InOneWeekend/hittable_list.cc
-  src/InOneWeekend/sphere.h
-  src/InOneWeekend/sphere.cc
-  src/InOneWeekend/ray.h
-  src/InOneWeekend/ray.cc
-  src/InOneWeekend/interval.h
-  src/InOneWeekend/interval.cc
-  src/InOneWeekend/camera.h
-  src/InOneWeekend/camera.cc
-  src/InOneWeekend/materials/material.h
-  src/InOneWeekend/materials/metal.h
-  src/InOneWeekend/materials/metal.cc
-  src/InOneWeekend/materials/lambertian.h
-  src/InOneWeekend/materials/lambertian.cc
-  src/InOneWeekend/test/metal_test.cc
-  src/InOneWeekend/test/lambertian_test.cc
-  src/InOneWeekend/test/random_test.cc
-  src/InOneWeekend/test/camera_test.cc
-  src/InOneWeekend/test/interval_test.cc
-  src/InOneWeekend/test/point3_test.cc
-  src/InOneWeekend/test/ray_test.cc
-  src/InOneWeekend/test/sphere_test.cc
-  src/InOneWeekend/test/vec3_test.cc
-  src/InOneWeekend/test/main_test.cc
-)
-
-set ( SOURCE_ONE_WEEKEND
-  src/InOneWeekend/main_release.cc
+  src/InOneWeekendJeff/color.h
+  src/InOneWeekendJeff/color.cc
+  src/InOneWeekendJeff/vec3.h
+  src/InOneWeekendJeff/vec3.cc
+  src/InOneWeekendJeff/point3.h
+  src/InOneWeekendJeff/point3.cc
+  src/InOneWeekendJeff/hittable.h
+  src/InOneWeekendJeff/hittable.cc
+  src/InOneWeekendJeff/hittable_list.h
+  src/InOneWeekendJeff/hittable_list.cc
+  src/InOneWeekendJeff/sphere.h
+  src/InOneWeekendJeff/sphere.cc
+  src/InOneWeekendJeff/ray.h
+  src/InOneWeekendJeff/ray.cc
+  src/InOneWeekendJeff/interval.h
+  src/InOneWeekendJeff/interval.cc
+  src/InOneWeekendJeff/camera.h
+  src/InOneWeekendJeff/camera.cc
+  src/InOneWeekendJeff/materials/material.h
+  src/InOneWeekendJeff/materials/metal.h
+  src/InOneWeekendJeff/materials/metal.cc
+  src/InOneWeekendJeff/materials/lambertian.h
+  src/InOneWeekendJeff/materials/lambertian.cc
+  src/InOneWeekendJeff/test/metal_test.cc
+  src/InOneWeekendJeff/test/lambertian_test.cc
+  src/InOneWeekendJeff/test/random_test.cc
+  src/InOneWeekendJeff/test/camera_test.cc
+  src/InOneWeekendJeff/test/interval_test.cc
+  src/InOneWeekendJeff/test/point3_test.cc
+  src/InOneWeekendJeff/test/ray_test.cc
+  src/InOneWeekendJeff/test/sphere_test.cc
+  src/InOneWeekendJeff/test/vec3_test.cc
+  src/InOneWeekendJeff/test/main_test.cc
 )
 
 set ( SOURCE_NEXT_WEEK
@@ -167,8 +163,7 @@ endif()
 # Executables
 add_executable(inOneWeekendJeff    ${EXTERNAL} ${SOURCE_ONE_WEEKEND_JEFF})
 add_executable(inOneWeekendTest    ${EXTERNAL} ${SOURCE_ONE_WEEKEND_TEST})
-add_executable(inOneWeekend        ${EXTERNAL} ${SOURCE_ONE_WEEKEND})
-# add_executable(theNextWeek       ${EXTERNAL} ${SOURCE_NEXT_WEEK})
+add_executable(theNextWeek         ${EXTERNAL} ${SOURCE_NEXT_WEEK})
 # add_executable(theRestOfYourLife ${EXTERNAL} ${SOURCE_REST_OF_YOUR_LIFE})
 # add_executable(cos_cubed         src/TheRestOfYourLife/cos_cubed.cc         )
 # add_executable(cos_density       src/TheRestOfYourLife/cos_density.cc       )

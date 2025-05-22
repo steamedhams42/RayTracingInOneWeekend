@@ -20,8 +20,8 @@ class CameraTest : public TestBase {
 
     Camera camera(
         constants::camera::CAMERA_CENTER, constants::camera::FOCAL_POINT,
-        constants::camera::ASPECT_WIDTH, constants::camera::IMAGE_WIDTH,
-        constants::camera::ASPECT_HEIGHT,
+        constants::camera::FOCAL_DISTANCE, constants::camera::ASPECT_WIDTH,
+        constants::camera::IMAGE_WIDTH, constants::camera::ASPECT_HEIGHT,
         constants::camera::VERTICAL_FIELD_OF_VIEW);
     camera.initialize();
 

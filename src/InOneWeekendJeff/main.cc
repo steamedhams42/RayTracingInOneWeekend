@@ -74,6 +74,7 @@ int main() {
 
   Camera camera(
       constants::camera::CAMERA_CENTER, constants::camera::FOCAL_POINT,
+      constants::camera::FOCAL_DISTANCE,
       constants::camera::VERTICAL_FIELD_OF_VIEW, constants::camera::IMAGE_WIDTH,
       constants::camera::ASPECT_WIDTH, constants::camera::ASPECT_HEIGHT);
   camera.initialize();

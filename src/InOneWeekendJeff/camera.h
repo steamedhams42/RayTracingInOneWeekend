@@ -13,6 +13,7 @@ class Camera {
  public:
   Camera(const Point3 center,
          const Point3 focal_point,
+         const double focal_distance,
          const double image_width,
          const double aspect_width,
          const double aspect_height,

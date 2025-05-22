@@ -13,12 +13,14 @@
 
 Camera::Camera(const Point3 center,
                const Point3 focal_point,
+               const double focal_distance,
                const double vertical_field_of_view,
                const double image_width,
                const double aspect_width,
                const double aspect_height)
     : camera_center_(center),
       focal_point_(focal_point),
+      focal_distance_(focal_distance),
       vertical_field_of_view_(vertical_field_of_view),
       image_width_(image_width),
       aspect_width_(aspect_width),
@@ -32,7 +34,6 @@ void Camera::initialize() {
 
   // Focus
   camera_direction_ = Vec3(focal_point_ - camera_center_).unit();
-  focal_distance_ = Vec3(focal_point_ - camera_center_).norm();
 
   // Camera basis vectors
   u_ = camera_direction_.cross(constants::Y_AXIS_BASIS).unit();

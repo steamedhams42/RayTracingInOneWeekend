@@ -9,6 +9,17 @@ class SphereTest : public TestBase {
  public:
   SphereTest() = default;
 
+  void test_default_sphere_is_static() {
+    Point3 sphere_center(0, 0, 1);
+    double radius(0.5);
+    Sphere sphere(sphere_center, radius);
+
+    assert(sphere.center_.origin() == sphere_center);
+    assert(sphere.center_.direction() == Vec3(0, 0, 0));
+  }
+
+  void test_sphere_is_moving() {}
+
   void run_test() override {
     // Camera
     Point3 origin(0, 0, 0);
@@ -60,5 +71,7 @@ class SphereTest : public TestBase {
     Vec3 v5 = Vec3::random_vec3_on_surface(Vec3(surface_point - sphere_center));
     Ray ray5(surface_point, v5);
     assert(!sphere.hit(ray5, Interval(0, 1), result5));
+
+    test_default_sphere_is_static();
   }
 };

@@ -9,6 +9,7 @@
 #include "point3.h"
 
 class Ray;
+class SphereTest;
 
 class Sphere : public Hittable {
  public:
@@ -25,6 +26,8 @@ class Sphere : public Hittable {
   bool hit(const Ray& ray, Interval intval, HitResult& result) const override;
 
  private:
+  friend SphereTest;
+
   // The sphere's center travels linearly from init to final described by a
   // ray on the interval t = [0, 1)
   Ray center_;

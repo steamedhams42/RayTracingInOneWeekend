@@ -10,7 +10,9 @@ Sphere::Sphere(Point3 center, double r)
     : Sphere(center, r, std::make_unique<Lambertian>()) {}
 
 Sphere::Sphere(Point3 center, double r, std::unique_ptr<Material>&& material)
-    : Sphere(center, Point3(0, 0, 0), r, std::move(material)) {}
+    : center_(center, Vec3(0, 0, 0)),
+      radius_(r),
+      material_(std::move(material)) {}
 
 Sphere::Sphere(Point3 center_init,
                Point3 center_final,

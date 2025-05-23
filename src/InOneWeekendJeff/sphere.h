@@ -5,6 +5,7 @@
 
 #include "hittable.h"
 #include "interval.h"
+#include "materials/lambertian.h"
 #include "materials/material.h"
 #include "point3.h"
 
@@ -20,7 +21,7 @@ class Sphere : public Hittable {
   Sphere(Point3 center_init,
          Point3 center_final,
          double radius,
-         std::unique_ptr<Material>&&);
+         std::unique_ptr<Material>&& = std::make_unique<Lambertian>());
   ~Sphere() override;
 
   bool hit(const Ray& ray, Interval intval, HitResult& result) const override;

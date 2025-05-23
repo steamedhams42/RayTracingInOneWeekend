@@ -10,9 +10,7 @@ Sphere::Sphere(Point3 center, double r)
     : Sphere(center, r, std::make_unique<Lambertian>()) {}
 
 Sphere::Sphere(Point3 center, double r, std::unique_ptr<Material>&& material)
-    : center_(center, Vec3(0, 0, 0)),
-      radius_(r),
-      material_(std::move(material)) {}
+    : Sphere(center, center, r, std::move(material)) {}
 
 Sphere::Sphere(Point3 center_init,
                Point3 center_final,
@@ -47,7 +45,9 @@ bool Sphere::hit(const Ray& ray,
   double t_plus = (-b + sqrtd) / (2 * a);
 
   // Must use surrounds (exclusve) rather than contains (inclusive) to reject
-  // ray's that are originate exactly on the surface of the hittable.
+  // ray's that originate exactly on the surface of the hittable.
+  // This causes a bug when reflecting a ray off a surface and the ray is
+  // counted as a 'hit'.
   t_minus = intval.surrounds(t_minus) ? t_minus : constants::INF_DOUBLE;
   t_plus = intval.surrounds(t_plus) ? t_plus : constants::INF_DOUBLE;
   double t = std::fmin(t_plus, t_minus);

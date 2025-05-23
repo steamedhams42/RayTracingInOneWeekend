@@ -18,7 +18,34 @@ class SphereTest : public TestBase {
     assert(sphere.center_.direction() == Vec3(0, 0, 0));
   }
 
-  void test_sphere_is_moving() {}
+  void test_sphere_is_moving_up() {
+    Point3 sphere_center(0, 0, 1);
+    Point3 sphere_terminal(0, 1, 1);
+    double radius(0.1);
+    Sphere sphere(sphere_center, sphere_terminal, radius);
+
+    // Cast a ray at the sphere for each 0.1 time tick
+    Point3 origin(0, 0, 0);
+    Vec3 direction(0, 0, 1);
+    for (double time = 0; time <= 1; time += 0.1) {
+      Ray ray(origin, direction, time);
+      Hittable::HitResult result;
+      Interval intv(-1, 1);
+      if (time >= 0.1) {
+        assert(!sphere.hit(ray, intv, result));
+      } else {
+        assert(sphere.hit(ray, intv, result));
+      }
+    }
+
+    // Fire a ray at sphere's center as it moves up.
+    for (double time = 0; time <= 1; time += 0.1) {
+      Ray ray(origin, Vec3(sphere.center_.at(time) - origin), time);
+      Hittable::HitResult result;
+      Interval intv(-1, 1);
+      assert(sphere.hit(ray, intv, result));
+    }
+  }
 
   void run_test() override {
     // Camera
@@ -73,5 +100,6 @@ class SphereTest : public TestBase {
     assert(!sphere.hit(ray5, Interval(0, 1), result5));
 
     test_default_sphere_is_static();
+    test_sphere_is_moving_up();
   }
 };

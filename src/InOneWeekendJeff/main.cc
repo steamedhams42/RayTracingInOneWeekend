@@ -27,6 +27,7 @@ void createAndAddHittables() {
       auto choose_mat = Random::random_real();
       Point3 center(x + 0.9 * Random::random_real(), 0.2,
                     z + 0.9 * Random::random_real());
+      Point3 center_final(center);
       if (Vec3(center - Point3(4, -0.2, 0)).norm() > 0.9) {
         std::unique_ptr<Material> sphere_material;
         std::unique_ptr<Sphere> sphere;
@@ -35,6 +36,7 @@ void createAndAddHittables() {
           // diffuse
           auto albedo = Color::random_color() * Color::random_color();
           sphere_material = std::make_unique<Lambertian>(albedo);
+          // center_final = center + Point3(0, Random::random_real(0, 0.5), 0);
         } else if (choose_mat < 0.95) {
           // metal
           auto albedo =
@@ -45,8 +47,8 @@ void createAndAddHittables() {
           // glass
           sphere_material = std::make_unique<Dielectric>(1.5);
         }
-        hittables.add(
-            std::make_unique<Sphere>(center, 0.2, std::move(sphere_material)));
+        hittables.add(std::make_unique<Sphere>(center, center_final, 0.2,
+                                               std::move(sphere_material)));
       }
     }
   }

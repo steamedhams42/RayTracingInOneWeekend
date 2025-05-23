@@ -19,7 +19,7 @@ bool Dielectric::scatter(const Ray& incident_ray,
   Vec3 unit_direction = incident_ray.direction().unit();
   Vec3 refracted = refract(unit_direction, result.normal, ri);
 
-  scattered = Ray(result.incident_point, refracted);
+  scattered = Ray(result.incident_point, refracted, incident_ray.time());
   return true;
 }
 

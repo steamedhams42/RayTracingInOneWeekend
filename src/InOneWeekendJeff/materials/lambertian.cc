@@ -19,7 +19,7 @@ bool Lambertian::scatter(const Ray& incident_ray,
   if (v.is_near_zero()) {
     v = hit_result.normal;
   }
-  scattered = Ray(hit_result.incident_point, v);
+  scattered = Ray(hit_result.incident_point, v, incident_ray.time());
   attenuation = albedo_;
   return true;
 }

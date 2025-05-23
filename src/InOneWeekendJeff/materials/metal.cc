@@ -14,7 +14,7 @@ bool Metal::scatter(const Ray& incident_ray,
                     Ray& scattered) const {
   Vec3 reflected_vec = reflect(incident_ray.direction(), result.normal);
   attenuation = albedo_;
-  scattered = Ray(result.incident_point, reflected_vec);
+  scattered = Ray(result.incident_point, reflected_vec, incident_ray.time());
   return true;
 }
 

@@ -20,21 +20,21 @@ const char nl = '\n';
 // 1 Byte = 8 bits represented in decimal.
 const int BYTE = 1 << 8;
 
-const Vec3 X_AXIS_BASIS(1, 0, 0);
-const Vec3 Y_AXIS_BASIS(0, 1, 0);
-const Vec3 Z_AXIS_BASIS(0, 0, 1);
+const Vec3 X_AXIS_BASIS{1, 0, 0};
+const Vec3 Y_AXIS_BASIS{0, 1, 0};
+const Vec3 Z_AXIS_BASIS{0, 0, 1};
 
 // Camera
 namespace camera {
 
-const Point3 CAMERA_CENTER(13, 2, 3);
-const Point3 FOCAL_POINT(0, 0, 0);
+const Point3 CAMERA_CENTER{13, 2, 3};
+const Point3 FOCAL_POINT{0, 0, 0};
 const double FOCAL_DISTANCE = 10;
 
 const double ASPECT_WIDTH = 16.0;
 const double ASPECT_HEIGHT = 9.0;
 
-const int IMAGE_WIDTH = 200;
+const int IMAGE_WIDTH = 100;
 
 // The vertical angle (degrees) of the camera's fov.
 const double VERTICAL_FIELD_OF_VIEW = 20;
@@ -45,7 +45,7 @@ const int SAMPLES_PER_PIXEL = 50;
 
 // Speeds up rendering by limiting the number of light ray bounces and
 // recursive calls
-const int MAX_LIGHT_BOUNCES = 20;
+const int MAX_LIGHT_BOUNCES = 10;
 
 }  // namespace camera
 

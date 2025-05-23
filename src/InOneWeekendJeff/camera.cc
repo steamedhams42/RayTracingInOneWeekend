@@ -84,8 +84,8 @@ void Camera::render(const HittableList& hittables) {
     for (int x = 0; x < image_width_; x++) {
       Color pixel_color(0, 0, 0);
       for (int i = 0; i < constants::camera::SAMPLES_PER_PIXEL; i++) {
-        Ray sample_ray = get_random_ray_within_unit_square(x, y);
-        pixel_color += computeRayColor(sample_ray, hittables);
+        Ray random_ray = get_random_ray_within_unit_square(x, y);
+        pixel_color += computeRayColor(random_ray, hittables);
       }
       pixel_color *= pixel_samples_scale_;
       pixel_color.write_color(std::cout);
@@ -128,7 +128,8 @@ Ray Camera::get_random_ray_within_unit_square(int x, int y) {
   Point3 ray_origin =
       (defocus_angle_ <= 0) ? camera_center_ : defocus_disk_sample();
   Vec3 ray_direction(pixel_center - camera_center_);
-  return Ray(ray_origin, ray_direction);
+  double ray_time = Random::random_real();
+  return Ray(ray_origin, ray_direction, ray_time);
 }
 
 Point3 Camera::get_random_point_from_unit_square() const {

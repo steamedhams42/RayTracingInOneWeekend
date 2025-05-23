@@ -30,7 +30,7 @@ class SphereTest : public TestBase {
     Vec3 direction2(0, 0, 3);
     Ray ray2(origin, direction2);
     assert(sphere.hit(ray2, intv, result2));
-    assert(result2.p == Point3(0, 0, 0.5));
+    assert(result2.incident_point == Point3(0, 0, 0.5));
     assert(result2.t > 0);
     assert(result2.front_face == true);
 
@@ -41,7 +41,7 @@ class SphereTest : public TestBase {
     // The ray's acceptable range must be positive otherwise the negative
     // t-value (behind the origin of the sphere) will be chosen.
     assert(sphere.hit(ray3, Interval(0, 1), result3));
-    assert(result3.p == Point3(0, 0, 1.5));
+    assert(result3.incident_point == Point3(0, 0, 1.5));
     assert(result3.t > 0);
     assert(result3.front_face == false);
 
@@ -50,7 +50,7 @@ class SphereTest : public TestBase {
     Vec3 direction4(0, 0, -4);
     Ray ray4(sphere_center, direction4);
     assert(sphere.hit(ray4, Interval(0, 1), result4));
-    assert(result4.p == Point3(0, 0, 0.5));
+    assert(result4.incident_point == Point3(0, 0, 0.5));
     assert(result4.t > 0);
     assert(result4.front_face == false);
 

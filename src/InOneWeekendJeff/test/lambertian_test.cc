@@ -26,7 +26,7 @@ class LambertianTest : public TestBase {
                       hit_result));
 
     // Assert the hit occurred.
-    assert(hit_result.p == Point3(0, 0, -0.5));
+    assert(hit_result.incident_point == Point3(0, 0, -0.5));
 
     // Scatter the incident ray using the appropriate material (metal).
     hit_result.material->scatter(incident_ray, hit_result, attenuation,
@@ -35,7 +35,7 @@ class LambertianTest : public TestBase {
     assert(attenuation == Color(0.5, 0.5, 0.5));
     // since lambertian material scatter semi randomly, best I can do is check
     // the direction is correct (reflected away from surface).
-    assert(scattered_ray.direction().dot(Vec3(hit_result.p - sphere_center)) >
-           0);
+    assert(scattered_ray.direction().dot(
+               Vec3(hit_result.incident_point - sphere_center)) > 0);
   }
 };

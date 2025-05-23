@@ -25,13 +25,13 @@ class MetalTest : public TestBase {
                       hit_result));
 
     // Assert the hit occurred.
-    assert(hit_result.p == Point3(0, 0, -0.5));
+    assert(hit_result.incident_point == Point3(0, 0, -0.5));
 
     // Scatter the incident ray using the appropriate material (metal).
     hit_result.material->scatter(incident_ray, hit_result, attenuation,
                                  scattered_ray);
 
     assert(attenuation == Color(0.8, 0.8, 0.8));
-    assert(scattered_ray == Ray(hit_result.p, Vec3(0, 0, 1)));
+    assert(scattered_ray == Ray(hit_result.incident_point, Vec3(0, 0, 1)));
   }
 };

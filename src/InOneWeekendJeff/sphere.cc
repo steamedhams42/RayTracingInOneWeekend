@@ -7,12 +7,19 @@
 #include "ray.h"
 
 Sphere::Sphere(Point3 center, double r)
-    : center_(center), radius_(r), material_(std::make_unique<Lambertian>()) {}
+    : Sphere(center, r, std::make_unique<Lambertian>()) {}
 
 Sphere::Sphere(Point3 center, double r, std::unique_ptr<Material>&& material)
-    : Sphere(center, r) {
-  assert(radius_ >= 0);
-  material_ = std::move(material);
+    : Sphere(center, Point3(0, 0, 0), r, std::move(material)) {}
+
+Sphere::Sphere(Point3 center_init,
+               Point3 center_final,
+               double radius,
+               std::unique_ptr<Material>&& material)
+    : center_(Ray(center_init, center_final - center_init)),
+      radius_(radius),
+      material_(std::move(material)) {
+  assert(radius > 0);
 }
 
 Sphere::~Sphere() {}
@@ -21,7 +28,8 @@ bool Sphere::hit(const Ray& ray,
                  Interval intval,
                  Hittable::HitResult& result) const {
   // TODO: Put into a "find discriminant" method.
-  Vec3 QC = center_ - ray.origin();
+  Point3 current_center = center_.at(ray.time());
+  Vec3 QC = current_center - ray.origin();
   double a = ray.direction().dot(ray.direction());
   double b = -2 * ray.direction().dot(QC);
   double c = QC.dot(QC) - radius_ * radius_;
@@ -46,8 +54,8 @@ bool Sphere::hit(const Ray& ray,
   }
 
   result.t = t;
-  result.p = ray.at(t);
-  Vec3 normal = (result.p - this->center_) / this->radius_;
+  result.incident_point = ray.at(t);
+  Vec3 normal = (result.incident_point - current_center) / this->radius_;
   result.setFaceNormal(ray, normal);
   result.material = material_.get();
 

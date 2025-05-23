@@ -18,7 +18,7 @@ class Hittable {
     // Where O is the origin, t is the scale factor, d is the vector of the ray.
 
     // The point at which a ray hits the Hittable.
-    Point3 p;
+    Point3 incident_point;
 
     // The normalized vector on the surface of the hittable at the point of
     // intersection with a light ray. May be negative if the light source is on

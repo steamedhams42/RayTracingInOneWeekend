@@ -20,6 +20,10 @@ class Interval {
   // Returns x bounded by [min, max]
   double clamp(double x) const;
 
+  // Returns a new Interval padded by delta, [min - delta, max + delta]
+  Interval expand(double delta);
+
+  // Useful for comparisons
   static const Interval empty;
   static const Interval universal;
 

@@ -27,5 +27,9 @@ class IntervalTest : public TestBase {
 
     assert(intvl.clamp(mini - 10) == intvl.min());
     assert(intvl.clamp(maxi + maxi) == intvl.max());
+
+    double pad = 0.5;
+    assert(intvl.expand(pad).min() == intvl.min() - pad);
+    assert(intvl.expand(pad).max() == intvl.max() + pad);
   }
 };

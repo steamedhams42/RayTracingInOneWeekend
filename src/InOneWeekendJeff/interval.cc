@@ -33,3 +33,7 @@ double Interval::clamp(double x) const {
   }
   return x;
 }
+
+Interval Interval::expand(double delta) {
+  return Interval(min_ - delta, max_ + delta);
+}

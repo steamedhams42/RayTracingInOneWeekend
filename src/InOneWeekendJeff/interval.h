@@ -5,6 +5,11 @@ class Interval {
  public:
   Interval();
   Interval(double, double);
+  Interval(const Interval&) = default;
+  Interval(Interval&&) = default;
+  Interval& operator=(const Interval&) = default;
+  Interval& operator=(Interval&& rhs) = default;
+  ~Interval() = default;
 
   double min() const { return min_; }
   double max() const { return max_; }

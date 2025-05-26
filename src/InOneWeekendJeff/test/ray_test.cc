@@ -6,9 +6,9 @@
 
 class RayTest : public TestBase {
  public:
-  void run_test() override {
-    Point3 origin = createPoint();
-    Vec3 direction = createVec();
+  void RunTest() override {
+    Point3 origin = CreateRandomPoint();
+    Vec3 direction = CreateRandomVec();
     Ray ray(origin, direction);
 
     assert(ray.time() == 0);

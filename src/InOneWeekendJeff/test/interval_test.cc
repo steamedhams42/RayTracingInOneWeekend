@@ -7,7 +7,7 @@
 
 class IntervalTest : public TestBase {
  public:
-  void run_test() override {
+  void RunTest() override {
     auto null = Interval::empty;
 
     double mini = -Random::random_real();

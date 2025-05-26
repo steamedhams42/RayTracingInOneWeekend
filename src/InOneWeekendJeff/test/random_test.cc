@@ -6,7 +6,7 @@
 
 class RandomTest : public TestBase {
  public:
-  void run_test() override {
+  void RunTest() override {
     for (int i = 0; i < 100; i++) {
       auto x = Random::random_real(-10, 0);
       assert(x < 0);

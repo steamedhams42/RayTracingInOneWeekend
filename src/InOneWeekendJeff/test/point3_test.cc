@@ -7,12 +7,12 @@
 
 class Point3Test : public TestBase {
  public:
-  void run_test() override {
+  void RunTest() override {
     Point3 zed;
     Point3 v(0, 0, 0);
     assert(zed == v);
 
-    v = createPoint();
+    v = CreateRandomPoint();
     assert(v.points_[0] == v.x());
     assert(v.points_[1] == v.y());
     assert(v.points_[2] == v.z());
@@ -39,7 +39,7 @@ class Point3Test : public TestBase {
     assert(v == zed);
 
     // division
-    v = createPoint();
+    v = CreateRandomPoint();
     x = Random::random_real();
     before = v;
     v /= x;

@@ -9,7 +9,7 @@
 
 class LambertianTest : public TestBase {
  public:
-  void run_test() override {
+  void RunTest() override {
     Point3 sphere_center(0, 0, -1);
     Sphere sphere(sphere_center, 0.5, std::make_unique<Lambertian>());
 

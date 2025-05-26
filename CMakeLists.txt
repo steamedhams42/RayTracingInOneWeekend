@@ -24,8 +24,8 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/main.cc
   src/InOneWeekendJeff/vec3.cc
   src/InOneWeekendJeff/vec3.h
-  src/InOneWeekendJeff/point3.cc
-  src/InOneWeekendJeff/point3.h
+  src/InOneWeekendJeff/bounding_box.h
+  src/InOneWeekendJeff/bounding_box.cc
   src/InOneWeekendJeff/constants.h
   src/InOneWeekendJeff/color.cc
   src/InOneWeekendJeff/color.h
@@ -41,6 +41,8 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/interval.h
   src/InOneWeekendJeff/camera.cc
   src/InOneWeekendJeff/camera.h
+  src/InOneWeekendJeff/point3.cc
+  src/InOneWeekendJeff/point3.h
   src/InOneWeekendJeff/random.h
   src/InOneWeekendJeff/materials/dielectric.h
   src/InOneWeekendJeff/materials/dielectric.cc
@@ -52,6 +54,8 @@ set ( SOURCE_ONE_WEEKEND_JEFF
 )
 
 set ( SOURCE_ONE_WEEKEND_TEST
+  src/InOneWeekendJeff/bounding_box.cc
+  src/InOneWeekendJeff/camera.h
   src/InOneWeekendJeff/color.h
   src/InOneWeekendJeff/color.cc
   src/InOneWeekendJeff/vec3.h
@@ -76,6 +80,7 @@ set ( SOURCE_ONE_WEEKEND_TEST
   src/InOneWeekendJeff/materials/lambertian.h
   src/InOneWeekendJeff/materials/lambertian.cc
   src/InOneWeekendJeff/test/metal_test.cc
+  src/InOneWeekendJeff/test/bounding_box_test.cc
   src/InOneWeekendJeff/test/lambertian_test.cc
   src/InOneWeekendJeff/test/random_test.cc
   src/InOneWeekendJeff/test/camera_test.cc

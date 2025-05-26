@@ -47,7 +47,7 @@ class SphereTest : public TestBase {
     }
   }
 
-  void run_test() override {
+  void RunTest() override {
     // Camera
     Point3 origin(0, 0, 0);
 

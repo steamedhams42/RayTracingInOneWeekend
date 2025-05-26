@@ -17,10 +17,10 @@ class TestBase {
  public:
   virtual ~TestBase() = default;
 
-  virtual void run_test() = 0;
+  virtual void RunTest() = 0;
 
  protected:
-  Point3 createPoint() {
+  Point3 CreateRandomPoint() {
     double a = 0, b = 0, c = 0;
     a = Random::random_real();
     b = Random::random_real();
@@ -28,7 +28,7 @@ class TestBase {
     return Point3(a, b, c);
   }
 
-  Vec3 createVec() {
+  Vec3 CreateRandomVec() {
     double a = 0, b = 0, c = 0;
     a = Random::random_real();
     b = Random::random_real();

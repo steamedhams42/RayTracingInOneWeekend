@@ -9,12 +9,12 @@
 
 class Vec3Test : public TestBase {
  public:
-  void run_test() override {
+  void RunTest() override {
     Vec3 zed;
     Vec3 v(0, 0, 0);
     assert(zed == v);
 
-    v = createVec();
+    v = CreateRandomVec();
     assert(v.points_[0] == v.x());
     assert(v.points_[1] == v.y());
     assert(v.points_[2] == v.z());
@@ -39,7 +39,7 @@ class Vec3Test : public TestBase {
     assert(v == zed);
 
     // division
-    v = createVec();
+    v = CreateRandomVec();
     x = Random::random_real();
     before = v;
     v /= x;
@@ -48,7 +48,7 @@ class Vec3Test : public TestBase {
     assert(v.z() <= before.z() * (1 / x));
 
     // dot product
-    v = createVec();
+    v = CreateRandomVec();
     assert(v.dot(v) == v.norm_squared());
 
     // cross product
@@ -78,7 +78,7 @@ class Vec3Test : public TestBase {
     }
 
     // unit vector
-    v = createVec();
+    v = CreateRandomVec();
     Vec3 unit = v.unit();
     double norm = v.norm();
     assert(unit.x() == (v / norm).x());

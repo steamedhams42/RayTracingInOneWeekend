@@ -10,7 +10,7 @@
 
 class CameraTest : public TestBase {
  public:
-  void run_test() {
+  void RunTest() {
     HittableList hittables;
     Point3 sphere_center(0, 0, 1.0);
     double sphere_radius = 1.0;

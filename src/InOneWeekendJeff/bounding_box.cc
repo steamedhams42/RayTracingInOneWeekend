@@ -4,10 +4,10 @@
 
 BoundingBox::BoundingBox() {}
 
-BoundingBox::BoundingBox(const Interval& x,
-                         const Interval& y,
-                         const Interval& z)
-    : x_(x), y_(y), z_(z) {}
+BoundingBox::BoundingBox(Interval&& x, Interval&& y, Interval&& z)
+    : x_(std::move(x)), y_(std::move(y)), z_(std::move(z)) {}
+
+BoundingBox::~BoundingBox() = default;
 
 // static
 BoundingBox BoundingBox::CreateBoundingBoxFromTwoPoints(const Point3& a,
@@ -15,5 +15,6 @@ BoundingBox BoundingBox::CreateBoundingBoxFromTwoPoints(const Point3& a,
   Interval x_interval(std::min(a.x(), b.x()), std::max(a.x(), b.x()));
   Interval y_interval(std::min(a.y(), b.y()), std::max(a.y(), b.y()));
   Interval z_interval(std::min(a.z(), b.z()), std::max(a.z(), b.z()));
-  return BoundingBox(x_interval, y_interval, z_interval);
+  return BoundingBox(std::move(x_interval), std::move(y_interval),
+                     std::move(z_interval));
 }

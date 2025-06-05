@@ -7,13 +7,14 @@
 // 3D axis-aligned bounding box.
 class BoundingBox {
  public:
-  // Default BoundingBox are 3 empty intervals
+  // No-arg c'tor BoundingBox() are 3 empty intervals
   BoundingBox();
-  BoundingBox(const Interval&, const Interval&, const Interval&);
+  BoundingBox(Interval&&, Interval&&, Interval&&);
   BoundingBox(const BoundingBox&) = delete;
   BoundingBox& operator=(const BoundingBox&) = delete;
-  ~BoundingBox() = default;
+  ~BoundingBox();
 
+  // Takes two points in R3 and returns the smallest axis-aligned bounding box.
   static BoundingBox CreateBoundingBoxFromTwoPoints(const Point3&,
                                                     const Point3&);
 

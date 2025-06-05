@@ -14,6 +14,10 @@ class BoundingBox {
   BoundingBox& operator=(const BoundingBox&) = delete;
   ~BoundingBox();
 
+  const Interval& x_interval();
+  const Interval& y_interval();
+  const Interval& z_interval();
+
   // Takes two points in R3 and returns the smallest axis-aligned bounding box.
   static BoundingBox CreateBoundingBoxFromTwoPoints(const Point3&,
                                                     const Point3&);

@@ -11,6 +11,8 @@ class Interval {
   Interval& operator=(Interval&& rhs) = default;
   ~Interval() = default;
 
+  friend bool operator==(const Interval& lhs, const Interval& rhs);
+
   double min() const { return min_; }
   double max() const { return max_; }
 
@@ -36,5 +38,9 @@ class Interval {
   double min_;
   double max_;
 };
+
+inline bool operator==(const Interval& lhs, const Interval& rhs) {
+  return lhs.min_ == rhs.min_ and lhs.max_ == rhs.max_;
+}
 
 #endif

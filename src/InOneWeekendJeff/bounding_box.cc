@@ -18,3 +18,15 @@ BoundingBox BoundingBox::CreateBoundingBoxFromTwoPoints(const Point3& a,
   return BoundingBox(std::move(x_interval), std::move(y_interval),
                      std::move(z_interval));
 }
+
+const Interval& BoundingBox::x_interval() {
+  return this->x_;
+}
+
+const Interval& BoundingBox::y_interval() {
+  return this->y_;
+}
+
+const Interval& BoundingBox::z_interval() {
+  return this->z_;
+}

@@ -43,10 +43,12 @@ class Vec3 : public Point3 {
 
   Vec3 operator*(double t) const;
   Vec3& operator*=(double t);
+  friend Vec3 operator*(double t, Vec3 v);
   friend Vec3& operator*=(double t, Vec3& rhs);
 
   Vec3 operator/(double t) const;
   Vec3& operator/=(double t);
+  friend Vec3 operator/(double t, const Vec3 v);
 
  private:
   friend Vec3Test;

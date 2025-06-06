@@ -34,6 +34,8 @@ class Vec3 : public Point3 {
   bool is_near_zero() const;
 
   // Overloaded operators
+  double operator[](int i) const;
+
   Vec3 operator+(const Vec3& rhs);
   Vec3& operator+=(const Vec3& rhs);
 

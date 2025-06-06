@@ -13,8 +13,11 @@ class Interval {
 
   friend bool operator==(const Interval& lhs, const Interval& rhs);
 
-  double min() const { return min_; }
-  double max() const { return max_; }
+  double min() const;
+  double max() const;
+
+  void min(double x);
+  void max(double x);
 
   double width() const;
 
@@ -29,6 +32,9 @@ class Interval {
 
   // Returns a new Interval padded by delta, [min - delta, max + delta]
   Interval expand(double delta);
+
+  // An empty interval has a larger min than max
+  bool is_empty();
 
   // Useful for comparisons
   static const Interval empty;

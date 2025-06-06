@@ -2,6 +2,10 @@
 #include "constants.h"
 #include "random.h"
 
+double Vec3::operator[](int i) const {
+  return this->points_[i];
+}
+
 Vec3 Vec3::operator+(const Vec3& rhs) {
   return Vec3(x() + rhs.x(), y() + rhs.y(), z() + rhs.z());
 }

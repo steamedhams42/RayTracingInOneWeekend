@@ -12,6 +12,22 @@ Interval::Interval()
 
 Interval::Interval(double min, double max) : min_(min), max_(max) {}
 
+double Interval::min() const {
+  return this->min_;
+}
+
+double Interval::max() const {
+  return this->max_;
+}
+
+void Interval::min(double x) {
+  this->min_ = x;
+}
+
+void Interval::max(double x) {
+  this->max_ = x;
+}
+
 double Interval::width() const {
   return max_ - min_;
 }
@@ -36,4 +52,8 @@ double Interval::clamp(double x) const {
 
 Interval Interval::expand(double delta) {
   return Interval(min_ - delta, max_ + delta);
+}
+
+bool Interval::is_empty() {
+  return min_ > max_;
 }

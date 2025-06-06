@@ -16,8 +16,8 @@ class Interval {
   double min() const;
   double max() const;
 
-  void min(double x);
-  void max(double x);
+  void set_min(double x);
+  void set_max(double x);
 
   double width() const;
 

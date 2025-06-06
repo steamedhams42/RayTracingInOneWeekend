@@ -45,11 +45,12 @@ bool BoundingBox::hit(const Ray& incident_ray, Interval ray_t_interval) {
       std::swap(t_close, t_far);
     }
 
-    ray_t_interval.min(std::max(ray_t_interval.min(), t_close));
-    ray_t_interval.max(std::min(ray_t_interval.max(), t_far));
+    ray_t_interval.set_min(std::max(ray_t_interval.min(), t_close));
+    ray_t_interval.set_max(std::min(ray_t_interval.max(), t_far));
 
-    if (ray_t_interval.is_empty())
+    if (ray_t_interval.is_empty()) {
       return false;
+    }
   }
 
   return true;

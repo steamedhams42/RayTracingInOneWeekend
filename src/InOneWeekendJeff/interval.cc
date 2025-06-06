@@ -20,11 +20,11 @@ double Interval::max() const {
   return this->max_;
 }
 
-void Interval::min(double x) {
+void Interval::set_min(double x) {
   this->min_ = x;
 }
 
-void Interval::max(double x) {
+void Interval::set_max(double x) {
   this->max_ = x;
 }
 

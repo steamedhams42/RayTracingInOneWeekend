@@ -9,6 +9,7 @@ class IntervalTest : public TestBase {
  public:
   void RunTest() override {
     auto null = Interval::empty;
+    assert(null.is_empty());
 
     double mini = -Random::random_real();
     double maxi = Random::random_real();
@@ -31,5 +32,9 @@ class IntervalTest : public TestBase {
     double pad = 0.5;
     assert(intvl.expand(pad).min() == intvl.min() - pad);
     assert(intvl.expand(pad).max() == intvl.max() + pad);
+
+    intvl.set_min(1);
+    intvl.set_max(0);
+    assert(intvl.is_empty());
   }
 };

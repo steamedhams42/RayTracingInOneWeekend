@@ -3,6 +3,7 @@
 
 #include <memory>
 
+#include "bounding_box.h"
 #include "hittable.h"
 #include "interval.h"
 #include "materials/lambertian.h"
@@ -25,6 +26,8 @@ class Sphere : public Hittable {
   ~Sphere() override;
 
   bool hit(const Ray& ray, Interval intval, HitResult& result) const override;
+
+  BoundingBox bounding_box() override;
 
  private:
   friend SphereTest;

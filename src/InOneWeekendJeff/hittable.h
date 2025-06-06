@@ -1,6 +1,7 @@
 #ifndef HITTABLE_H
 #define HITTABLE_H
 
+#include "bounding_box.h"
 #include "interval.h"
 #include "point3.h"
 #include "vec3.h"
@@ -13,9 +14,9 @@ class Hittable {
   class HitResult {
    public:
     // This struct encapsulates the parameters that define a ray's point of
-    // intersection on a Hittable object based on the following equation:
-    // P(t) = O + t*d
-    // Where O is the origin, t is the scale factor, d is the vector of the ray.
+    // intersection on a Hittable object based on the following equation where
+    // Q is the origin, t is the scale factor, d is the vector of the ray.
+    // P(t) = Q + t*d
 
     // The point at which a ray hits the Hittable.
     Point3 incident_point;
@@ -46,6 +47,8 @@ class Hittable {
   virtual bool hit(const Ray& incident_ray,
                    Interval intval,
                    Hittable::HitResult& result) const = 0;
+
+  virtual BoundingBox bounding_box() = 0;
 };
 
 #endif

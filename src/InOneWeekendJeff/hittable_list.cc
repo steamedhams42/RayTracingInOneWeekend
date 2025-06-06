@@ -31,3 +31,7 @@ bool HittableList::hit(const Ray& ray,
   }
   return hit_anything;
 }
+
+BoundingBox HittableList::bounding_box() {
+  return BoundingBox();
+}

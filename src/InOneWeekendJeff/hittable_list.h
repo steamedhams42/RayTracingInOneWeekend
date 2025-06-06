@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <vector>
+#include "bounding_box.h"
 #include "hittable.h"
 #include "interval.h"
 #include "ray.h"
@@ -18,6 +19,8 @@ class HittableList : public Hittable {
   bool hit(const Ray& ray,
            Interval i,
            Hittable::HitResult& result) const override;
+
+  BoundingBox bounding_box() override;
 
  private:
   std::vector<std::unique_ptr<Hittable>> hittables_;

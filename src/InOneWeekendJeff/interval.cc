@@ -2,10 +2,6 @@
 
 #include "constants.h"
 
-const Interval Interval::empty = Interval();
-const Interval Interval::universal =
-    Interval(-constants::INF_DOUBLE, constants::INF_DOUBLE);
-
 // Default interval is empty
 Interval::Interval()
     : min_(constants::INF_DOUBLE), max_(-constants::INF_DOUBLE) {}

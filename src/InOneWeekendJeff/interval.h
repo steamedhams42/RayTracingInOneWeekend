@@ -36,10 +36,6 @@ class Interval {
   // An empty interval has a larger min than max
   bool is_empty();
 
-  // Useful for comparisons
-  static const Interval empty;
-  static const Interval universal;
-
  private:
   double min_;
   double max_;

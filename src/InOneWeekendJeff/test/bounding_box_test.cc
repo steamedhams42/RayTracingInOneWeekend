@@ -12,6 +12,15 @@ class BoundingBoxTest : public TestBase {
     return BoundingBox(Interval(0, 1), Interval(0, 1), Interval(0, 1));
   }
 
+  void test_rays_on_the_surface_of_the_bounding_box() {
+    BoundingBox unit_bb = create_unit_bounding_box();
+    Vec3 direction(0, 3, 0);
+    Point3 origin(1.1, 1.1, 1.1);
+    Ray incident_ray(origin, direction);
+
+    assert(unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
+  }
+
   void test_rays_missing_the_bounding_box() {
     // Create 3 cases for a ray that is parallel to each axis and does not
     // hit the bounding box.
@@ -40,9 +49,9 @@ class BoundingBoxTest : public TestBase {
  public:
   void RunTest() override {
     BoundingBox empty_bb;
-    assert(empty_bb.x_interval() == Interval::empty);
-    assert(empty_bb.y_interval() == Interval::empty);
-    assert(empty_bb.z_interval() == Interval::empty);
+    assert(empty_bb.x_interval() == constants::interval::EMPTY);
+    assert(empty_bb.y_interval() == constants::interval::EMPTY);
+    assert(empty_bb.z_interval() == constants::interval::EMPTY);
 
     Point3 a = CreateRandomPoint();
     Point3 b = CreateRandomPoint();
@@ -61,5 +70,6 @@ class BoundingBoxTest : public TestBase {
     assert(unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
 
     test_rays_missing_the_bounding_box();
+    test_rays_on_the_surface_of_the_bounding_box();
   }
 };

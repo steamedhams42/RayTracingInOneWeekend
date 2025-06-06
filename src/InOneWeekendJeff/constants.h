@@ -4,6 +4,7 @@
 #include <cmath>
 #include <limits>
 
+#include "interval.h"
 #include "point3.h"
 #include "vec3.h"
 
@@ -50,12 +51,13 @@ const int MAX_LIGHT_BOUNCES = 10;
 }  // namespace camera
 
 // Sphere
-namespace sphere {
+namespace sphere {}  // namespace sphere
 
-// const Point3 SPHERE_CENTER = Point3(0, 0, -1.2);
-// const double SPHERE_RADIUS = 0.5;
-
-}  // namespace sphere
+namespace interval {
+const Interval EMPTY = Interval();
+const Interval UNIVERSAL =
+    Interval(-constants::INF_DOUBLE, constants::INF_DOUBLE);
+}  // namespace interval
 
 }  // namespace constants
 

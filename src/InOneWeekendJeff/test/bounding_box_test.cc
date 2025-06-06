@@ -30,10 +30,29 @@ class BoundingBoxTest : public TestBase {
            Interval(std::min(a.z(), b.z()), std::max(a.z(), b.z())));
 
     BoundingBox unit_bb = create_unit_bounding_box();
-    Ray incident_ray(Point3(-1, 0.5, 0.5), Vec3(3, 0, 0));
+    Vec3 direction(3, 0, 0);
+    Point3 origin(-1, 0.5, 0.5);
+    Ray incident_ray(origin, direction);
     assert(unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
 
-    incident_ray = Ray(Point3(-1, 0.5, 0.5), Vec3(-3, 0, 0));
+    // Create 3 cases for a ray that is parallel to each axis and does not
+    // hit the bounding box.
+    direction = Vec3(-3, 0, 0);
+    incident_ray = Ray(origin, direction);
+    assert(!unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
+
+    direction = Vec3(0, 3, 0);
+    incident_ray = Ray(origin, direction);
+    assert(!unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
+    direction = Vec3(0, -3, 0);
+    incident_ray = Ray(origin, direction);
+    assert(!unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
+
+    // direction = Vec3(0, 0, 3);
+    // incident_ray = Ray(origin, direction);
+    // assert(!unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
+    direction = Vec3(0, 0, -3);
+    incident_ray = Ray(origin, direction);
     assert(!unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
   }
 };

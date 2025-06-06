@@ -14,8 +14,8 @@ class BoundingBoxTest : public TestBase {
 
   void test_rays_on_the_surface_of_the_bounding_box() {
     BoundingBox unit_bb = create_unit_bounding_box();
-    Vec3 direction(0, 3, 0);
-    Point3 origin(1.1, 1.1, 1.1);
+    Vec3 direction(11, 11, 11);
+    Point3 origin(1, 1, 1);
     Ray incident_ray(origin, direction);
 
     assert(unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));

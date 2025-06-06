@@ -48,9 +48,9 @@ class BoundingBoxTest : public TestBase {
     incident_ray = Ray(origin, direction);
     assert(!unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
 
-    // direction = Vec3(0, 0, 3);
-    // incident_ray = Ray(origin, direction);
-    // assert(!unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
+    direction = Vec3(0, 0, 3);
+    incident_ray = Ray(origin, direction);
+    assert(!unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
     direction = Vec3(0, 0, -3);
     incident_ray = Ray(origin, direction);
     assert(!unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));

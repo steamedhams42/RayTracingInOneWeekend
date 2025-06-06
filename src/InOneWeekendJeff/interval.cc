@@ -55,5 +55,5 @@ Interval Interval::expand(double delta) {
 }
 
 bool Interval::is_empty() {
-  return min_ > max_;
+  return min_ >= max_;
 }

@@ -11,8 +11,8 @@ class BoundingBox {
   // No-arg c'tor BoundingBox() are 3 empty intervals
   BoundingBox();
   BoundingBox(Interval&&, Interval&&, Interval&&);
-  BoundingBox(const BoundingBox&) = delete;
-  BoundingBox& operator=(const BoundingBox&) = delete;
+  BoundingBox(const BoundingBox&) = default;
+  BoundingBox& operator=(const BoundingBox&) = default;
   ~BoundingBox();
 
   const Interval& x_interval();

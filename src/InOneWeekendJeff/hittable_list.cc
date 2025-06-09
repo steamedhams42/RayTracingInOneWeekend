@@ -12,6 +12,7 @@ void HittableList::clearAll() {
 }
 
 void HittableList::add(std::unique_ptr<Hittable>&& h) {
+  bounding_box_ = h->bounding_box();
   hittables_.push_back(std::move(h));
 }
 
@@ -33,5 +34,5 @@ bool HittableList::hit(const Ray& ray,
 }
 
 BoundingBox HittableList::bounding_box() {
-  return BoundingBox();
+  return bounding_box_;
 }

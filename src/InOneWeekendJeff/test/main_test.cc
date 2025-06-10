@@ -1,4 +1,5 @@
 #include "InOneWeekendJeff/test/bounding_box_test.cc"
+#include "InOneWeekendJeff/test/bvh_node_test.cc"
 #include "InOneWeekendJeff/test/camera_test.cc"
 #include "InOneWeekendJeff/test/interval_test.cc"
 #include "InOneWeekendJeff/test/lambertian_test.cc"
@@ -39,6 +40,9 @@ int main() {
 
   BoundingBoxTest bounding_box_test;
   bounding_box_test.RunTest();
+
+  BvhNodeTest bvh_node_test;
+  bvh_node_test.RunTest();
 
   return 0;
 }

@@ -11,9 +11,9 @@ void HittableList::clearAll() {
   hittables_.clear();
 }
 
-void HittableList::add(std::unique_ptr<Hittable>&& h) {
-  bounding_box_ = h->bounding_box();
-  hittables_.push_back(std::move(h));
+void HittableList::add(std::unique_ptr<Hittable> hittable) {
+  bounding_box_ = hittable->bounding_box();
+  hittables_.push_back(std::move(hittable));
 }
 
 bool HittableList::hit(const Ray& ray,

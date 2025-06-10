@@ -33,6 +33,8 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/ray.h
   src/InOneWeekendJeff/hittable.cc
   src/InOneWeekendJeff/hittable.h
+  src/InOneWeekendJeff/bvh_node.cc
+  src/InOneWeekendJeff/bvh_node.h
   src/InOneWeekendJeff/sphere.cc
   src/InOneWeekendJeff/sphere.h
   src/InOneWeekendJeff/hittable_list.cc
@@ -62,6 +64,8 @@ set ( SOURCE_ONE_WEEKEND_TEST
   src/InOneWeekendJeff/vec3.cc
   src/InOneWeekendJeff/point3.h
   src/InOneWeekendJeff/point3.cc
+  src/InOneWeekendJeff/bvh_node.cc
+  src/InOneWeekendJeff/bvh_node.h
   src/InOneWeekendJeff/hittable.h
   src/InOneWeekendJeff/hittable.cc
   src/InOneWeekendJeff/hittable_list.h
@@ -79,6 +83,7 @@ set ( SOURCE_ONE_WEEKEND_TEST
   src/InOneWeekendJeff/materials/metal.cc
   src/InOneWeekendJeff/materials/lambertian.h
   src/InOneWeekendJeff/materials/lambertian.cc
+  src/InOneWeekendJeff/test/bvh_node_test.cc
   src/InOneWeekendJeff/test/metal_test.cc
   src/InOneWeekendJeff/test/bounding_box_test.cc
   src/InOneWeekendJeff/test/lambertian_test.cc

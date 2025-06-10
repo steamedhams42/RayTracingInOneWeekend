@@ -45,7 +45,7 @@ class Hittable {
 
   // TODO: Refactor into a template method.
   virtual bool hit(const Ray& incident_ray,
-                   Interval intval,
+                   Interval ival,
                    Hittable::HitResult& result) const = 0;
 
   virtual BoundingBox bounding_box() = 0;

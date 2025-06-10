@@ -20,6 +20,8 @@ class BvhNode : public Hittable {
 
  private:
   BoundingBox bounding_box_;
+  Hittable* left_ = nullptr;
+  Hittable* right_ = nullptr;
 };
 
 #endif

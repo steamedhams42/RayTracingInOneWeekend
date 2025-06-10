@@ -21,7 +21,7 @@ class BoundingBox {
 
   // Utilizes the slab method algorithm to determine if a ray intersects a BB.
   // https://en.wikipedia.org/wiki/Slab_method
-  bool hit(const Ray& incident_ray, Interval ray_t_interval);
+  bool hit(const Ray& incident_ray, Interval ray_t_interval) const;
 
   // Takes two points in R3 and returns the smallest axis-aligned bounding box.
   static BoundingBox CreateBoundingBoxFromTwoPoints(const Point3&,

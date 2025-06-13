@@ -15,6 +15,7 @@ class SphereTest;
 
 class Sphere : public Hittable {
  public:
+  // Stationary sphere
   Sphere(Point3 center, double radius);
   Sphere(Point3 center, double radius, std::unique_ptr<Material>&&);
 
@@ -37,6 +38,7 @@ class Sphere : public Hittable {
   Ray center_;
   double radius_;
   std::unique_ptr<Material> material_;
+  BoundingBox bounding_box_;
 };
 
 #endif

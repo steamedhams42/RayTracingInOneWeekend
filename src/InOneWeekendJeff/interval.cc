@@ -53,3 +53,8 @@ Interval Interval::expand(double delta) {
 bool Interval::is_empty() {
   return min_ >= max_;
 }
+
+bool Interval::operator<(const Interval& rhs) const {
+  return std::make_pair(this->min_, this->max_) <
+         std::make_pair(rhs.min_, rhs.max_);
+}

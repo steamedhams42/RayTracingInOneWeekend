@@ -6,12 +6,19 @@
 #include "InOneWeekendJeff/materials/lambertian.h"
 #include "InOneWeekendJeff/ray.h"
 
+// Stationary sphere
 Sphere::Sphere(Point3 center, double r)
     : Sphere(center, r, std::make_unique<Lambertian>()) {}
 
+// Stationary sphere
 Sphere::Sphere(Point3 center, double r, std::unique_ptr<Material>&& material)
-    : Sphere(center, center, r, std::move(material)) {}
+    : Sphere(center, center, r, std::move(material)) {
+  bounding_box_ = BoundingBox(Interval(center.x() - r, center.x() + r),
+                              Interval(center.y() - r, center.y() + r),
+                              Interval(center.z() - r, center.z() + r));
+}
 
+// Moving sphere
 Sphere::Sphere(Point3 center_init,
                Point3 center_final,
                double radius,
@@ -65,5 +72,5 @@ bool Sphere::hit(const Ray& ray,
 }
 
 BoundingBox Sphere::bounding_box() {
-  return BoundingBox();
+  return bounding_box_;
 }

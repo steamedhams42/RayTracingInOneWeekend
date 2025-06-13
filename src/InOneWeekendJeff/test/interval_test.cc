@@ -14,27 +14,35 @@ class IntervalTest : public TestBase {
     double mini = -Random::random_real();
     double maxi = Random::random_real();
 
-    Interval intvl(mini, maxi);
+    Interval ival(mini, maxi);
 
     for (double i = mini; i <= maxi; i += ((maxi - mini) / 100.0)) {
-      assert(intvl.contains(i));
+      assert(ival.contains(i));
     }
 
-    assert(intvl.contains(mini));
-    assert(intvl.contains(maxi));
+    assert(ival.contains(mini));
+    assert(ival.contains(maxi));
 
-    assert(!intvl.surrounds(mini));
-    assert(!intvl.surrounds(maxi));
+    assert(!ival.surrounds(mini));
+    assert(!ival.surrounds(maxi));
 
-    assert(intvl.clamp(mini - 10) == intvl.min());
-    assert(intvl.clamp(maxi + maxi) == intvl.max());
+    assert(ival.clamp(mini - 10) == ival.min());
+    assert(ival.clamp(maxi + maxi) == ival.max());
 
     double pad = 0.5;
-    assert(intvl.expand(pad).min() == intvl.min() - pad);
-    assert(intvl.expand(pad).max() == intvl.max() + pad);
+    assert(ival.expand(pad).min() == ival.min() - pad);
+    assert(ival.expand(pad).max() == ival.max() + pad);
 
-    intvl.set_min(1);
-    intvl.set_max(0);
-    assert(intvl.is_empty());
+    ival.set_min(1);
+    ival.set_max(0);
+    assert(ival.is_empty());
+
+    ival = Interval(0, 1);
+    Interval ival2(0, 2);
+    Interval ival3(1, 2);
+
+    assert(ival < ival2);
+    assert(ival2 < ival3);
+    assert(ival < ival3);
   }
 };

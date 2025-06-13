@@ -36,6 +36,9 @@ class Interval {
   // An empty interval has a larger min than max
   bool is_empty();
 
+  // Sorted by smallest min_ then max_
+  bool operator<(const Interval& rhs) const;
+
  private:
   double min_;
   double max_;

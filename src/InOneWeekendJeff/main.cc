@@ -3,15 +3,15 @@
 #include <iostream>
 #include <memory>
 
+#include "InOneWeekendJeff/hittables/hittable_list.h"
+#include "InOneWeekendJeff/hittables/sphere.h"
 #include "camera.h"
 #include "constants.h"
-#include "hittable_list.h"
 #include "materials/dielectric.h"
 #include "materials/lambertian.h"
 #include "materials/metal.h"
 #include "point3.h"
 #include "random.h"
-#include "sphere.h"
 
 HittableList hittables;
 

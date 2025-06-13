@@ -1,5 +1,5 @@
-#include "hittable_list.h"
-#include "hittable.h"
+#include "InOneWeekendJeff/hittables/hittable_list.h"
+#include "InOneWeekendJeff/hittables/hittable.h"
 
 #include <cmath>
 

@@ -2,9 +2,9 @@
 
 #include <cassert>
 
-#include "constants.h"
-#include "materials/lambertian.h"
-#include "ray.h"
+#include "InOneWeekendJeff/constants.h"
+#include "InOneWeekendJeff/materials/lambertian.h"
+#include "InOneWeekendJeff/ray.h"
 
 Sphere::Sphere(Point3 center, double r)
     : Sphere(center, r, std::make_unique<Lambertian>()) {}

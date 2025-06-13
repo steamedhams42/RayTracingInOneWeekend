@@ -3,11 +3,11 @@
 
 #include <memory>
 
-#include "bounding_box.h"
-#include "hittable.h"
-#include "hittable_list.h"
-#include "interval.h"
-#include "ray.h"
+#include "InOneWeekendJeff/bounding_box.h"
+#include "InOneWeekendJeff/hittables/hittable.h"
+#include "InOneWeekendJeff/hittables/hittable_list.h"
+#include "InOneWeekendJeff/interval.h"
+#include "InOneWeekendJeff/ray.h"
 
 class BvhNode : public Hittable {
  public:

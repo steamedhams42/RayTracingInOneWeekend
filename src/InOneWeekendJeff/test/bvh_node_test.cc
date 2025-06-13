@@ -3,7 +3,7 @@
 #include <memory>
 #include <vector>
 
-#include "InOneWeekendJeff/bvh_node.h"
+#include "InOneWeekendJeff/hittables/bvh_node.h"
 
 class BvhNodeTest : public TestBase {
  public:

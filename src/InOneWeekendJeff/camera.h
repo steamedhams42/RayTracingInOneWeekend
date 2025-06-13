@@ -3,7 +3,7 @@
 
 #include "color.h"
 #include "constants.h"
-#include "hittable_list.h"
+#include "hittables/hittable_list.h"
 #include "point3.h"
 #include "ray.h"
 

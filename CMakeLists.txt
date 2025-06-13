@@ -4,7 +4,7 @@
 # See README.md for guidance.
 #---------------------------------------------------------------------------------------------------
 
-cmake_minimum_required ( VERSION 3.1.0...3.27.0 )
+cmake_minimum_required ( VERSION 3.1.0..3.27.0 )
 
 project ( RTWeekend LANGUAGES CXX )
 
@@ -31,14 +31,14 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/color.h
   src/InOneWeekendJeff/ray.cc
   src/InOneWeekendJeff/ray.h
-  src/InOneWeekendJeff/hittable.cc
-  src/InOneWeekendJeff/hittable.h
-  src/InOneWeekendJeff/bvh_node.cc
-  src/InOneWeekendJeff/bvh_node.h
-  src/InOneWeekendJeff/sphere.cc
-  src/InOneWeekendJeff/sphere.h
-  src/InOneWeekendJeff/hittable_list.cc
-  src/InOneWeekendJeff/hittable_list.h
+  src/InOneWeekendJeff/hittables/hittable.cc
+  src/InOneWeekendJeff/hittables/hittable.h
+  src/InOneWeekendJeff/hittables/bvh_node.cc
+  src/InOneWeekendJeff/hittables/bvh_node.h
+  src/InOneWeekendJeff/hittables/sphere.cc
+  src/InOneWeekendJeff/hittables/sphere.h
+  src/InOneWeekendJeff/hittables/hittable_list.cc
+  src/InOneWeekendJeff/hittables/hittable_list.h
   src/InOneWeekendJeff/interval.cc
   src/InOneWeekendJeff/interval.h
   src/InOneWeekendJeff/camera.cc
@@ -64,14 +64,14 @@ set ( SOURCE_ONE_WEEKEND_TEST
   src/InOneWeekendJeff/vec3.cc
   src/InOneWeekendJeff/point3.h
   src/InOneWeekendJeff/point3.cc
-  src/InOneWeekendJeff/bvh_node.cc
-  src/InOneWeekendJeff/bvh_node.h
-  src/InOneWeekendJeff/hittable.h
-  src/InOneWeekendJeff/hittable.cc
-  src/InOneWeekendJeff/hittable_list.h
-  src/InOneWeekendJeff/hittable_list.cc
-  src/InOneWeekendJeff/sphere.h
-  src/InOneWeekendJeff/sphere.cc
+  src/InOneWeekendJeff/hittables/bvh_node.cc
+  src/InOneWeekendJeff/hittables/bvh_node.h
+  src/InOneWeekendJeff/hittables/hittable.h
+  src/InOneWeekendJeff/hittables/hittable.cc
+  src/InOneWeekendJeff/hittables/hittable_list.h
+  src/InOneWeekendJeff/hittables/hittable_list.cc
+  src/InOneWeekendJeff/hittables/sphere.h
+  src/InOneWeekendJeff/hittables/sphere.cc
   src/InOneWeekendJeff/ray.h
   src/InOneWeekendJeff/ray.cc
   src/InOneWeekendJeff/interval.h

@@ -3,9 +3,9 @@
 #include <cassert>
 #include <cmath>
 
+#include "InOneWeekendJeff/hittables/hittable.h"
+#include "InOneWeekendJeff/hittables/hittable_list.h"
 #include "constants.h"
-#include "hittable.h"
-#include "hittable_list.h"
 #include "interval.h"
 #include "materials/material.h"
 #include "random.h"

@@ -3,7 +3,7 @@
 #include <cassert>
 
 #include "InOneWeekendJeff/constants.h"
-#include "InOneWeekendJeff/sphere.h"
+#include "InOneWeekendJeff/hittables/sphere.h"
 #include "InOneWeekendJeff/test/test_base.h"
 
 class MetalTest : public TestBase {

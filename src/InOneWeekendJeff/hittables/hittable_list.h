@@ -3,10 +3,10 @@
 
 #include <memory>
 #include <vector>
-#include "bounding_box.h"
-#include "hittable.h"
-#include "interval.h"
-#include "ray.h"
+#include "InOneWeekendJeff/bounding_box.h"
+#include "InOneWeekendJeff/hittables/hittable.h"
+#include "InOneWeekendJeff/interval.h"
+#include "InOneWeekendJeff/ray.h"
 
 class HittableList : public Hittable {
  public:

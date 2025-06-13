@@ -2,7 +2,7 @@
 #define MATERIAL_H
 
 #include "InOneWeekendJeff/color.h"
-#include "InOneWeekendJeff/hittable.h"
+#include "InOneWeekendJeff/hittables/hittable.h"
 #include "InOneWeekendJeff/ray.h"
 
 // Material class determines how a light reflects an incident ray.

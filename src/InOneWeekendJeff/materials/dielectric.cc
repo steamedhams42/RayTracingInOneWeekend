@@ -3,7 +3,7 @@
 #include <cmath>
 
 #include "InOneWeekendJeff/color.h"
-#include "InOneWeekendJeff/hittable.h"
+#include "InOneWeekendJeff/hittables/hittable.h"
 #include "InOneWeekendJeff/ray.h"
 
 Dielectric::Dielectric(const double refraction_index)

@@ -1,7 +1,7 @@
 #include "InOneWeekendJeff/materials/lambertian.h"
 
 #include "InOneWeekendJeff/color.h"
-#include "InOneWeekendJeff/hittable.h"
+#include "InOneWeekendJeff/hittables/hittable.h"
 #include "InOneWeekendJeff/materials/material.h"
 #include "InOneWeekendJeff/vec3.h"
 

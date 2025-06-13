@@ -1,10 +1,10 @@
 #ifndef HITTABLE_H
 #define HITTABLE_H
 
-#include "bounding_box.h"
-#include "interval.h"
-#include "point3.h"
-#include "vec3.h"
+#include "InOneWeekendJeff/bounding_box.h"
+#include "InOneWeekendJeff/interval.h"
+#include "InOneWeekendJeff/point3.h"
+#include "InOneWeekendJeff/vec3.h"
 
 class Ray;
 class Material;

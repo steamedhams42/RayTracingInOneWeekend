@@ -1,5 +1,6 @@
-#include "hittable.h"
-#include "ray.h"
+#include "InOneWeekendJeff/hittables/hittable.h"
+
+#include "InOneWeekendJeff/ray.h"
 
 void Hittable::HitResult::setFaceNormal(const Ray& ray,
                                         const Vec3& outward_normal) {

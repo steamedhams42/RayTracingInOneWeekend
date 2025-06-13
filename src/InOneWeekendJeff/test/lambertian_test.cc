@@ -3,8 +3,8 @@
 #include <cassert>
 
 #include "InOneWeekendJeff/constants.h"
+#include "InOneWeekendJeff/hittables/sphere.h"
 #include "InOneWeekendJeff/materials/lambertian.h"
-#include "InOneWeekendJeff/sphere.h"
 #include "InOneWeekendJeff/test/test_base.h"
 
 class LambertianTest : public TestBase {

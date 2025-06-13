@@ -39,6 +39,9 @@ class Interval {
   // Sorted by smallest min_ then max_
   bool operator<(const Interval& rhs) const;
 
+  // Returns a new interval using the smallest min and largest max between them.
+  static Interval EncloseTwoIntervals(const Interval& lhs, const Interval& rhs);
+
  private:
   double min_;
   double max_;

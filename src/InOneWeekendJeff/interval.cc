@@ -1,5 +1,7 @@
 #include "interval.h"
 
+#include <cmath>
+
 #include "constants.h"
 
 // Default interval is empty
@@ -57,4 +59,11 @@ bool Interval::is_empty() {
 bool Interval::operator<(const Interval& rhs) const {
   return std::make_pair(this->min_, this->max_) <
          std::make_pair(rhs.min_, rhs.max_);
+}
+
+// static
+Interval Interval::EncloseTwoIntervals(const Interval& lhs,
+                                       const Interval& rhs) {
+  return Interval(std::min(lhs.min(), rhs.min()),
+                  std::max(lhs.max(), rhs.max()));
 }

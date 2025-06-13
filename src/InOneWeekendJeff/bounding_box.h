@@ -8,7 +8,7 @@
 // 3D axis-aligned bounding box.
 class BoundingBox {
  public:
-  // No-arg c'tor BoundingBox() are 3 empty intervals
+  // No-arg c'tor creates 3 empty intervals
   BoundingBox();
   BoundingBox(Interval&&, Interval&&, Interval&&);
   BoundingBox(const BoundingBox&) = default;

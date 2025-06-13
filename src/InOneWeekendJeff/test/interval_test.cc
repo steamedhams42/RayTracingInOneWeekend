@@ -37,12 +37,15 @@ class IntervalTest : public TestBase {
     ival.set_max(0);
     assert(ival.is_empty());
 
+    // Test comparator is working
     ival = Interval(0, 1);
     Interval ival2(0, 2);
     Interval ival3(1, 2);
-
     assert(ival < ival2);
     assert(ival2 < ival3);
     assert(ival < ival3);
+
+    Interval ival4 = Interval::EncloseTwoIntervals(ival, ival2);
+    assert(ival4 == Interval(0, 2));
   }
 };

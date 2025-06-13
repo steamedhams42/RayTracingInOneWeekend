@@ -74,3 +74,13 @@ bool BoundingBox::hit(const Ray& incident_ray, Interval ray_t_interval) const {
 
   return true;
 }
+
+// static
+BoundingBox BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(
+    const BoundingBox& lhs,
+    const BoundingBox& rhs) {
+  auto x = Interval::EncloseTwoIntervals(lhs.x_, rhs.x_);
+  auto y = Interval::EncloseTwoIntervals(lhs.y_, rhs.y_);
+  auto z = Interval::EncloseTwoIntervals(lhs.z_, rhs.z_);
+  return BoundingBox(std::move(x), std::move(y), std::move(z));
+}

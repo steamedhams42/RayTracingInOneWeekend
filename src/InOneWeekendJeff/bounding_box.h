@@ -23,9 +23,13 @@ class BoundingBox {
   // https://en.wikipedia.org/wiki/Slab_method
   bool hit(const Ray& incident_ray, Interval ray_t_interval) const;
 
-  // Takes two points in R3 and returns the smallest axis-aligned bounding box.
+  // Takes two points in R3 and returns the smallest bounding box.
   static BoundingBox CreateBoundingBoxFromTwoPoints(const Point3&,
                                                     const Point3&);
+
+  // Returns the smallest bounding box that encloses two bounding boxes.
+  static BoundingBox CreateBoundingBoxFromTwoBoundingBoxes(const BoundingBox&,
+                                                           const BoundingBox&);
 
  private:
   Interval x_, y_, z_;

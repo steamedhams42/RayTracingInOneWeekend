@@ -46,6 +46,22 @@ class BoundingBoxTest : public TestBase {
     assert(!unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
   }
 
+  void test_merging_two_bounding_boxes() {
+    BoundingBox a = create_unit_bounding_box();
+    BoundingBox b = create_unit_bounding_box();
+    auto merged = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(b, a);
+    assert(merged.x_interval() == Interval(0, 1));
+    assert(merged.y_interval() == Interval(0, 1));
+    assert(merged.z_interval() == Interval(0, 1));
+
+    BoundingBox c(Interval(-1, 2), Interval(-3, 4), Interval(5, 0));
+    merged = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(c, merged);
+
+    assert(merged.x_interval() == Interval(-1, 2));
+    assert(merged.y_interval() == Interval(-3, 4));
+    assert(merged.z_interval() == Interval(0, 1));
+  }
+
  public:
   void RunTest() override {
     BoundingBox empty_bb;
@@ -71,5 +87,6 @@ class BoundingBoxTest : public TestBase {
 
     test_rays_missing_the_bounding_box();
     test_rays_on_the_surface_of_the_bounding_box();
+    test_merging_two_bounding_boxes();
   }
 };

@@ -4,6 +4,10 @@
 
 BvhNode::BvhNode(HittableList list) {}
 
+BvhNode::~BvhNode() {
+  payload_ = nullptr;
+}
+
 BvhNode::BvhNode(std::vector<std::unique_ptr<Hittable>>& hittables,
                  int start,
                  int end) {
@@ -40,7 +44,7 @@ bool BvhNode::hit(const Ray& incident_ray,
       incident_ray, Interval(ival.min(), hit_left ? result.t : ival.max()),
       result);
 
-  return hit_left || hit_right;
+  return hit_left or hit_right;
 }
 
 BoundingBox BvhNode::bounding_box() {

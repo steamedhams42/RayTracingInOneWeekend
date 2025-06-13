@@ -12,6 +12,7 @@
 class BvhNode : public Hittable {
  public:
   BvhNode(HittableList hittables);
+  ~BvhNode();
 
   // Start and end represent half-open intervals (right-exclusive)
   BvhNode(std::vector<std::unique_ptr<Hittable>>& objects, int start, int end);

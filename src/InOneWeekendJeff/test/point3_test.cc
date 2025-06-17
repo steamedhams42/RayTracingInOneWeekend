@@ -3,7 +3,7 @@
 #include "InOneWeekendJeff/test/test_base.h"
 
 #include <cassert>
-#include <iostream>
+#include <cmath>
 
 class Point3Test : public TestBase {
  public:

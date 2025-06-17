@@ -4,7 +4,7 @@
 # See README.md for guidance.
 #---------------------------------------------------------------------------------------------------
 
-cmake_minimum_required ( VERSION 3.1.0..3.27.0 )
+cmake_minimum_required ( VERSION 3.27.0 )
 
 project ( RTWeekend LANGUAGES CXX )
 
@@ -46,6 +46,7 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/point3.cc
   src/InOneWeekendJeff/point3.h
   src/InOneWeekendJeff/random.h
+  src/InOneWeekendJeff/random.cc
   src/InOneWeekendJeff/materials/dielectric.h
   src/InOneWeekendJeff/materials/dielectric.cc
   src/InOneWeekendJeff/materials/material.h
@@ -83,6 +84,8 @@ set ( SOURCE_ONE_WEEKEND_TEST
   src/InOneWeekendJeff/materials/metal.cc
   src/InOneWeekendJeff/materials/lambertian.h
   src/InOneWeekendJeff/materials/lambertian.cc
+  src/InOneWeekendJeff/random.h
+  src/InOneWeekendJeff/random.cc
   src/InOneWeekendJeff/test/bvh_node_test.cc
   src/InOneWeekendJeff/test/metal_test.cc
   src/InOneWeekendJeff/test/bounding_box_test.cc

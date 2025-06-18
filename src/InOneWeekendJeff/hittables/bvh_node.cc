@@ -2,7 +2,10 @@
 
 #include <algorithm>
 
-BvhNode::BvhNode(HittableList list) {}
+#include "InOneWeekendJeff/random.h"
+
+BvhNode::BvhNode(HittableList& list)
+    : BvhNode(list.hittables(), 0, list.hittables().size()) {}
 
 BvhNode::~BvhNode() {
   payload_ = nullptr;
@@ -20,11 +23,22 @@ BvhNode::BvhNode(std::vector<std::unique_ptr<Hittable>>& hittables,
   } else if (length == 1) {
     payload_ = hittables[start].get();
   } else {
-    // std::sort(hittables.begin() + start, hittables.begin() + end,
-    //           [&](const Hittable& lhs, const Hittable& rhs) {
-    //             // TODO: write a comparator to sort 2 hittables by an axis.
-    //             return false;
-    //           });
+    // Sorts by a randomly chosen axis
+    int sort_by_axis = Random::random_int(0, 2);
+    std::sort(hittables.begin() + start, hittables.begin() + end,
+              [&](const std::unique_ptr<Hittable>& lhs,
+                  const std::unique_ptr<Hittable>& rhs) {
+                if (sort_by_axis == 0) {
+                  return lhs->bounding_box().x_interval().min() <
+                         rhs->bounding_box().x_interval().min();
+                } else if (sort_by_axis == 1) {
+                  return lhs->bounding_box().y_interval().min() <
+                         rhs->bounding_box().y_interval().min();
+                } else {
+                  return lhs->bounding_box().z_interval().min() <
+                         rhs->bounding_box().z_interval().min();
+                }
+              });
     int mid = start + (length / 2);
     // Recurse on the two left and right partitions.
     left_ = std::make_unique<BvhNode>(hittables, start, mid);

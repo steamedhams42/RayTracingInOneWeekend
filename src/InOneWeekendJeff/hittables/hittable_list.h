@@ -21,6 +21,7 @@ class HittableList : public Hittable {
            Hittable::HitResult& result) const override;
 
   BoundingBox bounding_box() override;
+  std::vector<std::unique_ptr<Hittable>>& hittables();
 
  private:
   std::vector<std::unique_ptr<Hittable>> hittables_;

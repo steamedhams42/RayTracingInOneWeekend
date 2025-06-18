@@ -11,7 +11,7 @@
 
 class BvhNode : public Hittable {
  public:
-  BvhNode(HittableList hittables);
+  BvhNode(HittableList& hittables);
   ~BvhNode();
 
   // Start and end represent half-open intervals (right-exclusive)

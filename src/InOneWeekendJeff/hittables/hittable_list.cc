@@ -36,3 +36,7 @@ bool HittableList::hit(const Ray& ray,
 BoundingBox HittableList::bounding_box() {
   return bounding_box_;
 }
+
+std::vector<std::unique_ptr<Hittable>>& HittableList::hittables() {
+  return hittables_;
+}

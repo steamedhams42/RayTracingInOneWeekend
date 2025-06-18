@@ -35,7 +35,7 @@ const double FOCAL_DISTANCE = 10;
 const double ASPECT_WIDTH = 16.0;
 const double ASPECT_HEIGHT = 9.0;
 
-const int IMAGE_WIDTH = 100;
+const int IMAGE_WIDTH = 1000;
 
 // The vertical angle (degrees) of the camera's fov.
 const double VERTICAL_FIELD_OF_VIEW = 20;
@@ -46,7 +46,7 @@ const int SAMPLES_PER_PIXEL = 20;
 
 // Speeds up rendering by limiting the number of light ray bounces and
 // recursive calls
-const int MAX_LIGHT_BOUNCES = 10;
+const int MAX_LIGHT_BOUNCES = 20;
 
 }  // namespace camera
 

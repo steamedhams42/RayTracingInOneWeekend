@@ -3,20 +3,21 @@
 #include <iostream>
 #include <memory>
 
+#include "InOneWeekendJeff/camera.h"
+#include "InOneWeekendJeff/constants.h"
+#include "InOneWeekendJeff/hittables/bvh_node.h"
 #include "InOneWeekendJeff/hittables/hittable_list.h"
 #include "InOneWeekendJeff/hittables/sphere.h"
-#include "camera.h"
-#include "constants.h"
-#include "materials/dielectric.h"
-#include "materials/lambertian.h"
-#include "materials/metal.h"
-#include "point3.h"
-#include "random.h"
+#include "InOneWeekendJeff/materials/dielectric.h"
+#include "InOneWeekendJeff/materials/lambertian.h"
+#include "InOneWeekendJeff/materials/metal.h"
+#include "InOneWeekendJeff/point3.h"
+#include "InOneWeekendJeff/random.h"
 
 HittableList hittables;
 
 void createAndAddHittables() {
-  // the "grounded" sphere in the foreground
+  // The "grounded" sphere in the foreground
   auto earth = std::make_unique<Sphere>(
       Point3(0, -1000, 0), 1000,
       std::make_unique<Lambertian>(Color(0.5, 0.5, 0.5)));
@@ -73,6 +74,7 @@ void createAndAddHittables() {
 
 int main() {
   createAndAddHittables();
+  auto bvh_root = std::make_unique<BvhNode>(hittables);
 
   Camera camera(
       constants::camera::CAMERA_CENTER, constants::camera::FOCAL_POINT,

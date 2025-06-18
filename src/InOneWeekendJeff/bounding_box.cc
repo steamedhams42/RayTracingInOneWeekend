@@ -9,6 +9,10 @@ BoundingBox::BoundingBox(Interval&& x, Interval&& y, Interval&& z)
 
 BoundingBox::~BoundingBox() = default;
 
+bool BoundingBox::operator==(const BoundingBox& rhs) const {
+  return x_ == rhs.x_ and y_ == rhs.y_ and z_ == rhs.z_;
+}
+
 // static
 BoundingBox BoundingBox::CreateBoundingBoxFromTwoPoints(const Point3& a,
                                                         const Point3& b) {

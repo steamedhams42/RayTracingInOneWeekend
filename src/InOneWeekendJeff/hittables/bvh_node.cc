@@ -67,8 +67,13 @@ BvhNode BvhNode::CreateBvhTreeImpl(
 bool BvhNode::hit(const Ray& incident_ray,
                   Interval ival,
                   Hittable::HitResult& result) const {
-  if (!bounding_box_.hit(incident_ray, ival)) {
+  bool does_ray_hit_this_node = bounding_box_.hit(incident_ray, ival);
+  if (!does_ray_hit_this_node) {
     return false;
+  }
+  // Do not recurse on leaf nodes.
+  if (!left_ and !right_) {
+    return does_ray_hit_this_node;
   }
 
   bool hit_left = left_->hit(incident_ray, ival, result);

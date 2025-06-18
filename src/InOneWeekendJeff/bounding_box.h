@@ -15,6 +15,8 @@ class BoundingBox {
   BoundingBox& operator=(const BoundingBox&) = default;
   ~BoundingBox();
 
+  bool operator==(const BoundingBox&) const;
+
   const Interval& x_interval();
   const Interval& y_interval();
   const Interval& z_interval();

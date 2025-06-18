@@ -16,7 +16,7 @@ class BvhNodeTest : public TestBase {
     hittable_list.add(std::make_unique<Sphere>(Point3(1, 1, 1), 1));
     hittable_list.add(std::make_unique<Sphere>(Point3(2, 2, 2), 1));
     hittable_list.add(std::make_unique<Sphere>(Point3(3, 3, 3), 1));
-    auto bvh = BvhNode::CreateBvhTree(hittable_list);
+    auto bvh = BvhNode::CreateBvhTree(hittable_list.hittables());
 
     bvh.bounding_box();
   }

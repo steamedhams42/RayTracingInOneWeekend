@@ -70,6 +70,7 @@ void createAndAddHittables() {
   hittables.add(std::move(brown_sphere));
   hittables.add(std::move(glass_sphere));
   hittables.add(std::move(metal_sphere));
+  hittables.InitBvhTree();
 }
 
 int main() {

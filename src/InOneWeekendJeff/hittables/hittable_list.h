@@ -4,6 +4,7 @@
 #include <memory>
 #include <vector>
 #include "InOneWeekendJeff/bounding_box.h"
+#include "InOneWeekendJeff/hittables/bvh_node.h"
 #include "InOneWeekendJeff/hittables/hittable.h"
 #include "InOneWeekendJeff/interval.h"
 #include "InOneWeekendJeff/ray.h"
@@ -22,10 +23,12 @@ class HittableList : public Hittable {
 
   BoundingBox bounding_box() override;
   std::vector<std::unique_ptr<Hittable>>& hittables();
+  void InitBvhTree();
 
  private:
   std::vector<std::unique_ptr<Hittable>> hittables_;
   BoundingBox bounding_box_;
+  BvhNode bvh_;
 };
 
 #endif

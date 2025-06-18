@@ -16,20 +16,24 @@ void HittableList::add(std::unique_ptr<Hittable> hittable) {
   hittables_.push_back(std::move(hittable));
 }
 
+void HittableList::InitBvhTree() {
+  bvh_ = std::move(BvhNode::CreateBvhTree(this->hittables_));
+}
+
 bool HittableList::hit(const Ray& ray,
                        Interval intvl,
                        Hittable::HitResult& result) const {
   bool hit_anything = false;
 
-  for (const auto& hittable : hittables_) {
-    HitResult temp_result;
-    if (hittable->hit(ray, intvl, temp_result)) {
-      hit_anything = true;
-      // Reset max t value so only the foreground-most hittable is rendered.
-      intvl = std::move(Interval(intvl.min(), temp_result.t));
-      result = temp_result;
-    }
+  // for (const auto& hittable : hittables_) {
+  HitResult temp_result;
+  if (bvh_.hit(ray, intvl, temp_result)) {
+    hit_anything = true;
+    // Reset max t value so only the foreground-most hittable is rendered.
+    intvl = std::move(Interval(intvl.min(), temp_result.t));
+    result = temp_result;
   }
+  //}
   return hit_anything;
 }
 

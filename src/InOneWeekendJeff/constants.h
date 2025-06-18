@@ -36,7 +36,7 @@ const double FOCAL_DISTANCE = 8.6023252670426;
 const double ASPECT_WIDTH = 16.0;
 const double ASPECT_HEIGHT = 9.0;
 
-const int IMAGE_WIDTH = 500;
+const int IMAGE_WIDTH = 1000;
 
 // The vertical angle (degrees) of the camera's fov.
 const double VERTICAL_FIELD_OF_VIEW = 20;

@@ -6,16 +6,14 @@
 
 BvhNode::BvhNode() {}
 
-BvhNode::BvhNode(HittableList& hittables) {}
-
 BvhNode::~BvhNode() {
   payload_ = nullptr;
 }
 
 // static
-BvhNode BvhNode::CreateBvhTree(HittableList& hittables) {
-  return CreateBvhTreeImpl(hittables.hittables(), 0,
-                           hittables.hittables().size());
+BvhNode BvhNode::CreateBvhTree(
+    std::vector<std::unique_ptr<Hittable>>& hittables) {
+  return CreateBvhTreeImpl(hittables, 0, hittables.size());
 }
 
 // static

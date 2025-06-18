@@ -11,7 +11,7 @@ class Random {
   // Returns a real number between [min, max)
   static double random_real(double min, double max);
 
-  // Returns an integer between [min, max)
+  // Returns an integer between [min, max] inclusive
   static int random_int(int min, int max);
 };
 

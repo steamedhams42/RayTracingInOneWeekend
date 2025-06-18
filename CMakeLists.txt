@@ -174,8 +174,8 @@ elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 # Executables
-add_executable(inOneWeekendJeff    ${EXTERNAL} ${SOURCE_ONE_WEEKEND_JEFF})
-add_executable(inOneWeekendTest    ${EXTERNAL} ${SOURCE_ONE_WEEKEND_TEST})
+add_executable(InOneWeekendJeff    ${EXTERNAL} ${SOURCE_ONE_WEEKEND_JEFF})
+add_executable(InOneWeekendTest    ${EXTERNAL} ${SOURCE_ONE_WEEKEND_TEST})
 add_executable(theNextWeek         ${EXTERNAL} ${SOURCE_NEXT_WEEK})
 # add_executable(theRestOfYourLife ${EXTERNAL} ${SOURCE_REST_OF_YOUR_LIFE})
 # add_executable(cos_cubed         src/TheRestOfYourLife/cos_cubed.cc         )
@@ -188,4 +188,5 @@ add_executable(theNextWeek         ${EXTERNAL} ${SOURCE_NEXT_WEEK})
 
 
 # Tests
-add_test(NAME test_run COMMAND inOneWeekendTest)
+enable_testing()
+add_test(NAME test_run COMMAND InOneWeekendTest)

@@ -5,10 +5,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "inOneWeekendJeff",
+      "name": "InOneWeekendJeff",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/build/inOneWeekendJeff",
+      "program": "${workspaceFolder}/build/InOneWeekendJeff",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${fileDirname}",
@@ -29,10 +29,10 @@
       ]
     },
     {
-      "name": "inOneWeekendTest",
+      "name": "InOneWeekendJeffTest",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/build/inOneWeekendTest",
+      "program": "${workspaceFolder}/build/InOneWeekendTest",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${fileDirname}",

@@ -1,8 +1,9 @@
 #include "InOneWeekendJeff/random.h"
-#include "test_base.h"
 
 #include <cassert>
-#include "InOneWeekendJeff/interval.h"
+#include <iostream>
+
+#include "test_base.h"
 
 class RandomTest : public TestBase {
  public:
@@ -30,5 +31,7 @@ class RandomTest : public TestBase {
       assert(x > -1);
       assert(x < 1);
     }
+
+    std::cout << "BRO RANDOM: " << Random::random_int(0, 1) << std::endl;
   }
 };

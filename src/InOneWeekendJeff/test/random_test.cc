@@ -1,7 +1,6 @@
 #include "InOneWeekendJeff/random.h"
 
 #include <cassert>
-#include <iostream>
 
 #include "test_base.h"
 
@@ -32,6 +31,9 @@ class RandomTest : public TestBase {
       assert(x < 1);
     }
 
-    std::cout << "BRO RANDOM: " << Random::random_int(0, 1) << std::endl;
+    for (int j = 0; j < 100; j++) {
+      int x = Random::random_int(0, 1);
+      assert(x == 1 or x == 0);
+    }
   }
 };

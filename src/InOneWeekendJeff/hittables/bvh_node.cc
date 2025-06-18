@@ -4,24 +4,36 @@
 
 #include "InOneWeekendJeff/random.h"
 
-BvhNode::BvhNode(HittableList& list)
-    : BvhNode(list.hittables(), 0, list.hittables().size()) {}
+BvhNode::BvhNode() {}
+
+BvhNode::BvhNode(HittableList& hittables) {}
 
 BvhNode::~BvhNode() {
   payload_ = nullptr;
 }
 
-BvhNode::BvhNode(std::vector<std::unique_ptr<Hittable>>& hittables,
-                 int start,
-                 int end) {
+// static
+BvhNode BvhNode::CreateBvhTree(HittableList& hittables) {
+  return CreateBvhTreeImpl(hittables.hittables(), 0,
+                           hittables.hittables().size());
+}
+
+// static
+BvhNode BvhNode::CreateBvhTreeImpl(
+    std::vector<std::unique_ptr<Hittable>>& hittables,
+    int start,
+    int end) {
   // Construction overview: Use divide and conquer to construct a binary tree
   // of bounding boxes each which partions the space in two (not necessarily
   // half). The spaces will be divided by one randomly selected axis of three.
   int length = end - start;
+  BvhNode result;
   if (length <= 0) {
-    return;
+    return result;
   } else if (length == 1) {
-    payload_ = hittables[start].get();
+    result.payload_ = hittables[start].get();
+    result.bounding_box_ = result.payload_->bounding_box();
+    return result;
   } else {
     // Sorts by a randomly chosen axis
     int sort_by_axis = Random::random_int(0, 2);
@@ -41,8 +53,16 @@ BvhNode::BvhNode(std::vector<std::unique_ptr<Hittable>>& hittables,
               });
     int mid = start + (length / 2);
     // Recurse on the two left and right partitions.
-    left_ = std::make_unique<BvhNode>(hittables, start, mid);
-    right_ = std::make_unique<BvhNode>(hittables, mid, end);
+    result.left_ =
+        std::make_unique<BvhNode>(CreateBvhTreeImpl(hittables, start, mid));
+    result.right_ =
+        std::make_unique<BvhNode>(CreateBvhTreeImpl(hittables, mid, end));
+    result.bounding_box_ = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(
+        result.left_.get() == nullptr ? BoundingBox()
+                                      : result.left_->bounding_box(),
+        result.right_.get() == nullptr ? BoundingBox()
+                                       : result.right_->bounding_box());
+    return result;
   }
 }
 

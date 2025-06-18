@@ -11,17 +11,29 @@
 
 class BvhNode : public Hittable {
  public:
+  BvhNode();
   BvhNode(HittableList& hittables);
-  ~BvhNode();
 
-  // Start and end represent half-open intervals (right-exclusive)
-  BvhNode(std::vector<std::unique_ptr<Hittable>>& objects, int start, int end);
+  // Rule of 5
+  BvhNode(const BvhNode&) = default;
+  BvhNode(BvhNode&&) = default;
+  BvhNode& operator=(const BvhNode&) = delete;
+  BvhNode& operator=(BvhNode&&) = delete;
+  ~BvhNode();
 
   bool hit(const Ray& incident_ray,
            Interval ival,
            Hittable::HitResult& result) const override;
 
   BoundingBox bounding_box() override;
+
+  static BvhNode CreateBvhTree(HittableList& hittables);
+
+  // Start and end represent half-open intervals (right-exclusive)
+  static BvhNode CreateBvhTreeImpl(
+      std::vector<std::unique_ptr<Hittable>>& hittables,
+      int start,
+      int end);
 
  private:
   BoundingBox bounding_box_;

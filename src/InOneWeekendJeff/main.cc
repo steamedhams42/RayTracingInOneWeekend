@@ -54,16 +54,16 @@ void createAndAddHittables() {
     }
   }
 
-  // glass sphere
-  auto glass_sphere = std::make_unique<Sphere>(
-      Point3(0, 1, 0), 1, std::make_unique<Dielectric>(1.5));
-
   // brown sphere in the back
   auto brown_sphere = std::make_unique<Sphere>(
       Point3(-4, 1, 0), 1.0,
       std::make_unique<Lambertian>(Color(0.4, 0.2, 0.1)));
 
-  // metallic sphere
+  // glass sphere in the center
+  auto glass_sphere = std::make_unique<Sphere>(
+      Point3(0, 1, 0), 1, std::make_unique<Dielectric>(1.5));
+
+  // metallic sphere in front
   auto metal_sphere = std::make_unique<Sphere>(Point3(4, 1.0, 0.0), 1.0,
                                                std::make_unique<Metal>());
 
@@ -74,7 +74,6 @@ void createAndAddHittables() {
 
 int main() {
   createAndAddHittables();
-  auto bvh_root = std::make_unique<BvhNode>(hittables);
 
   Camera camera(
       constants::camera::CAMERA_CENTER, constants::camera::FOCAL_POINT,

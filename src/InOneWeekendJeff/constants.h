@@ -29,13 +29,14 @@ const Vec3 Z_AXIS_BASIS{0, 0, 1};
 namespace camera {
 
 const Point3 CAMERA_CENTER{13, 2, 3};
-const Point3 FOCAL_POINT{0, 0, 0};
-const double FOCAL_DISTANCE = 10;
+const Point3 FOCAL_POINT{5, 1.0, 0.0};
+// distance formula between camera center and focal point
+const double FOCAL_DISTANCE = 8.6023252670426;
 
 const double ASPECT_WIDTH = 16.0;
 const double ASPECT_HEIGHT = 9.0;
 
-const int IMAGE_WIDTH = 1000;
+const int IMAGE_WIDTH = 500;
 
 // The vertical angle (degrees) of the camera's fov.
 const double VERTICAL_FIELD_OF_VIEW = 20;

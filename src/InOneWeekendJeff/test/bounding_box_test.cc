@@ -25,9 +25,8 @@ class BoundingBoxTest : public TestBase {
     // Create 3 cases for a ray that is parallel to each axis and does not
     // hit the bounding box.
     BoundingBox unit_bb = create_unit_bounding_box();
-    Vec3 direction(3, 0, 0);
+    Vec3 direction(-3, 0, 0);
     Point3 origin(-1, 0.5, 0.5);
-    direction = Vec3(-3, 0, 0);
     Ray incident_ray(origin, direction);
     assert(!unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
 

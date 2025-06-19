@@ -12,7 +12,8 @@ void HittableList::clearAll() {
 }
 
 void HittableList::add(std::unique_ptr<Hittable> hittable) {
-  bounding_box_ = hittable->bounding_box();
+  bounding_box_ = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(
+      bounding_box_, hittable->bounding_box());
   hittables_.push_back(std::move(hittable));
 }
 
@@ -21,16 +22,16 @@ void HittableList::InitBvhTree() {
 }
 
 bool HittableList::hit(const Ray& ray,
-                       Interval intvl,
+                       Interval interval,
                        Hittable::HitResult& result) const {
   bool hit_anything = false;
 
   // for (const auto& hittable : hittables_) {
   HitResult temp_result;
-  if (bvh_.hit(ray, intvl, temp_result)) {
+  if (bvh_.hit(ray, interval, temp_result)) {
     hit_anything = true;
     // Reset max t value so only the foreground-most hittable is rendered.
-    intvl = std::move(Interval(intvl.min(), temp_result.t));
+    interval = std::move(Interval(interval.min(), temp_result.t));
     result = temp_result;
   }
   //}

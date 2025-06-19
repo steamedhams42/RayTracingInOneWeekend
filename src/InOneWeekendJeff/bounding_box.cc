@@ -35,22 +35,35 @@ const Interval& BoundingBox::z_interval() {
   return this->z_;
 }
 
+Interval BoundingBox::get_axis(int i) const {
+  if (i == 0) {
+    return x_;
+  } else if (i == 1) {
+    return y_;
+  } else {
+    return z_;
+  }
+}
+
 bool BoundingBox::hit(const Ray& incident_ray, Interval ray_t_interval) const {
   const Point3 origin = incident_ray.origin();
   const Vec3 ray_direction = incident_ray.direction();
 
   for (int axis = 0; axis < 3; axis++) {
+    Interval current_axis = get_axis(axis);
     double vector_component = ray_direction[axis];
 
-    double t_close = (ray_t_interval.min() - origin[axis]) / vector_component;
-    double t_far = (ray_t_interval.max() - origin[axis]) / vector_component;
+    double t_close = (current_axis.min() - origin[axis]) / vector_component;
+    double t_far = (current_axis.max() - origin[axis]) / vector_component;
 
     // Workaround for NaNs
-    ray_t_interval.set_min(std::max(
-        t_close, std::min(std::min(t_far, t_close), ray_t_interval.max())));
+    ray_t_interval.set_min(
+        std::max(ray_t_interval.min(),
+                 std::min(std::min(t_far, t_close), ray_t_interval.max())));
 
-    ray_t_interval.set_max(std::min(
-        t_far, std::max(std::max(t_far, t_close), ray_t_interval.min())));
+    ray_t_interval.set_max(
+        std::min(ray_t_interval.max(),
+                 std::max(std::max(t_far, t_close), ray_t_interval.min())));
 
     if (ray_t_interval.is_empty()) {
       return false;

@@ -79,8 +79,9 @@ class Camera {
   Vec3 defocus_disk_u_;
   // Basis vector of the disk's height
   Vec3 defocus_disk_v_;
-  // Variation angle of rays through each pixel (degrees)
-  double defocus_angle_ = 0.6;
+  // Variation angle of rays through each pixel (degrees).
+  // Values > 0,0 adds a blurring effect
+  double defocus_angle_ = 0.0;
 
   // Anti-aliasing
   double pixel_samples_scale_;

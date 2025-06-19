@@ -34,7 +34,6 @@ bool HittableList::hit(const Ray& ray,
     interval = std::move(Interval(interval.min(), temp_result.t));
     result = temp_result;
   }
-  //}
   return hit_anything;
 }
 

@@ -19,10 +19,10 @@ HittableList hittables;
 void createAndAddHittables() {
   // The "grounded" sphere in the foreground
   auto earth = std::make_unique<Sphere>(
-      Point3(0, -1000, 0), 1000,
-      std::make_unique<Lambertian>(Color(0.5, 0.5, 0.5)));
+      Point3(0, 0, 0), 1, std::make_unique<Lambertian>(Color(0.5, 0.5, 0.5)));
   hittables.add(std::move(earth));
 
+  /*
   for (int x = -11; x < 11; x++) {
     for (int z = -11; z < 11; z++) {
       auto choose_mat = Random::random_real();
@@ -70,6 +70,7 @@ void createAndAddHittables() {
   hittables.add(std::move(brown_sphere));
   hittables.add(std::move(glass_sphere));
   hittables.add(std::move(metal_sphere));
+  */
   hittables.InitBvhTree();
 }
 

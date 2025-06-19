@@ -71,9 +71,9 @@ bool BvhNode::hit(const Ray& incident_ray,
   if (!does_ray_hit_this_node) {
     return false;
   }
-  // Do not recurse on leaf nodes.
+  // Do not recurse on leaf nodes. Leaf nodes contain the hittable objects.
   if (!left_ and !right_) {
-    return does_ray_hit_this_node;
+    return payload_->hit(incident_ray, ival, result);
   }
 
   bool hit_left = left_->hit(incident_ray, ival, result);

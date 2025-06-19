@@ -125,8 +125,8 @@ Ray Camera::get_random_ray_within_unit_square(int x, int y) {
   Point3 pixel_center = viewport_top_left_pixel_center_ +
                         (x + offset.x()) * pixel_delta_width_ +
                         (y + offset.y()) * pixel_delta_height_;
-  Point3 ray_origin =
-      (defocus_angle_ <= 0) ? camera_center_ : defocus_disk_sample();
+  Point3 ray_origin = camera_center_;
+  //(defocus_angle_ <= 0) ? camera_center_ : defocus_disk_sample();
   Vec3 ray_direction(pixel_center - camera_center_);
   double ray_time = Random::random_real();
   return Ray(ray_origin, ray_direction, ray_time);

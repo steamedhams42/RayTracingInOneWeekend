@@ -35,6 +35,8 @@ class BoundingBox {
 
  private:
   Interval x_, y_, z_;
+  // Returns the interval for the requested axis (0 == x, 1 == y, 2 == z)
+  Interval get_axis(int) const;
 };
 
 #endif

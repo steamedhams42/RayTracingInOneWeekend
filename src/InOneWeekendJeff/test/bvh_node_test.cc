@@ -28,7 +28,7 @@ class BvhNodeTest : public TestBase {
     assert(bvh.bounding_box() ==
            BoundingBox(Interval(-2, 2), Interval(0, 2), Interval(-1, 1)));
 
-    Point3 origin(0, 0, -10);
+    Point3 origin(0, 0, 10);
     Vec3 direction(0, 1, 0);
     Ray incident_ray(origin, direction);
     Hittable::HitResult hit_result;

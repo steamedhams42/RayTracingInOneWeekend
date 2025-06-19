@@ -45,35 +45,16 @@ bool BoundingBox::hit(const Ray& incident_ray, Interval ray_t_interval) const {
     double t_close = (ray_t_interval.min() - origin[axis]) / vector_component;
     double t_far = (ray_t_interval.max() - origin[axis]) / vector_component;
 
-    // Book's implementation. BUG: Seems to return true for boxes behind the
-    // ray's origin.
-    ray_t_interval.set_min(std::max(ray_t_interval.min(), t_close));
-    ray_t_interval.set_max(std::min(ray_t_interval.max(), t_far));
+    // Workaround for NaNs
+    ray_t_interval.set_min(std::max(
+        t_close, std::min(std::min(t_far, t_close), ray_t_interval.max())));
+
+    ray_t_interval.set_max(std::min(
+        t_far, std::max(std::max(t_far, t_close), ray_t_interval.min())));
 
     if (ray_t_interval.is_empty()) {
       return false;
     }
-
-    // Book's implementation. BUG: Seems to return true for boxes behind the
-    // ray's origin.
-    // if (t_close < t_far) {
-    //   if (t_close > ray_t_interval.min())
-    //     ray_t_interval.set_min(t_close);
-    //   if (t_far < ray_t_interval.max())
-    //     ray_t_interval.set_max(t_far);
-    // } else {
-    //   if (t_far > ray_t_interval.min())
-    //     ray_t_interval.set_min(t_far);
-    //   if (t_close < ray_t_interval.max())
-    //     ray_t_interval.set_max(t_close);
-    // }
-
-    // if (ray_t_interval.max() <= ray_t_interval.min())
-    //   return false;
-
-    // if (t_close > t_far) {
-    //   std::swap(t_close, t_far);
-    // }
   }
 
   return true;

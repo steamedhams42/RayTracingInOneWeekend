@@ -7,7 +7,7 @@
 BvhNode::BvhNode() {}
 
 BvhNode::~BvhNode() {
-  payload_ = nullptr;
+  hittable_ = nullptr;
 }
 
 // static
@@ -29,8 +29,8 @@ BvhNode BvhNode::CreateBvhTreeImpl(
   if (length <= 0) {
     return result;
   } else if (length == 1) {
-    result.payload_ = hittables[start].get();
-    result.bounding_box_ = result.payload_->bounding_box();
+    result.hittable_ = hittables[start].get();
+    result.bounding_box_ = result.hittable_->bounding_box();
     return result;
   } else {
     // Sorts by a randomly chosen axis
@@ -56,10 +56,7 @@ BvhNode BvhNode::CreateBvhTreeImpl(
     result.right_ =
         std::make_unique<BvhNode>(CreateBvhTreeImpl(hittables, mid, end));
     result.bounding_box_ = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(
-        result.left_.get() == nullptr ? BoundingBox()
-                                      : result.left_->bounding_box(),
-        result.right_.get() == nullptr ? BoundingBox()
-                                       : result.right_->bounding_box());
+        result.left_->bounding_box(), result.right_->bounding_box());
     return result;
   }
 }
@@ -73,7 +70,7 @@ bool BvhNode::hit(const Ray& incident_ray,
   }
   // Do not recurse on leaf nodes. Leaf nodes contain the hittable objects.
   if (!left_ and !right_) {
-    return payload_->hit(incident_ray, ival, result);
+    return hittable_->hit(incident_ray, ival, result);
   }
 
   bool hit_left = left_->hit(incident_ray, ival, result);

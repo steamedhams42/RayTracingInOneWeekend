@@ -41,9 +41,12 @@ class BvhNode : public Hittable {
       int start,
       int end);
 
+  // Represents the minimal bounding box of the union of all nodes.
   BoundingBox bounding_box_;
+
   // Only leaf nodes will point to an actual hittable.
-  Hittable* payload_ = nullptr;
+  Hittable* hittable_ = nullptr;
+
   std::unique_ptr<BvhNode> left_;
   std::unique_ptr<BvhNode> right_;
 };

@@ -23,25 +23,25 @@ BoundingBox BoundingBox::CreateBoundingBoxFromTwoPoints(const Point3& a,
                      std::move(z_interval));
 }
 
-const Interval& BoundingBox::x_interval() {
+const Interval& BoundingBox::x_interval() const {
   return this->x_;
 }
 
-const Interval& BoundingBox::y_interval() {
+const Interval& BoundingBox::y_interval() const {
   return this->y_;
 }
 
-const Interval& BoundingBox::z_interval() {
+const Interval& BoundingBox::z_interval() const {
   return this->z_;
 }
 
-Interval BoundingBox::get_axis(int i) const {
+const Interval& BoundingBox::get_axis(int i) const {
   if (i == 0) {
-    return x_;
+    return x_interval();
   } else if (i == 1) {
-    return y_;
+    return y_interval();
   } else {
-    return z_;
+    return z_interval();
   }
 }
 

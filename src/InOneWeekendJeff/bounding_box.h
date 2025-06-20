@@ -17,9 +17,9 @@ class BoundingBox {
 
   bool operator==(const BoundingBox&) const;
 
-  const Interval& x_interval();
-  const Interval& y_interval();
-  const Interval& z_interval();
+  const Interval& x_interval() const;
+  const Interval& y_interval() const;
+  const Interval& z_interval() const;
 
   // Utilizes the slab method algorithm to determine if a ray intersects a BB.
   // https://en.wikipedia.org/wiki/Slab_method
@@ -36,7 +36,7 @@ class BoundingBox {
  private:
   Interval x_, y_, z_;
   // Returns the interval for the requested axis (0 == x, 1 == y, 2 == z)
-  Interval get_axis(int) const;
+  const Interval& get_axis(int) const;
 };
 
 #endif

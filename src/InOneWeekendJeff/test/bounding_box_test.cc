@@ -61,6 +61,8 @@ class BoundingBoxTest : public TestBase {
     assert(merged.z_interval() == Interval(0, 1));
   }
 
+  void test_hit_detection_on_each_axis() {}
+
  public:
   void RunTest() override {
     BoundingBox empty_bb;
@@ -87,5 +89,6 @@ class BoundingBoxTest : public TestBase {
     test_rays_missing_the_bounding_box();
     test_rays_on_the_surface_of_the_bounding_box();
     test_merging_two_bounding_boxes();
+    test_hit_detection_on_each_axis();
   }
 };

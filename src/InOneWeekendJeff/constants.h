@@ -28,26 +28,26 @@ const Vec3 Z_AXIS_BASIS{0, 0, 1};
 // Camera
 namespace camera {
 
-const Point3 CAMERA_CENTER{0, 0, 10};
+const Point3 CAMERA_CENTER{0, 0, 0};
 const Point3 FOCAL_POINT{0.0, 0.0, 1.0};
-// distance formula between camera center and focal point
-const double FOCAL_DISTANCE = 9;
+// Distance formula between camera center and focal point.
+const double FOCAL_DISTANCE = Point3(CAMERA_CENTER - FOCAL_POINT).norm();
 
 const double ASPECT_WIDTH = 16.0;
 const double ASPECT_HEIGHT = 9.0;
 
-const int IMAGE_WIDTH = 500;
+const int IMAGE_WIDTH = 200;
 
 // The vertical angle (degrees) of the camera's fov.
 const double VERTICAL_FIELD_OF_VIEW = 20;
 
 // Anti-aliasing. Set to 1 to turn off AA.
 // setting lower than 100 will leave 'noise' in the form of black dots
-const int SAMPLES_PER_PIXEL = 100;
+const int SAMPLES_PER_PIXEL = 50;
 
 // Speeds up rendering by limiting the number of light ray bounces and
 // recursive calls
-const int MAX_LIGHT_BOUNCES = 50;
+const int MAX_LIGHT_BOUNCES = 20;
 
 // Variation angle of rays through each pixel (degrees)
 // values > 0,0 adds a blurring effect

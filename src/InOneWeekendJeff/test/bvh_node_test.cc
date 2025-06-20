@@ -14,24 +14,35 @@
 #include "InOneWeekendJeff/ray.h"
 
 class BvhNodeTest : public TestBase {
+ private:
+  const double UNIT_LENGTH = 1.0;
+
  public:
   void RunTest() override {
     HittableList hittable_list;
-    // hittable_list.add(std::make_unique<Sphere>(Point3(-3, 1, 0), 1));
-    // hittable_list.add(std::make_unique<Sphere>(Point3(-2, 1, 0), 1));
-    hittable_list.add(std::make_unique<Sphere>(Point3(-1, 1, 0), 1));
-    hittable_list.add(std::make_unique<Sphere>(Point3(0, 1, 0), 1));
-    hittable_list.add(std::make_unique<Sphere>(Point3(1, 1, 0), 1));
-    // hittable_list.add(std::make_unique<Sphere>(Point3(2, 1, 0), 1));
-    // hittable_list.add(std::make_unique<Sphere>(Point3(3, 1, 0), 1));
+    Point3 sphere_center(0, 1, 0);
+    hittable_list.add(std::make_unique<Sphere>(sphere_center, UNIT_LENGTH));
     auto bvh = BvhNode::CreateBvhTree(hittable_list.hittables());
     assert(bvh.bounding_box() ==
-           BoundingBox(Interval(-2, 2), Interval(0, 2), Interval(-1, 1)));
+           BoundingBox(Interval(-1, 1), Interval(0, 2), Interval(-1, 1)));
 
     Point3 origin(0, 0, 10);
-    Vec3 direction(0, 1, 0);
+    Vec3 direction(sphere_center - origin);
     Ray incident_ray(origin, direction);
     Hittable::HitResult hit_result;
     assert(bvh.hit(incident_ray, Interval(0, 1000), hit_result));
+
+    // TODO write a test for hit detection on leaf nodes.
+
+    // TODO pre-order DFS test?
+    hittable_list.add(std::make_unique<Sphere>(Point3(-3, 1, 0), UNIT_LENGTH));
+    hittable_list.add(std::make_unique<Sphere>(Point3(-2, 1, 0), UNIT_LENGTH));
+    hittable_list.add(std::make_unique<Sphere>(Point3(-1, 1, 0), UNIT_LENGTH));
+    hittable_list.add(std::make_unique<Sphere>(Point3(1, 1, 0), UNIT_LENGTH));
+    hittable_list.add(std::make_unique<Sphere>(Point3(2, 1, 0), UNIT_LENGTH));
+    hittable_list.add(std::make_unique<Sphere>(Point3(3, 1, 0), UNIT_LENGTH));
+    bvh = BvhNode::CreateBvhTree(hittable_list.hittables());
+    assert(bvh.bounding_box() ==
+           BoundingBox(Interval(-2, 2), Interval(0, 2), Interval(-1, 1)));
   }
 };

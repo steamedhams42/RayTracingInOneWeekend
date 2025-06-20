@@ -9,6 +9,8 @@
 #include "InOneWeekendJeff/interval.h"
 #include "InOneWeekendJeff/ray.h"
 
+class BvhNodeTest;
+
 class BvhNode : public Hittable {
  public:
   BvhNode();
@@ -26,8 +28,12 @@ class BvhNode : public Hittable {
 
   BoundingBox bounding_box() override;
 
+  // Recursively constructs a Bvh tree given a list of hittables.
   static BvhNode CreateBvhTree(
       std::vector<std::unique_ptr<Hittable>>& hittables);
+
+ private:
+  friend class BvhNodeTest;
 
   // Start and end represent half-open intervals (right-exclusive)
   static BvhNode CreateBvhTreeImpl(
@@ -35,7 +41,6 @@ class BvhNode : public Hittable {
       int start,
       int end);
 
- private:
   BoundingBox bounding_box_;
   // Only leaf nodes will point to an actual hittable.
   Hittable* payload_ = nullptr;

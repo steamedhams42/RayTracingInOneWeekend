@@ -26,11 +26,11 @@ bool HittableList::hit(const Ray& ray,
                        Hittable::HitResult& result) const {
   bool hit_anything = false;
 
-  // for (const auto& hittable : hittables_) {
   HitResult temp_result;
   if (bvh_.hit(ray, interval, temp_result)) {
     hit_anything = true;
-    // Reset max t value so only the foreground-most hittable is rendered.
+    // Reset max t-value so only the foreground-most hittable is rendered
+    // (unnessary to check beyond that).
     interval = std::move(Interval(interval.min(), temp_result.t));
     result = temp_result;
   }

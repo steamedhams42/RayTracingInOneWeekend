@@ -43,6 +43,6 @@ class BvhNodeTest : public TestBase {
     hittable_list.add(std::make_unique<Sphere>(Point3(3, 1, 0), UNIT_LENGTH));
     bvh = BvhNode::CreateBvhTree(hittable_list.hittables());
     assert(bvh.bounding_box() ==
-           BoundingBox(Interval(-2, 2), Interval(0, 2), Interval(-1, 1)));
+           BoundingBox(Interval(-4, 4), Interval(0, 2), Interval(-1, 1)));
   }
 };

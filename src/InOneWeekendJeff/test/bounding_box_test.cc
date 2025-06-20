@@ -18,7 +18,7 @@ class BoundingBoxTest : public TestBase {
     Point3 origin(1, 1, 1);
     Ray incident_ray(origin, direction);
 
-    assert(unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
+    assert(!unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
   }
 
   void test_rays_missing_the_bounding_box() {

@@ -56,8 +56,14 @@ bool BoundingBox::hit(const Ray& incident_ray, Interval ray_t_interval) const {
     double t_close = (current_axis.min() - origin[axis]) / vector_component;
     double t_far = (current_axis.max() - origin[axis]) / vector_component;
 
-    ray_t_interval.set_min(std::max(ray_t_interval.min(), t_close));
-    ray_t_interval.set_max(std::min(ray_t_interval.max(), t_far));
+    // DO NOT try to simplify this mess. Source of a nasty bug regarding NaNs.
+    ray_t_interval.set_min(
+        std::max(ray_t_interval.min(),
+                 std::min(std::min(t_far, t_close), ray_t_interval.max())));
+
+    ray_t_interval.set_max(
+        std::min(ray_t_interval.max(),
+                 std::max(std::max(t_far, t_close), ray_t_interval.min())));
 
     if (ray_t_interval.is_empty()) {
       return false;

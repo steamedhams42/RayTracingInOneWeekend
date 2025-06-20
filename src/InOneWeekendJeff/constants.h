@@ -4,9 +4,9 @@
 #include <cmath>
 #include <limits>
 
-#include "interval.h"
-#include "point3.h"
-#include "vec3.h"
+#include "InOneWeekendJeff/interval.h"
+#include "InOneWeekendJeff/point3.h"
+#include "InOneWeekendJeff/vec3.h"
 
 namespace constants {
 
@@ -28,10 +28,11 @@ const Vec3 Z_AXIS_BASIS{0, 0, 1};
 // Camera
 namespace camera {
 
-const Point3 CAMERA_CENTER{0, 0, 0};
-const Point3 FOCAL_POINT{0.0, 0.0, 1.0};
+const Point3 CAMERA_CENTER{13, 2, 3};
+const Point3 FOCAL_POINT{0.0, 0.0, 0.0};
 // Distance formula between camera center and focal point.
-const double FOCAL_DISTANCE = Point3(CAMERA_CENTER - FOCAL_POINT).norm();
+const double FOCAL_DISTANCE = 10;  // Point3(CAMERA_CENTER -
+                                   // FOCAL_POINT).norm();
 
 const double ASPECT_WIDTH = 16.0;
 const double ASPECT_HEIGHT = 9.0;

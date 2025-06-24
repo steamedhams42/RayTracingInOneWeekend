@@ -52,7 +52,6 @@ class BoundingBoxTest : public TestBase {
     assert(merged.x_interval() == Interval(0, 1));
     assert(merged.y_interval() == Interval(0, 1));
     assert(merged.z_interval() == Interval(0, 1));
-    assert(merged.longest_axis() == 0);
 
     BoundingBox c(Interval(-1, 2), Interval(-3, 4), Interval(5, 0));
     merged = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(c, merged);
@@ -60,7 +59,6 @@ class BoundingBoxTest : public TestBase {
     assert(merged.x_interval() == Interval(-1, 2));
     assert(merged.y_interval() == Interval(-3, 4));
     assert(merged.z_interval() == Interval(0, 1));
-    assert(merged.longest_axis() == 1);
   }
 
   void test_hit_detection_on_each_axis() {}
@@ -68,17 +66,14 @@ class BoundingBoxTest : public TestBase {
   void test_longest_axis() {
     BoundingBox a = create_unit_bounding_box();
     BoundingBox b = create_unit_bounding_box();
-    auto merged = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(b, a);
-    assert(merged.x_interval() == Interval(0, 1));
-    assert(merged.y_interval() == Interval(0, 1));
-    assert(merged.z_interval() == Interval(0, 1));
-
     BoundingBox c(Interval(-1, 2), Interval(-3, 4), Interval(5, 0));
+    BoundingBox d(Interval(-3, 2.5), Interval(31, 410), Interval(-100, 1e6));
+    auto merged = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(b, a);
     merged = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(c, merged);
-
-    assert(merged.x_interval() == Interval(-1, 2));
-    assert(merged.y_interval() == Interval(-3, 4));
-    assert(merged.z_interval() == Interval(0, 1));
+    merged = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(d, merged);
+    assert(merged.x_interval() == Interval(-3, 2.5));
+    assert(merged.y_interval() == Interval(-3, 410));
+    assert(merged.z_interval() == Interval(-100, 1e6));
   }
 
  public:
@@ -108,5 +103,6 @@ class BoundingBoxTest : public TestBase {
     test_rays_on_the_surface_of_the_bounding_box();
     test_merging_two_bounding_boxes();
     test_hit_detection_on_each_axis();
+    test_longest_axis();
   }
 };

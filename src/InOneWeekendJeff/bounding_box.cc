@@ -95,9 +95,11 @@ BoundingBox BoundingBox::empty() {
 }
 
 int BoundingBox::longest_axis() {
-  if (x_interval() <= y_interval() and x_interval() <= z_interval()) {
+  if (x_.width() >= y_.width() and x_.width() >= z_.width()) {
+    // (x >= y >= z) or (x >= z >= y)
     return 0;
-  } else if (y_interval() <= x_interval() and y_interval() <= z_interval()) {
+  } else if (y_.width() >= x_.width() and y_.width() >= z_.width()) {
+    // (y >= x >= z) or (y >= z >= x)
     return 1;
   }
   return 2;

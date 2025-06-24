@@ -26,13 +26,12 @@ class BvhNodeTest : public TestBase {
     assert(bvh.bounding_box() ==
            BoundingBox(Interval(-1, 1), Interval(0, 2), Interval(-1, 1)));
 
-    Point3 origin(0, 0, 10);
-    Vec3 direction(sphere_center - origin);
-    Ray incident_ray(origin, direction);
+    // Test for hit detection on leaf nodes.
+    Point3 ray_origin(0, 0, 10);
+    Vec3 ray_direction(sphere_center - ray_origin);
+    Ray incident_ray(ray_origin, ray_direction);
     Hittable::HitResult hit_result;
     assert(bvh.hit(incident_ray, Interval(0, 1000), hit_result));
-
-    // TODO write a test for hit detection on leaf nodes.
 
     // TODO pre-order DFS test?
     hittable_list.add(std::make_unique<Sphere>(Point3(-3, 1, 0), UNIT_LENGTH));

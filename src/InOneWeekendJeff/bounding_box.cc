@@ -93,3 +93,12 @@ BoundingBox BoundingBox::empty() {
   return BoundingBox(constants::interval::EMPTY, constants::interval::EMPTY,
                      constants::interval::EMPTY);
 }
+
+int BoundingBox::longest_axis() {
+  if (x_interval() <= y_interval() and x_interval() <= z_interval()) {
+    return 0;
+  } else if (y_interval() <= x_interval() and y_interval() <= z_interval()) {
+    return 1;
+  }
+  return 2;
+}

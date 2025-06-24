@@ -52,6 +52,26 @@ class BoundingBoxTest : public TestBase {
     assert(merged.x_interval() == Interval(0, 1));
     assert(merged.y_interval() == Interval(0, 1));
     assert(merged.z_interval() == Interval(0, 1));
+    assert(merged.longest_axis() == 0);
+
+    BoundingBox c(Interval(-1, 2), Interval(-3, 4), Interval(5, 0));
+    merged = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(c, merged);
+
+    assert(merged.x_interval() == Interval(-1, 2));
+    assert(merged.y_interval() == Interval(-3, 4));
+    assert(merged.z_interval() == Interval(0, 1));
+    assert(merged.longest_axis() == 1);
+  }
+
+  void test_hit_detection_on_each_axis() {}
+
+  void test_longest_axis() {
+    BoundingBox a = create_unit_bounding_box();
+    BoundingBox b = create_unit_bounding_box();
+    auto merged = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(b, a);
+    assert(merged.x_interval() == Interval(0, 1));
+    assert(merged.y_interval() == Interval(0, 1));
+    assert(merged.z_interval() == Interval(0, 1));
 
     BoundingBox c(Interval(-1, 2), Interval(-3, 4), Interval(5, 0));
     merged = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(c, merged);
@@ -60,8 +80,6 @@ class BoundingBoxTest : public TestBase {
     assert(merged.y_interval() == Interval(-3, 4));
     assert(merged.z_interval() == Interval(0, 1));
   }
-
-  void test_hit_detection_on_each_axis() {}
 
  public:
   void RunTest() override {

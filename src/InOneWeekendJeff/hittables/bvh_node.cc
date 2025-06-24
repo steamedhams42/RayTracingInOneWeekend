@@ -33,15 +33,20 @@ BvhNode BvhNode::CreateBvhTreeImpl(
     result.bounding_box_ = result.hittable_->bounding_box();
     return result;
   } else {
-    // Sorts by a randomly chosen axis
-    int sort_by_axis = Random::random_int(0, 2);
+    // Sorts by a longest axis of the bounding box that contains the hittables.
+    result.bounding_box_ = BoundingBox::empty();
+    for (int i = start; i < end; i++) {
+      result.bounding_box_ = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(
+          result.bounding_box_, hittables[i]->bounding_box());
+    }
+    int sort_axis = result.bounding_box().longest_axis();
     std::sort(hittables.begin() + start, hittables.begin() + end,
               [&](const std::unique_ptr<Hittable>& lhs,
                   const std::unique_ptr<Hittable>& rhs) {
-                if (sort_by_axis == 0) {
+                if (sort_axis == 0) {
                   return lhs->bounding_box().x_interval().min() <
                          rhs->bounding_box().x_interval().min();
-                } else if (sort_by_axis == 1) {
+                } else if (sort_axis == 1) {
                   return lhs->bounding_box().y_interval().min() <
                          rhs->bounding_box().y_interval().min();
                 } else {
@@ -55,9 +60,6 @@ BvhNode BvhNode::CreateBvhTreeImpl(
         std::make_unique<BvhNode>(CreateBvhTreeImpl(hittables, start, mid));
     result.right_ =
         std::make_unique<BvhNode>(CreateBvhTreeImpl(hittables, mid, end));
-    // result.bounding_box_ =
-    // BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(
-    //     result.left_->bounding_box(), result.right_->bounding_box());
     return result;
   }
 }

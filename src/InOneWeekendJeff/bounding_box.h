@@ -27,6 +27,9 @@ class BoundingBox {
   // https://en.wikipedia.org/wiki/Slab_method
   bool hit(const Ray& incident_ray, Interval ray_t_interval) const;
 
+  // Returns the longest axis (0 == x, 1 == y, 2 == z) of this bounding box.
+  int longest_axis();
+
   // Takes two points in R3 and returns the smallest bounding box.
   static BoundingBox CreateBoundingBoxFromTwoPoints(const Point3&,
                                                     const Point3&);
@@ -39,6 +42,7 @@ class BoundingBox {
 
  private:
   Interval x_, y_, z_;
+
   // Returns the interval for the requested axis (0 == x, 1 == y, 2 == z)
   const Interval& get_axis(int) const;
 };

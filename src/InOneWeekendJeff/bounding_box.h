@@ -43,6 +43,11 @@ class BoundingBox {
  private:
   Interval x_, y_, z_;
 
+  friend std::ostream& operator<<(std::ostream& out, const BoundingBox& bbox) {
+    return out << "x_interval: " << bbox.x_ << "y_interval: " << bbox.y_
+               << "z_interval: " << bbox.z_;
+  }
+
   // Returns the interval for the requested axis (0 == x, 1 == y, 2 == z)
   const Interval& get_axis(int) const;
 };

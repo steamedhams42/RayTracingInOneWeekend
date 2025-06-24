@@ -1,6 +1,8 @@
 #ifndef INTERVAL_H
 #define INTERVAL_H
 
+#include <iostream>
+
 class Interval {
  public:
   Interval();
@@ -46,6 +48,10 @@ class Interval {
  private:
   double min_;
   double max_;
+
+  friend std::ostream& operator<<(std::ostream& out, const Interval& ival) {
+    return out << ival.min() << ", " << ival.max() << std::endl;
+  }
 };
 
 inline bool operator==(const Interval& lhs, const Interval& rhs) {

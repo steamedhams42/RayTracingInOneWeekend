@@ -1,6 +1,8 @@
 #include "test_base.h"
 
 #include <cassert>
+#include <functional>
+#include <iostream>
 #include <memory>
 #include <vector>
 
@@ -33,7 +35,7 @@ class BvhNodeTest : public TestBase {
     Hittable::HitResult hit_result;
     assert(bvh.hit(incident_ray, Interval(0, 1000), hit_result));
 
-    // TODO pre-order DFS test?
+    // Post-order DFS test.
     hittable_list.add(std::make_unique<Sphere>(Point3(-3, 1, 0), UNIT_LENGTH));
     hittable_list.add(std::make_unique<Sphere>(Point3(-2, 1, 0), UNIT_LENGTH));
     hittable_list.add(std::make_unique<Sphere>(Point3(-1, 1, 0), UNIT_LENGTH));
@@ -43,5 +45,20 @@ class BvhNodeTest : public TestBase {
     bvh = BvhNode::CreateBvhTree(hittable_list.hittables());
     assert(bvh.bounding_box() ==
            BoundingBox(Interval(-4, 4), Interval(0, 2), Interval(-1, 1)));
+
+    int iter = 0;
+    std::function<void(const BvhNode&)> dfs = [&](const BvhNode& node) {
+      if (node.left_)
+        dfs(*node.left_);
+      if (node.right_)
+        dfs(*node.right_);
+      if (!node.left_ and !node.right_) {
+        // Assert the leaf nodes are in the same as above since they are sorted
+        // by longest axis (x-axis).
+        assert(node.hittable_ == hittable_list.hittables()[iter++].get());
+      }
+    };
+
+    dfs(bvh);
   }
 };

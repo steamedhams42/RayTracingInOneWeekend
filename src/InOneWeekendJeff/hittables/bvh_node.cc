@@ -55,8 +55,9 @@ BvhNode BvhNode::CreateBvhTreeImpl(
         std::make_unique<BvhNode>(CreateBvhTreeImpl(hittables, start, mid));
     result.right_ =
         std::make_unique<BvhNode>(CreateBvhTreeImpl(hittables, mid, end));
-    result.bounding_box_ = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(
-        result.left_->bounding_box(), result.right_->bounding_box());
+    // result.bounding_box_ =
+    // BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(
+    //     result.left_->bounding_box(), result.right_->bounding_box());
     return result;
   }
 }

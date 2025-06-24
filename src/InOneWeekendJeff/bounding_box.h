@@ -1,6 +1,7 @@
 #ifndef BOUNDING_BOX_H
 #define BOUNDING_BOX_H
 
+#include "InOneWeekendJeff/constants.h"
 #include "InOneWeekendJeff/interval.h"
 #include "InOneWeekendJeff/point3.h"
 #include "InOneWeekendJeff/ray.h"
@@ -10,6 +11,7 @@ class BoundingBox {
  public:
   // No-arg c'tor creates 3 empty intervals
   BoundingBox();
+  BoundingBox(const Interval&, const Interval&, const Interval&);
   BoundingBox(Interval&&, Interval&&, Interval&&);
   BoundingBox(const BoundingBox&) = default;
   BoundingBox& operator=(const BoundingBox&) = default;
@@ -32,6 +34,8 @@ class BoundingBox {
   // Returns the smallest bounding box that encloses two bounding boxes.
   static BoundingBox CreateBoundingBoxFromTwoBoundingBoxes(const BoundingBox&,
                                                            const BoundingBox&);
+
+  static BoundingBox empty();
 
  private:
   Interval x_, y_, z_;

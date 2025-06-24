@@ -7,6 +7,11 @@ BoundingBox::BoundingBox() {}
 BoundingBox::BoundingBox(Interval&& x, Interval&& y, Interval&& z)
     : x_(std::move(x)), y_(std::move(y)), z_(std::move(z)) {}
 
+BoundingBox::BoundingBox(const Interval& x,
+                         const Interval& y,
+                         const Interval& z)
+    : x_(x), y_(y), z_(z) {}
+
 BoundingBox::~BoundingBox() = default;
 
 bool BoundingBox::operator==(const BoundingBox& rhs) const {
@@ -21,6 +26,16 @@ BoundingBox BoundingBox::CreateBoundingBoxFromTwoPoints(const Point3& a,
   Interval z_interval(std::min(a.z(), b.z()), std::max(a.z(), b.z()));
   return BoundingBox(std::move(x_interval), std::move(y_interval),
                      std::move(z_interval));
+}
+
+// static
+BoundingBox BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(
+    const BoundingBox& lhs,
+    const BoundingBox& rhs) {
+  auto x = Interval::EncloseTwoIntervals(lhs.x_, rhs.x_);
+  auto y = Interval::EncloseTwoIntervals(lhs.y_, rhs.y_);
+  auto z = Interval::EncloseTwoIntervals(lhs.z_, rhs.z_);
+  return BoundingBox(std::move(x), std::move(y), std::move(z));
 }
 
 const Interval& BoundingBox::x_interval() const {
@@ -74,11 +89,7 @@ bool BoundingBox::hit(const Ray& incident_ray, Interval ray_t_interval) const {
 }
 
 // static
-BoundingBox BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(
-    const BoundingBox& lhs,
-    const BoundingBox& rhs) {
-  auto x = Interval::EncloseTwoIntervals(lhs.x_, rhs.x_);
-  auto y = Interval::EncloseTwoIntervals(lhs.y_, rhs.y_);
-  auto z = Interval::EncloseTwoIntervals(lhs.z_, rhs.z_);
-  return BoundingBox(std::move(x), std::move(y), std::move(z));
+BoundingBox BoundingBox::empty() {
+  return BoundingBox(constants::interval::EMPTY, constants::interval::EMPTY,
+                     constants::interval::EMPTY);
 }

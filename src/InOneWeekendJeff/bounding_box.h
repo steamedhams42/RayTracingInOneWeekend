@@ -11,8 +11,8 @@ class BoundingBox {
  public:
   // No-arg c'tor creates 3 empty intervals
   BoundingBox();
-  BoundingBox(const Interval&, const Interval&, const Interval&);
-  BoundingBox(Interval&&, Interval&&, Interval&&);
+  template <typename T>
+  BoundingBox(T&&, T&&, T&&);
   BoundingBox(const BoundingBox&) = default;
   BoundingBox& operator=(const BoundingBox&) = default;
   ~BoundingBox();

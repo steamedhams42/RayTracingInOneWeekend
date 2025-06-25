@@ -4,13 +4,9 @@
 
 BoundingBox::BoundingBox() {}
 
-BoundingBox::BoundingBox(Interval&& x, Interval&& y, Interval&& z)
-    : x_(std::move(x)), y_(std::move(y)), z_(std::move(z)) {}
-
-BoundingBox::BoundingBox(const Interval& x,
-                         const Interval& y,
-                         const Interval& z)
-    : x_(x), y_(y), z_(z) {}
+template <typename T>
+BoundingBox::BoundingBox(T&& x, T&& y, T&& z)
+    : x_(std::forward<T>(x)), y_(std::forward<T>(y)), z_(std::forward<T>(z)) {}
 
 BoundingBox::~BoundingBox() = default;
 

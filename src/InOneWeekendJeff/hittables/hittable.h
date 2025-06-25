@@ -29,6 +29,10 @@ class Hittable {
     // The scale factor of the ray that hits the Hittable.
     double t;
 
+    // Surface coordinates of the ray-object hitpoint.
+    // Important for deciding the surface texture at the hitpoint.
+    double u, v;
+
     // Front face refers to the origin of the ray source. If the ray originated
     // from outside the surface, front face == true.
     bool front_face;

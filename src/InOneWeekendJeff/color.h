@@ -10,6 +10,9 @@ class Color : public Point3 {
   Color(Point3 p);
   Color(double r, double g, double b);
   Color(const Color& p) = default;
+  Color(Color&& p) = default;
+  Color& operator=(const Color& p) = default;
+  Color& operator=(Color&& p) = default;
 
   double r() const { return x(); }
   double g() const { return y(); }

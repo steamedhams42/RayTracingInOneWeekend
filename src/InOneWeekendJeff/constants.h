@@ -4,6 +4,7 @@
 #include <cmath>
 #include <limits>
 
+#include "InOneWeekendJeff/color.h"
 #include "InOneWeekendJeff/interval.h"
 #include "InOneWeekendJeff/point3.h"
 #include "InOneWeekendJeff/vec3.h"
@@ -55,14 +56,16 @@ const int MAX_LIGHT_BOUNCES = 50;
 
 }  // namespace camera
 
-// Sphere
-namespace sphere {}  // namespace sphere
-
 namespace interval {
 const Interval EMPTY = Interval();
 const Interval UNIVERSAL =
     Interval(-constants::INF_DOUBLE, constants::INF_DOUBLE);
 }  // namespace interval
+
+namespace color {
+const Color WHITE(1, 1, 1);
+const Color BLACK(0, 0, 0);
+}  // namespace color
 
 }  // namespace constants
 

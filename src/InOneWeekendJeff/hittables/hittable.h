@@ -29,8 +29,9 @@ class Hittable {
     // The scale factor of the ray that hits the Hittable.
     double t;
 
-    // Surface coordinates of the ray-object hitpoint.
-    // Important for deciding the surface texture at the hitpoint.
+    // Surface coordinates of the ray-object hitpoint for projection mapping.
+    // (u, v) <=> (x, y, z)
+    // https://en.wikipedia.org/wiki/UV_mapping
     double u, v;
 
     // Front face refers to the origin of the ray source. If the ray originated

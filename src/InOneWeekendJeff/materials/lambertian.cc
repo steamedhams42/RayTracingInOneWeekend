@@ -1,13 +1,18 @@
 #include "InOneWeekendJeff/materials/lambertian.h"
 
+#include <memory>
+
 #include "InOneWeekendJeff/color.h"
 #include "InOneWeekendJeff/hittables/hittable.h"
 #include "InOneWeekendJeff/materials/material.h"
+#include "InOneWeekendJeff/textures/solid_color_texture.h"
 #include "InOneWeekendJeff/vec3.h"
 
-Lambertian::Lambertian() : albedo_(Color(0.5, 0.5, 0.5)) {}
+Lambertian::Lambertian()
+    : albedo_(std::make_unique<SolidColorTexture>(Color(0.5, 0.5, 0.5))) {}
 
-Lambertian::Lambertian(const Color& albedo) : albedo_(albedo) {}
+Lambertian::Lambertian(std::unique_ptr<Texture> texture)
+    : albedo_(std::move(texture)) {}
 
 Lambertian::~Lambertian() = default;
 
@@ -20,6 +25,7 @@ bool Lambertian::scatter(const Ray& incident_ray,
     v = hit_result.normal;
   }
   scattered = Ray(hit_result.incident_point, v, incident_ray.time());
-  attenuation = albedo_;
+  attenuation =
+      albedo_->value(hit_result.u, hit_result.v, hit_result.incident_point);
   return true;
 }

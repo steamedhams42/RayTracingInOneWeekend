@@ -2,7 +2,7 @@
 #define SOLID_COLOR_TEXTURE_H
 
 #include "InOneWeekendJeff/color.h"
-#include "texture.h"
+#include "InOneWeekendJeff/textures/texture.h"
 
 class Point3;
 

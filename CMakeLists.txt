@@ -57,6 +57,8 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/textures/texture.h
   src/InOneWeekendJeff/textures/solid_color_texture.h
   src/InOneWeekendJeff/textures/solid_color_texture.cc
+  src/InOneWeekendJeff/textures/checker_texture.h
+  src/InOneWeekendJeff/textures/checker_texture.cc
 )
 
 set ( SOURCE_ONE_WEEKEND_TEST
@@ -92,6 +94,9 @@ set ( SOURCE_ONE_WEEKEND_TEST
   src/InOneWeekendJeff/textures/texture.h
   src/InOneWeekendJeff/textures/solid_color_texture.h
   src/InOneWeekendJeff/textures/solid_color_texture.cc
+  src/InOneWeekendJeff/textures/checker_texture.h
+  src/InOneWeekendJeff/textures/checker_texture.cc
+  src/InOneWeekendJeff/test/solid_color_texture_test.cc
   src/InOneWeekendJeff/test/bvh_node_test.cc
   src/InOneWeekendJeff/test/metal_test.cc
   src/InOneWeekendJeff/test/bounding_box_test.cc

@@ -13,6 +13,8 @@
 #include "InOneWeekendJeff/materials/metal.h"
 #include "InOneWeekendJeff/point3.h"
 #include "InOneWeekendJeff/random.h"
+#include "InOneWeekendJeff/textures/checker_texture.h"
+#include "InOneWeekendJeff/textures/solid_color_texture.h"
 
 HittableList hittables;
 
@@ -20,7 +22,8 @@ void createAndAddHittables() {
   // The "grounded" sphere in the foreground
   auto earth = std::make_unique<Sphere>(
       Point3(0, -1000, 0), 1000,
-      std::make_unique<Lambertian>(Color(0.5, 0.5, 0.5)));
+      std::make_unique<Lambertian>(std::make_unique<CheckerTexture>(
+          0.32, constants::color::WHITE, constants::color::BLACK)));
   hittables.add(std::move(earth));
 
   for (int x = -11; x < 11; x++) {
@@ -37,7 +40,8 @@ void createAndAddHittables() {
         if (choose_mat < 0.8) {
           // diffuse
           auto albedo = Color::random_color() * Color::random_color();
-          sphere_material = std::make_unique<Lambertian>(albedo);
+          sphere_material = std::make_unique<Lambertian>(
+              std::make_unique<SolidColorTexture>(albedo));
           // Adds bouncing effect
           // center_final = center + Point3(0, Random::random_real(0, 0.5), 0);
         } else if (choose_mat < 0.95) {
@@ -59,7 +63,8 @@ void createAndAddHittables() {
   // brown sphere in the back
   auto brown_sphere = std::make_unique<Sphere>(
       Point3(-4, 1, 0), 1.0,
-      std::make_unique<Lambertian>(Color(0.4, 0.2, 0.1)));
+      std::make_unique<Lambertian>(
+          std::make_unique<SolidColorTexture>(Color(0.4, 0.2, 0.1))));
 
   // glass sphere in the center
   auto glass_sphere = std::make_unique<Sphere>(

@@ -13,5 +13,5 @@ SolidColorTexture::SolidColorTexture(T&& r, T&& g, T&& b)
           Color(std::forward<T>(r), std::forward<T>(g), std::forward<T>(b))) {}
 
 Color SolidColorTexture::value(double u, double v, const Point3& p) const {
-  return Color();
+  return albedo_;
 }

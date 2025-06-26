@@ -80,7 +80,7 @@ void createAndAddHittables() {
   hittables.InitBvhTree();
 }
 
-int main() {
+void render_bouncing_spheres() {
   createAndAddHittables();
 
   Camera camera(
@@ -90,4 +90,18 @@ int main() {
       constants::camera::ASPECT_WIDTH, constants::camera::ASPECT_HEIGHT);
   camera.initialize();
   camera.render(hittables);
+}
+
+void render_checkered_spheres() {}
+
+int main() {
+  int i = 0;
+  switch (i) {
+    case 0:
+      render_bouncing_spheres();
+      break;
+    case 1:
+      render_checkered_spheres();
+      break;
+  }
 }

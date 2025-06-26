@@ -1,6 +1,7 @@
 #include "InOneWeekendJeff/hittables/hittable_list.h"
 #include "InOneWeekendJeff/hittables/hittable.h"
 
+#include <cassert>
 #include <cmath>
 
 HittableList::HittableList() {}
@@ -18,7 +19,7 @@ void HittableList::add(std::unique_ptr<Hittable> hittable) {
 }
 
 void HittableList::InitBvhTree() {
-  bvh_ = std::move(BvhNode::CreateBvhTree(this->hittables_));
+  bvh_ = std::make_unique<BvhNode>(BvhNode::CreateBvhTree(this->hittables_));
 }
 
 bool HittableList::hit(const Ray& ray,
@@ -27,7 +28,8 @@ bool HittableList::hit(const Ray& ray,
   bool hit_anything = false;
 
   HitResult temp_result;
-  if (bvh_.hit(ray, interval, temp_result)) {
+  assert(bvh_);
+  if (bvh_->hit(ray, interval, temp_result)) {
     hit_anything = true;
     // Reset max t-value so only the foreground-most hittable is rendered
     // (unnessary to check beyond that).

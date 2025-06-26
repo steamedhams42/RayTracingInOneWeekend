@@ -28,7 +28,7 @@ class HittableList : public Hittable {
  private:
   std::vector<std::unique_ptr<Hittable>> hittables_;
   BoundingBox bounding_box_;
-  BvhNode bvh_;
+  std::unique_ptr<BvhNode> bvh_;
 };
 
 #endif

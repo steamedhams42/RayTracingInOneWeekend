@@ -22,8 +22,8 @@ void createAndAddHittables() {
   // The "grounded" sphere in the foreground
   auto earth = std::make_unique<Sphere>(
       Point3(0, -1000, 0), 1000,
-      std::make_unique<Lambertian>(std::make_unique<CheckerTexture>(
-          0.32, constants::color::WHITE, constants::color::BLACK)));
+      std::make_unique<Lambertian>(
+          std::make_unique<SolidColorTexture>(Color(0.5, 0.5, 0.5))));
   hittables.add(std::move(earth));
 
   for (int x = -11; x < 11; x++) {
@@ -92,10 +92,28 @@ void render_bouncing_spheres() {
   camera.render(hittables);
 }
 
-void render_checkered_spheres() {}
+void render_checkered_spheres() {
+  hittables.add(std::make_unique<Sphere>(
+      Point3(0, 10, 0), 10,
+      std::make_unique<Lambertian>(std::make_unique<CheckerTexture>(
+          0.32, constants::color::BLACK, constants::color::WHITE))));
+  hittables.add(std::make_unique<Sphere>(
+      Point3(0, -10, 0), 10,
+      std::make_unique<Lambertian>(std::make_unique<CheckerTexture>(
+          0.32, constants::color::BLACK, constants::color::WHITE))));
+  hittables.InitBvhTree();
+
+  Camera camera(
+      constants::camera::CAMERA_CENTER, constants::camera::FOCAL_POINT,
+      constants::camera::FOCAL_DISTANCE,
+      constants::camera::VERTICAL_FIELD_OF_VIEW, constants::camera::IMAGE_WIDTH,
+      constants::camera::ASPECT_WIDTH, constants::camera::ASPECT_HEIGHT);
+  camera.initialize();
+  camera.render(hittables);
+}
 
 int main() {
-  int i = 0;
+  int i = 1;
   switch (i) {
     case 0:
       render_bouncing_spheres();

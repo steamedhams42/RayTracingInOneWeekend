@@ -1,6 +1,7 @@
 #include "sphere.h"
 
 #include <cassert>
+#include <cmath>
 
 #include "InOneWeekendJeff/constants.h"
 #include "InOneWeekendJeff/materials/lambertian.h"
@@ -67,8 +68,23 @@ bool Sphere::hit(const Ray& ray,
   Vec3 normal = (result.incident_point - current_center) / this->radius_;
   result.setFaceNormal(ray, normal);
   result.material = material_.get();
+  setUvCoordinates(normal, result);
 
   return true;
+}
+
+void Sphere::setUvCoordinates(const Vec3& surface_normal,
+                              HitResult& result) const {
+  // theta is the angle between y-axis and xz plane (polar angle).
+  // phi is the angle between x and z-axis (azimuthal angle).
+  // u, v in [0, 1]
+  // u is the horizontal component of the (u, v) projection represented as a
+  // ratio. v is the vertical.
+  double theta = std::acos(-surface_normal.y());
+  double phi =
+      std::atan2(-surface_normal.z(), surface_normal.x()) + constants::PI;
+  result.u = phi / (2 * constants::PI);
+  result.v = theta / constants::PI;
 }
 
 BoundingBox Sphere::bounding_box() {

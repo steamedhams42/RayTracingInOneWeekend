@@ -27,6 +27,9 @@ class Sphere : public Hittable {
   ~Sphere() override;
 
   bool hit(const Ray& ray, Interval intval, HitResult& result) const override;
+  // Calculates and sets the (u, v) coordinates from the surface normal of
+  // the incidence point. Transforms 3D coordinates to a (u, v) projection.
+  void setUvCoordinates(const Vec3& surface_normal, HitResult& result) const;
 
   BoundingBox bounding_box() override;
 

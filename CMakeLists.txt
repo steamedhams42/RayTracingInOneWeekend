@@ -54,6 +54,9 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/materials/metal.cc
   src/InOneWeekendJeff/materials/lambertian.h
   src/InOneWeekendJeff/materials/lambertian.cc
+  src/InOneWeekendJeff/rtw_stb_image.h
+  src/InOneWeekendJeff/textures/image_texture.h
+  src/InOneWeekendJeff/textures/image_texture.cc
   src/InOneWeekendJeff/textures/texture.h
   src/InOneWeekendJeff/textures/solid_color_texture.h
   src/InOneWeekendJeff/textures/solid_color_texture.cc

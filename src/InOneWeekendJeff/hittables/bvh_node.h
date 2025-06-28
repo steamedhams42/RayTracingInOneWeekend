@@ -16,9 +16,9 @@ class BvhNode : public Hittable {
   BvhNode();
 
   // Rule of 5
-  BvhNode(const BvhNode&) = default;
+  BvhNode(const BvhNode&) = delete;
   BvhNode(BvhNode&&) = default;
-  BvhNode& operator=(const BvhNode&) = default;
+  BvhNode& operator=(const BvhNode&) = delete;
   BvhNode& operator=(BvhNode&&) = default;
   ~BvhNode();
 

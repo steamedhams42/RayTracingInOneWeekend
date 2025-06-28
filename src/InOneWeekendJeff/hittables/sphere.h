@@ -17,13 +17,13 @@ class Sphere : public Hittable {
  public:
   // Stationary sphere
   Sphere(Point3 center, double radius);
-  Sphere(Point3 center, double radius, std::unique_ptr<Material>&&);
+  Sphere(Point3 center, double radius, std::unique_ptr<Material>);
 
   // Moving sphere
   Sphere(Point3 center_init,
          Point3 center_final,
          double radius,
-         std::unique_ptr<Material>&& = std::make_unique<Lambertian>());
+         std::unique_ptr<Material> = std::make_unique<Lambertian>());
   ~Sphere() override;
 
   bool hit(const Ray& ray, Interval intval, HitResult& result) const override;

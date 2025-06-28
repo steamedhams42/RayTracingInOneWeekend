@@ -1,5 +1,6 @@
 #include "InOneWeekendJeff/textures/image_texture.h"
 
+#include <cassert>
 #include "InOneWeekendJeff/interval.h"
 
 ImageTexture::ImageTexture(const char* filename) : image_(filename) {}

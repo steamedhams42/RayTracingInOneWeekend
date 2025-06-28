@@ -14,6 +14,7 @@
 #include "InOneWeekendJeff/point3.h"
 #include "InOneWeekendJeff/random.h"
 #include "InOneWeekendJeff/textures/checker_texture.h"
+#include "InOneWeekendJeff/textures/image_texture.h"
 #include "InOneWeekendJeff/textures/solid_color_texture.h"
 
 HittableList hittables;
@@ -112,14 +113,35 @@ void render_checkered_spheres() {
   camera.render(hittables);
 }
 
+void render_earth() {
+  auto globe = std::make_unique<Sphere>(
+      Point3(0, 0, 0), 2.0,
+      std::make_unique<Lambertian>(
+          std::make_unique<ImageTexture>("images/earthmap.jpg")));
+  hittables.add(std::move(globe));
+  hittables.InitBvhTree();
+  Point3 camera_center(0, 0, 12);
+
+  Camera camera(camera_center, constants::camera::FOCAL_POINT,
+                Point3(camera_center - constants::camera::FOCAL_POINT).norm(),
+                constants::camera::VERTICAL_FIELD_OF_VIEW,
+                constants::camera::IMAGE_WIDTH, constants::camera::ASPECT_WIDTH,
+                constants::camera::ASPECT_HEIGHT);
+  camera.initialize();
+  camera.render(hittables);
+}
+
 int main() {
-  int i = 1;
+  int i = 2;
   switch (i) {
     case 0:
       render_bouncing_spheres();
       break;
     case 1:
       render_checkered_spheres();
+      break;
+    case 2:
+      render_earth();
       break;
   }
 }

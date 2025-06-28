@@ -55,6 +55,7 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/materials/lambertian.h
   src/InOneWeekendJeff/materials/lambertian.cc
   src/InOneWeekendJeff/rtw_stb_image.h
+  src/InOneWeekendJeff/rtw_stb_image.cc
   src/InOneWeekendJeff/textures/image_texture.h
   src/InOneWeekendJeff/textures/image_texture.cc
   src/InOneWeekendJeff/textures/texture.h

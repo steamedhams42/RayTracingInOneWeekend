@@ -8,10 +8,12 @@
 class ImageTexture : public Texture {
  public:
   ImageTexture(const char* filename);
+  ~ImageTexture() override = default;
 
   Color value(double u, double v, const Point3& p) const override;
 
  private:
   rtw_image image_;
 };
+
 #endif

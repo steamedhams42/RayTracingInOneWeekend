@@ -2,11 +2,15 @@
 
 #include <cmath>
 
+#include "InOneWeekendJeff/constants.h"
+
 BoundingBox::BoundingBox() {}
 
 template <typename T>
 BoundingBox::BoundingBox(T&& x, T&& y, T&& z)
-    : x_(std::forward<T>(x)), y_(std::forward<T>(y)), z_(std::forward<T>(z)) {}
+    : x_(std::forward<T>(x)), y_(std::forward<T>(y)), z_(std::forward<T>(z)) {
+  PadToMinimums();
+}
 
 BoundingBox::~BoundingBox() = default;
 
@@ -99,4 +103,17 @@ int BoundingBox::longest_axis() {
     return 1;
   }
   return 2;
+}
+
+void BoundingBox::PadToMinimums() {
+  double delta = constants::EPS_BB_PADDING;
+  if (x_.min() < delta) {
+    x_ = x_.expand(delta);
+  }
+  if (y_.min() < delta) {
+    y_ = y_.expand(delta);
+  }
+  if (z_.min() < delta) {
+    z_ = z_.expand(delta);
+  }
 }

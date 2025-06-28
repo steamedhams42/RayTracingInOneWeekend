@@ -13,8 +13,7 @@ void HittableList::clearAll() {
 }
 
 void HittableList::add(std::unique_ptr<Hittable> hittable) {
-  bounding_box_ = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(
-      bounding_box_, hittable->bounding_box());
+  bounding_box_ = BoundingBox(bounding_box_, hittable->bounding_box());
   hittables_.push_back(std::move(hittable));
 }
 

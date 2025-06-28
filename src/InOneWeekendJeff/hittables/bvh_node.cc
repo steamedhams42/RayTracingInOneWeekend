@@ -36,8 +36,8 @@ BvhNode BvhNode::CreateBvhTreeImpl(
     // Sorts by a longest axis of the bounding box that contains the hittables.
     result.bounding_box_ = BoundingBox::empty();
     for (int i = start; i < end; i++) {
-      result.bounding_box_ = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(
-          result.bounding_box_, hittables[i]->bounding_box());
+      result.bounding_box_ =
+          BoundingBox(result.bounding_box_, hittables[i]->bounding_box());
     }
     int sort_axis = result.bounding_box().longest_axis();
     std::sort(hittables.begin() + start, hittables.begin() + end,

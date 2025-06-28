@@ -48,13 +48,13 @@ class BoundingBoxTest : public TestBase {
   void test_merging_two_bounding_boxes() {
     BoundingBox a = create_unit_bounding_box();
     BoundingBox b = create_unit_bounding_box();
-    auto merged = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(b, a);
+    auto merged = BoundingBox(b, a);
     assert(merged.x_interval() == Interval(0, 1));
     assert(merged.y_interval() == Interval(0, 1));
     assert(merged.z_interval() == Interval(0, 1));
 
     BoundingBox c(Interval(-1, 2), Interval(-3, 4), Interval(5, 0));
-    merged = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(c, merged);
+    merged = BoundingBox(c, merged);
 
     assert(merged.x_interval() == Interval(-1, 2));
     assert(merged.y_interval() == Interval(-3, 4));
@@ -68,9 +68,9 @@ class BoundingBoxTest : public TestBase {
     BoundingBox b = create_unit_bounding_box();
     BoundingBox c(Interval(-1, 2), Interval(-3, 4), Interval(5, 0));
     BoundingBox d(Interval(-3, 2.5), Interval(31, 410), Interval(-100, 1e6));
-    auto merged = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(b, a);
-    merged = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(c, merged);
-    merged = BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(d, merged);
+    auto merged = BoundingBox(b, a);
+    merged = BoundingBox(c, merged);
+    merged = BoundingBox(d, merged);
     assert(merged.x_interval() == Interval(-3, 2.5));
     assert(merged.y_interval() == Interval(-3, 410));
     assert(merged.z_interval() == Interval(-100, 1e6));
@@ -85,7 +85,7 @@ class BoundingBoxTest : public TestBase {
 
     Point3 a = CreateRandomPoint();
     Point3 b = CreateRandomPoint();
-    BoundingBox bb = BoundingBox::CreateBoundingBoxFromTwoPoints(a, b);
+    BoundingBox bb = BoundingBox(a, b);
     assert(bb.x_interval() ==
            Interval(std::min(a.x(), b.x()), std::max(a.x(), b.x())));
     assert(bb.y_interval() ==

@@ -12,6 +12,11 @@ class BoundingBox {
   BoundingBox();
   template <typename T>
   BoundingBox(T&&, T&&, T&&);
+  // Takes two points in R3 and returns the smallest bounding box.
+  BoundingBox(const Point3&, const Point3&);
+  // Returns the smallest bounding box that encloses two bounding boxes.
+  BoundingBox(const BoundingBox&, const BoundingBox&);
+
   BoundingBox(const BoundingBox&) = default;
   BoundingBox& operator=(const BoundingBox&) = default;
   ~BoundingBox();
@@ -28,14 +33,6 @@ class BoundingBox {
 
   // Returns the longest axis (0 == x, 1 == y, 2 == z) of this bounding box.
   int longest_axis();
-
-  // Takes two points in R3 and returns the smallest bounding box.
-  static BoundingBox CreateBoundingBoxFromTwoPoints(const Point3&,
-                                                    const Point3&);
-
-  // Returns the smallest bounding box that encloses two bounding boxes.
-  static BoundingBox CreateBoundingBoxFromTwoBoundingBoxes(const BoundingBox&,
-                                                           const BoundingBox&);
 
   static BoundingBox empty();
 

@@ -37,6 +37,8 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/hittables/bvh_node.h
   src/InOneWeekendJeff/hittables/sphere.cc
   src/InOneWeekendJeff/hittables/sphere.h
+  src/InOneWeekendJeff/hittables/quad.cc
+  src/InOneWeekendJeff/hittables/quad.h
   src/InOneWeekendJeff/hittables/hittable_list.cc
   src/InOneWeekendJeff/hittables/hittable_list.h
   src/InOneWeekendJeff/interval.cc
@@ -82,6 +84,8 @@ set ( SOURCE_ONE_WEEKEND_TEST
   src/InOneWeekendJeff/hittables/hittable_list.cc
   src/InOneWeekendJeff/hittables/sphere.h
   src/InOneWeekendJeff/hittables/sphere.cc
+  src/InOneWeekendJeff/hittables/quad.cc
+  src/InOneWeekendJeff/hittables/quad.h
   src/InOneWeekendJeff/ray.h
   src/InOneWeekendJeff/ray.cc
   src/InOneWeekendJeff/interval.h

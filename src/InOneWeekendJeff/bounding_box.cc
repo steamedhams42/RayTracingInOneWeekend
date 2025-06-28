@@ -18,25 +18,15 @@ bool BoundingBox::operator==(const BoundingBox& rhs) const {
   return x_ == rhs.x_ and y_ == rhs.y_ and z_ == rhs.z_;
 }
 
-// static
-BoundingBox BoundingBox::CreateBoundingBoxFromTwoPoints(const Point3& a,
-                                                        const Point3& b) {
-  Interval x_interval(std::min(a.x(), b.x()), std::max(a.x(), b.x()));
-  Interval y_interval(std::min(a.y(), b.y()), std::max(a.y(), b.y()));
-  Interval z_interval(std::min(a.z(), b.z()), std::max(a.z(), b.z()));
-  return BoundingBox(std::move(x_interval), std::move(y_interval),
-                     std::move(z_interval));
-}
+BoundingBox::BoundingBox(const Point3& a, const Point3& b)
+    : BoundingBox(Interval(std::min(a.x(), b.x()), std::max(a.x(), b.x())),
+                  Interval(std::min(a.y(), b.y()), std::max(a.y(), b.y())),
+                  Interval(std::min(a.z(), b.z()), std::max(a.z(), b.z()))) {}
 
-// static
-BoundingBox BoundingBox::CreateBoundingBoxFromTwoBoundingBoxes(
-    const BoundingBox& lhs,
-    const BoundingBox& rhs) {
-  auto x = Interval::EncloseTwoIntervals(lhs.x_, rhs.x_);
-  auto y = Interval::EncloseTwoIntervals(lhs.y_, rhs.y_);
-  auto z = Interval::EncloseTwoIntervals(lhs.z_, rhs.z_);
-  return BoundingBox(std::move(x), std::move(y), std::move(z));
-}
+BoundingBox::BoundingBox(const BoundingBox& lhs, const BoundingBox& rhs)
+    : BoundingBox(Interval::EncloseTwoIntervals(lhs.x_, rhs.x_),
+                  Interval::EncloseTwoIntervals(lhs.y_, rhs.y_),
+                  Interval::EncloseTwoIntervals(lhs.z_, rhs.z_)) {}
 
 const Interval& BoundingBox::x_interval() const {
   return this->x_;

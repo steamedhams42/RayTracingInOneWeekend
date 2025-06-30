@@ -116,6 +116,7 @@ set ( SOURCE_ONE_WEEKEND_TEST
   src/InOneWeekendJeff/test/ray_test.cc
   src/InOneWeekendJeff/test/sphere_test.cc
   src/InOneWeekendJeff/test/vec3_test.cc
+  src/InOneWeekendJeff/test/quad_test.cc
   src/InOneWeekendJeff/test/main_test.cc
 )
 

@@ -18,7 +18,7 @@ class BoundingBoxTest : public TestBase {
     Point3 origin(1, 1, 1);
     Ray incident_ray(origin, direction);
 
-    assert(!unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
+    assert(unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
   }
 
   void test_rays_missing_the_bounding_box() {
@@ -49,9 +49,8 @@ class BoundingBoxTest : public TestBase {
     BoundingBox a = create_unit_bounding_box();
     BoundingBox b = create_unit_bounding_box();
     auto merged = BoundingBox(b, a);
-    assert(merged.x_interval() == Interval(0, 1));
-    assert(merged.y_interval() == Interval(0, 1));
-    assert(merged.z_interval() == Interval(0, 1));
+    assert(merged ==
+           BoundingBox(Interval(0, 1), Interval(0, 1), Interval(0, 1)));
 
     BoundingBox c(Interval(-1, 2), Interval(-3, 4), Interval(5, 0));
     merged = BoundingBox(c, merged);

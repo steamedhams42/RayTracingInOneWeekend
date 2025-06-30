@@ -8,9 +8,7 @@ BoundingBox::BoundingBox() {}
 
 template <typename T>
 BoundingBox::BoundingBox(T&& x, T&& y, T&& z)
-    : x_(std::forward<T>(x)), y_(std::forward<T>(y)), z_(std::forward<T>(z)) {
-  PadToMinimums();
-}
+    : x_(std::forward<T>(x)), y_(std::forward<T>(y)), z_(std::forward<T>(z)) {}
 
 BoundingBox::~BoundingBox() = default;
 
@@ -56,6 +54,11 @@ bool BoundingBox::hit(const Ray& incident_ray, Interval ray_t_interval) const {
 
   for (int axis = 0; axis < 3; axis++) {
     Interval current_axis = get_axis(axis);
+    // Expands an interval by an epsilon if it is close to zero. This is to
+    // give quadrilaterals an "infinitesimal" width for hit detection.
+    if (current_axis.min() < constants::EPS_BB_PADDING) {
+      current_axis = current_axis.expand(constants::EPS_BB_PADDING);
+    }
     double vector_component = ray_direction[axis];
 
     double t_close = (current_axis.min() - origin[axis]) / vector_component;
@@ -93,17 +96,4 @@ int BoundingBox::longest_axis() {
     return 1;
   }
   return 2;
-}
-
-void BoundingBox::PadToMinimums() {
-  double delta = constants::EPS_BB_PADDING;
-  if (x_.min() < delta) {
-    x_ = x_.expand(delta);
-  }
-  if (y_.min() < delta) {
-    y_ = y_.expand(delta);
-  }
-  if (z_.min() < delta) {
-    z_ = z_.expand(delta);
-  }
 }

@@ -5,6 +5,7 @@
 #include "InOneWeekendJeff/test/lambertian_test.cc"
 #include "InOneWeekendJeff/test/metal_test.cc"
 #include "InOneWeekendJeff/test/point3_test.cc"
+#include "InOneWeekendJeff/test/quad_test.cc"
 #include "InOneWeekendJeff/test/random_test.cc"
 #include "InOneWeekendJeff/test/ray_test.cc"
 #include "InOneWeekendJeff/test/sphere_test.cc"
@@ -43,6 +44,9 @@ int main() {
 
   BvhNodeTest bvh_node_test;
   bvh_node_test.RunTest();
+
+  QuadTest quad_test;
+  quad_test.RunTest();
 
   return 0;
 }

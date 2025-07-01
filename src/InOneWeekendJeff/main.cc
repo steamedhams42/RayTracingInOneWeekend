@@ -121,8 +121,8 @@ void render_earth() {
           std::make_unique<ImageTexture>("images/earthmap.jpg")));
   hittables.add(std::move(globe));
   hittables.InitBvhTree();
-  Point3 camera_center(0, 0, 12);
 
+  Point3 camera_center(0, 0, 12);
   Camera camera(camera_center, constants::camera::FOCAL_POINT,
                 Point3(camera_center - constants::camera::FOCAL_POINT).norm(),
                 constants::camera::VERTICAL_FIELD_OF_VIEW,
@@ -134,17 +134,40 @@ void render_earth() {
 
 void render_quads() {
   // Materials
-  auto left_red = std::make_unique<Lambertian>(constants::color::RED);
+  std::unique_ptr<Lambertian> left_red =
+      std::make_unique<Lambertian>(constants::color::RED);
   auto back_green = std::make_unique<Lambertian>(constants::color::GREEN);
   auto right_blue = std::make_unique<Lambertian>(constants::color::BLUE);
   auto upper_orange = std::make_unique<Lambertian>(constants::color::ORANGE);
   auto lower_teal = std::make_unique<Lambertian>(constants::color::TEAL);
 
   // Quads
+  hittables.add(std::make_unique<Quad>(Point3(-3, -2, 5), Vec3(0, 0, -4),
+                                       Vec3(0, 4, 0), std::move(left_red)));
+  hittables.add(std::make_unique<Quad>(Point3(-2, -2, 0), Vec3(4, 0, 0),
+                                       Vec3(0, 4, 0), std::move(back_green)));
+  hittables.add(std::make_unique<Quad>(Point3(3, -2, 1), Vec3(0, 0, 4),
+                                       Vec3(0, 4, 0), std::move(right_blue)));
+  hittables.add(std::make_unique<Quad>(Point3(-2, 3, 1), Vec3(4, 0, 0),
+                                       Vec3(0, 0, 4), std::move(upper_orange)));
+  hittables.add(std::make_unique<Quad>(Point3(-2, -3, 5), Vec3(4, 0, 0),
+                                       Vec3(0, 0, -4), std::move(lower_teal)));
+  hittables.InitBvhTree();
+
+  // Camera
+  Point3 camera_center(0, 0, 9);
+  Camera camera(camera_center, constants::camera::FOCAL_POINT,
+                /*focal distance*/
+                Point3(camera_center - constants::camera::FOCAL_POINT).norm(),
+                /*FoV*/ 80, constants::camera::IMAGE_WIDTH,
+                constants::camera::ASPECT_WIDTH,
+                constants::camera::ASPECT_HEIGHT);
+  camera.initialize();
+  camera.render(hittables);
 }
 
 int main() {
-  int i = 2;
+  int i = 3;
   switch (i) {
     case 0:
       render_bouncing_spheres();

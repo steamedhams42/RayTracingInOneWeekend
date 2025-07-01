@@ -27,6 +27,7 @@ class Quad : public Hittable {
   Point3 Q_;
   // u is horizontal component, v is vertical
   Vec3 u_, v_;
+  Vec3 w_;
 
   // A normalized vector orthogonal to the quad.
   Vec3 normal_;

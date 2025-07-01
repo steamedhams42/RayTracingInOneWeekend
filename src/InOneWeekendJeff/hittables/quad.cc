@@ -15,6 +15,7 @@ Quad::Quad(const Point3& q,
 
   // Ax + By + Cz = D
   D_ = normal_.dot(Vec3(Q_));
+  w_ = normal_ / (normal_.dot(normal_));
 }
 
 void Quad::set_bounding_box() {

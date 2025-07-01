@@ -37,7 +37,7 @@ bool Quad::hit(const Ray& incident_ray,
   Vec3 planar_hit_vector = incident_direction - Vec3(Q_);
   double alpha = w_.dot(planar_hit_vector.cross(v_));
   double beta = w_.dot(u_.cross(planar_hit_vector));
-  if (IsInterior(alpha, beta)) {
+  if (!DoesHitQuad(alpha, beta)) {
     return false;
   }
   result.u = alpha;
@@ -49,7 +49,7 @@ bool Quad::hit(const Ray& incident_ray,
   return true;
 }
 
-bool Quad::IsInterior(double alpha, double beta) const {
+bool Quad::DoesHitQuad(double alpha, double beta) const {
   Interval unit(0, 1);
   if (!unit.contains(alpha) or !unit.contains(beta)) {
     return false;

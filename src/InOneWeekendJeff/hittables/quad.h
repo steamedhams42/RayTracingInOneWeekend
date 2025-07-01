@@ -20,7 +20,7 @@ class Quad : public Hittable {
            Interval hit_ival,
            Hittable::HitResult& result) const override;
 
-  virtual bool IsInterior(double, double) const;
+  virtual bool DoesHitQuad(double, double) const;
 
   BoundingBox bounding_box() override;
 

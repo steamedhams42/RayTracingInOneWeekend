@@ -122,6 +122,7 @@ Color Camera::computeRayColor(const Ray& incident_ray,
 
 Ray Camera::get_random_ray_within_unit_square(int x, int y) {
   Point3 offset = get_random_point_from_unit_square();
+  // This converts a (x, y) cell on the viewport back to cartesian coordinates.
   Point3 pixel_center = viewport_top_left_pixel_center_ +
                         (x + offset.x()) * pixel_delta_width_ +
                         (y + offset.y()) * pixel_delta_height_;

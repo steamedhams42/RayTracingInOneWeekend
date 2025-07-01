@@ -41,10 +41,10 @@ bool Quad::hit(const Ray& incident_ray,
 
   auto incident_point = incident_ray.at(t);
   Vec3 planar_hit_vector(incident_point - Q_);
-  double alpha = w_.dot(v_.cross(planar_hit_vector));
-  double beta = w_.dot(planar_hit_vector.cross(u_));
+  double alpha = w_.dot(planar_hit_vector.cross(v_));
+  double beta = w_.dot(u_.cross(planar_hit_vector));
 
-  if (DoesHitQuad(alpha, beta)) {
+  if (!DoesHitQuad(alpha, beta)) {
     return false;
   }
   result.u = alpha;

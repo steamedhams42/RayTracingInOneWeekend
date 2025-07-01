@@ -16,10 +16,21 @@ class QuadTest : public TestBase {
 
   void RunTest() override {
     auto quad = CreateUnitQuad();
-    Point3 ray_origin(0, 0, 9);
-    Vec3 ray_direction(Vec3(Point3(0, 0, 0) - ray_origin));
-    Ray incident_ray(ray_origin, ray_direction);
-    Hittable::HitResult result;
-    assert(quad.hit(incident_ray, constants::interval::UNIVERSAL, result));
+    for (double i = -1; i <= 2; i += 0.1) {
+      for (double j = -1; j <= 2; j += 0.1) {
+        Point3 ray_origin(0, 0, 9);
+        Point3 target(i, j, 0);
+        Vec3 ray_direction(Vec3(target - ray_origin));
+        Ray incident_ray(ray_origin, ray_direction);
+        Hittable::HitResult result;
+        if (Interval(0, 1).contains(i) and Interval(0, 1).contains(j)) {
+          assert(
+              quad.hit(incident_ray, constants::interval::UNIVERSAL, result));
+        } else {
+          assert(
+              !quad.hit(incident_ray, constants::interval::UNIVERSAL, result));
+        }
+      }
+    }
   }
 };

@@ -33,17 +33,24 @@ bool Quad::hit(const Ray& incident_ray,
     // Incident ray is parallel to the plane.
     return false;
   }
-  double t = (D_ - normal_.dot(Vec3(Q_))) / nd;
-  Vec3 planar_hit_vector = incident_direction - Vec3(Q_);
+
+  double t = (D_ - normal_.dot(Vec3(incident_ray.origin()))) / nd;
+  if (!hit_ival.contains(t)) {
+    return false;
+  }
+
+  auto incident_point = incident_ray.at(t);
+  Vec3 planar_hit_vector(incident_point - Q_);
   double alpha = w_.dot(planar_hit_vector.cross(v_));
   double beta = w_.dot(u_.cross(planar_hit_vector));
-  if (!DoesHitQuad(alpha, beta)) {
+
+  if (DoesHitQuad(alpha, beta)) {
     return false;
   }
   result.u = alpha;
   result.v = beta;
   result.t = t;
-  result.incident_point = incident_ray.at(result.t);
+  result.incident_point = incident_point;
   result.setFaceNormal(incident_ray, normal_);
   result.material = material_.get();
   return true;

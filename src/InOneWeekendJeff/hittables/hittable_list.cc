@@ -27,7 +27,12 @@ bool HittableList::hit(const Ray& ray,
   bool hit_anything = false;
 
   HitResult temp_result;
-  assert(bvh_);
+  if (!bvh_) {
+    std::cout
+        << "CHECK FAILED: Did you forget to call HittableList::InitBvhTree()?"
+        << std::endl;
+    assert(bvh_);
+  }
   if (bvh_->hit(ray, interval, temp_result)) {
     hit_anything = true;
     // Reset max t-value so only the foreground-most hittable is rendered

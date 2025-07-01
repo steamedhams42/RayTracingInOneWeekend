@@ -29,7 +29,7 @@ bool Quad::hit(const Ray& incident_ray,
                Hittable::HitResult& result) const {
   Vec3 incident_direction = incident_ray.direction();
   double nd = normal_.dot(incident_direction);
-  if (nd < constants::EPS_ERROR) {
+  if (std::fabs(nd) < constants::EPS_ERROR) {
     // Incident ray is parallel to the plane.
     return false;
   }

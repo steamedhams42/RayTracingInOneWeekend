@@ -34,14 +34,26 @@ bool Quad::hit(const Ray& incident_ray,
     return false;
   }
   double t = (D_ - normal_.dot(Vec3(Q_))) / nd;
-  if (!hit_ival.contains(t)) {
-    // t is not in the hit interval.
+  Vec3 planar_hit_vector = incident_direction - Vec3(Q_);
+  double alpha = w_.dot(planar_hit_vector.cross(v_));
+  double beta = w_.dot(u_.cross(planar_hit_vector));
+  if (IsInterior(alpha, beta)) {
     return false;
   }
+  result.u = alpha;
+  result.v = beta;
   result.t = t;
   result.incident_point = incident_ray.at(result.t);
   result.setFaceNormal(incident_ray, normal_);
   result.material = material_.get();
+  return true;
+}
+
+bool Quad::IsInterior(double alpha, double beta) const {
+  Interval unit(0, 1);
+  if (!unit.contains(alpha) or !unit.contains(beta)) {
+    return false;
+  }
   return true;
 }
 

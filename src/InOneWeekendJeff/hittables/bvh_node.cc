@@ -67,8 +67,7 @@ BvhNode BvhNode::CreateBvhTreeImpl(
 bool BvhNode::hit(const Ray& incident_ray,
                   Interval ival,
                   Hittable::HitResult& result) const {
-  bool does_ray_hit_this_node = bounding_box_.hit(incident_ray, ival);
-  if (!does_ray_hit_this_node) {
+  if (!bounding_box_.hit(incident_ray, ival)) {
     return false;
   }
   // Do not recurse on leaf nodes. Leaf nodes contain the hittable objects.

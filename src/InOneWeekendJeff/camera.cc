@@ -82,6 +82,9 @@ void Camera::render(const HittableList& hittables) {
     std::clog << "\rScanlines remaining: " << image_height_ - y << " "
               << std::flush;
     for (int x = 0; x < image_width_; x++) {
+      if (x == 80 and y == 21) {
+        std::cout << "First quad hit" << std::endl;
+      }
       Color pixel_color(0, 0, 0);
       for (int i = 0; i < constants::camera::SAMPLES_PER_PIXEL; i++) {
         Ray random_ray = get_random_ray_within_unit_square(x, y);

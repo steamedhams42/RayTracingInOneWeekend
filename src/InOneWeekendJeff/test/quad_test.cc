@@ -14,7 +14,7 @@ class QuadTest : public TestBase {
                 std::make_unique<Lambertian>());
   }
 
-  void RunTest() override {
+  void test_unit_quad() {
     auto quad = CreateUnitQuad();
     for (double i = -1; i <= 2; i += 0.1) {
       for (double j = -1; j <= 2; j += 0.1) {
@@ -33,4 +33,6 @@ class QuadTest : public TestBase {
       }
     }
   }
+
+  void RunTest() override { test_unit_quad(); }
 };

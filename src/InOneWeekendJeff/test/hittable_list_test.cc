@@ -76,7 +76,7 @@ class HittableListTest : public TestBase {
     // Left quad
     hittable_list.add(std::make_unique<Quad>(
         Point3(-3, -2, 5), Vec3(0, 0, -4), Vec3(0, 4, 0), std::move(left_red)));
-    // Front center quad
+    // Center quad
     hittable_list.add(std::make_unique<Quad>(Point3(-2, -2, 0), Vec3(4, 0, 0),
                                              Vec3(0, 4, 0),
                                              std::move(back_green)));
@@ -92,6 +92,21 @@ class HittableListTest : public TestBase {
                                              Vec3(0, 0, -4),
                                              std::move(lower_teal)));
     hittable_list.InitBvhTree();
+    assert(hittable_list.bounding_box() ==
+           BoundingBox(Interval(-3, 3), Interval(-3, 3), Interval(0, 5)));
+
+    // Test the center quad
+    for (double x = -2; x <= 2; x += 0.1) {
+      for (double y = -2; y <= 2; y += 0.1) {
+        Point3 ray_origin(0, 0, 9);
+        Point3 target(x, y, 100);
+        Vec3 ray_direction(Vec3(target - ray_origin));
+        Ray incident_ray(ray_origin, ray_direction);
+        Hittable::HitResult result;
+        assert(hittable_list.hit(incident_ray, constants::interval::UNIVERSAL,
+                                 result));
+      }
+    }
   }
 
   void RunTest() {

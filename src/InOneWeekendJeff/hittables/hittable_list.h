@@ -9,6 +9,8 @@
 #include "InOneWeekendJeff/interval.h"
 #include "InOneWeekendJeff/ray.h"
 
+class HittableListTest;
+
 class HittableList : public Hittable {
  public:
   HittableList();
@@ -26,6 +28,8 @@ class HittableList : public Hittable {
   void InitBvhTree();
 
  private:
+  friend class HittableListTest;
+
   std::vector<std::unique_ptr<Hittable>> hittables_;
   BoundingBox bounding_box_;
   std::unique_ptr<BvhNode> bvh_;

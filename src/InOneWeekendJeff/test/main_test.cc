@@ -1,6 +1,7 @@
 #include "InOneWeekendJeff/test/bounding_box_test.cc"
 #include "InOneWeekendJeff/test/bvh_node_test.cc"
 #include "InOneWeekendJeff/test/camera_test.cc"
+#include "InOneWeekendJeff/test/hittable_list_test.cc"
 #include "InOneWeekendJeff/test/interval_test.cc"
 #include "InOneWeekendJeff/test/lambertian_test.cc"
 #include "InOneWeekendJeff/test/metal_test.cc"
@@ -47,6 +48,9 @@ int main() {
 
   QuadTest quad_test;
   quad_test.RunTest();
+
+  HittableListTest hittable_list_test;
+  hittable_list_test.RunTest();
 
   return 0;
 }

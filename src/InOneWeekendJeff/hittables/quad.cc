@@ -3,6 +3,10 @@
 #include <cmath>
 
 #include "InOneWeekendJeff/constants.h"
+#include "InOneWeekendJeff/materials/lambertian.h"
+
+Quad::Quad(const Point3& q, const Vec3& u, const Vec3& v)
+    : Quad(q, u, v, std::make_unique<Lambertian>()) {}
 
 Quad::Quad(const Point3& q,
            const Vec3& u,

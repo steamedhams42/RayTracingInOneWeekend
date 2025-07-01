@@ -14,6 +14,8 @@ class Quad : public Hittable {
        const Vec3& v,
        std::unique_ptr<Material>);
 
+  Quad(const Point3& q, const Vec3& u, const Vec3& v);
+
   virtual void set_bounding_box();
 
   bool hit(const Ray& incident_ray,

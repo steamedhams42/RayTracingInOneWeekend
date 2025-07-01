@@ -104,6 +104,7 @@ set ( SOURCE_ONE_WEEKEND_TEST
   src/InOneWeekendJeff/textures/solid_color_texture.cc
   src/InOneWeekendJeff/textures/checker_texture.h
   src/InOneWeekendJeff/textures/checker_texture.cc
+  src/InOneWeekendJeff/test/hittable_list_test.cc
   src/InOneWeekendJeff/test/solid_color_texture_test.cc
   src/InOneWeekendJeff/test/bvh_node_test.cc
   src/InOneWeekendJeff/test/metal_test.cc

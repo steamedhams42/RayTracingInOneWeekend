@@ -7,6 +7,7 @@
 #include "InOneWeekendJeff/constants.h"
 #include "InOneWeekendJeff/hittables/bvh_node.h"
 #include "InOneWeekendJeff/hittables/hittable_list.h"
+#include "InOneWeekendJeff/hittables/quad.h"
 #include "InOneWeekendJeff/hittables/sphere.h"
 #include "InOneWeekendJeff/materials/dielectric.h"
 #include "InOneWeekendJeff/materials/lambertian.h"
@@ -131,6 +132,17 @@ void render_earth() {
   camera.render(hittables);
 }
 
+void render_quads() {
+  // Materials
+  auto left_red = std::make_unique<Lambertian>(constants::color::RED);
+  auto back_green = std::make_unique<Lambertian>(constants::color::GREEN);
+  auto right_blue = std::make_unique<Lambertian>(constants::color::BLUE);
+  auto upper_orange = std::make_unique<Lambertian>(constants::color::ORANGE);
+  auto lower_teal = std::make_unique<Lambertian>(constants::color::TEAL);
+
+  // Quads
+}
+
 int main() {
   int i = 2;
   switch (i) {
@@ -142,6 +154,9 @@ int main() {
       break;
     case 2:
       render_earth();
+      break;
+    case 3:
+      render_quads();
       break;
   }
 }

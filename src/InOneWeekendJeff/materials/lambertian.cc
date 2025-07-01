@@ -8,8 +8,10 @@
 #include "InOneWeekendJeff/textures/solid_color_texture.h"
 #include "InOneWeekendJeff/vec3.h"
 
-Lambertian::Lambertian()
-    : albedo_(std::make_unique<SolidColorTexture>(Color(0.5, 0.5, 0.5))) {}
+Lambertian::Lambertian() : Lambertian(Color(0.5, 0.5, 0.5)) {}
+
+Lambertian::Lambertian(const Color& color)
+    : albedo_(std::make_unique<SolidColorTexture>(color)) {}
 
 Lambertian::Lambertian(std::unique_ptr<Texture> texture)
     : albedo_(std::move(texture)) {}

@@ -66,6 +66,11 @@ const Interval UNIVERSAL =
 namespace color {
 const Color WHITE(1, 1, 1);
 const Color BLACK(0, 0, 0);
+const Color RED(1.0, 0, 0);
+const Color GREEN(0, 1.0, 0);
+const Color BLUE(0, 0, 1.0);
+const Color ORANGE(1.0, 0.5, 0);
+const Color TEAL(0.2, 0.8, 0.8);
 }  // namespace color
 
 }  // namespace constants

@@ -11,6 +11,7 @@
 class Lambertian : public Material {
  public:
   Lambertian();
+  Lambertian(const Color&);
   Lambertian(std::unique_ptr<Texture> texture);
   ~Lambertian();
 

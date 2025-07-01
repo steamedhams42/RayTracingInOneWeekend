@@ -16,7 +16,7 @@ class Quad : public Hittable {
 
   Quad(const Point3& q, const Vec3& u, const Vec3& v);
 
-  virtual void set_bounding_box();
+  virtual void SetBoundingBox();
 
   bool hit(const Ray& incident_ray,
            Interval hit_ival,

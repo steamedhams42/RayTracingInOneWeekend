@@ -1,5 +1,5 @@
-#ifndef DIFFUSE_H
-#define DIFFUSE_H
+#ifndef DIFFUSE_LIGHT_H
+#define DIFFUSE_LIGHT_H
 
 #include <memory>
 
@@ -8,10 +8,10 @@
 #include "InOneWeekendJeff/point3.h"
 #include "InOneWeekendJeff/textures/texture.h"
 
-class Diffuse : public Material {
+class DiffuseLight : public Material {
  public:
-  Diffuse(std::unique_ptr<Texture> texture);
-  Diffuse(const Color& color);
+  DiffuseLight(std::unique_ptr<Texture> texture);
+  DiffuseLight(const Color& color);
 
   Color Emit(double u, double v, const Point3& p) const override;
 

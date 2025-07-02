@@ -43,8 +43,8 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/interval.h
   src/InOneWeekendJeff/materials/dielectric.h
   src/InOneWeekendJeff/materials/dielectric.cc
-  src/InOneWeekendJeff/materials/diffuse.h
-  src/InOneWeekendJeff/materials/diffuse.cc
+  src/InOneWeekendJeff/materials/diffuse_light.h
+  src/InOneWeekendJeff/materials/diffuse_light.cc
   src/InOneWeekendJeff/materials/material.h
   src/InOneWeekendJeff/materials/metal.h
   src/InOneWeekendJeff/materials/metal.cc

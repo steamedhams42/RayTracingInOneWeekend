@@ -24,7 +24,9 @@ Camera::Camera(const Point3 center,
       vertical_field_of_view_(vertical_field_of_view),
       image_width_(image_width),
       aspect_width_(aspect_width),
-      aspect_height_(aspect_height) {}
+      aspect_height_(aspect_height) {
+  Initialize();
+}
 
 void Camera::Initialize() {
   aspect_ratio_ = aspect_width_ / aspect_height_;

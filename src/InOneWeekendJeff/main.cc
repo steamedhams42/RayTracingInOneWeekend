@@ -10,6 +10,7 @@
 #include "InOneWeekendJeff/hittables/quad.h"
 #include "InOneWeekendJeff/hittables/sphere.h"
 #include "InOneWeekendJeff/materials/dielectric.h"
+#include "InOneWeekendJeff/materials/diffuse_light.h"
 #include "InOneWeekendJeff/materials/lambertian.h"
 #include "InOneWeekendJeff/materials/metal.h"
 #include "InOneWeekendJeff/point3.h"
@@ -90,7 +91,6 @@ void render_bouncing_spheres() {
       constants::camera::FOCAL_DISTANCE,
       constants::camera::VERTICAL_FIELD_OF_VIEW, constants::camera::IMAGE_WIDTH,
       constants::camera::ASPECT_WIDTH, constants::camera::ASPECT_HEIGHT);
-  camera.Initialize();
   camera.Render(hittables);
 }
 
@@ -110,7 +110,6 @@ void render_checkered_spheres() {
       constants::camera::FOCAL_DISTANCE,
       constants::camera::VERTICAL_FIELD_OF_VIEW, constants::camera::IMAGE_WIDTH,
       constants::camera::ASPECT_WIDTH, constants::camera::ASPECT_HEIGHT);
-  camera.Initialize();
   camera.Render(hittables);
 }
 
@@ -128,7 +127,6 @@ void render_earth() {
                 constants::camera::VERTICAL_FIELD_OF_VIEW,
                 constants::camera::IMAGE_WIDTH, constants::camera::ASPECT_WIDTH,
                 constants::camera::ASPECT_HEIGHT);
-  camera.Initialize();
   camera.Render(hittables);
 }
 
@@ -162,12 +160,41 @@ void render_quads() {
                 /*FoV*/ 80, constants::camera::IMAGE_WIDTH,
                 constants::camera::ASPECT_WIDTH,
                 constants::camera::ASPECT_HEIGHT);
-  camera.Initialize();
+  camera.Render(hittables);
+}
+
+void simple_light() {
+  auto earth = std::make_unique<Sphere>(Point3(0, -1000, 0), 1000,
+                                        std::make_unique<Lambertian>());
+  auto ball = std::make_unique<Sphere>(Point3(0, 2, 0), 2,
+                                       std::make_unique<Lambertian>());
+  hittables.add(std::move(earth));
+  hittables.add(std::move(ball));
+
+  // Light source
+  auto diffuse_light = std::make_unique<DiffuseLight>(Color(1, 1, 1));
+  auto light_pane = std::make_unique<Quad>(
+      Point3(3, 1, -2), Vec3(2, 0, 0), Vec3(0, 2, 0), std::move(diffuse_light));
+  hittables.add(std::move(light_pane));
+
+  // Add a spherical light source
+  hittables.add(std::make_unique<Sphere>(
+      Point3(0, 7, 0), 2, std::make_unique<DiffuseLight>(Color(1, 1, 1))));
+  hittables.InitBvhTree();
+
+  // Camera
+  Point3 camera_center(13, 2, 2);
+  Camera camera(camera_center, /*focal point*/ Point3(0, 2, 0),
+                /*focal distance*/
+                Point3(camera_center - constants::camera::FOCAL_POINT).norm(),
+                /*FoV*/ 80, constants::camera::IMAGE_WIDTH,
+                constants::camera::ASPECT_WIDTH,
+                constants::camera::ASPECT_HEIGHT);
   camera.Render(hittables);
 }
 
 int main() {
-  int i = 3;
+  int i = 4;
   switch (i) {
     case 0:
       render_bouncing_spheres();
@@ -180,6 +207,9 @@ int main() {
       break;
     case 3:
       render_quads();
+      break;
+    case 4:
+      simple_light();
       break;
   }
 }

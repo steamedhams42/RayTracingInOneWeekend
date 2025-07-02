@@ -14,12 +14,13 @@ Quad::Quad(const Point3& q,
            std::unique_ptr<Material> mat)
     : Q_(q), u_(u), v_(v), material_(std::move(mat)) {
   SetBoundingBox();
-  auto cross = u_.cross(v_);
-  normal_ = cross.unit();
+
+  auto n = u_.cross(v_);
+  normal_ = n.unit();
 
   // Ax + By + Cz = D
   D_ = normal_.dot(Vec3(Q_));
-  w_ = normal_ / (normal_.dot(normal_));
+  w_ = n / (n.dot(n));
 }
 
 void Quad::SetBoundingBox() {

@@ -57,7 +57,7 @@ bool BoundingBox::hit(const Ray& incident_ray, Interval ray_t_interval) const {
     // Expands an interval by an epsilon if it is close to zero. This is to
     // give quadrilaterals an "infinitesimal" width for hit detection.
     if (current_axis.width() < constants::EPS_BB_PADDING) {
-      current_axis = current_axis.expand(constants::EPS_BB_PADDING);
+      current_axis = current_axis.expand(constants::EPS_BB_PADDING / 2.0);
     }
     double vector_component = ray_direction[axis];
 

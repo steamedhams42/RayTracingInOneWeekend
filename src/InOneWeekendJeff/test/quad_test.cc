@@ -15,15 +15,17 @@ class QuadTest : public TestBase {
   }
 
   void test_one_quad() {
-    Quad quad(Point3(-2, -2, 0), Vec3(4, 0, 0), Vec3(0, 4, 0));
+    // Tests a "ceiling" faced quad.
+    // Think top ceiling of a cornell box.
+    Quad quad(Point3(-2, 3, 1), Vec3(4, 0, 0), Vec3(0, 0, 4));
     for (double x = -3; x <= 3; x += 0.1) {
-      for (double y = -3; y <= 3; y += 0.1) {
+      for (double z = 6; z >= 0; z -= 0.1) {
         Point3 ray_origin(0, 0, 9);
-        Point3 target(x, y, 0);
+        Point3 target(x, 3, z);
         Vec3 ray_direction(Vec3(target - ray_origin));
         Ray incident_ray(ray_origin, ray_direction);
         Hittable::HitResult result;
-        if (Interval(-2, 2).contains(x) and Interval(-2, 2).contains(y)) {
+        if (Interval(-2, 2).contains(x) and Interval(1, 5).contains(z)) {
           assert(
               quad.hit(incident_ray, constants::interval::UNIVERSAL, result));
         } else {

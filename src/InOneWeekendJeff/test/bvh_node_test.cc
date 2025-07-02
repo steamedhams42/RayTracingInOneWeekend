@@ -8,14 +8,14 @@
 
 #include "InOneWeekendJeff/bounding_box.h"
 #include "InOneWeekendJeff/constants.h"
+#include "InOneWeekendJeff/geometry/point3.h"
+#include "InOneWeekendJeff/geometry/ray.h"
 #include "InOneWeekendJeff/hittables/bvh_node.h"
 #include "InOneWeekendJeff/hittables/hittable.h"
 #include "InOneWeekendJeff/hittables/hittable_list.h"
 #include "InOneWeekendJeff/hittables/quad.h"
 #include "InOneWeekendJeff/hittables/sphere.h"
 #include "InOneWeekendJeff/interval.h"
-#include "InOneWeekendJeff/point3.h"
-#include "InOneWeekendJeff/ray.h"
 
 class BvhNodeTest : public TestBase {
  private:

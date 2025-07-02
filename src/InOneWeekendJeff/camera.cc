@@ -3,13 +3,13 @@
 #include <cassert>
 #include <cmath>
 
+#include "InOneWeekendJeff/constants.h"
+#include "InOneWeekendJeff/geometry/vec3.h"
 #include "InOneWeekendJeff/hittables/hittable.h"
 #include "InOneWeekendJeff/hittables/hittable_list.h"
-#include "constants.h"
-#include "interval.h"
-#include "materials/material.h"
-#include "random.h"
-#include "vec3.h"
+#include "InOneWeekendJeff/interval.h"
+#include "InOneWeekendJeff/materials/material.h"
+#include "InOneWeekendJeff/random.h"
 
 Camera::Camera(const Point3 center,
                const Point3 focal_point,

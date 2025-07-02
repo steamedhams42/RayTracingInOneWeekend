@@ -1,4 +1,4 @@
-#include "point3.h"
+#include "InOneWeekendJeff/geometry/point3.h"
 
 #include <cmath>
 

@@ -2,10 +2,10 @@
 #include <memory>
 
 #include "InOneWeekendJeff/constants.h"
+#include "InOneWeekendJeff/geometry/vec3.h"
 #include "InOneWeekendJeff/hittables/quad.h"
 #include "InOneWeekendJeff/materials/lambertian.h"
 #include "InOneWeekendJeff/test/test_base.h"
-#include "InOneWeekendJeff/vec3.h"
 
 class QuadTest : public TestBase {
  public:

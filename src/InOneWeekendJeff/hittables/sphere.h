@@ -4,11 +4,11 @@
 #include <memory>
 
 #include "InOneWeekendJeff/bounding_box.h"
+#include "InOneWeekendJeff/geometry/point3.h"
 #include "InOneWeekendJeff/hittables/hittable.h"
 #include "InOneWeekendJeff/interval.h"
 #include "InOneWeekendJeff/materials/lambertian.h"
 #include "InOneWeekendJeff/materials/material.h"
-#include "InOneWeekendJeff/point3.h"
 
 class Ray;
 class SphereTest;

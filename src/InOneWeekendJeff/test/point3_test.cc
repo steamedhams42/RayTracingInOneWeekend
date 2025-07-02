@@ -1,4 +1,4 @@
-#include "InOneWeekendJeff/point3.h"
+#include "InOneWeekendJeff/geometry/point3.h"
 #include "InOneWeekendJeff/random.h"
 #include "InOneWeekendJeff/test/test_base.h"
 

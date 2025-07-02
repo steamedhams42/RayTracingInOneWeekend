@@ -4,8 +4,8 @@
 #include <cmath>
 
 #include "InOneWeekendJeff/constants.h"
+#include "InOneWeekendJeff/geometry/ray.h"
 #include "InOneWeekendJeff/materials/lambertian.h"
-#include "InOneWeekendJeff/ray.h"
 
 // Stationary sphere
 Sphere::Sphere(Point3 center, double r, std::shared_ptr<Material> material)

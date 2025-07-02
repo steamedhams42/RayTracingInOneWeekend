@@ -29,6 +29,12 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/constants.h
   src/InOneWeekendJeff/color.cc
   src/InOneWeekendJeff/color.h
+  src/InOneWeekendJeff/geometry/point3.cc
+  src/InOneWeekendJeff/geometry/point3.h
+  src/InOneWeekendJeff/geometry/ray.cc
+  src/InOneWeekendJeff/geometry/ray.h
+  src/InOneWeekendJeff/geometry/vec3.cc
+  src/InOneWeekendJeff/geometry/vec3.h
   src/InOneWeekendJeff/hittables/hittable.cc
   src/InOneWeekendJeff/hittables/hittable.h
   src/InOneWeekendJeff/hittables/bvh_node.cc
@@ -50,8 +56,6 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/materials/metal.cc
   src/InOneWeekendJeff/materials/lambertian.h
   src/InOneWeekendJeff/materials/lambertian.cc
-  src/InOneWeekendJeff/point3.cc
-  src/InOneWeekendJeff/point3.h
   src/InOneWeekendJeff/textures/image_texture.h
   src/InOneWeekendJeff/textures/image_texture.cc
   src/InOneWeekendJeff/textures/texture.h
@@ -61,12 +65,8 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/textures/checker_texture.cc
   src/InOneWeekendJeff/random.cc
   src/InOneWeekendJeff/random.h
-  src/InOneWeekendJeff/ray.cc
-  src/InOneWeekendJeff/ray.h
   src/InOneWeekendJeff/rtw_stb_image.h
   src/InOneWeekendJeff/rtw_stb_image.cc
-  src/InOneWeekendJeff/vec3.cc
-  src/InOneWeekendJeff/vec3.h
 )
 
 set ( SOURCE_ONE_WEEKEND_TEST
@@ -74,10 +74,12 @@ set ( SOURCE_ONE_WEEKEND_TEST
   src/InOneWeekendJeff/camera.h
   src/InOneWeekendJeff/color.h
   src/InOneWeekendJeff/color.cc
-  src/InOneWeekendJeff/vec3.h
-  src/InOneWeekendJeff/vec3.cc
-  src/InOneWeekendJeff/point3.h
-  src/InOneWeekendJeff/point3.cc
+  src/InOneWeekendJeff/geometry/point3.cc
+  src/InOneWeekendJeff/geometry/point3.h
+  src/InOneWeekendJeff/geometry/ray.cc
+  src/InOneWeekendJeff/geometry/ray.h
+  src/InOneWeekendJeff/geometry/vec3.cc
+  src/InOneWeekendJeff/geometry/vec3.h
   src/InOneWeekendJeff/hittables/bvh_node.cc
   src/InOneWeekendJeff/hittables/bvh_node.h
   src/InOneWeekendJeff/hittables/hittable.h
@@ -88,8 +90,6 @@ set ( SOURCE_ONE_WEEKEND_TEST
   src/InOneWeekendJeff/hittables/sphere.cc
   src/InOneWeekendJeff/hittables/quad.cc
   src/InOneWeekendJeff/hittables/quad.h
-  src/InOneWeekendJeff/ray.h
-  src/InOneWeekendJeff/ray.cc
   src/InOneWeekendJeff/interval.h
   src/InOneWeekendJeff/interval.cc
   src/InOneWeekendJeff/camera.h

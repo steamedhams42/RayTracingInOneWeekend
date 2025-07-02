@@ -1,9 +1,9 @@
 #ifndef BOUNDING_BOX_H
 #define BOUNDING_BOX_H
 
+#include "InOneWeekendJeff/geometry/point3.h"
+#include "InOneWeekendJeff/geometry/ray.h"
 #include "InOneWeekendJeff/interval.h"
-#include "InOneWeekendJeff/point3.h"
-#include "InOneWeekendJeff/ray.h"
 
 // 3D axis-aligned bounding box.
 class BoundingBox {

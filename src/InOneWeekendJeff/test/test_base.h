@@ -1,9 +1,9 @@
 #ifndef TEST_BASE_H
 #define TEST_BASE_H
 
-#include "InOneWeekendJeff/point3.h"
+#include "InOneWeekendJeff/geometry/point3.h"
+#include "InOneWeekendJeff/geometry/vec3.h"
 #include "InOneWeekendJeff/random.h"
-#include "InOneWeekendJeff/vec3.h"
 
 #define ASSERT(condition, message)                               \
   do {                                                           \

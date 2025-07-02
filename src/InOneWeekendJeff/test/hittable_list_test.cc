@@ -6,14 +6,14 @@
 #include "InOneWeekendJeff/bounding_box.h"
 #include "InOneWeekendJeff/color.h"
 #include "InOneWeekendJeff/constants.h"
+#include "InOneWeekendJeff/geometry/point3.h"
+#include "InOneWeekendJeff/geometry/ray.h"
+#include "InOneWeekendJeff/geometry/vec3.h"
 #include "InOneWeekendJeff/hittables/bvh_node.h"
 #include "InOneWeekendJeff/hittables/hittable_list.h"
 #include "InOneWeekendJeff/hittables/quad.h"
 #include "InOneWeekendJeff/interval.h"
 #include "InOneWeekendJeff/materials/lambertian.h"
-#include "InOneWeekendJeff/point3.h"
-#include "InOneWeekendJeff/ray.h"
-#include "InOneWeekendJeff/vec3.h"
 
 class HittableListTest : public TestBase {
  public:

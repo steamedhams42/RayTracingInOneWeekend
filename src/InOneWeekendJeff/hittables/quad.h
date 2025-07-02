@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "InOneWeekendJeff/Point3.h"
+#include "InOneWeekendJeff/geometry/point3.h"
 #include "InOneWeekendJeff/hittables/hittable.h"
 #include "InOneWeekendJeff/materials/material.h"
 

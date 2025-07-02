@@ -4,10 +4,10 @@
 #include <memory>
 #include <vector>
 #include "InOneWeekendJeff/bounding_box.h"
+#include "InOneWeekendJeff/geometry/ray.h"
 #include "InOneWeekendJeff/hittables/bvh_node.h"
 #include "InOneWeekendJeff/hittables/hittable.h"
 #include "InOneWeekendJeff/interval.h"
-#include "InOneWeekendJeff/ray.h"
 
 class HittableListTest;
 

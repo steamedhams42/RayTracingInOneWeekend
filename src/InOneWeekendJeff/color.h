@@ -2,7 +2,7 @@
 #define COLOR_H
 
 #include <iostream>
-#include "point3.h"
+#include "InOneWeekendJeff/geometry/point3.h"
 
 class Color : public Point3 {
  public:

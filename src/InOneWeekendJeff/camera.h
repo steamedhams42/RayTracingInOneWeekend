@@ -1,11 +1,11 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
+#include "InOneWeekendJeff/geometry/point3.h"
+#include "InOneWeekendJeff/geometry/ray.h"
 #include "color.h"
 #include "constants.h"
 #include "hittables/hittable_list.h"
-#include "point3.h"
-#include "ray.h"
 
 class CameraTest;
 

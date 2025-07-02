@@ -3,10 +3,10 @@
 #include <memory>
 #include "InOneWeekendJeff/camera.h"
 #include "InOneWeekendJeff/constants.h"
+#include "InOneWeekendJeff/geometry/point3.h"
 #include "InOneWeekendJeff/hittables/hittable.h"
 #include "InOneWeekendJeff/hittables/hittable_list.h"
 #include "InOneWeekendJeff/hittables/sphere.h"
-#include "InOneWeekendJeff/point3.h"
 
 class CameraTest : public TestBase {
  public:

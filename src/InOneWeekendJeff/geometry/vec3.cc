@@ -1,6 +1,6 @@
-#include "vec3.h"
-#include "constants.h"
-#include "random.h"
+#include "InOneWeekendJeff/geometry/vec3.h"
+#include "InOneWeekendJeff/constants.h"
+#include "InOneWeekendJeff/random.h"
 
 double Vec3::operator[](int i) const {
   return this->points_[i];

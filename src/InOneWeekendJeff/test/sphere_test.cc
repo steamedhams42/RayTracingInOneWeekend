@@ -1,8 +1,8 @@
 #include <cassert>
 
+#include "InOneWeekendJeff/geometry/ray.h"
 #include "InOneWeekendJeff/hittables/sphere.h"
 #include "InOneWeekendJeff/materials/lambertian.h"
-#include "InOneWeekendJeff/ray.h"
 #include "test_base.h"
 
 class SphereTest : public TestBase {

@@ -3,10 +3,10 @@
 #include <memory>
 
 #include "InOneWeekendJeff/color.h"
+#include "InOneWeekendJeff/geometry/vec3.h"
 #include "InOneWeekendJeff/hittables/hittable.h"
 #include "InOneWeekendJeff/materials/material.h"
 #include "InOneWeekendJeff/textures/solid_color_texture.h"
-#include "InOneWeekendJeff/vec3.h"
 
 Lambertian::Lambertian() : Lambertian(Color(0.5, 0.5, 0.5)) {}
 

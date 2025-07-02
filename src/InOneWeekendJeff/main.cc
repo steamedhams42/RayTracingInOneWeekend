@@ -5,6 +5,7 @@
 
 #include "InOneWeekendJeff/camera.h"
 #include "InOneWeekendJeff/constants.h"
+#include "InOneWeekendJeff/geometry/point3.h"
 #include "InOneWeekendJeff/hittables/bvh_node.h"
 #include "InOneWeekendJeff/hittables/hittable_list.h"
 #include "InOneWeekendJeff/hittables/quad.h"
@@ -13,7 +14,6 @@
 #include "InOneWeekendJeff/materials/diffuse_light.h"
 #include "InOneWeekendJeff/materials/lambertian.h"
 #include "InOneWeekendJeff/materials/metal.h"
-#include "InOneWeekendJeff/point3.h"
 #include "InOneWeekendJeff/random.h"
 #include "InOneWeekendJeff/textures/checker_texture.h"
 #include "InOneWeekendJeff/textures/image_texture.h"

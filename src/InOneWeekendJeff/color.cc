@@ -3,10 +3,10 @@
 #include <cassert>
 #include <iostream>
 
-#include "constants.h"
-#include "interval.h"
-#include "point3.h"
-#include "random.h"
+#include "InOneWeekendJeff/constants.h"
+#include "InOneWeekendJeff/geometry/point3.h"
+#include "InOneWeekendJeff/interval.h"
+#include "InOneWeekendJeff/random.h"
 
 Color::Color(Point3 p) : Point3(p) {}
 

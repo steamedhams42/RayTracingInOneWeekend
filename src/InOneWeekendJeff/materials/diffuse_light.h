@@ -4,8 +4,8 @@
 #include <memory>
 
 #include "InOneWeekendJeff/color.h"
+#include "InOneWeekendJeff/geometry/point3.h"
 #include "InOneWeekendJeff/materials/material.h"
-#include "InOneWeekendJeff/point3.h"
 #include "InOneWeekendJeff/textures/texture.h"
 
 class DiffuseLight : public Material {

@@ -5,9 +5,9 @@
 #include <limits>
 
 #include "InOneWeekendJeff/color.h"
+#include "InOneWeekendJeff/geometry/point3.h"
+#include "InOneWeekendJeff/geometry/vec3.h"
 #include "InOneWeekendJeff/interval.h"
-#include "InOneWeekendJeff/point3.h"
-#include "InOneWeekendJeff/vec3.h"
 
 namespace constants {
 

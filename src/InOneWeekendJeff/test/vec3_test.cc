@@ -1,4 +1,4 @@
-#include "InOneWeekendJeff/vec3.h"
+#include "InOneWeekendJeff/geometry/vec3.h"
 #include "InOneWeekendJeff/constants.h"
 #include "InOneWeekendJeff/interval.h"
 #include "InOneWeekendJeff/random.h"

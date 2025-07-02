@@ -2,7 +2,7 @@
 #define TEXTURE_H
 
 #include "InOneWeekendJeff/color.h"
-#include "InOneWeekendJeff/point3.h"
+#include "InOneWeekendJeff/geometry/point3.h"
 
 class Texture {
  public:

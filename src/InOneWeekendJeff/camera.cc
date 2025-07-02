@@ -26,7 +26,7 @@ Camera::Camera(const Point3 center,
       aspect_width_(aspect_width),
       aspect_height_(aspect_height) {}
 
-void Camera::initialize() {
+void Camera::Initialize() {
   aspect_ratio_ = aspect_width_ / aspect_height_;
 
   // Image height cannot subceed 1
@@ -42,7 +42,7 @@ void Camera::initialize() {
   // Viewport
   // Draw a right triangle from camera to viewport.
   viewport_height_ = 2 * focal_distance_ *
-                     std::tan(degrees_to_radians(vertical_field_of_view_ / 2));
+                     std::tan(DegreesToRadians(vertical_field_of_view_ / 2));
   viewport_width_ = viewport_height_ * image_width_ / image_height_;
 
   Vec3 viewport_vector_width = viewport_width_ * u_;
@@ -65,7 +65,7 @@ void Camera::initialize() {
 
   // Calculate the camera defocus disk basis vectors.
   auto defocus_radius =
-      focal_distance_ * std::tan(degrees_to_radians(defocus_angle_ / 2));
+      focal_distance_ * std::tan(DegreesToRadians(defocus_angle_ / 2));
   defocus_disk_u_ = u_ * defocus_radius;
   defocus_disk_v_ = v_ * defocus_radius;
 
@@ -73,7 +73,7 @@ void Camera::initialize() {
   pixel_samples_scale_ = 1.0 / constants::camera::SAMPLES_PER_PIXEL;
 };
 
-void Camera::render(const HittableList& hittables) {
+void Camera::Render(const HittableList& hittables) {
   std::cout << "P3" << constants::nl;
   std::cout << image_width_ << ' ' << image_height_ << constants::nl;
   std::cout << constants::BYTE - 1 << constants::nl;
@@ -84,8 +84,8 @@ void Camera::render(const HittableList& hittables) {
     for (int x = 0; x < image_width_; x++) {
       Color pixel_color(0, 0, 0);
       for (int i = 0; i < constants::camera::SAMPLES_PER_PIXEL; i++) {
-        Ray random_ray = get_random_ray_within_unit_square(x, y);
-        pixel_color += computeRayColor(random_ray, hittables);
+        Ray random_ray = GetRandomRayWithXY(x, y);
+        pixel_color += ComputeRayColor(random_ray, hittables);
       }
       pixel_color *= pixel_samples_scale_;
       pixel_color.write_color(std::cout);
@@ -94,7 +94,7 @@ void Camera::render(const HittableList& hittables) {
   std::clog << "\rDone                " << std::endl;
 }
 
-Color Camera::computeRayColor(const Ray& incident_ray,
+Color Camera::ComputeRayColor(const Ray& incident_ray,
                               const HittableList& hittables,
                               int light_bounces_remaining) const {
   if (light_bounces_remaining == 0) {
@@ -106,9 +106,10 @@ Color Camera::computeRayColor(const Ray& incident_ray,
                     hit_result)) {
     Ray scattered_ray;
     Color attenuation;
-    if (hit_result.material->scatter(incident_ray, hit_result, attenuation,
+    //
+    if (hit_result.material->Scatter(incident_ray, hit_result, attenuation,
                                      scattered_ray)) {
-      return attenuation * computeRayColor(scattered_ray, hittables,
+      return attenuation * ComputeRayColor(scattered_ray, hittables,
                                            light_bounces_remaining - 1);
     }
     return Color(0, 0, 0);
@@ -120,8 +121,8 @@ Color Camera::computeRayColor(const Ray& incident_ray,
   return (1.0 - scale) * Color(1, 1, 1) + scale * (Color(0.5, 0.7, 1.0));
 }
 
-Ray Camera::get_random_ray_within_unit_square(int x, int y) {
-  Point3 offset = get_random_point_from_unit_square();
+Ray Camera::GetRandomRayWithXY(int x, int y) {
+  Point3 offset = GetRandomPointFromUnitSquare();
   // This converts a (x, y) cell on the viewport back to cartesian coordinates.
   Point3 pixel_center = viewport_top_left_pixel_center_ +
                         (x + offset.x()) * pixel_delta_width_ +
@@ -133,12 +134,12 @@ Ray Camera::get_random_ray_within_unit_square(int x, int y) {
   return Ray(ray_origin, ray_direction, ray_time);
 }
 
-Point3 Camera::get_random_point_from_unit_square() const {
+Point3 Camera::GetRandomPointFromUnitSquare() const {
   return Vec3(Random::random_real(-0.5, +0.5), Random::random_real(-0.5, +0.5),
               0);
 }
 
-double Camera::degrees_to_radians(double deg) const {
+double Camera::DegreesToRadians(double deg) const {
   return deg * constants::PI / 180.0;
 }
 

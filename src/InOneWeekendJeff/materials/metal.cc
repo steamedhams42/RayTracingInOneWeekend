@@ -8,7 +8,7 @@ Metal::Metal(const Color& albedo) : albedo_(albedo) {}
 
 Metal::~Metal() = default;
 
-bool Metal::scatter(const Ray& incident_ray,
+bool Metal::Scatter(const Ray& incident_ray,
                     const Hittable::HitResult& result,
                     Color& attenuation,
                     Ray& scattered) const {

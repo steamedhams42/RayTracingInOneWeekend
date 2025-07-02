@@ -23,7 +23,7 @@ class CameraTest : public TestBase {
         constants::camera::FOCAL_DISTANCE, constants::camera::ASPECT_WIDTH,
         constants::camera::IMAGE_WIDTH, constants::camera::ASPECT_HEIGHT,
         constants::camera::VERTICAL_FIELD_OF_VIEW);
-    camera.initialize();
+    camera.Initialize();
 
     // Vec3 ray_direction(pixel_center);
     // Ray ray(camera_center, ray_direction);

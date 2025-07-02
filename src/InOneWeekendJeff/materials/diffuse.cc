@@ -8,6 +8,6 @@ Diffuse::Diffuse(std::unique_ptr<Texture> texture)
 Diffuse::Diffuse(const Color& color)
     : texture_(std::make_unique<SolidColorTexture>(color)) {}
 
-Color Diffuse::emitted(double u, double v, const Point3& p) {
+Color Diffuse::Emit(double u, double v, const Point3& p) {
   return texture_->value(u, v, p);
 }

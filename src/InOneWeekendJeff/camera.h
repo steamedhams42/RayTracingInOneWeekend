@@ -19,26 +19,26 @@ class Camera {
          const double aspect_height,
          const double vertical_field_of_view);
 
-  void initialize();
-  void render(const HittableList&);
+  void Initialize();
+  void Render(const HittableList&);
 
  private:
   friend class CameraTest;
 
   // Uses recursion to bounce light off hittable surfaces (diffuse reflection)
-  Color computeRayColor(
+  Color ComputeRayColor(
       const Ray& ray,
       const HittableList&,
       int light_bounces_remaining = constants::camera::MAX_LIGHT_BOUNCES) const;
 
   // Returns a random ray originating from camera center pointed at
   // [x, y] + [+/-0.5, +/-0.5] unit square.
-  Ray get_random_ray_within_unit_square(int x, int y);
+  Ray GetRandomRayWithXY(int x, int y);
 
   // Returns a random point in the [+/-0.5, +/-0.5] unit square.
-  Point3 get_random_point_from_unit_square() const;
+  Point3 GetRandomPointFromUnitSquare() const;
 
-  double degrees_to_radians(double deg) const;
+  double DegreesToRadians(double deg) const;
 
   Vec3 defocus_disk_sample() const;
 
@@ -83,7 +83,7 @@ class Camera {
   // Values > 0,0 adds a blurring effect
   double defocus_angle_ = 0.0;
 
-  // Anti-aliasing
+  // Number of random rays sampled per pixel. Increases fidelity and computation
   double pixel_samples_scale_;
 };
 #endif

@@ -90,8 +90,8 @@ void render_bouncing_spheres() {
       constants::camera::FOCAL_DISTANCE,
       constants::camera::VERTICAL_FIELD_OF_VIEW, constants::camera::IMAGE_WIDTH,
       constants::camera::ASPECT_WIDTH, constants::camera::ASPECT_HEIGHT);
-  camera.initialize();
-  camera.render(hittables);
+  camera.Initialize();
+  camera.Render(hittables);
 }
 
 void render_checkered_spheres() {
@@ -110,8 +110,8 @@ void render_checkered_spheres() {
       constants::camera::FOCAL_DISTANCE,
       constants::camera::VERTICAL_FIELD_OF_VIEW, constants::camera::IMAGE_WIDTH,
       constants::camera::ASPECT_WIDTH, constants::camera::ASPECT_HEIGHT);
-  camera.initialize();
-  camera.render(hittables);
+  camera.Initialize();
+  camera.Render(hittables);
 }
 
 void render_earth() {
@@ -128,8 +128,8 @@ void render_earth() {
                 constants::camera::VERTICAL_FIELD_OF_VIEW,
                 constants::camera::IMAGE_WIDTH, constants::camera::ASPECT_WIDTH,
                 constants::camera::ASPECT_HEIGHT);
-  camera.initialize();
-  camera.render(hittables);
+  camera.Initialize();
+  camera.Render(hittables);
 }
 
 void render_quads() {
@@ -162,8 +162,8 @@ void render_quads() {
                 /*FoV*/ 80, constants::camera::IMAGE_WIDTH,
                 constants::camera::ASPECT_WIDTH,
                 constants::camera::ASPECT_HEIGHT);
-  camera.initialize();
-  camera.render(hittables);
+  camera.Initialize();
+  camera.Render(hittables);
 }
 
 int main() {

@@ -16,13 +16,13 @@ class Dielectric : public Material {
   Dielectric(const double refraction_index);
   ~Dielectric() = default;
 
-  bool scatter(const Ray& incident_ray,
+  bool Scatter(const Ray& incident_ray,
                const Hittable::HitResult& result,
                Color& attenuation,
                Ray& scattered) const;
 
  private:
-  Vec3 refract(const Vec3& uv,
+  Vec3 Refract(const Vec3& uv,
                const Vec3& n,
                double ingress_over_egress_refractive_index_ratio) const;
 

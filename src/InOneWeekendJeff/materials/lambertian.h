@@ -15,7 +15,7 @@ class Lambertian : public Material {
   Lambertian(std::unique_ptr<Texture> texture);
   ~Lambertian();
 
-  bool scatter(const Ray& incident_ray,
+  bool Scatter(const Ray& incident_ray,
                const Hittable::HitResult& hit_result,
                Color& attenuation,
                Ray& scattered) const override;

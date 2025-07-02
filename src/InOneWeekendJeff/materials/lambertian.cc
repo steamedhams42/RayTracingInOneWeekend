@@ -18,7 +18,7 @@ Lambertian::Lambertian(std::unique_ptr<Texture> texture)
 
 Lambertian::~Lambertian() = default;
 
-bool Lambertian::scatter(const Ray& incident_ray,
+bool Lambertian::Scatter(const Ray& incident_ray,
                          const Hittable::HitResult& hit_result,
                          Color& attenuation,
                          Ray& scattered) const {

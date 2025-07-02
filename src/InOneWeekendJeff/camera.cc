@@ -102,23 +102,23 @@ Color Camera::ComputeRayColor(const Ray& incident_ray,
   }
   Hittable::HitResult hit_result;
   // Check if ray hits a hittable
-  if (hittables.hit(incident_ray, Interval(0.001, constants::INF_DOUBLE),
-                    hit_result)) {
-    Ray scattered_ray;
-    Color attenuation;
-    //
-    if (hit_result.material->Scatter(incident_ray, hit_result, attenuation,
-                                     scattered_ray)) {
-      return attenuation * ComputeRayColor(scattered_ray, hittables,
-                                           light_bounces_remaining - 1);
-    }
-    return Color(0, 0, 0);
+  if (!hittables.hit(incident_ray, Interval(0.001, constants::INF_DOUBLE),
+                     hit_result)) {
+    // If ray hits nothing, return background color.
+    return constants::color::BACKGROUND_COLOR;
   }
-  // Background color if ray does not hit a hittable.
-  Vec3 unit_direction = incident_ray.direction().unit();
-  double scale = (unit_direction.y() + 1.0) / 2.0;
-  assert(scale < 256);
-  return (1.0 - scale) * Color(1, 1, 1) + scale * (Color(0.5, 0.7, 1.0));
+  Ray scattered_ray;
+  Color attenuation;
+  Color color_from_emission = hit_result.material->Emit(
+      hit_result.u, hit_result.v, hit_result.incident_point);
+  // If ray is reflected, recurse.
+  if (!hit_result.material->Scatter(incident_ray, hit_result, attenuation,
+                                    scattered_ray)) {
+    return color_from_emission;
+  }
+  return color_from_emission +
+         attenuation * ComputeRayColor(scattered_ray, hittables,
+                                       light_bounces_remaining - 1);
 }
 
 Ray Camera::GetRandomRayWithXY(int x, int y) {

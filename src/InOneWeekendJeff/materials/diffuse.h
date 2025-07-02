@@ -13,7 +13,7 @@ class Diffuse : public Material {
   Diffuse(std::unique_ptr<Texture> texture);
   Diffuse(const Color& color);
 
-  Color Emit(double u, double v, const Point3& p) override;
+  Color Emit(double u, double v, const Point3& p) const override;
 
  private:
   std::unique_ptr<Texture> texture_;

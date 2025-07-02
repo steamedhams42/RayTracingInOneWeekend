@@ -23,7 +23,9 @@ class Material {
   }
 
   // Emits a color with no reflection. E.g. a light source.
-  virtual Color Emit(double u, double v, const Point3& p) { return Color(); }
+  virtual Color Emit(double u, double v, const Point3& p) const {
+    return Color();
+  }
 };
 
 #endif

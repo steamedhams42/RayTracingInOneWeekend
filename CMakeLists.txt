@@ -22,15 +22,13 @@ set ( EXTERNAL
 
 set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/main.cc
-  src/InOneWeekendJeff/vec3.cc
-  src/InOneWeekendJeff/vec3.h
   src/InOneWeekendJeff/bounding_box.h
   src/InOneWeekendJeff/bounding_box.cc
+  src/InOneWeekendJeff/camera.cc
+  src/InOneWeekendJeff/camera.h
   src/InOneWeekendJeff/constants.h
   src/InOneWeekendJeff/color.cc
   src/InOneWeekendJeff/color.h
-  src/InOneWeekendJeff/ray.cc
-  src/InOneWeekendJeff/ray.h
   src/InOneWeekendJeff/hittables/hittable.cc
   src/InOneWeekendJeff/hittables/hittable.h
   src/InOneWeekendJeff/hittables/bvh_node.cc
@@ -43,21 +41,17 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/hittables/hittable_list.h
   src/InOneWeekendJeff/interval.cc
   src/InOneWeekendJeff/interval.h
-  src/InOneWeekendJeff/camera.cc
-  src/InOneWeekendJeff/camera.h
-  src/InOneWeekendJeff/point3.cc
-  src/InOneWeekendJeff/point3.h
-  src/InOneWeekendJeff/random.h
-  src/InOneWeekendJeff/random.cc
   src/InOneWeekendJeff/materials/dielectric.h
   src/InOneWeekendJeff/materials/dielectric.cc
+  src/InOneWeekendJeff/materials/diffuse.h
+  src/InOneWeekendJeff/materials/diffuse.cc
   src/InOneWeekendJeff/materials/material.h
   src/InOneWeekendJeff/materials/metal.h
   src/InOneWeekendJeff/materials/metal.cc
   src/InOneWeekendJeff/materials/lambertian.h
   src/InOneWeekendJeff/materials/lambertian.cc
-  src/InOneWeekendJeff/rtw_stb_image.h
-  src/InOneWeekendJeff/rtw_stb_image.cc
+  src/InOneWeekendJeff/point3.cc
+  src/InOneWeekendJeff/point3.h
   src/InOneWeekendJeff/textures/image_texture.h
   src/InOneWeekendJeff/textures/image_texture.cc
   src/InOneWeekendJeff/textures/texture.h
@@ -65,6 +59,14 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/textures/solid_color_texture.cc
   src/InOneWeekendJeff/textures/checker_texture.h
   src/InOneWeekendJeff/textures/checker_texture.cc
+  src/InOneWeekendJeff/random.cc
+  src/InOneWeekendJeff/random.h
+  src/InOneWeekendJeff/ray.cc
+  src/InOneWeekendJeff/ray.h
+  src/InOneWeekendJeff/rtw_stb_image.h
+  src/InOneWeekendJeff/rtw_stb_image.cc
+  src/InOneWeekendJeff/vec3.cc
+  src/InOneWeekendJeff/vec3.h
 )
 
 set ( SOURCE_ONE_WEEKEND_TEST

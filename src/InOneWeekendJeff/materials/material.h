@@ -21,6 +21,8 @@ class Material {
                        Ray& scattered) const {
     return false;
   }
+
+  virtual Color emitted(double u, double v, const Point3& p) { return Color(); }
 };
 
 #endif

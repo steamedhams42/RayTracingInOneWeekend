@@ -12,7 +12,7 @@ class Quad : public Hittable {
   Quad(const Point3& q,
        const Vec3& u,
        const Vec3& v,
-       std::unique_ptr<Material>);
+       std::shared_ptr<Material>);
 
   Quad(const Point3& q, const Vec3& u, const Vec3& v);
 
@@ -40,7 +40,7 @@ class Quad : public Hittable {
   // Ax + By + Cz = D
   double D_;
 
-  std::unique_ptr<Material> material_;
+  std::shared_ptr<Material> material_;
   BoundingBox bounding_box_;
 };
 

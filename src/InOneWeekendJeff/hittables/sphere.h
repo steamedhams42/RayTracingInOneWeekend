@@ -16,14 +16,15 @@ class SphereTest;
 class Sphere : public Hittable {
  public:
   // Stationary sphere
-  Sphere(Point3 center, double radius);
-  Sphere(Point3 center, double radius, std::unique_ptr<Material>);
+  Sphere(Point3 center,
+         double radius,
+         std::shared_ptr<Material> = std::make_shared<Lambertian>());
 
   // Moving sphere
   Sphere(Point3 center_init,
          Point3 center_final,
          double radius,
-         std::unique_ptr<Material> = std::make_unique<Lambertian>());
+         std::shared_ptr<Material> = std::make_shared<Lambertian>());
   ~Sphere() override;
 
   bool hit(const Ray& ray, Interval intval, HitResult& result) const override;
@@ -40,7 +41,7 @@ class Sphere : public Hittable {
   // ray on the interval t = [0, 1)
   Ray center_;
   double radius_;
-  std::unique_ptr<Material> material_;
+  std::shared_ptr<Material> material_;
   BoundingBox bounding_box_;
 };
 

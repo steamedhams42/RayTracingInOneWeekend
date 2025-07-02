@@ -6,13 +6,13 @@
 #include "InOneWeekendJeff/materials/lambertian.h"
 
 Quad::Quad(const Point3& q, const Vec3& u, const Vec3& v)
-    : Quad(q, u, v, std::make_unique<Lambertian>()) {}
+    : Quad(q, u, v, std::make_shared<Lambertian>()) {}
 
 Quad::Quad(const Point3& q,
            const Vec3& u,
            const Vec3& v,
-           std::unique_ptr<Material> mat)
-    : Q_(q), u_(u), v_(v), material_(std::move(mat)) {
+           std::shared_ptr<Material> mat)
+    : Q_(q), u_(u), v_(v), material_(mat) {
   SetBoundingBox();
 
   auto n = u_.cross(v_);

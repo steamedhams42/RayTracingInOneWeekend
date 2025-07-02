@@ -11,7 +11,7 @@ class LambertianTest : public TestBase {
  public:
   void RunTest() override {
     Point3 sphere_center(0, 0, -1);
-    Sphere sphere(sphere_center, 0.5, std::make_unique<Lambertian>());
+    Sphere sphere(sphere_center, 0.5, std::make_shared<Lambertian>());
 
     Point3 light_origin(0, 0, 0);
     Vec3 light_direction(sphere_center);

@@ -65,32 +65,28 @@ class HittableListTest : public TestBase {
   // test the Cornell box quads from main.cc
   void test_quads_in_main_cc() {
     // Materials
-    std::unique_ptr<Lambertian> left_red =
-        std::make_unique<Lambertian>(constants::color::RED);
-    auto back_green = std::make_unique<Lambertian>(constants::color::GREEN);
-    auto right_blue = std::make_unique<Lambertian>(constants::color::BLUE);
-    auto upper_orange = std::make_unique<Lambertian>(constants::color::ORANGE);
-    auto lower_teal = std::make_unique<Lambertian>(constants::color::TEAL);
+    auto left_red = std::make_shared<Lambertian>(constants::color::RED);
+    auto back_green = std::make_shared<Lambertian>(constants::color::GREEN);
+    auto right_blue = std::make_shared<Lambertian>(constants::color::BLUE);
+    auto upper_orange = std::make_shared<Lambertian>(constants::color::ORANGE);
+    auto lower_teal = std::make_shared<Lambertian>(constants::color::TEAL);
 
     HittableList hittable_list;
     // Left quad
-    hittable_list.add(std::make_unique<Quad>(
-        Point3(-3, -2, 5), Vec3(0, 0, -4), Vec3(0, 4, 0), std::move(left_red)));
+    hittable_list.add(std::make_unique<Quad>(Point3(-3, -2, 5), Vec3(0, 0, -4),
+                                             Vec3(0, 4, 0), left_red));
     // Center quad
     hittable_list.add(std::make_unique<Quad>(Point3(-2, -2, 0), Vec3(4, 0, 0),
-                                             Vec3(0, 4, 0),
-                                             std::move(back_green)));
+                                             Vec3(0, 4, 0), back_green));
     // Right quad
-    hittable_list.add(std::make_unique<Quad>(
-        Point3(3, -2, 1), Vec3(0, 0, 4), Vec3(0, 4, 0), std::move(right_blue)));
+    hittable_list.add(std::make_unique<Quad>(Point3(3, -2, 1), Vec3(0, 0, 4),
+                                             Vec3(0, 4, 0), right_blue));
     // Top quad
     hittable_list.add(std::make_unique<Quad>(Point3(-2, 3, 1), Vec3(4, 0, 0),
-                                             Vec3(0, 0, 4),
-                                             std::move(upper_orange)));
+                                             Vec3(0, 0, 4), upper_orange));
     // Bot quad
     hittable_list.add(std::make_unique<Quad>(Point3(-2, -3, 5), Vec3(4, 0, 0),
-                                             Vec3(0, 0, -4),
-                                             std::move(lower_teal)));
+                                             Vec3(0, 0, -4), lower_teal));
     hittable_list.InitBvhTree();
     assert(hittable_list.bounding_box() ==
            BoundingBox(Interval(-3, 3), Interval(-3, 3), Interval(0, 5)));

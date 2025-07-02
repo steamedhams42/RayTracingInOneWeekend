@@ -11,7 +11,7 @@ class QuadTest : public TestBase {
  public:
   Quad CreateUnitQuad() {
     return Quad(Point3(0, 0, 0), Vec3(1, 0, 0), Vec3(0, 1, 0),
-                std::make_unique<Lambertian>());
+                std::make_shared<Lambertian>());
   }
 
   void test_one_quad() {

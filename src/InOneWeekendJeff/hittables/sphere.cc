@@ -8,12 +8,8 @@
 #include "InOneWeekendJeff/ray.h"
 
 // Stationary sphere
-Sphere::Sphere(Point3 center, double r)
-    : Sphere(center, r, std::make_unique<Lambertian>()) {}
-
-// Stationary sphere
-Sphere::Sphere(Point3 center, double r, std::unique_ptr<Material> material)
-    : Sphere(center, center, r, std::move(material)) {
+Sphere::Sphere(Point3 center, double r, std::shared_ptr<Material> material)
+    : Sphere(center, center, r, material) {
   bounding_box_ = BoundingBox(Interval(center.x() - r, center.x() + r),
                               Interval(center.y() - r, center.y() + r),
                               Interval(center.z() - r, center.z() + r));
@@ -23,10 +19,10 @@ Sphere::Sphere(Point3 center, double r, std::unique_ptr<Material> material)
 Sphere::Sphere(Point3 center_init,
                Point3 center_final,
                double radius,
-               std::unique_ptr<Material> material)
+               std::shared_ptr<Material> material)
     : center_(Ray(center_init, center_final - center_init)),
       radius_(radius),
-      material_(std::move(material)) {
+      material_(material) {
   assert(radius > 0);
 }
 

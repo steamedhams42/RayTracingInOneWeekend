@@ -1,6 +1,7 @@
 #include "InOneWeekendJeff/hittables/box.h"
 
 #include <cmath>
+#include <vector>
 
 #include "InOneWeekendJeff/geometry/point3.h"
 #include "InOneWeekendJeff/geometry/ray.h"
@@ -33,30 +34,16 @@ Box::Box(const Point3& front_bottom_left,
 bool Box::hit(const Ray& incident_ray,
               Interval ival,
               Hittable::HitResult& result) const {
+  // Checks all sides of the box. Returns the interval with smallest ray_t
+  // scalar.
   bool did_hit = false;
-  if (left_->hit(incident_ray, ival, result) and result.t < ival.max()) {
-    ival = Interval(ival.min(), result.t);
-    did_hit = true;
-  }
-  if (right_->hit(incident_ray, ival, result) and result.t < ival.max()) {
-    ival = Interval(ival.min(), result.t);
-    did_hit = true;
-  }
-  if (top_->hit(incident_ray, ival, result) and result.t < ival.max()) {
-    ival = Interval(ival.min(), result.t);
-    did_hit = true;
-  }
-  if (bottom_->hit(incident_ray, ival, result) and result.t < ival.max()) {
-    ival = Interval(ival.min(), result.t);
-    did_hit = true;
-  }
-  if (front_->hit(incident_ray, ival, result) and result.t < ival.max()) {
-    ival = Interval(ival.min(), result.t);
-    did_hit = true;
-  }
-  if (back_->hit(incident_ray, ival, result) and result.t < ival.max()) {
-    ival = Interval(ival.min(), result.t);
-    did_hit = true;
+  Quad* all_sides[] = {left_.get(),   right_.get(), top_.get(),
+                       bottom_.get(), front_.get(), back_.get()};
+  for (Quad* side : all_sides) {
+    if (side->hit(incident_ray, ival, result)) {
+      ival = Interval(ival.min(), result.t);
+      did_hit = true;
+    }
   }
 
   return did_hit;

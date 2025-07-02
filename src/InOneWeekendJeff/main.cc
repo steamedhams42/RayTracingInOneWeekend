@@ -193,8 +193,45 @@ void simple_light() {
   camera.Render(hittables);
 }
 
+void cornell_box() {
+  // Colors
+  auto red = std::make_unique<Lambertian>(Color(.65, .05, .05));
+  auto white = std::make_unique<Lambertian>(Color(.73, .73, .73));
+  auto green = std::make_unique<Lambertian>(Color(.12, .45, .15));
+  auto light = std::make_unique<DiffuseLight>(Color(1, 1, 1), 15.0);
+
+  // Walls
+  hittables.add(std::make_unique<Quad>(Point3(555, 0, 0), Vec3(0, 555, 0),
+                                       Vec3(0, 0, 555), std::move(green)));
+  hittables.add(std::make_unique<Quad>(Point3(0, 0, 0), Vec3(0, 555, 0),
+                                       Vec3(0, 0, 555), std::move(red)));
+  hittables.add(std::make_unique<Quad>(Point3(343, 554, 332), Vec3(-130, 0, 0),
+                                       Vec3(0, 0, -105), std::move(light)));
+  hittables.add(std::make_unique<Quad>(
+      Point3(0, 0, 0), Vec3(555, 0, 0), Vec3(0, 0, 555),
+      std::make_unique<Lambertian>(Color(.73, .73, .73))));
+  hittables.add(std::make_unique<Quad>(
+      Point3(555, 555, 555), Vec3(-555, 0, 0), Vec3(0, 0, -555),
+      std::make_unique<Lambertian>(Color(.73, .73, .73))));
+  hittables.add(std::make_unique<Quad>(
+      Point3(0, 0, 555), Vec3(555, 0, 0), Vec3(0, 555, 0),
+      std::make_unique<Lambertian>(Color(.73, .73, .73))));
+  hittables.InitBvhTree();
+
+  // Camera
+  Point3 camera_center(278, 278, -800);
+  Point3 focal_point(278, 278, 0);
+  Camera camera(camera_center, focal_point,
+                /*focal distance*/
+                Point3(camera_center - constants::camera::FOCAL_POINT).norm(),
+                /*FoV*/ 40, constants::camera::IMAGE_WIDTH,
+                /*aspect width*/ 1.0,
+                /*aspect height*/ 1.0);
+  camera.Render(hittables);
+}
+
 int main() {
-  int i = 4;
+  int i = 5;
   switch (i) {
     case 0:
       render_bouncing_spheres();
@@ -210,6 +247,9 @@ int main() {
       break;
     case 4:
       simple_light();
+      break;
+    case 5:
+      cornell_box();
       break;
   }
 }

@@ -8,17 +8,9 @@
 #include "point3.h"
 #include "random.h"
 
-Color::Color(Point3 p) : Point3(p) {
-  assert(0.0 <= r() and r() <= 1.0);
-  assert(0.0 <= g() and g() <= 1.0);
-  assert(0.0 <= b() and b() <= 1.0);
-}
+Color::Color(Point3 p) : Point3(p) {}
 
-Color::Color(double x, double y, double z) : Point3(x, y, z) {
-  assert(0.0 <= r() and r() <= 1.0);
-  assert(0.0 <= g() and g() <= 1.0);
-  assert(0.0 <= b() and b() <= 1.0);
-}
+Color::Color(double x, double y, double z) : Point3(x, y, z) {}
 
 double Color::linear_to_gamma(double linear_component) {
   if (linear_component > 0) {

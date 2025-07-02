@@ -21,7 +21,7 @@
 
 HittableList hittables;
 
-void createAndAddHittables() {
+void CreateAndAddHittables() {
   // The "grounded" sphere in the foreground
   auto earth = std::make_unique<Sphere>(
       Point3(0, -1000, 0), 1000,
@@ -83,8 +83,8 @@ void createAndAddHittables() {
   hittables.InitBvhTree();
 }
 
-void render_bouncing_spheres() {
-  createAndAddHittables();
+void RenderBouncingSpheres() {
+  CreateAndAddHittables();
 
   Camera camera(
       constants::camera::CAMERA_CENTER, constants::camera::FOCAL_POINT,
@@ -94,7 +94,7 @@ void render_bouncing_spheres() {
   camera.Render(hittables);
 }
 
-void render_checkered_spheres() {
+void RenderCheckeredSpheres() {
   hittables.add(std::make_unique<Sphere>(
       Point3(0, 10, 0), 10,
       std::make_shared<Lambertian>(std::make_unique<CheckerTexture>(
@@ -113,7 +113,7 @@ void render_checkered_spheres() {
   camera.Render(hittables);
 }
 
-void render_earth() {
+void RenderEarth() {
   auto globe = std::make_unique<Sphere>(
       Point3(0, 0, 0), 2.0,
       std::make_shared<Lambertian>(
@@ -130,7 +130,7 @@ void render_earth() {
   camera.Render(hittables);
 }
 
-void render_quads() {
+void RenderQuads() {
   // Materials
   auto left_red = std::make_shared<Lambertian>(constants::color::RED);
   auto back_green = std::make_shared<Lambertian>(constants::color::GREEN);
@@ -162,7 +162,7 @@ void render_quads() {
   camera.Render(hittables);
 }
 
-void simple_light() {
+void RenderSimpleLight() {
   auto earth = std::make_unique<Sphere>(Point3(0, -1000, 0), 1000);
   auto ball = std::make_unique<Sphere>(Point3(0, 2, 0), 2);
   hittables.add(std::move(earth));
@@ -190,7 +190,7 @@ void simple_light() {
   camera.Render(hittables);
 }
 
-void cornell_box() {
+void RenderCornellBox() {
   // Colors
   auto red = std::make_shared<Lambertian>(Color(.65, .05, .05));
   auto white = std::make_shared<Lambertian>(Color(.73, .73, .73));
@@ -231,22 +231,22 @@ int main() {
   int i = 5;
   switch (i) {
     case 0:
-      render_bouncing_spheres();
+      RenderBouncingSpheres();
       break;
     case 1:
-      render_checkered_spheres();
+      RenderCheckeredSpheres();
       break;
     case 2:
-      render_earth();
+      RenderEarth();
       break;
     case 3:
-      render_quads();
+      RenderQuads();
       break;
     case 4:
-      simple_light();
+      RenderSimpleLight();
       break;
     case 5:
-      cornell_box();
+      RenderCornellBox();
       break;
   }
 }

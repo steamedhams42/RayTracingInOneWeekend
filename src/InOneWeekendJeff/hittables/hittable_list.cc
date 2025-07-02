@@ -37,7 +37,7 @@ bool HittableList::hit(const Ray& ray,
     hit_anything = true;
     // Reset max t-value so only the foreground-most hittable is rendered
     // (unnessary to check beyond that).
-    interval = std::move(Interval(interval.min(), temp_result.t));
+    interval = Interval(interval.min(), temp_result.t);
     result = temp_result;
   }
   return hit_anything;

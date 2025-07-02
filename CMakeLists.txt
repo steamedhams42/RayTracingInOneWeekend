@@ -37,6 +37,8 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/geometry/vec3.h
   src/InOneWeekendJeff/hittables/hittable.cc
   src/InOneWeekendJeff/hittables/hittable.h
+  src/InOneWeekendJeff/hittables/box.cc
+  src/InOneWeekendJeff/hittables/box.h
   src/InOneWeekendJeff/hittables/bvh_node.cc
   src/InOneWeekendJeff/hittables/bvh_node.h
   src/InOneWeekendJeff/hittables/sphere.cc
@@ -70,6 +72,7 @@ set ( SOURCE_ONE_WEEKEND_JEFF
 )
 
 set ( SOURCE_ONE_WEEKEND_TEST
+  src/InOneWeekendJeff/bounding_box.h
   src/InOneWeekendJeff/bounding_box.cc
   src/InOneWeekendJeff/camera.h
   src/InOneWeekendJeff/color.h
@@ -80,6 +83,8 @@ set ( SOURCE_ONE_WEEKEND_TEST
   src/InOneWeekendJeff/geometry/ray.h
   src/InOneWeekendJeff/geometry/vec3.cc
   src/InOneWeekendJeff/geometry/vec3.h
+  src/InOneWeekendJeff/hittables/box.cc
+  src/InOneWeekendJeff/hittables/box.h
   src/InOneWeekendJeff/hittables/bvh_node.cc
   src/InOneWeekendJeff/hittables/bvh_node.h
   src/InOneWeekendJeff/hittables/hittable.h

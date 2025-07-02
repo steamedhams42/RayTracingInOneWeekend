@@ -6,6 +6,7 @@
 #include "InOneWeekendJeff/camera.h"
 #include "InOneWeekendJeff/constants.h"
 #include "InOneWeekendJeff/geometry/point3.h"
+#include "InOneWeekendJeff/hittables/box.h"
 #include "InOneWeekendJeff/hittables/bvh_node.h"
 #include "InOneWeekendJeff/hittables/hittable_list.h"
 #include "InOneWeekendJeff/hittables/quad.h"
@@ -213,6 +214,13 @@ void RenderCornellBox() {
   hittables.add(std::make_unique<Quad>(
       Point3(0, 0, 555), Vec3(555, 0, 0), Vec3(0, 555, 0),
       std::make_shared<Lambertian>(Color(.73, .73, .73))));
+
+  // Boxes in foreground
+  hittables.add(
+      std::make_unique<Box>(Point3(130, 0, 65), Point3(295, 165, 230), white));
+  hittables.add(
+      std::make_unique<Box>(Point3(265, 0, 295), Point3(430, 330, 460), white));
+
   hittables.InitBvhTree();
 
   // Camera

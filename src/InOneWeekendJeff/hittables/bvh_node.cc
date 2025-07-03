@@ -64,19 +64,19 @@ BvhNode BvhNode::CreateBvhTreeImpl(
   }
 }
 
-bool BvhNode::hit(const Ray& incident_ray,
+bool BvhNode::Hit(const Ray& incident_ray,
                   Interval ival,
                   Hittable::HitResult& result) const {
-  if (!bounding_box_.hit(incident_ray, ival)) {
+  if (!bounding_box_.Hit(incident_ray, ival)) {
     return false;
   }
   // Do not recurse on leaf nodes. Leaf nodes contain the hittable objects.
   if (!left_ and !right_) {
-    return hittable_->hit(incident_ray, ival, result);
+    return hittable_->Hit(incident_ray, ival, result);
   }
 
-  bool hit_left = left_->hit(incident_ray, ival, result);
-  bool hit_right = right_->hit(
+  bool hit_left = left_->Hit(incident_ray, ival, result);
+  bool hit_right = right_->Hit(
       incident_ray, Interval(ival.min(), hit_left ? result.t : ival.max()),
       result);
 

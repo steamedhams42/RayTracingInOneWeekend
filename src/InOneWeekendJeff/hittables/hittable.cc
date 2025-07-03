@@ -2,7 +2,7 @@
 
 #include "InOneWeekendJeff/geometry/ray.h"
 
-void Hittable::HitResult::setFaceNormal(const Ray& ray,
+void Hittable::HitResult::SetFaceNormal(const Ray& ray,
                                         const Vec3& outward_normal) {
   if (ray.direction().dot(outward_normal) > 0) {
     // Positive dot product means the ray source is on the inside of the

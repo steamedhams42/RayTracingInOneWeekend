@@ -35,10 +35,10 @@ class HittableListTest : public TestBase {
         Ray incident_ray(ray_origin, ray_direction);
         Hittable::HitResult result;
         if (Interval(0, 1).contains(i) and Interval(0, 1).contains(j)) {
-          assert(hittable_list.hit(incident_ray, constants::interval::UNIVERSAL,
+          assert(hittable_list.Hit(incident_ray, constants::interval::UNIVERSAL,
                                    result));
         } else {
-          assert(!hittable_list.hit(incident_ray,
+          assert(!hittable_list.Hit(incident_ray,
                                     constants::interval::UNIVERSAL, result));
         }
       }
@@ -100,7 +100,7 @@ class HittableListTest : public TestBase {
         Ray incident_ray(ray_origin, ray_direction);
         Hittable::HitResult result;
         // TODO: Bugged quad. Broken.
-        // assert(hittable_list.hit(incident_ray,
+        // assert(hittable_list.Hit(incident_ray,
         // constants::interval::UNIVERSAL,
         //                          result));
       }

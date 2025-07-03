@@ -20,7 +20,7 @@ class Box : public Hittable {
       const Point3& back_top_right,
       std::shared_ptr<Material>);
 
-  bool hit(const Ray& incident_ray,
+  bool Hit(const Ray& incident_ray,
            Interval ival,
            Hittable::HitResult& result) const override;
 

@@ -18,7 +18,7 @@ class Quad : public Hittable {
 
   virtual void SetBoundingBox();
 
-  bool hit(const Ray& incident_ray,
+  bool Hit(const Ray& incident_ray,
            Interval hit_ival,
            Hittable::HitResult& result) const override;
 

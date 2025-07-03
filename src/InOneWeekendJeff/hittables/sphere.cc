@@ -28,7 +28,7 @@ Sphere::Sphere(Point3 center_init,
 
 Sphere::~Sphere() {}
 
-bool Sphere::hit(const Ray& ray,
+bool Sphere::Hit(const Ray& ray,
                  Interval intval,
                  Hittable::HitResult& result) const {
   // TODO: Put into a "find discriminant" method.
@@ -62,7 +62,7 @@ bool Sphere::hit(const Ray& ray,
   result.t = t;
   result.incident_point = ray.at(t);
   Vec3 normal = (result.incident_point - current_center) / this->radius_;
-  result.setFaceNormal(ray, normal);
+  result.SetFaceNormal(ray, normal);
   result.material = material_.get();
   setUvCoordinates(normal, result);
 

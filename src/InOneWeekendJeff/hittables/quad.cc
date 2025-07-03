@@ -29,7 +29,7 @@ void Quad::SetBoundingBox() {
   bounding_box_ = BoundingBox(diagonal, diagonal2);
 }
 
-bool Quad::hit(const Ray& incident_ray,
+bool Quad::Hit(const Ray& incident_ray,
                Interval hit_ival,
                Hittable::HitResult& result) const {
   Vec3 incident_direction = incident_ray.direction();
@@ -56,7 +56,7 @@ bool Quad::hit(const Ray& incident_ray,
   result.v = beta;
   result.t = t;
   result.incident_point = incident_point;
-  result.setFaceNormal(incident_ray, normal_);
+  result.SetFaceNormal(incident_ray, normal_);
   result.material = material_.get();
   return true;
 }

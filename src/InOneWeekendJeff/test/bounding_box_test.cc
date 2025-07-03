@@ -18,7 +18,7 @@ class BoundingBoxTest : public TestBase {
     Point3 origin(1, 1, 1);
     Ray incident_ray(origin, direction);
 
-    assert(!unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
+    assert(!unit_bb.Hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
   }
 
   void test_rays_missing_the_bounding_box() {
@@ -28,21 +28,21 @@ class BoundingBoxTest : public TestBase {
     Vec3 direction(-3, 0, 0);
     Point3 origin(-1, 0.5, 0.5);
     Ray incident_ray(origin, direction);
-    assert(!unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
+    assert(!unit_bb.Hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
 
     direction = Vec3(0, 3, 0);
     incident_ray = Ray(origin, direction);
-    assert(!unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
+    assert(!unit_bb.Hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
     direction = Vec3(0, -3, 0);
     incident_ray = Ray(origin, direction);
-    assert(!unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
+    assert(!unit_bb.Hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
 
     direction = Vec3(0, 0, 3);
     incident_ray = Ray(origin, direction);
-    assert(!unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
+    assert(!unit_bb.Hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
     direction = Vec3(0, 0, -3);
     incident_ray = Ray(origin, direction);
-    assert(!unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
+    assert(!unit_bb.Hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
   }
 
   void test_merging_two_bounding_boxes() {
@@ -96,7 +96,7 @@ class BoundingBoxTest : public TestBase {
     Vec3 direction(3, 0, 0);
     Point3 origin(-1, 0.5, 0.5);
     Ray incident_ray(origin, direction);
-    assert(unit_bb.hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
+    assert(unit_bb.Hit(incident_ray, Interval(0, constants::INF_DOUBLE)));
 
     test_rays_missing_the_bounding_box();
     test_rays_on_the_surface_of_the_bounding_box();

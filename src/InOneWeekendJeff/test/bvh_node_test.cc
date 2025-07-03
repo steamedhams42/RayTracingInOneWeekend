@@ -35,7 +35,7 @@ class BvhNodeTest : public TestBase {
     Vec3 ray_direction(sphere_center - ray_origin);
     Ray incident_ray(ray_origin, ray_direction);
     Hittable::HitResult hit_result;
-    assert(bvh.hit(incident_ray, Interval(0, 1000), hit_result));
+    assert(bvh.Hit(incident_ray, Interval(0, 1000), hit_result));
 
     // Post-order DFS test.
     hittable_list.add(std::make_unique<Sphere>(Point3(-3, 1, 0), UNIT_LENGTH));
@@ -82,10 +82,10 @@ class BvhNodeTest : public TestBase {
         Ray incident_ray(ray_origin, ray_direction);
         Hittable::HitResult result;
         if (Interval(0, 1).contains(i) and Interval(0, 1).contains(j)) {
-          assert(bvh.hit(incident_ray, constants::interval::UNIVERSAL, result));
+          assert(bvh.Hit(incident_ray, constants::interval::UNIVERSAL, result));
         } else {
           assert(
-              !bvh.hit(incident_ray, constants::interval::UNIVERSAL, result));
+              !bvh.Hit(incident_ray, constants::interval::UNIVERSAL, result));
         }
       }
     }

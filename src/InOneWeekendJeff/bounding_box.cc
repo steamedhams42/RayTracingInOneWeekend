@@ -48,7 +48,7 @@ const Interval& BoundingBox::get_axis(int i) const {
   }
 }
 
-bool BoundingBox::hit(const Ray& incident_ray, Interval ray_t_interval) const {
+bool BoundingBox::Hit(const Ray& incident_ray, Interval ray_t_interval) const {
   const Point3 origin = incident_ray.origin();
   const Vec3 ray_direction = incident_ray.direction();
 

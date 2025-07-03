@@ -104,7 +104,7 @@ Color Camera::ComputeRayColor(const Ray& incident_ray,
   }
   Hittable::HitResult hit_result;
   // Check if ray hits a hittable
-  if (!hittables.hit(incident_ray, Interval(0.001, constants::INF_DOUBLE),
+  if (!hittables.Hit(incident_ray, Interval(0.001, constants::INF_DOUBLE),
                      hit_result)) {
     // If ray hits nothing, return background color.
     return constants::color::BACKGROUND_COLOR;

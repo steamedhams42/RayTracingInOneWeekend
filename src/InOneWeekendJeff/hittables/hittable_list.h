@@ -19,7 +19,7 @@ class HittableList : public Hittable {
   void clearAll();
   void add(std::unique_ptr<Hittable>);
 
-  bool hit(const Ray& ray,
+  bool Hit(const Ray& ray,
            Interval i,
            Hittable::HitResult& result) const override;
 

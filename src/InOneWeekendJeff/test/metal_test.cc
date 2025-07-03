@@ -21,7 +21,7 @@ class MetalTest : public TestBase {
     Color attenuation;
 
     // Trace a single ray of light at the center of the metallic sphere
-    assert(sphere.hit(incident_ray, Interval(0.001, constants::INF_DOUBLE),
+    assert(sphere.Hit(incident_ray, Interval(0.001, constants::INF_DOUBLE),
                       hit_result));
 
     // Assert the hit occurred.

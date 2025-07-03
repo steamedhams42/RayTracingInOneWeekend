@@ -22,7 +22,7 @@ class BvhNode : public Hittable {
   BvhNode& operator=(BvhNode&&) = default;
   ~BvhNode();
 
-  bool hit(const Ray& incident_ray,
+  bool Hit(const Ray& incident_ray,
            Interval ival,
            Hittable::HitResult& result) const override;
 

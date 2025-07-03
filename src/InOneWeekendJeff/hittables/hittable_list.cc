@@ -21,7 +21,7 @@ void HittableList::InitBvhTree() {
   bvh_ = std::make_unique<BvhNode>(BvhNode::CreateBvhTree(this->hittables_));
 }
 
-bool HittableList::hit(const Ray& ray,
+bool HittableList::Hit(const Ray& ray,
                        Interval interval,
                        Hittable::HitResult& result) const {
   bool hit_anything = false;
@@ -33,7 +33,7 @@ bool HittableList::hit(const Ray& ray,
         << std::endl;
     assert(bvh_);
   }
-  if (bvh_->hit(ray, interval, temp_result)) {
+  if (bvh_->Hit(ray, interval, temp_result)) {
     hit_anything = true;
     // Reset max t-value so only the foreground-most hittable is rendered
     // (unnessary to check beyond that).

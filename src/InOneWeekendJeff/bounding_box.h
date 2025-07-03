@@ -29,7 +29,7 @@ class BoundingBox {
 
   // Utilizes the slab method algorithm to determine if a ray intersects a BB.
   // https://en.wikipedia.org/wiki/Slab_method
-  bool hit(const Ray& incident_ray, Interval ray_t_interval) const;
+  bool Hit(const Ray& incident_ray, Interval ray_t_interval) const;
 
   // Returns the longest axis (0 == x, 1 == y, 2 == z) of this bounding box.
   int longest_axis();

@@ -27,10 +27,10 @@ class QuadTest : public TestBase {
         Hittable::HitResult result;
         if (Interval(-2, 2).contains(x) and Interval(1, 5).contains(z)) {
           assert(
-              quad.hit(incident_ray, constants::interval::UNIVERSAL, result));
+              quad.Hit(incident_ray, constants::interval::UNIVERSAL, result));
         } else {
           assert(
-              !quad.hit(incident_ray, constants::interval::UNIVERSAL, result));
+              !quad.Hit(incident_ray, constants::interval::UNIVERSAL, result));
         }
       }
     }

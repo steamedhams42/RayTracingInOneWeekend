@@ -41,7 +41,7 @@ class Hittable {
     // Determines if the ray is external or internal. For this class, I have
     // chosen to make the hittable's normal vectors always oppose the incident
     // light ray.
-    void setFaceNormal(const Ray& ray, const Vec3& outward_normal);
+    void SetFaceNormal(const Ray& ray, const Vec3& outward_normal);
 
     const Material* material = nullptr;
   };
@@ -49,7 +49,7 @@ class Hittable {
   virtual ~Hittable() = default;
 
   // TODO: Refactor into a template method.
-  virtual bool hit(const Ray& incident_ray,
+  virtual bool Hit(const Ray& incident_ray,
                    Interval ival,
                    Hittable::HitResult& result) const = 0;
 

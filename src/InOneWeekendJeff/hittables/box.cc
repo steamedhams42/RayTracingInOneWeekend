@@ -31,7 +31,7 @@ Box::Box(const Point3& front_bottom_left,
   bounding_box_ = BoundingBox(front_bottom_left, back_top_right);
 }
 
-bool Box::hit(const Ray& incident_ray,
+bool Box::Hit(const Ray& incident_ray,
               Interval ival,
               Hittable::HitResult& result) const {
   // Checks all sides of the box. Returns the interval with smallest ray_t
@@ -40,7 +40,7 @@ bool Box::hit(const Ray& incident_ray,
   Quad* all_sides[] = {left_.get(),   right_.get(), top_.get(),
                        bottom_.get(), front_.get(), back_.get()};
   for (Quad* side : all_sides) {
-    if (side->hit(incident_ray, ival, result)) {
+    if (side->Hit(incident_ray, ival, result)) {
       ival = Interval(ival.min(), result.t);
       did_hit = true;
     }

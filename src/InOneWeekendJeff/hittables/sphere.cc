@@ -64,12 +64,12 @@ bool Sphere::Hit(const Ray& ray,
   Vec3 normal = (result.incident_point - current_center) / this->radius_;
   result.SetFaceNormal(ray, normal);
   result.material = material_.get();
-  setUvCoordinates(normal, result);
+  SetUvCoordinates(normal, result);
 
   return true;
 }
 
-void Sphere::setUvCoordinates(const Vec3& surface_normal,
+void Sphere::SetUvCoordinates(const Vec3& surface_normal,
                               HitResult& result) const {
   // theta is the angle between y-axis and xz plane (polar angle).
   // phi is the angle between x and z-axis (azimuthal angle).

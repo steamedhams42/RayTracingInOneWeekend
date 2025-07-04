@@ -17,6 +17,12 @@ void HittableList::add(std::unique_ptr<Hittable> hittable) {
   hittables_.push_back(std::move(hittable));
 }
 
+void HittableList::add(std::vector<std::unique_ptr<Hittable>>& hittables) {
+  for (auto& hittable : hittables) {
+    add(std::move(hittable));
+  }
+}
+
 void HittableList::InitBvhTree() {
   bvh_ = std::make_unique<BvhNode>(BvhNode::CreateBvhTree(this->hittables_));
 }

@@ -374,7 +374,7 @@ void final_scene(int image_width, int samples_per_pixel, int max_depth) {
   auto center1 = point3(400, 400, 200);
   auto center2 = center1 + vec3(30, 0, 0);
   auto sphere_material = make_shared<lambertian>(color(0.7, 0.3, 0.1));
-  // (1) vibrating sphere
+  // (1) Vibrating sphere
   world.add(make_shared<sphere>(center1, center2, 50, sphere_material));
 
   // (2) Clear glass sphere

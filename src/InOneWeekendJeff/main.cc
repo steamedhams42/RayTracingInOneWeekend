@@ -25,7 +25,7 @@
 
 HittableList hittables;
 
-void CreateAndAddHittables() {
+void RenderBouncingSpheres() {
   // The "grounded" sphere in the foreground
   auto earth = std::make_unique<Sphere>(
       Point3(0, -1000, 0), 1000,
@@ -38,6 +38,9 @@ void CreateAndAddHittables() {
       auto choose_mat = utils::Random::random_real();
       Point3 center(x + 0.9 * utils::Random::random_real(), 0.2,
                     z + 0.9 * utils::Random::random_real());
+      // Point3 center_final(center.x(),
+      //                     center.y() + 0.2 * utils::Random::random_real(),
+      //                     center.z());
       // Removes bouncing effect
       Point3 center_final = center;
       if (Vec3(center - Point3(4, -0.2, 0)).norm() > 0.9) {
@@ -86,16 +89,14 @@ void CreateAndAddHittables() {
   hittables.add(std::move(glass_sphere));
   hittables.add(std::move(metal_sphere));
   hittables.InitBvhTree();
-}
-
-void RenderBouncingSpheres() {
-  CreateAndAddHittables();
 
   Camera camera(
       constants::camera::CAMERA_CENTER, constants::camera::FOCAL_POINT,
       constants::camera::FOCAL_DISTANCE,
       constants::camera::VERTICAL_FIELD_OF_VIEW, constants::camera::IMAGE_WIDTH,
-      constants::camera::ASPECT_WIDTH, constants::camera::ASPECT_HEIGHT);
+      constants::camera::ASPECT_WIDTH, constants::camera::ASPECT_HEIGHT,
+      constants::camera::SAMPLES_PER_PIXEL,
+      constants::camera::MAX_LIGHT_BOUNCES);
   camera.Render(hittables);
 }
 
@@ -114,7 +115,9 @@ void RenderCheckeredSpheres() {
       constants::camera::CAMERA_CENTER, constants::camera::FOCAL_POINT,
       constants::camera::FOCAL_DISTANCE,
       constants::camera::VERTICAL_FIELD_OF_VIEW, constants::camera::IMAGE_WIDTH,
-      constants::camera::ASPECT_WIDTH, constants::camera::ASPECT_HEIGHT);
+      constants::camera::ASPECT_WIDTH, constants::camera::ASPECT_HEIGHT,
+      constants::camera::SAMPLES_PER_PIXEL,
+      constants::camera::MAX_LIGHT_BOUNCES);
   camera.Render(hittables);
 }
 
@@ -131,7 +134,9 @@ void RenderEarth() {
                 Point3(camera_center - constants::camera::FOCAL_POINT).norm(),
                 constants::camera::VERTICAL_FIELD_OF_VIEW,
                 constants::camera::IMAGE_WIDTH, constants::camera::ASPECT_WIDTH,
-                constants::camera::ASPECT_HEIGHT);
+                constants::camera::ASPECT_HEIGHT,
+                constants::camera::SAMPLES_PER_PIXEL,
+                constants::camera::MAX_LIGHT_BOUNCES);
   camera.Render(hittables);
 }
 
@@ -163,7 +168,9 @@ void RenderQuads() {
                 Point3(camera_center - constants::camera::FOCAL_POINT).norm(),
                 /*FoV*/ 80, constants::camera::IMAGE_WIDTH,
                 constants::camera::ASPECT_WIDTH,
-                constants::camera::ASPECT_HEIGHT);
+                constants::camera::ASPECT_HEIGHT,
+                constants::camera::SAMPLES_PER_PIXEL,
+                constants::camera::MAX_LIGHT_BOUNCES);
   camera.Render(hittables);
 }
 
@@ -191,7 +198,9 @@ void RenderSimpleLight() {
                 Point3(camera_center - constants::camera::FOCAL_POINT).norm(),
                 /*FoV*/ 80, constants::camera::IMAGE_WIDTH,
                 constants::camera::ASPECT_WIDTH,
-                constants::camera::ASPECT_HEIGHT);
+                constants::camera::ASPECT_HEIGHT,
+                constants::camera::SAMPLES_PER_PIXEL,
+                constants::camera::MAX_LIGHT_BOUNCES);
   camera.Render(hittables);
 }
 
@@ -247,7 +256,8 @@ void RenderCornellBox() {
                 /*FoV*/ 40,
                 /*image width*/ constants::camera::IMAGE_WIDTH,
                 /*aspect width*/ 16.0,
-                /*aspect height*/ 16.0);
+                /*aspect height*/ 16.0, constants::camera::SAMPLES_PER_PIXEL,
+                constants::camera::MAX_LIGHT_BOUNCES);
   camera.Render(hittables);
 }
 
@@ -257,7 +267,7 @@ void RenderCornellSmoke() {
   auto white = std::make_shared<Lambertian>(Color(.73, .73, .73));
   auto green = std::make_shared<Lambertian>(Color(.12, .45, .15));
   auto light =
-      std::make_shared<DiffuseLight>(Color(1, 1, 1), /*intensity*/ 15.0);
+      std::make_shared<DiffuseLight>(Color(1, 1, 1), /*intensity*/ 7.0);
 
   // Walls
   hittables.add(std::make_unique<Quad>(Point3(555, 0, 0), Vec3(0, 555, 0),
@@ -309,12 +319,112 @@ void RenderCornellSmoke() {
                 /*FoV*/ 40,
                 /*image width*/ constants::camera::IMAGE_WIDTH,
                 /*aspect width*/ 16.0,
-                /*aspect height*/ 16.0);
+                /*aspect height*/ 16.0, constants::camera::SAMPLES_PER_PIXEL,
+                constants::camera::MAX_LIGHT_BOUNCES);
+  camera.Render(hittables);
+}
+
+void RenderFinalScene(int image_width,
+                      int samples_per_pixel,
+                      int max_recursion_depth) {
+  HittableList boxes1;
+  auto ground = std::make_shared<Lambertian>(Color(0.48, 0.83, 0.53));
+
+  int boxes_per_side = 20;
+  // Green boxes in the foreground
+  for (int i = 0; i < boxes_per_side; i++) {
+    for (int j = 0; j < boxes_per_side; j++) {
+      auto w = 100.0;
+      auto x0 = -1000.0 + i * w;
+      auto z0 = -1000.0 + j * w;
+      auto y0 = 0.0;
+      auto x1 = x0 + w;
+      auto y1 = utils::Random::random_real(1, 101);
+      auto z1 = z0 + w;
+
+      boxes1.add(std::make_unique<Box>(Point3(x0, y0, z0), Point3(x1, y1, z1),
+                                       ground));
+    }
+  }
+
+  hittables.add(boxes1.hittables());
+
+  // Light source
+  auto light = std::make_shared<DiffuseLight>(Color(7, 7, 7));
+  hittables.add(std::make_unique<Quad>(Point3(123, 554, 147), Vec3(300, 0, 0),
+                                       Vec3(0, 0, 265), light));
+
+  auto center1 = Point3(400, 400, 200);
+  auto center2 = center1 + Vec3(30, 0, 0);
+  auto sphere_material = std::make_shared<Lambertian>(Color(0.7, 0.3, 0.1));
+  // (1) Vibrating sphere
+  hittables.add(
+      std::make_unique<Sphere>(center1, center2, 50, sphere_material));
+
+  // (2) Clear glass sphere
+  hittables.add(std::make_unique<Sphere>(Point3(260, 150, 45), 50,
+                                         std::make_shared<Dielectric>(1.5)));
+  // (3) Bottom right metal sphere
+  hittables.add(std::make_unique<Sphere>(
+      Point3(0, 150, 145), 50, std::make_shared<Metal>(Color(0.8, 0.8, 0.9))));
+
+  // (4a) Glass boundary for blue sphere
+  auto glass_boundary = std::make_unique<Sphere>(
+      Point3(360, 150, 145), 70, std::make_shared<Dielectric>(1.5));
+  hittables.add(std::move(glass_boundary));
+  // (4b) Dense blue "smoke" inside the glass sphere above.
+  hittables.add(std::make_unique<ConstantMedium>(
+      /*boundary*/ std::make_unique<Sphere>(Point3(360, 150, 145), 70,
+                                            std::make_shared<Dielectric>(1.5)),
+      Color(0.2, 0.4, 0.9), /*density*/ 0.2));
+  // (5) Scene itself takes place in a sphere. This is visible in the
+  // background.
+  // hittables.add(std::make_unique<ConstantMedium>(
+  //     /*boundary*/ std::make_unique<Sphere>(Point3(0, 0, 0), 5000,
+  //                                           std::make_shared<Dielectric>(1.5)),
+  //     Color(1, 1, 1), /*density*/ 0.0001));
+
+  // (6) Earth sphere
+  auto emat = std::make_shared<Lambertian>(
+      std::make_unique<ImageTexture>("earthmap.jpg"));
+  hittables.add(std::make_unique<Sphere>(Point3(400, 200, 400), 100, emat));
+  // (7) Perlin noise sphere
+  // auto pertext = std::make_shared<noise_texture>(0.2);
+  // hittables.add(std::make_unique<Sphere>(Point3(220, 280, 300), 80,
+  //                                    std::make_shared<Lambertian>(pertext)));
+
+  // (8) Cotton ball cube.
+  auto white = std::make_shared<Lambertian>(Color(.73, .73, .73));
+  int ns = 1000;
+  for (int j = 0; j < ns; j++) {
+    hittables.add(std::make_unique<Translation>(
+        std::make_unique<Rotation>(
+            std::make_unique<Sphere>(Point3(utils::Random::random_real(0, 165),
+                                            utils::Random::random_real(0, 165),
+                                            utils::Random::random_real(0, 165)),
+                                     10, white),
+            15),
+        Vec3(-100, 270, 395)));
+  }
+  hittables.InitBvhTree();
+
+  // Camera
+  Point3 camera_center(478, 278, -600);
+  Point3 focal_point(278, 278, 0);
+  Camera camera(camera_center, focal_point,
+                /*focal distance*/
+                Point3(camera_center - constants::camera::FOCAL_POINT).norm(),
+                /*FoV*/ 40,
+                /*image width*/ image_width,
+                /*aspect width*/ 16.0,
+                /*aspect height*/ 16.0,
+                /* samples per pixel */ samples_per_pixel,
+                /*max_recursion_depth*/ max_recursion_depth);
   camera.Render(hittables);
 }
 
 int main() {
-  int i = 6;
+  int i = 10;
   switch (i) {
     case 0:
       RenderBouncingSpheres();
@@ -336,6 +446,12 @@ int main() {
       break;
     case 6:
       RenderCornellSmoke();
+      break;
+    case 7:
+      RenderFinalScene(800, 10000, 40);
+      break;
+    default:
+      RenderFinalScene(400, 250, 4);
       break;
   }
 }

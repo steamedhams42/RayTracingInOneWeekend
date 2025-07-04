@@ -18,6 +18,7 @@ class HittableList : public Hittable {
 
   void clearAll();
   void add(std::unique_ptr<Hittable>);
+  void add(std::vector<std::unique_ptr<Hittable>>& hittables);
 
   bool Hit(const Ray& ray,
            Interval i,

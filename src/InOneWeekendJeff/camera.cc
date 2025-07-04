@@ -11,20 +11,24 @@
 #include "InOneWeekendJeff/materials/material.h"
 #include "InOneWeekendJeff/utils.h"
 
-Camera::Camera(const Point3 center,
-               const Point3 focal_point,
-               const double focal_distance,
-               const double vertical_field_of_view,
-               const double image_width,
-               const double aspect_width,
-               const double aspect_height)
+Camera::Camera(Point3 center,
+               Point3 focal_point,
+               double focal_distance,
+               double vertical_field_of_view,
+               double image_width,
+               double aspect_width,
+               double aspect_height,
+               int samples_per_pixel,
+               int max_recursion_depth)
     : camera_center_(center),
       focal_point_(focal_point),
       focal_distance_(focal_distance),
       vertical_field_of_view_(vertical_field_of_view),
       image_width_(image_width),
       aspect_width_(aspect_width),
-      aspect_height_(aspect_height) {
+      aspect_height_(aspect_height),
+      samples_per_pixel_(samples_per_pixel),
+      max_recursion_depth_(max_recursion_depth) {
   Initialize();
 }
 
@@ -55,8 +59,8 @@ void Camera::Initialize() {
   pixel_delta_height_ = viewport_vector_height / image_height_;
 
   // Calculate location of upper-left pixel's center.
-  // Start from the camera's location, move forward toward viewport by distance
-  // of focal length.
+  // Start from the camera's location, move forward toward viewport by
+  // distance of focal length.
   Point3 upper_left_pixel_location =
       Ray(camera_center_, camera_direction_).at(focal_distance_) -
       viewport_vector_width / 2 - viewport_vector_height / 2;
@@ -71,9 +75,6 @@ void Camera::Initialize() {
       focal_distance_ * std::tan(utils::DegreesToRadians(defocus_angle_ / 2));
   defocus_disk_u_ = u_ * defocus_radius;
   defocus_disk_v_ = v_ * defocus_radius;
-
-  // Anti-aliasing
-  pixel_samples_scale_ = 1.0 / constants::camera::SAMPLES_PER_PIXEL;
 };
 
 void Camera::Render(const HittableList& hittables) {
@@ -86,11 +87,13 @@ void Camera::Render(const HittableList& hittables) {
               << std::flush;
     for (int x = 0; x < image_width_; x++) {
       Color pixel_color(0, 0, 0);
-      for (int i = 0; i < constants::camera::SAMPLES_PER_PIXEL; i++) {
+      for (int i = 0; i < samples_per_pixel_; i++) {
         Ray random_ray = GetRandomRayWithXY(x, y);
         pixel_color += ComputeRayColor(random_ray, hittables);
       }
-      pixel_color *= pixel_samples_scale_;
+      // Anti-aliasing
+      double pixel_samples_scale = 1.0 / samples_per_pixel_;
+      pixel_color *= pixel_samples_scale;
       pixel_color.write_color(std::cout);
     };
   }
@@ -99,8 +102,8 @@ void Camera::Render(const HittableList& hittables) {
 
 Color Camera::ComputeRayColor(const Ray& incident_ray,
                               const HittableList& hittables,
-                              int light_bounces_remaining) const {
-  if (light_bounces_remaining == 0) {
+                              int light_bounces) const {
+  if (light_bounces == max_recursion_depth_) {
     return Color(0, 0, 0);
   }
   Hittable::HitResult hit_result;
@@ -119,14 +122,15 @@ Color Camera::ComputeRayColor(const Ray& incident_ray,
                                     scattered_ray)) {
     return color_from_emission;
   }
-  return color_from_emission +
-         attenuation * ComputeRayColor(scattered_ray, hittables,
-                                       light_bounces_remaining - 1);
+  return color_from_emission + attenuation * ComputeRayColor(scattered_ray,
+                                                             hittables,
+                                                             light_bounces + 1);
 }
 
 Ray Camera::GetRandomRayWithXY(int x, int y) {
   Point3 offset = GetRandomPointFromUnitSquare();
-  // This converts a (x, y) cell on the viewport back to cartesian coordinates.
+  // This converts a (x, y) cell on the viewport back to cartesian
+  // coordinates.
   Point3 pixel_center = viewport_top_left_pixel_center_ +
                         (x + offset.x()) * pixel_delta_width_ +
                         (y + offset.y()) * pixel_delta_height_;

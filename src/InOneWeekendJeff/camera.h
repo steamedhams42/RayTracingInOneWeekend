@@ -12,12 +12,14 @@ class CameraTest;
 class Camera {
  public:
   Camera(const Point3 center,
-         const Point3 focal_point,
-         const double focal_distance,
-         const double image_width,
-         const double aspect_width,
-         const double aspect_height,
-         const double vertical_field_of_view);
+         Point3 focal_point,
+         double focal_distance,
+         double image_width,
+         double aspect_width,
+         double aspect_height,
+         double vertical_field_of_view,
+         int samples_per_pixel,
+         int max_recursion_depth);
 
   void Initialize();
   void Render(const HittableList&);
@@ -26,10 +28,9 @@ class Camera {
   friend class CameraTest;
 
   // Uses recursion to bounce light off hittable surfaces (diffuse reflection)
-  Color ComputeRayColor(
-      const Ray& ray,
-      const HittableList&,
-      int light_bounces_remaining = constants::camera::MAX_LIGHT_BOUNCES) const;
+  Color ComputeRayColor(const Ray& ray,
+                        const HittableList&,
+                        int light_bounces = 0) const;
 
   // Returns a random ray originating from camera center pointed at
   // [x, y] + [+/-0.5, +/-0.5] unit square.
@@ -82,6 +83,7 @@ class Camera {
   double defocus_angle_ = 0.0;
 
   // Number of random rays sampled per pixel. Increases fidelity and computation
-  double pixel_samples_scale_;
+  int samples_per_pixel_;
+  int max_recursion_depth_;
 };
 #endif

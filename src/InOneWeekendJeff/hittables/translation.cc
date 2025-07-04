@@ -9,8 +9,7 @@ Translation::Translation(std::unique_ptr<Hittable> hittable, const Vec3& offset)
 bool Translation::Hit(const Ray& incident_ray,
                       Interval ival,
                       Hittable::HitResult& result) const {
-  Ray translated_ray(incident_ray.origin() - translation_offset_,
-                     incident_ray.direction());
+  Ray translated_ray = incident_ray.Translate(-translation_offset_);
   if (!hittable_->Hit(translated_ray, ival, result)) {
     return false;
   }

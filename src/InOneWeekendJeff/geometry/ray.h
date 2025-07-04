@@ -13,6 +13,9 @@ class Ray {
   const Point3& origin() const;
   const Vec3& direction() const;
 
+  Ray Translate(const Vec3& translation_offset) const;
+  Ray RotateY(double degrees_of_rotation) const;
+
   // t is the scale factor of the ray's vector.
   // e.g. If the ray is (0, 0, 3) and t is 1/6, then the ray is scales down to
   // (0, 0, 0.5). Refer to parametric equation: P(t) = Q + t * v

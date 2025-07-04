@@ -38,8 +38,6 @@ class Camera {
   // Returns a random point in the [+/-0.5, +/-0.5] unit square.
   Point3 GetRandomPointFromUnitSquare() const;
 
-  double DegreesToRadians(double deg) const;
-
   Vec3 defocus_disk_sample() const;
 
   Point3 camera_center_;

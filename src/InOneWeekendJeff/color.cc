@@ -6,7 +6,7 @@
 #include "InOneWeekendJeff/constants.h"
 #include "InOneWeekendJeff/geometry/point3.h"
 #include "InOneWeekendJeff/interval.h"
-#include "InOneWeekendJeff/random.h"
+#include "InOneWeekendJeff/utils.h"
 
 Color::Color(Point3 p) : Point3(p) {}
 
@@ -31,8 +31,8 @@ void Color::write_color(std::ostream& out) {
 
 // static
 Color Color::random_color() {
-  return Color(Random::random_real(), Random::random_real(),
-               Random::random_real());
+  return Color(utils::Random::random_real(), utils::Random::random_real(),
+               utils::Random::random_real());
 }
 
 Color Color::operator+(const Color& rhs) {

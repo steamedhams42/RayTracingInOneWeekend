@@ -1,8 +1,8 @@
 #include "InOneWeekendJeff/geometry/vec3.h"
 #include "InOneWeekendJeff/constants.h"
 #include "InOneWeekendJeff/interval.h"
-#include "InOneWeekendJeff/random.h"
 #include "InOneWeekendJeff/test/test_base.h"
+#include "InOneWeekendJeff/utils.h"
 
 #include <cassert>
 #include <vector>
@@ -29,7 +29,7 @@ class Vec3Test : public TestBase {
     // multiplication
     assert(v * 1 == v);
     assert(v * 0 == zed);
-    double x = Random::random_real();
+    double x = utils::Random::random_real();
     Vec3 before = v;
     v *= x;
     assert(v.x() == before.x() * x);
@@ -40,7 +40,7 @@ class Vec3Test : public TestBase {
 
     // division
     v = CreateRandomVec();
-    x = Random::random_real();
+    x = utils::Random::random_real();
     before = v;
     v /= x;
     assert(v.x() <= before.x() * (1 / x));

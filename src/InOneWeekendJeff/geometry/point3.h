@@ -20,6 +20,7 @@ class Point3 {
   double z() const { return this->points_[2]; }
 
   double operator[](int i) const;
+  double& operator[](int i);
 
   double norm() const;
   double norm_squared() const;

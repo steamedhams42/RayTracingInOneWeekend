@@ -6,6 +6,10 @@ double Point3::operator[](int i) const {
   return points_[i];
 }
 
+double& Point3::operator[](int i) {
+  return points_[i];
+}
+
 double Point3::norm() const {
   return std::sqrt(norm_squared());
 }

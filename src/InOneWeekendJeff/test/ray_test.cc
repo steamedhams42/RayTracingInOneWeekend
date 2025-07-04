@@ -1,5 +1,5 @@
 #include "InOneWeekendJeff/geometry/ray.h"
-#include "InOneWeekendJeff/random.h"
+#include "InOneWeekendJeff/utils.h"
 #include "test_base.h"
 
 #include <cassert>
@@ -16,7 +16,7 @@ class RayTest : public TestBase {
     double t = 0.0;
     assert(ray.at(t) == ray.origin());
 
-    t = Random::random_real();
+    t = utils::Random::random_real();
     assert(ray.at(t) == Point3(direction * t) + origin);
 
     ray = Ray(origin, direction, 1.0);

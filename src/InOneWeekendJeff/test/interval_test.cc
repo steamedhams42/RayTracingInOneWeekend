@@ -1,6 +1,6 @@
 #include "InOneWeekendJeff/interval.h"
 #include "InOneWeekendJeff/constants.h"
-#include "InOneWeekendJeff/random.h"
+#include "InOneWeekendJeff/utils.h"
 #include "test_base.h"
 
 #include <cassert>
@@ -11,8 +11,8 @@ class IntervalTest : public TestBase {
     auto null = constants::interval::EMPTY;
     assert(null.is_empty());
 
-    double mini = -Random::random_real();
-    double maxi = Random::random_real();
+    double mini = -utils::Random::random_real();
+    double maxi = utils::Random::random_real();
 
     Interval ival(mini, maxi);
 

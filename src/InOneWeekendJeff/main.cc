@@ -15,10 +15,10 @@
 #include "InOneWeekendJeff/materials/diffuse_light.h"
 #include "InOneWeekendJeff/materials/lambertian.h"
 #include "InOneWeekendJeff/materials/metal.h"
-#include "InOneWeekendJeff/random.h"
 #include "InOneWeekendJeff/textures/checker_texture.h"
 #include "InOneWeekendJeff/textures/image_texture.h"
 #include "InOneWeekendJeff/textures/solid_color_texture.h"
+#include "InOneWeekendJeff/utils.h"
 
 HittableList hittables;
 
@@ -32,9 +32,9 @@ void CreateAndAddHittables() {
 
   for (int x = -11; x < 11; x++) {
     for (int z = -11; z < 11; z++) {
-      auto choose_mat = Random::random_real();
-      Point3 center(x + 0.9 * Random::random_real(), 0.2,
-                    z + 0.9 * Random::random_real());
+      auto choose_mat = utils::Random::random_real();
+      Point3 center(x + 0.9 * utils::Random::random_real(), 0.2,
+                    z + 0.9 * utils::Random::random_real());
       // Removes bouncing effect
       Point3 center_final = center;
       if (Vec3(center - Point3(4, -0.2, 0)).norm() > 0.9) {
@@ -47,12 +47,13 @@ void CreateAndAddHittables() {
           sphere_material = std::make_shared<Lambertian>(
               std::make_unique<SolidColorTexture>(albedo));
           // Adds bouncing effect
-          // center_final = center + Point3(0, Random::random_real(0, 0.5), 0);
+          // center_final = center + Point3(0, utils::Random::random_real(0,
+          // 0.5), 0);
         } else if (choose_mat < 0.95) {
           // metal
-          auto albedo =
-              Color(Random::random_real(0.5, 1), Random::random_real(0.5, 1),
-                    Random::random_real(0.5, 1));
+          auto albedo = Color(utils::Random::random_real(0.5, 1),
+                              utils::Random::random_real(0.5, 1),
+                              utils::Random::random_real(0.5, 1));
           sphere_material = std::make_unique<Metal>(albedo);
         } else {
           // glass

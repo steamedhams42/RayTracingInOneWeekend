@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-#include "InOneWeekendJeff/random.h"
+#include "InOneWeekendJeff/utils.h"
 
 BvhNode::BvhNode() {}
 

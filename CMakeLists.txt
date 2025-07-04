@@ -69,8 +69,8 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/textures/solid_color_texture.cc
   src/InOneWeekendJeff/textures/checker_texture.h
   src/InOneWeekendJeff/textures/checker_texture.cc
-  src/InOneWeekendJeff/random.cc
-  src/InOneWeekendJeff/random.h
+  src/InOneWeekendJeff/utils.cc
+  src/InOneWeekendJeff/utils.h
   src/InOneWeekendJeff/rtw_stb_image.h
   src/InOneWeekendJeff/rtw_stb_image.cc
 )
@@ -112,8 +112,8 @@ set ( SOURCE_ONE_WEEKEND_TEST
   src/InOneWeekendJeff/materials/metal.cc
   src/InOneWeekendJeff/materials/lambertian.h
   src/InOneWeekendJeff/materials/lambertian.cc
-  src/InOneWeekendJeff/random.h
-  src/InOneWeekendJeff/random.cc
+  src/InOneWeekendJeff/utils.h
+  src/InOneWeekendJeff/utils.cc
   src/InOneWeekendJeff/textures/texture.h
   src/InOneWeekendJeff/textures/solid_color_texture.h
   src/InOneWeekendJeff/textures/solid_color_texture.cc

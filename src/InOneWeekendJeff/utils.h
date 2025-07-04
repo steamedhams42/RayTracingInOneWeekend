@@ -1,6 +1,8 @@
 #ifndef RANDOM_H
 #define RANDOM_H
 
+namespace utils {
+
 class Random {
  public:
   Random() = delete;
@@ -14,5 +16,9 @@ class Random {
   // Returns an integer between [min, max] inclusive
   static int random_int(int min, int max);
 };
+
+double DegreesToRadians(double deg);
+
+}  // namespace utils
 
 #endif

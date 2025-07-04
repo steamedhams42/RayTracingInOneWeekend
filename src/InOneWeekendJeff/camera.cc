@@ -9,7 +9,7 @@
 #include "InOneWeekendJeff/hittables/hittable_list.h"
 #include "InOneWeekendJeff/interval.h"
 #include "InOneWeekendJeff/materials/material.h"
-#include "InOneWeekendJeff/random.h"
+#include "InOneWeekendJeff/utils.h"
 
 Camera::Camera(const Point3 center,
                const Point3 focal_point,
@@ -43,8 +43,9 @@ void Camera::Initialize() {
 
   // Viewport
   // Draw a right triangle from camera to viewport.
-  viewport_height_ = 2 * focal_distance_ *
-                     std::tan(DegreesToRadians(vertical_field_of_view_ / 2));
+  viewport_height_ =
+      2 * focal_distance_ *
+      std::tan(utils::DegreesToRadians(vertical_field_of_view_ / 2));
   viewport_width_ = viewport_height_ * image_width_ / image_height_;
 
   Vec3 viewport_vector_width = viewport_width_ * u_;
@@ -67,7 +68,7 @@ void Camera::Initialize() {
 
   // Calculate the camera defocus disk basis vectors.
   auto defocus_radius =
-      focal_distance_ * std::tan(DegreesToRadians(defocus_angle_ / 2));
+      focal_distance_ * std::tan(utils::DegreesToRadians(defocus_angle_ / 2));
   defocus_disk_u_ = u_ * defocus_radius;
   defocus_disk_v_ = v_ * defocus_radius;
 
@@ -132,17 +133,13 @@ Ray Camera::GetRandomRayWithXY(int x, int y) {
   Point3 ray_origin = camera_center_;
   //(defocus_angle_ <= 0) ? camera_center_ : defocus_disk_sample();
   Vec3 ray_direction(pixel_center - camera_center_);
-  double ray_time = Random::random_real();
+  double ray_time = utils::Random::random_real();
   return Ray(ray_origin, ray_direction, ray_time);
 }
 
 Point3 Camera::GetRandomPointFromUnitSquare() const {
-  return Vec3(Random::random_real(-0.5, +0.5), Random::random_real(-0.5, +0.5),
-              0);
-}
-
-double Camera::DegreesToRadians(double deg) const {
-  return deg * constants::PI / 180.0;
+  return Vec3(utils::Random::random_real(-0.5, +0.5),
+              utils::Random::random_real(-0.5, +0.5), 0);
 }
 
 Vec3 Camera::defocus_disk_sample() const {

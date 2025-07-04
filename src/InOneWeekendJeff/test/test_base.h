@@ -3,7 +3,7 @@
 
 #include "InOneWeekendJeff/geometry/point3.h"
 #include "InOneWeekendJeff/geometry/vec3.h"
-#include "InOneWeekendJeff/random.h"
+#include "InOneWeekendJeff/utils.h"
 
 #define ASSERT(condition, message)                               \
   do {                                                           \
@@ -22,17 +22,17 @@ class TestBase {
  protected:
   Point3 CreateRandomPoint() {
     double a = 0, b = 0, c = 0;
-    a = Random::random_real();
-    b = Random::random_real();
-    c = Random::random_real();
+    a = utils::Random::random_real();
+    b = utils::Random::random_real();
+    c = utils::Random::random_real();
     return Point3(a, b, c);
   }
 
   Vec3 CreateRandomVec() {
     double a = 0, b = 0, c = 0;
-    a = Random::random_real();
-    b = Random::random_real();
-    c = Random::random_real();
+    a = utils::Random::random_real();
+    b = utils::Random::random_real();
+    c = utils::Random::random_real();
     return Vec3(a, b, c);
   }
 };

@@ -1,6 +1,6 @@
 #include "InOneWeekendJeff/geometry/vec3.h"
 #include "InOneWeekendJeff/constants.h"
-#include "InOneWeekendJeff/random.h"
+#include "InOneWeekendJeff/utils.h"
 
 double Vec3::operator[](int i) const {
   return this->points_[i];
@@ -72,8 +72,9 @@ Vec3 Vec3::unit() const {
 
 // static
 Vec3 Vec3::random_vec3(double min, double max) {
-  return Vec3(Random::random_real(min, max), Random::random_real(min, max),
-              Random::random_real(min, max));
+  return Vec3(utils::Random::random_real(min, max),
+              utils::Random::random_real(min, max),
+              utils::Random::random_real(min, max));
 }
 
 // static
@@ -102,7 +103,8 @@ Vec3 Vec3::random_vec3_on_surface(const Vec3& surface_norm) {
 // static
 Vec3 Vec3::random_vec3_on_disk() {
   while (true) {
-    Vec3 random_vec(Random::random_real(-1, 1), Random::random_real(-1, 1), 0);
+    Vec3 random_vec(utils::Random::random_real(-1, 1),
+                    utils::Random::random_real(-1, 1), 0);
     if (random_vec.norm() < 1) {
       return random_vec;
     }

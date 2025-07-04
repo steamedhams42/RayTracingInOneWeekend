@@ -47,6 +47,8 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/hittables/quad.h
   src/InOneWeekendJeff/hittables/hittable_list.cc
   src/InOneWeekendJeff/hittables/hittable_list.h
+  src/InOneWeekendJeff/hittables/rotation.cc
+  src/InOneWeekendJeff/hittables/rotation.h
   src/InOneWeekendJeff/hittables/translation.cc
   src/InOneWeekendJeff/hittables/translation.h
   src/InOneWeekendJeff/interval.cc
@@ -97,6 +99,8 @@ set ( SOURCE_ONE_WEEKEND_TEST
   src/InOneWeekendJeff/hittables/sphere.cc
   src/InOneWeekendJeff/hittables/quad.cc
   src/InOneWeekendJeff/hittables/quad.h
+  src/InOneWeekendJeff/hittables/rotation.cc
+  src/InOneWeekendJeff/hittables/rotation.h
   src/InOneWeekendJeff/hittables/translation.cc
   src/InOneWeekendJeff/hittables/translation.h
   src/InOneWeekendJeff/interval.h

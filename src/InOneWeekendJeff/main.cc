@@ -8,6 +8,7 @@
 #include "InOneWeekendJeff/geometry/point3.h"
 #include "InOneWeekendJeff/hittables/box.h"
 #include "InOneWeekendJeff/hittables/bvh_node.h"
+#include "InOneWeekendJeff/hittables/constant_medium.h"
 #include "InOneWeekendJeff/hittables/hittable_list.h"
 #include "InOneWeekendJeff/hittables/quad.h"
 #include "InOneWeekendJeff/hittables/rotation.h"
@@ -250,8 +251,70 @@ void RenderCornellBox() {
   camera.Render(hittables);
 }
 
+void RenderCornellSmoke() {
+  // Colors
+  auto red = std::make_shared<Lambertian>(Color(.65, .05, .05));
+  auto white = std::make_shared<Lambertian>(Color(.73, .73, .73));
+  auto green = std::make_shared<Lambertian>(Color(.12, .45, .15));
+  auto light =
+      std::make_shared<DiffuseLight>(Color(1, 1, 1), /*intensity*/ 15.0);
+
+  // Walls
+  hittables.add(std::make_unique<Quad>(Point3(555, 0, 0), Vec3(0, 555, 0),
+                                       Vec3(0, 0, 555), green));
+  hittables.add(std::make_unique<Quad>(Point3(0, 0, 0), Vec3(0, 555, 0),
+                                       Vec3(0, 0, 555), red));
+  hittables.add(std::make_unique<Quad>(Point3(113, 554, 127), Vec3(330, 0, 0),
+                                       Vec3(0, 0, 305), light));
+  hittables.add(std::make_unique<Quad>(
+      Point3(0, 0, 0), Vec3(555, 0, 0), Vec3(0, 0, 555),
+      std::make_shared<Lambertian>(Color(.73, .73, .73))));
+  hittables.add(std::make_unique<Quad>(
+      Point3(555, 555, 555), Vec3(-555, 0, 0), Vec3(0, 0, -555),
+      std::make_shared<Lambertian>(Color(.73, .73, .73))));
+  hittables.add(std::make_unique<Quad>(
+      Point3(0, 0, 555), Vec3(555, 0, 0), Vec3(0, 555, 0),
+      std::make_shared<Lambertian>(Color(.73, .73, .73))));
+
+  // Box in foreground
+  std::unique_ptr<Hittable> foreground_box =
+      std::make_unique<Box>(Point3(0, 0, 0), Point3(165, 165, 165), white);
+  foreground_box = std::make_unique<Rotation>(std::move(foreground_box), -18.0);
+  foreground_box = std::make_unique<Translation>(std::move(foreground_box),
+                                                 Vec3(130, 0, 65));
+  foreground_box = std::make_unique<ConstantMedium>(std::move(foreground_box),
+                                                    /*albedo*/ Color(1, 1, 1),
+                                                    /* density */ 0.01);
+  hittables.add(std::move(foreground_box));
+
+  // Box in background
+  std::unique_ptr<Hittable> background_box =
+      std::make_unique<Box>(Point3(0, 0, 0), Point3(165, 330, 165), white);
+  background_box = std::make_unique<Rotation>(std::move(background_box), 15.0);
+  background_box = std::make_unique<Translation>(std::move(background_box),
+                                                 Vec3(265, 0, 295));
+  background_box = std::make_unique<ConstantMedium>(std::move(background_box),
+                                                    /*albedo*/ Color(0, 0, 0),
+                                                    /* density */ 0.01);
+  hittables.add(std::move(background_box));
+
+  hittables.InitBvhTree();
+
+  // Camera
+  Point3 camera_center(278, 278, -800);
+  Point3 focal_point(278, 278, 0);
+  Camera camera(camera_center, focal_point,
+                /*focal distance*/
+                Point3(camera_center - constants::camera::FOCAL_POINT).norm(),
+                /*FoV*/ 40,
+                /*image width*/ constants::camera::IMAGE_WIDTH,
+                /*aspect width*/ 16.0,
+                /*aspect height*/ 16.0);
+  camera.Render(hittables);
+}
+
 int main() {
-  int i = 5;
+  int i = 6;
   switch (i) {
     case 0:
       RenderBouncingSpheres();
@@ -270,6 +333,9 @@ int main() {
       break;
     case 5:
       RenderCornellBox();
+      break;
+    case 6:
+      RenderCornellSmoke();
       break;
   }
 }

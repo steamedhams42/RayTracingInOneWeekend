@@ -36,7 +36,7 @@ bool ConstantMedium::Hit(const Ray& incident_ray,
   result1.t = std::fmin(result1.t, ival.min());
   result2.t = std::fmax(result2.t, ival.max());
 
-  if (result1.t > result2.t) {
+  if (result1.t >= result2.t) {
     return false;
   }
 

@@ -45,7 +45,7 @@ const double VERTICAL_FIELD_OF_VIEW = 20;
 
 // Anti-aliasing. Set to 1 to turn off AA.
 // setting lower than 100 will leave 'noise' in the form of black dots
-const int SAMPLES_PER_PIXEL = 100;
+const int SAMPLES_PER_PIXEL = 200;
 
 // Speeds up rendering by limiting the number of light ray bounces and
 // recursive calls

@@ -3,7 +3,7 @@
 #include "InOneWeekendJeff/textures/solid_color_texture.h"
 
 Isotropic::Isotropic(const Color& albedo)
-    : Isotropic(std::make_unique<SolidColorTexture>(albedo)) {}
+    : texture_(std::make_unique<SolidColorTexture>(albedo)) {}
 
 Isotropic::Isotropic(std::unique_ptr<Texture> texture)
     : texture_(std::move(texture)) {}

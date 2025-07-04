@@ -13,5 +13,7 @@ void DiffuseLight::set_intensity(double i) {
 }
 
 Color DiffuseLight::Emit(double u, double v, const Point3& p) const {
+  // TODO: This method is bugged. The intensity need to be scaled down on each
+  // hit, this is max intensity. Causes light to reflect too strong.
   return intensity_ * texture_->value(u, v, p);
 }

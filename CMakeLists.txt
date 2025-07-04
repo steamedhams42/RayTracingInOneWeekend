@@ -35,20 +35,22 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/geometry/ray.h
   src/InOneWeekendJeff/geometry/vec3.cc
   src/InOneWeekendJeff/geometry/vec3.h
-  src/InOneWeekendJeff/hittables/hittable.cc
-  src/InOneWeekendJeff/hittables/hittable.h
   src/InOneWeekendJeff/hittables/box.cc
   src/InOneWeekendJeff/hittables/box.h
   src/InOneWeekendJeff/hittables/bvh_node.cc
   src/InOneWeekendJeff/hittables/bvh_node.h
-  src/InOneWeekendJeff/hittables/sphere.cc
-  src/InOneWeekendJeff/hittables/sphere.h
-  src/InOneWeekendJeff/hittables/quad.cc
-  src/InOneWeekendJeff/hittables/quad.h
+  src/InOneWeekendJeff/hittables/constant_medium.cc
+  src/InOneWeekendJeff/hittables/constant_medium.h
+  src/InOneWeekendJeff/hittables/hittable.cc
+  src/InOneWeekendJeff/hittables/hittable.h
   src/InOneWeekendJeff/hittables/hittable_list.cc
   src/InOneWeekendJeff/hittables/hittable_list.h
+  src/InOneWeekendJeff/hittables/quad.cc
+  src/InOneWeekendJeff/hittables/quad.h
   src/InOneWeekendJeff/hittables/rotation.cc
   src/InOneWeekendJeff/hittables/rotation.h
+  src/InOneWeekendJeff/hittables/sphere.cc
+  src/InOneWeekendJeff/hittables/sphere.h
   src/InOneWeekendJeff/hittables/translation.cc
   src/InOneWeekendJeff/hittables/translation.h
   src/InOneWeekendJeff/interval.cc
@@ -57,6 +59,8 @@ set ( SOURCE_ONE_WEEKEND_JEFF
   src/InOneWeekendJeff/materials/dielectric.cc
   src/InOneWeekendJeff/materials/diffuse_light.h
   src/InOneWeekendJeff/materials/diffuse_light.cc
+  src/InOneWeekendJeff/materials/isotropic.cc
+  src/InOneWeekendJeff/materials/isotropic.h
   src/InOneWeekendJeff/materials/material.h
   src/InOneWeekendJeff/materials/metal.h
   src/InOneWeekendJeff/materials/metal.cc

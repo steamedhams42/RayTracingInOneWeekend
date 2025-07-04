@@ -199,7 +199,8 @@ void RenderCornellBox() {
   auto red = std::make_shared<Lambertian>(Color(.65, .05, .05));
   auto white = std::make_shared<Lambertian>(Color(.73, .73, .73));
   auto green = std::make_shared<Lambertian>(Color(.12, .45, .15));
-  auto light = std::make_shared<DiffuseLight>(Color(1, 1, 1), 15.0);
+  auto light =
+      std::make_shared<DiffuseLight>(Color(1, 1, 1), /*intensity*/ 15.0);
 
   // Walls
   hittables.add(std::make_unique<Quad>(Point3(555, 0, 0), Vec3(0, 555, 0),
@@ -242,9 +243,10 @@ void RenderCornellBox() {
   Camera camera(camera_center, focal_point,
                 /*focal distance*/
                 Point3(camera_center - constants::camera::FOCAL_POINT).norm(),
-                /*FoV*/ 40, constants::camera::IMAGE_WIDTH,
-                /*aspect width*/ 1.0,
-                /*aspect height*/ 1.0);
+                /*FoV*/ 40,
+                /*image width*/ constants::camera::IMAGE_WIDTH,
+                /*aspect width*/ 16.0,
+                /*aspect height*/ 16.0);
   camera.Render(hittables);
 }
 

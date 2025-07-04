@@ -14,14 +14,10 @@ class DiffuseLight : public Material {
 
   Color Emit(double u, double v, const Point3& p) const override;
 
-  // Changes the intensity of the light source.
-  void set_intensity(double i);
-
  private:
-  DiffuseLight(std::unique_ptr<Texture> texture, double i);
+  DiffuseLight(std::unique_ptr<Texture> texture);
 
   std::unique_ptr<Texture> texture_;
-  double intensity_;
 };
 
 #endif

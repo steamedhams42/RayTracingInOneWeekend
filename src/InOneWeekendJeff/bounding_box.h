@@ -22,6 +22,8 @@ class BoundingBox {
   ~BoundingBox();
 
   bool operator==(const BoundingBox&) const;
+  friend BoundingBox operator+(const BoundingBox& lhs, const Vec3& rhs);
+  friend BoundingBox operator+(const Vec3& lhs, const BoundingBox& rhs);
 
   const Interval& x_interval() const;
   const Interval& y_interval() const;
@@ -47,5 +49,18 @@ class BoundingBox {
                << "z_interval: " << bbox.z_;
   }
 };
+
+inline BoundingBox operator+(const BoundingBox& lhs, const Vec3& rhs) {
+  return BoundingBox(Interval(lhs.x_interval().min() + rhs.x(),
+                              lhs.x_interval().max() + rhs.x()),
+                     Interval(lhs.y_interval().min() + rhs.y(),
+                              lhs.y_interval().max() + rhs.y()),
+                     Interval(lhs.z_interval().min() + rhs.z(),
+                              lhs.z_interval().max() + rhs.z()));
+}
+
+inline BoundingBox operator+(const Vec3& lhs, const BoundingBox& rhs) {
+  return rhs + lhs;
+}
 
 #endif

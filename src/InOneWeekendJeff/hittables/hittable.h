@@ -48,7 +48,6 @@ class Hittable {
 
   virtual ~Hittable() = default;
 
-  // TODO: Refactor into a template method.
   virtual bool Hit(const Ray& incident_ray,
                    Interval ival,
                    Hittable::HitResult& result) const = 0;

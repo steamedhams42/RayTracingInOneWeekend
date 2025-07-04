@@ -14,6 +14,8 @@ class Interval {
   ~Interval() = default;
 
   friend bool operator==(const Interval& lhs, const Interval& rhs);
+  friend Interval operator+(const Interval& lhs, double displacement);
+  friend Interval operator+(double displacement, const Interval& lhs);
 
   double min() const;
   double max() const;
@@ -55,6 +57,14 @@ class Interval {
 
 inline bool operator==(const Interval& lhs, const Interval& rhs) {
   return lhs.min_ == rhs.min_ and lhs.max_ == rhs.max_;
+}
+
+inline Interval operator+(const Interval& lhs, double displacement) {
+  return Interval(lhs.min() + displacement, lhs.max() + displacement);
+}
+
+inline Interval operator+(double displacement, const Interval& lhs) {
+  return lhs + displacement;
 }
 
 #endif

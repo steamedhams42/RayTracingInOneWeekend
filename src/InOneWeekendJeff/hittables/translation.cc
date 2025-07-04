@@ -1,8 +1,8 @@
 
 #include "InOneWeekendJeff/hittables/translation.h"
 
-Translation::Translation(std::shared_ptr<Hittable> hittable, const Vec3& offset)
-    : hittable_(hittable), translation_offset_(offset) {
+Translation::Translation(std::unique_ptr<Hittable> hittable, const Vec3& offset)
+    : hittable_(std::move(hittable)), translation_offset_(offset) {
   bounding_box_ = hittable_->bounding_box() + translation_offset_;
 }
 

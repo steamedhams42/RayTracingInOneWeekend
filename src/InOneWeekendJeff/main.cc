@@ -10,7 +10,9 @@
 #include "InOneWeekendJeff/hittables/bvh_node.h"
 #include "InOneWeekendJeff/hittables/hittable_list.h"
 #include "InOneWeekendJeff/hittables/quad.h"
+#include "InOneWeekendJeff/hittables/rotation.h"
 #include "InOneWeekendJeff/hittables/sphere.h"
+#include "InOneWeekendJeff/hittables/translation.h"
 #include "InOneWeekendJeff/materials/dielectric.h"
 #include "InOneWeekendJeff/materials/diffuse_light.h"
 #include "InOneWeekendJeff/materials/lambertian.h"
@@ -216,11 +218,23 @@ void RenderCornellBox() {
       Point3(0, 0, 555), Vec3(555, 0, 0), Vec3(0, 555, 0),
       std::make_shared<Lambertian>(Color(.73, .73, .73))));
 
-  // Boxes in foreground
-  hittables.add(
-      std::make_unique<Box>(Point3(130, 0, 65), Point3(295, 165, 230), white));
-  hittables.add(
-      std::make_unique<Box>(Point3(265, 0, 295), Point3(430, 330, 460), white));
+  // Box in foreground
+  std::unique_ptr<Hittable> foreground_box =
+      std::make_unique<Box>(Point3(0, 0, 0), Point3(165, 165, 165), white);
+  foreground_box = std::make_unique<Translation>(std::move(foreground_box),
+                                                 Vec3(130, 0, 65));
+  // foreground_box = std::make_unique<Rotation>(std::move(foreground_box),
+  // -18.0);
+  hittables.add(std::move(foreground_box));
+
+  // Box in background
+  std::unique_ptr<Hittable> background_box =
+      std::make_unique<Box>(Point3(0, 0, 0), Point3(165, 330, 165), white);
+  background_box = std::make_unique<Translation>(std::move(background_box),
+                                                 Vec3(265, 0, 295));
+  // background_box =
+  // std::make_unique<Rotation>(std::move(background_box), 15.0);
+  hittables.add(std::move(background_box));
 
   hittables.InitBvhTree();
 

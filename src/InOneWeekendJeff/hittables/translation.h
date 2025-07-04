@@ -8,7 +8,7 @@
 
 class Translation : public Hittable {
  public:
-  Translation(std::shared_ptr<Hittable> hittable, const Vec3& offset);
+  Translation(std::unique_ptr<Hittable> hittable, const Vec3& offset);
 
   bool Hit(const Ray& incident_ray,
            Interval ival,
@@ -17,7 +17,7 @@ class Translation : public Hittable {
   BoundingBox bounding_box() override;
 
  private:
-  std::shared_ptr<Hittable> hittable_;
+  std::unique_ptr<Hittable> hittable_;
   Vec3 translation_offset_;
   BoundingBox bounding_box_;
 };

@@ -7,7 +7,7 @@
 
 class Rotation : public Hittable {
  public:
-  Rotation(std::shared_ptr<Hittable> hittable, double degrees_of_rotation);
+  Rotation(std::unique_ptr<Hittable> hittable, double degrees_of_rotation);
 
   bool Hit(const Ray& incident_ray,
            Interval ival,
@@ -16,7 +16,7 @@ class Rotation : public Hittable {
   BoundingBox bounding_box() override;
 
  private:
-  std::shared_ptr<Hittable> hittable_;
+  std::unique_ptr<Hittable> hittable_;
   BoundingBox bounding_box_;
   double degrees_of_rotation_;
 };

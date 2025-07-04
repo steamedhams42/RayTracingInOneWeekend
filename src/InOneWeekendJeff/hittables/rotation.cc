@@ -5,9 +5,10 @@
 #include "InOneWeekendJeff/constants.h"
 #include "InOneWeekendJeff/utils.h"
 
-Rotation::Rotation(std::shared_ptr<Hittable> hittable,
+Rotation::Rotation(std::unique_ptr<Hittable> hittable,
                    double degrees_of_rotation)
-    : hittable_(hittable), degrees_of_rotation_(degrees_of_rotation) {
+    : hittable_(std::move(hittable)),
+      degrees_of_rotation_(degrees_of_rotation) {
   auto radians = utils::DegreesToRadians(degrees_of_rotation_);
   double sin_theta = std::sin(radians);
   double cos_theta = std::cos(radians);

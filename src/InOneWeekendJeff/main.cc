@@ -228,13 +228,13 @@ void RenderCornellBox() {
   hittables.add(std::move(foreground_box));
 
   // Box in background
-  std::unique_ptr<Hittable> background_box =
-      std::make_unique<Box>(Point3(0, 0, 0), Point3(165, 330, 165), white);
-  background_box = std::make_unique<Translation>(std::move(background_box),
-                                                 Vec3(265, 0, 295));
+  // std::unique_ptr<Hittable> background_box =
+  //     std::make_unique<Box>(Point3(0, 0, 0), Point3(165, 330, 165), white);
+  // background_box = std::make_unique<Translation>(std::move(background_box),
+  //                                                Vec3(265, 0, 295));
   // background_box =
   // std::make_unique<Rotation>(std::move(background_box), 15.0);
-  hittables.add(std::move(background_box));
+  // hittables.add(std::move(background_box));
 
   hittables.InitBvhTree();
 

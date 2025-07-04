@@ -11,7 +11,7 @@ bool Translation::Hit(const Ray& incident_ray,
                       Hittable::HitResult& result) const {
   Ray translated_ray(incident_ray.origin() - translation_offset_,
                      incident_ray.direction());
-  if (hittable_->Hit(translated_ray, ival, result)) {
+  if (!hittable_->Hit(translated_ray, ival, result)) {
     return false;
   }
   result.incident_point += translation_offset_;

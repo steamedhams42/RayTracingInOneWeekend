@@ -4,6 +4,7 @@
 #include <cmath>
 #include <limits>
 
+#include "InOneWeekendJeff/bounding_box.h"
 #include "InOneWeekendJeff/color.h"
 #include "InOneWeekendJeff/geometry/point3.h"
 #include "InOneWeekendJeff/geometry/vec3.h"
@@ -62,6 +63,10 @@ const Interval EMPTY = Interval();
 const Interval UNIVERSAL =
     Interval(-constants::INF_DOUBLE, constants::INF_DOUBLE);
 }  // namespace interval
+
+namespace bounding_box {
+const BoundingBox EMPTY = BoundingBox(Interval(), Interval(), Interval());
+}
 
 namespace color {
 const Color WHITE(1, 1, 1);

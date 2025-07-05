@@ -2,6 +2,7 @@
 
 #include <algorithm>
 
+#include "InOneWeekendJeff/constants.h"
 #include "InOneWeekendJeff/utils.h"
 
 BvhNode::BvhNode() {}
@@ -34,7 +35,7 @@ BvhNode BvhNode::CreateBvhTreeImpl(
     return result;
   } else {
     // Sorts by a longest axis of the bounding box that contains the hittables.
-    result.bounding_box_ = BoundingBox::empty();
+    result.bounding_box_ = constants::bounding_box::EMPTY;
     for (int i = start; i < end; i++) {
       result.bounding_box_ =
           BoundingBox(result.bounding_box_, hittables[i]->bounding_box());

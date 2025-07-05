@@ -333,11 +333,9 @@ void RenderCornellSmoke() {
 void RenderFinalScene(int image_width,
                       int samples_per_pixel,
                       int max_recursion_depth) {
-  HittableList boxes1;
-  auto ground = std::make_shared<Lambertian>(Color(0.48, 0.83, 0.53));
-
-  int boxes_per_side = 20;
   // Green boxes in the foreground
+  auto ground = std::make_shared<Lambertian>(Color(0.48, 0.83, 0.53));
+  int boxes_per_side = 20;
   for (int i = 0; i < boxes_per_side; i++) {
     for (int j = 0; j < boxes_per_side; j++) {
       auto width = 100.0;
@@ -348,31 +346,29 @@ void RenderFinalScene(int image_width,
       auto y1 = utils::Random::random_real(1, 101);
       auto z1 = z0 + width;
 
-      boxes1.add(std::make_unique<Box>(Point3(x0, y0, z0), Point3(x1, y1, z1),
-                                       ground));
+      hittables.add(std::make_unique<Box>(Point3(x0, y0, z0),
+                                          Point3(x1, y1, z1), ground));
     }
   }
-
-  hittables.add(boxes1.hittables());
 
   // Light source
   auto light = std::make_shared<DiffuseLight>(Color(7, 7, 7));
   hittables.add(std::make_unique<Quad>(Point3(123, 554, 147), Vec3(300, 0, 0),
                                        Vec3(0, 0, 265), light));
 
+  // (1) Vibrating sphere
   auto center1 = Point3(400, 400, 200);
   auto center2 = center1 + Vec3(30, 0, 0);
   auto sphere_material = std::make_shared<Lambertian>(Color(0.7, 0.3, 0.1));
-  // (1) Vibrating sphere
   hittables.add(
       std::make_unique<Sphere>(center1, center2, 50, sphere_material));
 
   // (2) Clear glass sphere
   hittables.add(std::make_unique<Sphere>(Point3(260, 150, 45), 50,
                                          std::make_shared<Dielectric>(1.5)));
-  // (3) Bottom right metal sphere
+  // (3) Purple metallic sphere.
   hittables.add(std::make_unique<Sphere>(
-      Point3(0, 150, 145), 50, std::make_shared<Metal>(Color(0.8, 0.8, 0.9))));
+      Point3(0, 150, 145), 50, std::make_shared<Metal>(Color(0.6, 0.0, 0.8))));
 
   // (4a) Glass boundary for blue sphere
   auto glass_boundary = std::make_unique<Sphere>(
@@ -383,6 +379,7 @@ void RenderFinalScene(int image_width,
       /*boundary*/ std::make_unique<Sphere>(Point3(360, 150, 145), 70,
                                             std::make_shared<Dielectric>(1.5)),
       Color(0.2, 0.4, 0.9), /*density*/ 0.2));
+
   // (5) Scene itself takes place in a sphere. This is visible in the
   // background.
   hittables.add(std::make_unique<ConstantMedium>(
@@ -432,7 +429,7 @@ void RenderFinalScene(int image_width,
 }
 
 int main() {
-  int i = 5;
+  int i = 10;
   switch (i) {
     case 0:
       RenderBouncingSpheres();

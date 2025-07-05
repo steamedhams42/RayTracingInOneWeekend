@@ -390,7 +390,9 @@ void final_scene(int image_width, int samples_per_pixel, int max_depth) {
   world.add(boundary);
   // (4b) Dense blue "smoke" inside the glass sphere above.
   world.add(make_shared<constant_medium>(boundary, 0.2, color(0.2, 0.4, 0.9)));
-  // (5) Scene takes place in a sphere. This is visible in the background.
+
+  // (5) Scene itself takes place in a sphere. This is visible in the
+  // background.
   boundary =
       make_shared<sphere>(point3(0, 0, 0), 5000, make_shared<dielectric>(1.5));
   world.add(make_shared<constant_medium>(boundary, .0001, color(1, 1, 1)));

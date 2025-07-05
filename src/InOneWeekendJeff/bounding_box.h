@@ -36,7 +36,7 @@ class BoundingBox {
   // Returns the longest axis (0 == x, 1 == y, 2 == z) of this bounding box.
   int longest_axis();
 
-  static BoundingBox empty();
+  bool is_empty();
 
  private:
   Interval x_, y_, z_;

@@ -81,12 +81,6 @@ bool BoundingBox::Hit(const Ray& incident_ray, Interval ray_t_interval) const {
   return true;
 }
 
-// static
-BoundingBox BoundingBox::empty() {
-  return BoundingBox(constants::interval::EMPTY, constants::interval::EMPTY,
-                     constants::interval::EMPTY);
-}
-
 int BoundingBox::longest_axis() {
   if (x_.width() >= y_.width() and x_.width() >= z_.width()) {
     // (x >= y >= z) or (x >= z >= y)
@@ -96,4 +90,8 @@ int BoundingBox::longest_axis() {
     return 1;
   }
   return 2;
+}
+
+bool BoundingBox::is_empty() {
+  return x_.is_empty() and y_.is_empty() and z_.is_empty();
 }

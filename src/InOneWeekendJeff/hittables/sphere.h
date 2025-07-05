@@ -25,6 +25,7 @@ class Sphere : public Hittable {
          Point3 center_final,
          double radius,
          std::shared_ptr<Material> = std::make_shared<Lambertian>());
+
   ~Sphere() override;
 
   bool Hit(const Ray& ray, Interval intval, HitResult& result) const override;

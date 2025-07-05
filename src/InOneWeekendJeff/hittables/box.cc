@@ -10,23 +10,23 @@
 
 Box::Box(const Point3& front_bottom_left,
          const Point3& back_top_right,
-         std::shared_ptr<Material>) {
+         std::shared_ptr<Material> material) {
   double dx = std::fabs(front_bottom_left.x() - back_top_right.x());
   double dy = std::fabs(front_bottom_left.y() - back_top_right.y());
   double dz = std::fabs(front_bottom_left.z() - back_top_right.z());
 
-  front_ =
-      std::make_unique<Quad>(front_bottom_left, Vec3(dx, 0, 0), Vec3(0, dy, 0));
-  left_ =
-      std::make_unique<Quad>(front_bottom_left, Vec3(0, 0, dz), Vec3(0, dy, 0));
-  bottom_ =
-      std::make_unique<Quad>(front_bottom_left, Vec3(dx, 0, 0), Vec3(0, 0, dz));
-  back_ =
-      std::make_unique<Quad>(back_top_right, Vec3(-dx, 0, 0), Vec3(0, -dy, 0));
-  right_ =
-      std::make_unique<Quad>(back_top_right, Vec3(0, 0, -dz), Vec3(0, -dy, 0));
-  top_ =
-      std::make_unique<Quad>(back_top_right, Vec3(-dx, 0, 0), Vec3(0, 0, -dz));
+  front_ = std::make_unique<Quad>(front_bottom_left, Vec3(dx, 0, 0),
+                                  Vec3(0, dy, 0), material);
+  left_ = std::make_unique<Quad>(front_bottom_left, Vec3(0, 0, dz),
+                                 Vec3(0, dy, 0), material);
+  bottom_ = std::make_unique<Quad>(front_bottom_left, Vec3(dx, 0, 0),
+                                   Vec3(0, 0, dz), material);
+  back_ = std::make_unique<Quad>(back_top_right, Vec3(-dx, 0, 0),
+                                 Vec3(0, -dy, 0), material);
+  right_ = std::make_unique<Quad>(back_top_right, Vec3(0, 0, -dz),
+                                  Vec3(0, -dy, 0), material);
+  top_ = std::make_unique<Quad>(back_top_right, Vec3(-dx, 0, 0),
+                                Vec3(0, 0, -dz), material);
 
   bounding_box_ = BoundingBox(front_bottom_left, back_top_right);
 }

@@ -38,9 +38,8 @@ void RenderBouncingSpheres() {
       auto choose_mat = utils::Random::random_real();
       Point3 center(x + 0.9 * utils::Random::random_real(), 0.2,
                     z + 0.9 * utils::Random::random_real());
-      // Point3 center_final(center.x(),
-      //                     center.y() + 0.2 * utils::Random::random_real(),
-      //                     center.z());
+      // Point3 center_final =
+      //     center + Point3(0, 0.2 * utils::Random::random_real(), 0);
       // Removes bouncing effect
       Point3 center_final = center;
       if (Vec3(center - Point3(4, -0.2, 0)).norm() > 0.9) {
@@ -341,13 +340,13 @@ void RenderFinalScene(int image_width,
   // Green boxes in the foreground
   for (int i = 0; i < boxes_per_side; i++) {
     for (int j = 0; j < boxes_per_side; j++) {
-      auto w = 100.0;
-      auto x0 = -1000.0 + i * w;
-      auto z0 = -1000.0 + j * w;
+      auto width = 100.0;
+      auto x0 = -1000.0 + i * width;
+      auto z0 = -1000.0 + j * width;
       auto y0 = 0.0;
-      auto x1 = x0 + w;
+      auto x1 = x0 + width;
       auto y1 = utils::Random::random_real(1, 101);
-      auto z1 = z0 + w;
+      auto z1 = z0 + width;
 
       boxes1.add(std::make_unique<Box>(Point3(x0, y0, z0), Point3(x1, y1, z1),
                                        ground));
@@ -386,15 +385,16 @@ void RenderFinalScene(int image_width,
       Color(0.2, 0.4, 0.9), /*density*/ 0.2));
   // (5) Scene itself takes place in a sphere. This is visible in the
   // background.
-  // hittables.add(std::make_unique<ConstantMedium>(
-  //     /*boundary*/ std::make_unique<Sphere>(Point3(0, 0, 0), 5000,
-  //                                           std::make_shared<Dielectric>(1.5)),
-  //     Color(1, 1, 1), /*density*/ 0.0001));
+  hittables.add(std::make_unique<ConstantMedium>(
+      /*boundary*/ std::make_unique<Sphere>(Point3(0, 0, 0), 5000,
+                                            std::make_shared<Dielectric>(1.5)),
+      Color(1, 1, 1), /*density*/ 0.0001));
 
   // (6) Earth sphere
   auto emat = std::make_shared<Lambertian>(
       std::make_unique<ImageTexture>("earthmap.jpg"));
   hittables.add(std::make_unique<Sphere>(Point3(400, 200, 400), 100, emat));
+
   // (7) Perlin noise sphere
   // auto pertext = std::make_shared<noise_texture>(0.2);
   // hittables.add(std::make_unique<Sphere>(Point3(220, 280, 300), 80,
@@ -432,7 +432,7 @@ void RenderFinalScene(int image_width,
 }
 
 int main() {
-  int i = 3;
+  int i = 5;
   switch (i) {
     case 0:
       RenderBouncingSpheres();

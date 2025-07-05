@@ -18,7 +18,7 @@ class Box : public Hittable {
  public:
   Box(const Point3& front_bottom_left,
       const Point3& back_top_right,
-      std::shared_ptr<Material>);
+      std::shared_ptr<Material> material);
 
   bool Hit(const Ray& incident_ray,
            Interval ival,

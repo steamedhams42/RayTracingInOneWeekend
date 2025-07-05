@@ -115,18 +115,24 @@ Color Camera::ComputeRayColor(const Ray& incident_ray,
     // If ray hits nothing, return background color.
     return background_color_;
   }
-  Ray scattered_ray;
-  Color attenuation;
+  // Emission is non-zero for light sources (diffuse).
+  // Emission is zero for all other materials.
   Color color_from_emission = hit_result.material->Emit(
       hit_result.u, hit_result.v, hit_result.incident_point);
-  // If ray is reflected, recurse.
+  Ray scattered_ray;
+  Color attenuation;
+  // Only light sources do not scatter (they emit).
+  // All other materials scatter.
   if (!hit_result.material->Scatter(incident_ray, hit_result, attenuation,
                                     scattered_ray)) {
     return color_from_emission;
   }
-  return color_from_emission + attenuation * ComputeRayColor(scattered_ray,
-                                                             hittables,
-                                                             light_bounces + 1);
+
+  Color color_from_scatter =
+      attenuation *
+      ComputeRayColor(scattered_ray, hittables, light_bounces + 1);
+
+  return color_from_emission + color_from_scatter;
 }
 
 Ray Camera::GetRandomRayWithXY(int x, int y) {

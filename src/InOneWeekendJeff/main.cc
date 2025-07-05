@@ -429,7 +429,7 @@ void RenderFinalScene(int image_width,
 }
 
 int main() {
-  int i = 10;
+  int i = 7;
   switch (i) {
     case 0:
       RenderBouncingSpheres();

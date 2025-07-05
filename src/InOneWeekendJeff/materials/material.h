@@ -22,7 +22,8 @@ class Material {
     return false;
   }
 
-  // Emits a color with no reflection. E.g. a light source.
+  // Emittance is Color(0,0,0) for all non-diffuse materials.
+  // Diffuse materials emit pure color e.g. a white light source Color(1, 1, 1).
   virtual Color Emit(double u, double v, const Point3& p) const {
     return Color();
   }

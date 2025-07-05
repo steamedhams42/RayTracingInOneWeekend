@@ -7,7 +7,8 @@ ImageTexture::ImageTexture(const char* filename) : image_(filename) {}
 
 Color ImageTexture::value(double u, double v, const Point3& p) const {
   if (image_.height() <= 0) {
-    assert(false);
+    return Color(0, 1, 1);
+    // assert(false);
   }
 
   u = Interval(0, 1).clamp(u);

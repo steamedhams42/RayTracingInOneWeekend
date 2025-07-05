@@ -19,7 +19,8 @@ Camera::Camera(Point3 center,
                double aspect_width,
                double aspect_height,
                int samples_per_pixel,
-               int max_recursion_depth)
+               int max_recursion_depth,
+               Color background_color)
     : camera_center_(center),
       focal_point_(focal_point),
       focal_distance_(focal_distance),
@@ -28,7 +29,8 @@ Camera::Camera(Point3 center,
       aspect_width_(aspect_width),
       aspect_height_(aspect_height),
       samples_per_pixel_(samples_per_pixel),
-      max_recursion_depth_(max_recursion_depth) {
+      max_recursion_depth_(max_recursion_depth),
+      background_color_(background_color) {
   Initialize();
 }
 
@@ -111,7 +113,7 @@ Color Camera::ComputeRayColor(const Ray& incident_ray,
   if (!hittables.Hit(incident_ray, Interval(0.001, constants::INF_DOUBLE),
                      hit_result)) {
     // If ray hits nothing, return background color.
-    return constants::color::BACKGROUND_COLOR;
+    return background_color_;
   }
   Ray scattered_ray;
   Color attenuation;

@@ -96,7 +96,8 @@ void RenderBouncingSpheres() {
       constants::camera::VERTICAL_FIELD_OF_VIEW, constants::camera::IMAGE_WIDTH,
       constants::camera::ASPECT_WIDTH, constants::camera::ASPECT_HEIGHT,
       constants::camera::SAMPLES_PER_PIXEL,
-      constants::camera::MAX_LIGHT_BOUNCES);
+      constants::camera::MAX_LIGHT_BOUNCES,
+      /*background color*/ constants::color::SKY_BLUE);
   camera.Render(hittables);
 }
 
@@ -117,7 +118,8 @@ void RenderCheckeredSpheres() {
       constants::camera::VERTICAL_FIELD_OF_VIEW, constants::camera::IMAGE_WIDTH,
       constants::camera::ASPECT_WIDTH, constants::camera::ASPECT_HEIGHT,
       constants::camera::SAMPLES_PER_PIXEL,
-      constants::camera::MAX_LIGHT_BOUNCES);
+      constants::camera::MAX_LIGHT_BOUNCES,
+      /*background color*/ constants::color::SKY_BLUE);
   camera.Render(hittables);
 }
 
@@ -136,7 +138,8 @@ void RenderEarth() {
                 constants::camera::IMAGE_WIDTH, constants::camera::ASPECT_WIDTH,
                 constants::camera::ASPECT_HEIGHT,
                 constants::camera::SAMPLES_PER_PIXEL,
-                constants::camera::MAX_LIGHT_BOUNCES);
+                constants::camera::MAX_LIGHT_BOUNCES,
+                /*background color*/ constants::color::SKY_BLUE);
   camera.Render(hittables);
 }
 
@@ -170,7 +173,8 @@ void RenderQuads() {
                 constants::camera::ASPECT_WIDTH,
                 constants::camera::ASPECT_HEIGHT,
                 constants::camera::SAMPLES_PER_PIXEL,
-                constants::camera::MAX_LIGHT_BOUNCES);
+                constants::camera::MAX_LIGHT_BOUNCES,
+                /*background color*/ constants::color::SKY_BLUE);
   camera.Render(hittables);
 }
 
@@ -200,7 +204,8 @@ void RenderSimpleLight() {
                 constants::camera::ASPECT_WIDTH,
                 constants::camera::ASPECT_HEIGHT,
                 constants::camera::SAMPLES_PER_PIXEL,
-                constants::camera::MAX_LIGHT_BOUNCES);
+                constants::camera::MAX_LIGHT_BOUNCES,
+                /*background color*/ constants::color::BLACK);
   camera.Render(hittables);
 }
 
@@ -257,7 +262,8 @@ void RenderCornellBox() {
                 /*image width*/ constants::camera::IMAGE_WIDTH,
                 /*aspect width*/ 16.0,
                 /*aspect height*/ 16.0, constants::camera::SAMPLES_PER_PIXEL,
-                constants::camera::MAX_LIGHT_BOUNCES);
+                constants::camera::MAX_LIGHT_BOUNCES,
+                /*background color*/ constants::color::BLACK);
   camera.Render(hittables);
 }
 
@@ -320,7 +326,8 @@ void RenderCornellSmoke() {
                 /*image width*/ constants::camera::IMAGE_WIDTH,
                 /*aspect width*/ 16.0,
                 /*aspect height*/ 16.0, constants::camera::SAMPLES_PER_PIXEL,
-                constants::camera::MAX_LIGHT_BOUNCES);
+                constants::camera::MAX_LIGHT_BOUNCES,
+                /*backgrond color*/ constants::color::BLACK);
   camera.Render(hittables);
 }
 
@@ -419,12 +426,13 @@ void RenderFinalScene(int image_width,
                 /*aspect width*/ 16.0,
                 /*aspect height*/ 16.0,
                 /* samples per pixel */ samples_per_pixel,
-                /*max_recursion_depth*/ max_recursion_depth);
+                /*max_recursion_depth*/ max_recursion_depth,
+                /*background color*/ constants::color::BLACK);
   camera.Render(hittables);
 }
 
 int main() {
-  int i = 10;
+  int i = 3;
   switch (i) {
     case 0:
       RenderBouncingSpheres();

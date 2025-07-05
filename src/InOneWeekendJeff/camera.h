@@ -19,7 +19,8 @@ class Camera {
          double aspect_height,
          double vertical_field_of_view,
          int samples_per_pixel,
-         int max_recursion_depth);
+         int max_recursion_depth,
+         Color background_color);
 
   void Initialize();
   void Render(const HittableList&);
@@ -85,5 +86,7 @@ class Camera {
   // Number of random rays sampled per pixel. Increases fidelity and computation
   int samples_per_pixel_;
   int max_recursion_depth_;
+
+  Color background_color_;
 };
 #endif

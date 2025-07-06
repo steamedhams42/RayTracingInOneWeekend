@@ -121,8 +121,7 @@ Color Camera::ComputeRayColor(const Ray& incident_ray,
       hit_result.u, hit_result.v, hit_result.incident_point);
   Ray scattered_ray;
   Color attenuation;
-  // Only light sources do not scatter (they emit).
-  // All other materials scatter.
+  // Light sources do not scatter (they emit). All other materials scatter.
   if (!hit_result.material->Scatter(incident_ray, hit_result, attenuation,
                                     scattered_ray)) {
     return color_from_emission;

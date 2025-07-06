@@ -1,3 +1,7 @@
+### Jeff's Final Render of "The Next Week":
+
+![Alt text](/image_jeff.png);
+
 Ray Tracing in One Weekend Book Series
 ====================================================================================================
 
@@ -171,6 +175,10 @@ operating system to simply print the image to file.
 
 ### Running The Programs
 
+## Windows
+`.\build\InOneWeekendJeff.exe | set-content image_jeff.ppm -encoding String;`
+
+## Linux
 You can run the programs by executing the binaries placed in the build directory:
 
     $ build\Debug\inOneWeekend > image.ppm
